@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CreateGoodsMapper">
+<cache />
+
+<sql id="basecolumn">
+		GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM,
+		 THEME_M_NUM, THEME_S_NUM, GOODS_NAME, GOODS_PRICE, GOODS_DETAIL,
+		GOODS_DANGER, GOODS_STATUS, GOODS_STOCK, COMPANY_NUM
+</sql>
+
+<resultMap type="Model.DTO.HHHDTO.PlaceGoods" id="baseGoods">
+		<id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>
+		<result column="COMPANY_NUM" jdbcType = "VARCHAR" property="companyNum"/>
+		<result column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum"/>
+		<result column="MAP_M_NUM" jdbcType = "VARCHAR" property="mapMNum"/>
+		<result column="MAP_S_NUM" jdbcType="VARCHAR" property="mapSNum"/>
+		<result column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum"/>
+		<result column="THEME_M_NUM" jdbcType="VARCHAR" property="themeMNum"/>
+		<result column="THEME_S_NUM" jdbcType="VARCHAR" property="themeSNum"/>
+		<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName"/>
+		<result column="GOODS_PRICE" jdbcType="BIGINT" property="goodsPrice"/>
+		<result column="GOODS_DETAIL" jdbcType="VARCHAR" property="goodsDetail"/>
+		<result column="GOODS_DANGER" jdbcType = "VARCHAR" property="goodsDanger"/>
+		<result column="GOODS_STATUS" jdbcType = "VARCHAR" property="goodsStatus"/>
+		<result column="GOODS_STOCK" jdbcType = "BIGINT" property="goodsStock"/>
+		
+		
+	</resultMap>
+
+<select id="placeList" resultMap="baseGoods">
+		SELECT
+	  		<include refid="basecolumn" />
+		FROM goods
+		
+</select>
+
+<select id="getOneGoods" parameterType="String" resultMap="baseGoods">
+		SELECT
+			  <include refid="basecolumn" />
+		FROM goods
+		<where>
+			GOODS_NUM = #{num}
+		</where>	 
+
+</select>
+
+
+
+</mapper>

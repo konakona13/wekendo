@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LEE-Mapper">
+	<cache />
+	<insert id="memberInsert" parameterType="Member">
+		insert into
+		member(MEMBER_NUM,MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_PH,
+		MEMBER_ADDR,MEMBER_EMAIL,GENDER,MEMBER_PHOTO,MEMBER_BIRTH,
+		MEMBER_STATUS)
+		values ('NM'|| MEMBER_NUM_seq.nextval,
+		#{memberId},#{memberPw},#{memberName}, #{memberPh1}
+		, #{addr},
+		#{email},#{gender}, #{fileName}, #{memberBir}, '정상' )
+	</insert>
+	<sql id="basecolumn">
+		MEMBER_NUM,MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_PH,
+		MEMBER_ADDR,MEMBER_EMAIL,GENDER,MEMBER_PHOTO,MEMBER_BIRTH,
+		MEMBER_STATUS
+	</sql>
+	<sql id="basecolumnCompany">
+		COMPANY_NUM, COMPANY_KIND, COMPANY_ID, COMPANY_PW,
+		COMPANY_BN, COMPANY_NAME, COMPANY_CAP, COMPANY_PH, COMPANY_EMAIL,
+		MANAGER_NAME, COMPANY_ADDR, COMPANY_BANK, COMPANY_ACC, COMPANY_STATUS
+	</sql>
+	<resultMap type="Member" id="baseMember">
+		<id column="MEMBER_NUM" jdbcType="VARCHAR" property="memberNum" />
+		<result column="MEMBER_NAME" jdbcType="VARCHAR"
+			property="memberName" />
+		<result column="MEMBER_BIRTH" jdbcType="TIMESTAMP"
+			property="memberBir" />
+		<result column="MEMBER_PH" jdbcType="BIGINT"
+			property="memberPh1" />
+		<result column="MEMBER_EMAIL" jdbcType="VARCHAR"
+			property="email" />
+		<result column="MEMBER_ADDR" jdbcType="VARCHAR" property="addr" />
+		<result column="GENDER" jdbcType="VARCHAR" property="gender" />
+		<result column="MEMBER_PHOTO" jdbcType="VARCHAR"
+			property="fileName" />
+		<result column="MEMBER_STATUS" jdbcType="VARCHAR"
+			property="status" />
+		<result column="MEMBER_ID" jdbcType="VARCHAR"
+			property="memberId" />
+		<result column="MEMBER_PW" jdbcType="VARCHAR"
+			property="memberPw" />
+	</resultMap>
+	<resultMap type="Company" id="baseCompany">
+		<id column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum" />
+		<result column="COMPANY_KIND" jdbcType="VARCHAR"
+			property="companyKind" />
+		<result column="COMPANY_ID" jdbcType="TIMESTAMP"
+			property="companyId" />
+		<result column="COMPANY_PW" jdbcType="BIGINT"
+			property="companyPw" />
+		<result column="COMPANY_BN" jdbcType="VARCHAR"
+			property="companyBn" />
+		<result column="COMPANY_NAME" jdbcType="VARCHAR"
+			property="companyName" />
+		<result column="COMPANY_CAP" jdbcType="VARCHAR"
+			property="companyCap" />
+		<result column="COMPANY_PH" jdbcType="BIGINT"
+			property="companyPh" />
+		<result column="COMPANY_EMAIL" jdbcType="VARCHAR"
+			property="managerEmail" />
+		<result column="MANAGER_NAME" jdbcType="VARCHAR"
+			property="managerName" />
+		<result column="COMPANY_ADDR" jdbcType="VARCHAR"
+			property="companyAddr" />
+		<result column="COMPANY_BANK" jdbcType="VARCHAR"
+			property="companyBank" />
+		<result column="COMPANY_ACC" jdbcType="VARCHAR"
+			property="companyAcc" />
+		<result column="COMPANY_STATUS" jdbcType="VARCHAR"
+			property="companyStatus" />
+	</resultMap>
+
+	<select id="userCheck" parameterType="Member"
+		resultMap="baseMember">
+		select
+		<include refid="basecolumn" />
+		from member
+		where member_id = #{memberId} and member_pw = #{memberPw}
+	</select>
+	<select id="userCheck1" parameterType="Member"
+		resultMap="baseMember">
+		select
+		<include refid="basecolumn" />
+		from member
+		where member_id = #{memberId}
+	</select>
+
+	<insert id="companyInsert" parameterType="Company">
+		insert into company
+		(COMPANY_NUM, COMPANY_KIND, COMPANY_ID, COMPANY_PW,
+		COMPANY_BN,
+		COMPANY_NAME, COMPANY_CAP, COMPANY_PH, COMPANY_EMAIL,
+		MANAGER_NAME,
+		COMPANY_ADDR, COMPANY_BANK, COMPANY_ACC, COMPANY_STATUS)
+		values ('CO'||
+		COMPANY_NUM_seq.nextval,
+		#{companyKind},#{companyId},#{companyPw},
+		#{companyBn}, #{companyName},
+		#{companyCap},#{companyPh},
+		#{managerEmail}, #{managerName},
+		#{companyAddr},#{companyBank},#{companyAcc},#{companyStatus} )
+	</insert>
+</mapper>

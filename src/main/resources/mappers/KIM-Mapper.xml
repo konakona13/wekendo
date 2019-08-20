@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="KIM-Mapper">
+
+<cache />
+
+<insert id="insertKendoJoin" parameterType="Model.DTO.kimDTO.KendoJoin" >
+	insert into KENDOJOIN (JOIN_NUM, DO_NUM, GUEST_NUM, HOST_NUM, JOIN_DATE, JOIN_KAKAOID, JOIN_INTRODUCE, JOIN_QTY)
+	values ('JN' || JOIN_NUM_SEQ.nextval,'DO' || DO_NUM_SEQ.nextval,'GU1200','HO1300', #{joinDate}, #{joinKakaoid},#{joinIntroduce},#{joinQty})
+</insert>
+
+<!--  
+<insert id="insertfriend" parameterType="Model.DTO.kimDTO.Friend" >
+	insert into KENDOJOIN (JOIN_NUM, DO_NUM, GUEST_NUM, HOST_NUM, JOIN_DATE, JOIN_KAKAOID, JOIN_INTRODUCE, JOIN_QTY)
+	values ('JN' || JOIN_NUM_SEQ.nextval,'DO' || DO_NUM_SEQ.nextval,'GU1200','HO1300', #{joinDate}, #{joinKakaoid},#{joinIntroduce},#{joinQty})
+</insert>
+
+<insert id="insertguestPay" parameterType="Model.DTO.kimDTO.GuestPay" >
+	insert into KENDOJOIN (JOIN_NUM, DO_NUM, GUEST_NUM, HOST_NUM, JOIN_DATE, JOIN_KAKAOID, JOIN_INTRODUCE, JOIN_QTY)
+	values ('JN' + JOIN_NUM_SEQ.nextval,'DO' + DO_NUM_SEQ.nextval,'GU1200','HO1300', #{joinDate}, #{joinKakaoid},#{joinIntroduce},#{joinQty})
+</insert>
+-->
+</mapper>

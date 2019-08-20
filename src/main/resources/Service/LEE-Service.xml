@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			">
+
+	<bean id="memberJoinService"
+		class="Service.LEEService.MemberJoinService" />
+	<bean id="reportSubmissionService"
+		class="Service.LEEService.ReportSubmissionService" />
+	<bean id="memberLoginService"
+		class="Service.LEEService.MemberLoginService" />
+	<bean id="memberLogoutService"
+		class="Service.LEEService.MemberLogoutService" />
+	<bean id="companyJoinService"
+		class="Service.LEEService.CompanyJoinService" />
+</beans>
