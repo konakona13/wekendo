@@ -10,36 +10,28 @@ import org.springframework.ui.Model;
 
 import Command.LEECommand.AuthInfo;
 import Command.LEECommand.LoginCommand;
-import Model.DTO.LEEDTO.Member;
+import Model.DTO.LEEDTO.Company;
 import Repository.LEERepository.SessionRepository;
 
 @Service
-public class MemberLoginService {
+public class CompanyLoginService {
+
 	@Autowired
 	private SessionRepository sessionRepository;
-	/*
-	 * public String loginPro1(Model model, LoginCommand loginCommand, HttpSession
-	 * session, HttpServletResponse response) { System.out.println("bbbbb"); Member
-	 * member = sessionRepository.userCheck1(loginCommand.getId1(),
-	 * loginCommand.getPw()); int result = 0; if (member == null) { result = 1; }
-	 * else { if (member.getMemberPw().equals(loginCommand.getPw())) { result = 3;
-	 * AuthInfo authInfo = new AuthInfo(member.getMemberId(), member.getEmail(),
-	 * member.getMemberName()); session.setAttribute("memid", authInfo); } else {
-	 * result = 2; } } model.addAttribute("result", result); String idStore =
-	 * loginCommand.getIdStore(); setCookie(idStore, response, loginCommand); return
-	 * "main/loginPro"; }
-	 */
 
 	public String loginPro(Model model, LoginCommand loginCommand, HttpSession session, HttpServletResponse response) {
-		Member member = sessionRepository.userCheck(loginCommand.getId1(), loginCommand.getPw());
-		if (member == null) {
+		// TODO Auto-generated method stub
+		Company company = sessionRepository.comCheck(loginCommand.getId1(), loginCommand.getPw());
+		if (company == null) {
 			model.addAttribute("msg111", "아이디가 존재하지 않습니다.");
 		} else {
-			AuthInfo authInfo = new AuthInfo(member.getMemberId(), member.getEmail(), member.getMemberName());
-			authInfo.setProfile(member.getFileName());
-			authInfo.setMemNum(member.getMemberNum());
-			session.setAttribute("memAuth", authInfo);
-			session.setAttribute("memNum", member.getMemberNum());
+			AuthInfo authInfo = new AuthInfo(company.getCompanyId(), company.getManagerEmail(),
+					company.getCompanyName());
+			authInfo.setComNum(company.getCompanyNum());
+			authInfo.setComAcc(company.getCompanyAcc());
+			authInfo.setComBank(company.getCompanyBank());
+			session.setAttribute("comAuth", authInfo);
+			session.setAttribute("comNum", company.getCompanyNum());
 		}
 		String idStore = loginCommand.getIdStore();
 		setCookie(idStore, response, loginCommand);
