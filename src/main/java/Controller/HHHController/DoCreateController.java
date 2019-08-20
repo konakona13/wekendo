@@ -25,7 +25,8 @@ public class DoCreateController
 	@RequestMapping("/doCreateEnter")
 	public String doCreateEnter(Model model, HttpSession session)
 	{
-		
+		session.setAttribute("testHHHid", "NM1013");
+		//doCreateService.getMemberInfo(model,session);
 		return "HHHview/doCreateFirst";
 	}
 	

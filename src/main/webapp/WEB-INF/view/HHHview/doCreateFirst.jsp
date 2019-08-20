@@ -28,10 +28,8 @@ $(function(){
     <h1>활동개설신청서?</h1>
        
         <form action="doCreatePay">
-            <p>회원정보</p>
-            <p>회원정보</p>
-            <p>회원정보</p>
-            <p>회원정보</p>
+            <p>파티장이름</p>
+           
             <p>
                 활동선택?
                 <select name="as" id="">
@@ -75,25 +73,28 @@ $(function(){
                         상세설명 <input type="text">
                    </p>
                    <p>
-                        성별제한 <input type="text">
+                        성별제한   <select name="lg" id="limitGender">
+                    <option value="allPP">무관</option>
+                    <option value="manPP">남자</option>
+                    <option value="womanPP">여자</option>
+                	</select>
                    </p>
                    <p>
-                        나이제한 <input type="text">
+                        나이제한 <select name="la" id="limitAge">
+                    <option value="allPP">미설정</option>
+                    <option value="adultPP">성인</option>
+                	</select>
                    </p>
                
                    
             </p>
 
             
-            <p>
-                <input type="checkbox" value="dd">숙박선택
-                <input type="checkbox" value="dd">렌트카선택
-                <input type="checkbox" value="dd">멘토선택
-            </p>
+           
             
             <div id="selectPlace">
             	
-            	장소 : <span>없음</span> 
+            	장소 : <input type="text" id="PlaceName" value="없음">
             	<input id="selectPlaceBtn" type="button" value="장소선택">
             
             </div>
