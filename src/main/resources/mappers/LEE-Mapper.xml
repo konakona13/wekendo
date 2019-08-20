@@ -13,6 +13,7 @@
 		, #{addr},
 		#{email},#{gender}, #{fileName}, #{memberBir}, '정상' )
 	</insert>
+	
 	<sql id="basecolumn">
 		MEMBER_NUM,MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_PH,
 		MEMBER_ADDR,MEMBER_EMAIL,GENDER,MEMBER_PHOTO,MEMBER_BIRTH,
@@ -23,6 +24,7 @@
 		COMPANY_BN, COMPANY_NAME, COMPANY_CAP, COMPANY_PH, COMPANY_EMAIL,
 		MANAGER_NAME, COMPANY_ADDR, COMPANY_BANK, COMPANY_ACC, COMPANY_STATUS
 	</sql>
+	
 	<resultMap type="Member" id="baseMember">
 		<id column="MEMBER_NUM" jdbcType="VARCHAR" property="memberNum" />
 		<result column="MEMBER_NAME" jdbcType="VARCHAR"
@@ -44,13 +46,14 @@
 		<result column="MEMBER_PW" jdbcType="VARCHAR"
 			property="memberPw" />
 	</resultMap>
+
 	<resultMap type="Company" id="baseCompany">
 		<id column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum" />
 		<result column="COMPANY_KIND" jdbcType="VARCHAR"
 			property="companyKind" />
-		<result column="COMPANY_ID" jdbcType="TIMESTAMP"
+		<result column="COMPANY_ID" jdbcType="VARCHAR"
 			property="companyId" />
-		<result column="COMPANY_PW" jdbcType="BIGINT"
+		<result column="COMPANY_PW" jdbcType="VARCHAR"
 			property="companyPw" />
 		<result column="COMPANY_BN" jdbcType="VARCHAR"
 			property="companyBn" />
@@ -104,4 +107,11 @@
 		#{managerEmail}, #{managerName},
 		#{companyAddr},#{companyBank},#{companyAcc},#{companyStatus} )
 	</insert>
+	<select id="companyCheck" parameterType="Company"
+		resultMap="baseCompany">
+		select
+		<include refid="basecolumnCompany" />
+		from company
+		where COMPANY_ID = #{companyId} and COMPANY_PW = #{companyPw}
+	</select>
 </mapper>

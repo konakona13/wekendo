@@ -2,6 +2,8 @@ package Service.HHHService;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -29,6 +31,12 @@ public class DoCreateService
 		PlaceGoods goods =  doCreateReporsitory.getOneGoods(num);
 		model.addAttribute("goods",goods);
 		return "HHHview/doGoodsDetail";
+	}
+
+	public void getMemberInfo(Model model,HttpSession session)
+	{
+		
+		
 	}
 
 }

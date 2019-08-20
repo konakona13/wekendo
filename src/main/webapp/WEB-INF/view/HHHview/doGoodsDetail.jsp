@@ -14,7 +14,7 @@
 	$(function(){
 		$("#selctPlaceBtn").click(function()
 		{
-			var txt = "dddd";
+			var txt = $('#goodPlaceNum').val();
 			opener.document.getElementById("PlaceName").value = txt;
 			window.close();
 		});
@@ -27,6 +27,7 @@
     
 </head>
 <body>
+<input type="hidden" id="goodPlaceNum" value="${goods.goodsName}">
     <h1> 상세페이지</h1>
     <p>상품이름 : ${goods.goodsName}</p>
    	<p>상세내용 : ${goods.goodsDetail}</p>

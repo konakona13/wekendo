@@ -30,6 +30,7 @@ public class DoCreateReporsitory
 		String statement =  namespace + ".getOneGoods";
 		result = sqlSession.selectOne(statement,num);
 		return result;
+		
 	}
 
 }

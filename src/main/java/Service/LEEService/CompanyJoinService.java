@@ -4,12 +4,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import Command.LEECommand.CompanyJoinCommand;
 import Model.DTO.LEEDTO.Company;
 import Repository.LEERepository.SessionRepository;
 
+@Service
 public class CompanyJoinService {
 	@Autowired
 	private SessionRepository sessionRepository;
