@@ -24,12 +24,5 @@ public class DoCreateReporsitory
 		
 		
 	}
-	public PlaceGoods getOneGoods(String num)
-	{
-		PlaceGoods result = null;
-		String statement =  namespace + ".getOneGoods";
-		result = sqlSession.selectOne(statement,num);
-		return result;
-	}
 
 }

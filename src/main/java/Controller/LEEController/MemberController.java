@@ -17,6 +17,7 @@ import Command.LEECommand.CompanyJoinCommand;
 import Command.LEECommand.LoginCommand;
 import Command.LEECommand.MemberJoinCommand;
 import Service.LEEService.CompanyJoinService;
+import Service.LEEService.CompanyLoginService;
 import Service.LEEService.MemberJoinService;
 import Service.LEEService.MemberLoginService;
 import Service.LEEService.MemberLogoutService;
@@ -34,6 +35,8 @@ public class MemberController {
 	private MemberLoginService memberLoginService;
 	@Autowired
 	private MemberLogoutService memberLogoutService;
+	@Autowired
+	private CompanyLoginService companyLoginService;
 
 	@RequestMapping("/loginmain")
 	public String mainView() {
@@ -45,7 +48,7 @@ public class MemberController {
 		model.addAttribute("memberJoinCommand", new MemberJoinCommand());
 		return "LEEview/memberForm";
 	}
-	
+
 	@RequestMapping("/companyJoin")
 	public String joinCompany(Model model) {
 		model.addAttribute("companyJoinCommand", new CompanyJoinCommand());
@@ -68,17 +71,15 @@ public class MemberController {
 		}
 		return path;
 	}
-	
+
 	@RequestMapping(value = "/CompanyJoinAction", method = RequestMethod.POST)
 	public String companyJoinAction(Model model, CompanyJoinCommand companyJoinCommand, Errors errors,
 			@RequestParam("id1") String comId, HttpServletRequest request, HttpSession session) {
 		String path = "";
 		/*
-		new RegisterRequestValidator().validate(companyJoinCommand, errors);
-		if (errors.hasErrors()) {
-			return "LEEview/memberForm";
-		}
-		*/
+		 * new RegisterRequestValidator().validate(companyJoinCommand, errors); if
+		 * (errors.hasErrors()) { return "LEEview/memberForm"; }
+		 */
 		try {
 			path = companyJoinService.comInsert(model, companyJoinCommand, comId, request, session);
 		} catch (Exception e) {
@@ -89,11 +90,19 @@ public class MemberController {
 
 	@RequestMapping("loginPro")
 	public String loginPro(Model model, LoginCommand loginCommand, HttpSession session, HttpServletResponse response,
-			Errors errors) {
-		new LoginCommandValidator().validate(loginCommand, errors);
-		if (errors.hasErrors())
-			return "redirect:index.html"; // 수정
-		String path = memberLoginService.loginPro(model, loginCommand, session, response);
+			Errors errors, @RequestParam("selectLogin") String selectLogin) {
+		String path = "";
+		if (selectLogin.equals("normal")) {
+			new LoginCommandValidator().validate(loginCommand, errors);
+			if (errors.hasErrors())
+				return "redirect:index.jsp"; // 수정
+			path = memberLoginService.loginPro(model, loginCommand, session, response);
+		} else if(selectLogin.equals("company")) {
+			new LoginCommandValidator().validate(loginCommand, errors);
+			if (errors.hasErrors())
+				return "redirect:index.jsp"; // 수정
+			path = companyLoginService.loginPro(model, loginCommand, session, response);
+		}
 		return path;
 	}
 

@@ -1,3 +1,4 @@
+<%@page import="Command.LEECommand.AuthInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -16,14 +17,13 @@
 				isId = true;
 				userid = c.getValue();
 			}else if(c.getName().equals("auto")){
-				session.setAttribute("memid", c.getValue());
+				session.setAttribute("memAuth", c.getValue());
 			}
 		}
 	}
-	String memName = (String)session.getAttribute("memName");
-	String memId1 = (String)session.getAttribute("memId1");
-	String profile = (String)session.getAttribute("profile");
+	
 	String memNum = (String)session.getAttribute("memNum");
+	String comNum = (String)session.getAttribute("comNum");
 %>
 <!DOCTYPE html>
 <html>
@@ -35,8 +35,6 @@
  <script type="text/javascript" 
  			src="/mybatis-spring-smrit/js/jquery.form.js"></script>
 <script type="text/javascript">
-
-
 
 	$(function(){
 		$("#btn1").click(function(){
@@ -103,11 +101,12 @@
 </head>
 <body>
 <!-- 로그인 되지 않았을 때 화면 -->
-<%if(session.getAttribute("memid")== null){ %>
+<%if(session.getAttribute("memAuth")== null && session.getAttribute("comAuth")== null){ %>
 <form:form action="loginPro" name="frm" method="post" id="frm" 
 commandName="loginCommand">
 <table>
-	<tr><td colspan=3>회원로그인&nbsp;&nbsp;
+	<tr><td colspan=3><input type="radio" name="selectLogin" value="normal" checked="checked">일반회원로그인&nbsp;&nbsp;
+	<input type="radio" name="selectLogin" value="company">기업회원로그인&nbsp;&nbsp;
 	   <span id = "msg"  style="color:red"><%=msg111 %></span></td><tr>
 	<tr><td> 아이디 </td>
 		<td><input type ="text" id="id1" name="id1" 
@@ -142,22 +141,23 @@ commandName="loginCommand">
 	<tr>
 </table>
 </form:form>
-<% }else if(session.getAttribute("memid")!= null && memNum.substring(0, 2).equals("NM")){ %>
+<% }else if(session.getAttribute("memAuth")!= null && memNum.substring(0, 2).equals("NM")){ %>
 <!-- 로그인 된 후의 화면(일반회원) -->
 <%= memNum.substring(0, 2) %> : 일반회원코드 추출<br>
-<%= session.getAttribute("memid") %> 님 환영합니다.<br />
+<%= session.getAttribute("memAuth") %> 님 환영합니다.<br />
 <table border="1">
 <tr>
-<td rowspan="3" width="200" align="center"><img src="LEEview/upload/<%=profile %>" /></td><td width="400">일반회원 : <%=memNum %></td>
+<td rowspan="3" width="200" align="center"><img src="LEEview/upload/${memAuth.profile }" /></td><td width="400">일반회원 : ${memAuth.memNum }</td>
 </tr>
 <tr>
-<td>아이디 : <%= memId1 %></td>
+<td>아이디 : ${memAuth.id }</td>
 </tr>
 <tr>
-<td>이름 : <%= memName %></td>
+<td>이름 : ${memAuth.name }</td>
 </tr>
 </table>
 <a href="Logout" >로그아웃</a>
+<a href="HDO" >활동개설</a>
 <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>
@@ -171,19 +171,19 @@ commandName="loginCommand">
 <a href="ajaxForm" >Ajax</a>
 <a href= "domino" >도미노 속성</a>
  -->
-<% }else if(session.getAttribute("memid")!= null && memNum.substring(0, 2).equals("CO")){ %>
+<% }else if(session.getAttribute("comAuth")!= null && comNum.substring(0, 2).equals("CO")){ %>
 <!-- 로그인 된 후의 화면(기업회원) -->
-<%= memNum.substring(0, 2) %> : 일반회원코드 추출<br>
-<%= session.getAttribute("memid") %> 님 환영합니다.<br />
+<%= comNum.substring(0, 2) %> : 기업회원코드 추출<br>
+<%= session.getAttribute("comAuth") %> 님 환영합니다.<br />
 <table border="1">
 <tr>
-<td rowspan="3" width="200" align="center"><img src="LEEview/upload/<%=profile %>" /></td><td width="400">일반회원 : <%=memNum %></td>
+<td rowspan="3" width="200" align="center">${comAuth.id }</td><td width="400">기업회원 : ${comAuth.name }</td>
 </tr>
 <tr>
-<td>아이디 : <%= memId1 %></td>
+<td>계좌번호 : ${comAuth.comAcc }</td>
 </tr>
 <tr>
-<td>이름 : <%= memName %></td>
+<td>주거래은행 : ${comAuth.comBank }</td>
 </tr>
 </table>
 <a href="Logout" >로그아웃</a>

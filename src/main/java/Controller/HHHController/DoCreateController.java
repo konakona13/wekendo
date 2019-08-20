@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import Service.HHHService.DoCreateService;
 
@@ -36,22 +35,12 @@ public class DoCreateController
 		return doCreateService.getGoodsList(model);
 	}
 	
-	@RequestMapping("/placeDetail")
-	public String placeDetail(Model model,@RequestParam("num") String num)
-	{
-		return doCreateService.getGoodsDetail(model,num);
-	}
-	
-	
-	
 	@RequestMapping("/doCreatePay")
 	public String doCreatePay(Model model, HttpSession session)
 	{
 		
 		return "HHHview/doCreatePay";
 	}
-	
-	
 	
 	@RequestMapping("/doCreateCardPay")
 	public String doCreateCardPay(Model model, HttpSession session)

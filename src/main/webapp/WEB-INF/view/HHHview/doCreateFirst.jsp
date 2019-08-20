@@ -93,7 +93,7 @@ $(function(){
             
             <div id="selectPlace">
             	
-            	장소 : <span id="PlaceName">없음</span> 
+            	장소 : <span>없음</span> 
             	<input id="selectPlaceBtn" type="button" value="장소선택">
             
             </div>

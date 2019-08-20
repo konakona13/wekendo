@@ -20,15 +20,8 @@ public class DoCreateService
 		
 		List<PlaceGoods> goodsList = doCreateReporsitory.getGoodsList();
 		model.addAttribute("list",goodsList);
-		System.out.println("장소상품 갯수"+goodsList.size());
+		
 		return "HHHview/doCreatePlace";
-	}
-
-	public String getGoodsDetail(Model model,String num)
-	{
-		PlaceGoods goods =  doCreateReporsitory.getOneGoods(num);
-		model.addAttribute("goods",goods);
-		return "HHHview/doGoodsDetail";
 	}
 
 }
