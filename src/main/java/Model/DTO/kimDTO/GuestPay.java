@@ -1,8 +1,10 @@
 package Model.DTO.kimDTO;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class GuestPay {
+@SuppressWarnings("serial")
+public class GuestPay implements Serializable{
 	private String payNum;
 	private String doNum;
 	private String guestNum;
