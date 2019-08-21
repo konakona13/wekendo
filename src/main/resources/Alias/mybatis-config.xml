@@ -5,10 +5,6 @@
 	<typeAliases>
 		<!-- <typeAlias type="Model.DTO.Member" alias="Member"/> -->
 		
-		<!-- 이재학 LEE -->
-		<typeAlias type="Model.DTO.LEEDTO.Member" alias="Member"/> 
-		<typeAlias type="Model.DTO.LEEDTO.Company" alias="Company"/> 
-		
 		<!-- 임영 YYY  -->
 		<typeAlias type="Service.YYYService.GoodsListService" alias="GoodsList"/>
 		<typeAlias type="Model.DTO.YYYDTO.MapLarge" alias="MapLarge"/>
