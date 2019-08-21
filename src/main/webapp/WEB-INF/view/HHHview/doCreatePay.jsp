@@ -25,30 +25,38 @@ $(function(){
 	});
 });
 
+function payComplete()
+{
+   $("#comp").submit();
+}
 
 </script>
     
 </head>
 <body>
+	
     <h1>최종견적서?</h1>
-    <p>고객명(활동장)</p>
-    <p>활동명</p>
-    <p>활동시작일</p>
-    <p>활동종료일</p>
-    <p>모집인원</p>
+    <p>고객명(활동장) : ${kendo.hostNum }</p>
+    <p>활동명 :  ${kendo.doName}</p>
+    <p>활동시작일 : ${kendo.doStartDate}</p>
+    <p>활동종료일 : ${kendo.doEndDate}</p>
+    <p>모집인원 : ${kendo.doPp}</p>
 
-    <p>활동장소명</p>
-    <p>장소이용총금액</p>
-    <p>이용숙박상품명</p>
+    <p>활동장소명 : ${placeGoods.goodsName} </p>
+    <p>장소이용금액 : ${placeGoods.goodsPrice} </p>
+    
+    <p>이용숙박상품명 : </p>
     <p>숙박이용기간</p>
     <p>숙박이용총금액</p>
+    
     <p>렌터카상품명</p>
     <p>렌터카이용기간</p>
     <p>렌터카이용총금액</p>
+    
     <p>멘토명</p>
-
-    <p>멘토이용기간</p>
+	<p>멘토이용기간</p>
     <p>멘토이용총금액</p>
+    
     <p>전상품총금액</p>
     <p>인당결제금액</p>
 
@@ -62,10 +70,11 @@ $(function(){
 	</div>
 	
     
-    <form action="카카오페이.html">
+    <form action="#">
             <input type="submit" value="카카오페이">
     </form>
     
+    <form action="HDO" id="comp"></form>
     
 </body>
 </html>
