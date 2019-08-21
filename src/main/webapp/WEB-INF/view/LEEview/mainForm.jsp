@@ -21,9 +21,9 @@
 			}
 		}
 	}
-	
 	String memNum = (String)session.getAttribute("memNum");
 	String comNum = (String)session.getAttribute("comNum");
+	String adminId = (String)session.getAttribute("admin");
 %>
 <!DOCTYPE html>
 <html>
@@ -141,7 +141,7 @@ commandName="loginCommand">
 	<tr>
 </table>
 </form:form>
-<% }else if(session.getAttribute("memAuth")!= null && memNum.substring(0, 2).equals("NM")){ %>
+<% }else if(session.getAttribute("memAuth")!= null && memNum.substring(0, 2).equals("NM") && !adminId.equals("admin")){ %>
 <!-- 로그인 된 후의 화면(일반회원) -->
 <%= memNum.substring(0, 2) %> : 일반회원코드 추출<br>
 <%= session.getAttribute("memAuth") %> 님 환영합니다.<br />
@@ -188,6 +188,24 @@ commandName="loginCommand">
 </table>
 <a href="Logout" >로그아웃</a>
 <!-- 
+<a href="memberModify" >정보수정</a>
+<a href="edit/pwModify" >비밀번호변경</a>
+<a href="board_list" >게시글</a>
+<a href="member_list" >회원리스트</a>
+<a href="goods_list" >상품리스트</a>
+<a href="survey" >설문지</a>
+<a href="submission" >파일 업로드</a>
+<a href="email" >메일보내기</a>
+<a href="emailAll" >전체 메일 보내기</a>
+<a href="ajaxForm" >Ajax</a>
+<a href= "domino" >도미노 속성</a>
+ -->
+<% }else if(session.getAttribute("memAuth")!= null && memNum.substring(0, 2).equals("NM") && adminId.equals("admin")){ %>
+관리자 페이지<br>
+관리자 이름 : ${memAuth.name }<br>
+ <a href="Logout" >로그아웃</a>
+ <a href="kendo_list" >활동리스트</a>
+ <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>
 <a href="board_list" >게시글</a>

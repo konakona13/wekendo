@@ -3,7 +3,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="LEE-Mapper">
 	<cache />
-	<insert id="memberInsert" parameterType="Member">
+	<insert id="memberInsert"
+		parameterType="Model.DTO.LEEDTO.Member">
 		insert into
 		member(MEMBER_NUM,MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_PH,
 		MEMBER_ADDR,MEMBER_EMAIL,GENDER,MEMBER_PHOTO,MEMBER_BIRTH,
@@ -13,7 +14,7 @@
 		, #{addr},
 		#{email},#{gender}, #{fileName}, #{memberBir}, '정상' )
 	</insert>
-	
+
 	<sql id="basecolumn">
 		MEMBER_NUM,MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_PH,
 		MEMBER_ADDR,MEMBER_EMAIL,GENDER,MEMBER_PHOTO,MEMBER_BIRTH,
@@ -24,8 +25,15 @@
 		COMPANY_BN, COMPANY_NAME, COMPANY_CAP, COMPANY_PH, COMPANY_EMAIL,
 		MANAGER_NAME, COMPANY_ADDR, COMPANY_BANK, COMPANY_ACC, COMPANY_STATUS
 	</sql>
-	
-	<resultMap type="Member" id="baseMember">
+	<sql id="basecolumnDo">
+		DO_NUM, HOST_NUM, DO_NAME, DO_START_DATE, DO_END_DATE,
+		DO_OPEN_DATE,
+		DO_CLOSE_DATE, DO_PP, DO_NOWPP, DO_DETAIL, DO_OPT_GENDER,
+		DO_OPT_AGE,
+		DO_STATUS
+	</sql>
+
+	<resultMap type="Model.DTO.LEEDTO.Member" id="baseMember">
 		<id column="MEMBER_NUM" jdbcType="VARCHAR" property="memberNum" />
 		<result column="MEMBER_NAME" jdbcType="VARCHAR"
 			property="memberName" />
@@ -47,7 +55,7 @@
 			property="memberPw" />
 	</resultMap>
 
-	<resultMap type="Company" id="baseCompany">
+	<resultMap type="Model.DTO.LEEDTO.Company" id="baseCompany">
 		<id column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum" />
 		<result column="COMPANY_KIND" jdbcType="VARCHAR"
 			property="companyKind" />
@@ -77,14 +85,37 @@
 			property="companyStatus" />
 	</resultMap>
 
-	<select id="userCheck" parameterType="Member"
+	<resultMap type="Model.DTO.LEEDTO.Dodo" id="baseDo">
+		<id column="DO_NUM" jdbcType="VARCHAR" property="doNum" />
+		<result column="HOST_NUM" jdbcType="VARCHAR" property="hostNum" />
+		<result column="DO_NAME" jdbcType="VARCHAR" property="doName" />
+		<result column="DO_START_DATE" jdbcType="TIMESTAMP"
+			property="startDate" />
+		<result column="DO_END_DATE" jdbcType="TIMESTAMP"
+			property="endDate" />
+		<result column="DO_OPEN_DATE" jdbcType="TIMESTAMP"
+			property="openDate" />
+		<result column="DO_CLOSE_DATE" jdbcType="TIMESTAMP"
+			property="closeDate" />
+		<result column="DO_PP" jdbcType="BIGINT" property="doPP" />
+		<result column="DO_NOWPP" jdbcType="BIGINT" property="nowPP" />
+		<result column="DO_DETAIL" jdbcType="VARCHAR"
+			property="doDetail" />
+		<result column="DO_OPT_GENDER" jdbcType="VARCHAR"
+			property="optGender" />
+		<result column="DO_OPT_AGE" jdbcType="VARCHAR"
+			property="optAge" />
+		<result column="DO_STATUS" jdbcType="VARCHAR" property="status" />
+	</resultMap>
+
+	<select id="userCheck" parameterType="Model.DTO.LEEDTO.Member"
 		resultMap="baseMember">
 		select
 		<include refid="basecolumn" />
 		from member
 		where member_id = #{memberId} and member_pw = #{memberPw}
 	</select>
-	<select id="userCheck1" parameterType="Member"
+	<select id="userCheck1" parameterType="Model.DTO.LEEDTO.Member"
 		resultMap="baseMember">
 		select
 		<include refid="basecolumn" />
@@ -92,13 +123,17 @@
 		where member_id = #{memberId}
 	</select>
 
-	<insert id="companyInsert" parameterType="Company">
+	<insert id="companyInsert"
+		parameterType="Model.DTO.LEEDTO.Company">
 		insert into company
-		(COMPANY_NUM, COMPANY_KIND, COMPANY_ID, COMPANY_PW,
+		(COMPANY_NUM, COMPANY_KIND,
+		COMPANY_ID, COMPANY_PW,
 		COMPANY_BN,
-		COMPANY_NAME, COMPANY_CAP, COMPANY_PH, COMPANY_EMAIL,
+		COMPANY_NAME, COMPANY_CAP,
+		COMPANY_PH, COMPANY_EMAIL,
 		MANAGER_NAME,
-		COMPANY_ADDR, COMPANY_BANK, COMPANY_ACC, COMPANY_STATUS)
+		COMPANY_ADDR, COMPANY_BANK,
+		COMPANY_ACC, COMPANY_STATUS)
 		values ('CO'||
 		COMPANY_NUM_seq.nextval,
 		#{companyKind},#{companyId},#{companyPw},
@@ -107,11 +142,29 @@
 		#{managerEmail}, #{managerName},
 		#{companyAddr},#{companyBank},#{companyAcc},#{companyStatus} )
 	</insert>
-	<select id="companyCheck" parameterType="Company"
-		resultMap="baseCompany">
+	<select id="companyCheck"
+		parameterType="Model.DTO.LEEDTO.Company" resultMap="baseCompany">
 		select
 		<include refid="basecolumnCompany" />
 		from company
-		where COMPANY_ID = #{companyId} and COMPANY_PW = #{companyPw}
+		where COMPANY_ID = #{companyId} and COMPANY_PW =
+		#{companyPw}
+	</select>
+
+	<select id="getDoList"
+		parameterType="Model.DTO.LEEDTO.StartEndPage" resultMap="baseDo">
+		select * from ( select rownum rn,
+		<include refid="basecolumnDo" />
+		from (select
+		<include refid="basecolumnDo" />
+		from KENDO
+		order by DO_NUM desc))
+		where rn &gt;= #{startRow}
+		and rn &lt;=
+		#{endRow}
+	</select>
+	<select id="getDoListCount" resultType="int">
+		select count(*) from
+		KENDO
 	</select>
 </mapper>

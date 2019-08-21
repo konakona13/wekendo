@@ -9,11 +9,15 @@
 >
 	
 	<!-- <bean id = "member"  class="Model.DTO.Member" /> -->
-	
 <bean id = "kendoJoin"  class="Model.DTO.kimDTO.KendoJoin" />
 <bean id = "friend"  class="Model.DTO.kimDTO.Friend" />
 <bean id = "guestPay"  class="Model.DTO.kimDTO.GuestPay" />
+<bean id = "kendo"  class="Model.DTO.kimDTO.Kendo" />
+<bean id = "letter"  class="Model.DTO.kimDTO.Letter" />
+<bean id = "company"  class="Model.DTO.kimDTO.Company" />
 
-<bean id = "kendoJoinRepository"  class="Repository.kimRepository.KendoJoinRepository" />	
+<bean id = "kendoJoinRepository"  class="Repository.kimRepository.KendoJoinRepository" />
+<bean id = "letterRepository"  class="Repository.kimRepository.LetterRepository" />	
+<bean id = "updateComRegRepository"  class="Repository.kimRepository.UpdateComRegRepository" />		
 
 </beans>

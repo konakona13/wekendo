@@ -1,6 +1,9 @@
 package Model.DTO.YYYDTO;
 
-public class PlaceGoods {
+import java.io.Serializable;
+import java.security.Timestamp;
+
+public class PlaceGoods implements Serializable {
 	
 	String goodsNum;
 	String mapLNum;
@@ -16,6 +19,7 @@ public class PlaceGoods {
 	String goodsStatus;
 	Integer goodsStock;
 	String companyNum;
+	Timestamp regDate;
 	
 	
 	public String getGoodsNum() {
@@ -101,6 +105,12 @@ public class PlaceGoods {
 	}
 	public void setGoodsPrice(Integer goodsPrice) {
 		this.goodsPrice = goodsPrice;
+	}
+	public Timestamp getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Timestamp regDate) {
+		this.regDate = regDate;
 	}
 	
 	

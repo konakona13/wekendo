@@ -1,12 +1,14 @@
 package Model.DTO.kimDTO;
 
+import java.io.Serializable;
 import java.sql.Clob;
 import java.sql.Timestamp;
 
 import oracle.sql.CLOB;
 import oracle.sql.TIMESTAMP;
 
-public class KendoJoin {
+@SuppressWarnings("serial")
+public class KendoJoin implements Serializable{
 	private String joinNum;
 	private String doNum;
 	private String guestNum;	
@@ -65,7 +67,6 @@ public class KendoJoin {
 	public void setJoinQty(Integer joinQty) {
 		this.joinQty = joinQty;
 	}
-	
 	
 	
 

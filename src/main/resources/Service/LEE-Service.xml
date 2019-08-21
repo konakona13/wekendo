@@ -17,4 +17,6 @@
 		class="Service.LEEService.CompanyJoinService" />
 	<bean id="companyLoginService"
 		class="Service.LEEService.CompanyLoginService" />
+	<bean id="kendoListService"
+		class="Service.LEEService.KendoListService" />
 </beans>

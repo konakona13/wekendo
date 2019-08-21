@@ -40,6 +40,7 @@ public class MemberLoginService {
 			authInfo.setMemNum(member.getMemberNum());
 			session.setAttribute("memAuth", authInfo);
 			session.setAttribute("memNum", member.getMemberNum());
+			session.setAttribute("admin", member.getMemberId());
 		}
 		String idStore = loginCommand.getIdStore();
 		setCookie(idStore, response, loginCommand);

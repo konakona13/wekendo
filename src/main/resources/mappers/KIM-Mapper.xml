@@ -1,24 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="KIM-Mapper">
 
 <cache />
 
 <insert id="insertKendoJoin" parameterType="Model.DTO.kimDTO.KendoJoin" >
 	insert into KENDOJOIN (JOIN_NUM, DO_NUM, GUEST_NUM, HOST_NUM, JOIN_DATE, JOIN_KAKAOID, JOIN_INTRODUCE, JOIN_QTY)
-	values ('JN' || JOIN_NUM_SEQ.nextval,'DO' || DO_NUM_SEQ.nextval,'GU1200','HO1300', #{joinDate}, #{joinKakaoid},#{joinIntroduce},#{joinQty})
+	values ('JN'||JOIN_NUM_SEQ.nextval, #{doNum}, #{guestNum}, 
+			(select HOST_NUM from KENDO where DO_NUM = #{doNum}), #{joinDate}, #{joinKakaoid},#{joinIntroduce},#{joinQty})
+        
 </insert>
 
-<!--  
-<insert id="insertfriend" parameterType="Model.DTO.kimDTO.Friend" >
-	insert into KENDOJOIN (JOIN_NUM, DO_NUM, GUEST_NUM, HOST_NUM, JOIN_DATE, JOIN_KAKAOID, JOIN_INTRODUCE, JOIN_QTY)
-	values ('JN' || JOIN_NUM_SEQ.nextval,'DO' || DO_NUM_SEQ.nextval,'GU1200','HO1300', #{joinDate}, #{joinKakaoid},#{joinIntroduce},#{joinQty})
+  
+<insert id="insertFriend" parameterType="Model.DTO.kimDTO.Friend" >
+	insert into FRIEND (JOIN_NUM, DO_NUM, GUEST_NUM, HOST_NUM, FRIEND_NAME, FRIEND_PH, FRIEND_AGE)
+	values ('JN1000','DO1100','GU1200','HO1300', #{friendName}, 820||#{friendPh},#{friendAge})
+</insert>
+ 
+<insert id="insertGuestPay" parameterType="Model.DTO.kimDTO.GuestPay" >
+	insert into GUESTPAY (PAY_NUM, DO_NUM, GUEST_NUM, HOST_NUM, JOIN_NUM, DUTCH_DATE, DUTCH_STATUS, PAY_STYLE, PAY_CARDNAME, PAY_CARDNUM, PAY_CVCNUM, PAY_DATE)
+	values ('PY1000','DO1100','GU1200','HO1300','JN1000', sysdate, '승인',#{payStyle},#{payCardName},#{payCardNum}, #{payCvcNum},#{payDate})
 </insert>
 
-<insert id="insertguestPay" parameterType="Model.DTO.kimDTO.GuestPay" >
-	insert into KENDOJOIN (JOIN_NUM, DO_NUM, GUEST_NUM, HOST_NUM, JOIN_DATE, JOIN_KAKAOID, JOIN_INTRODUCE, JOIN_QTY)
-	values ('JN' + JOIN_NUM_SEQ.nextval,'DO' + DO_NUM_SEQ.nextval,'GU1200','HO1300', #{joinDate}, #{joinKakaoid},#{joinIntroduce},#{joinQty})
+
+<sql id="kendocolumn">
+	DO_NUM, HOST_NUM, DO_NAME, DO_START_DATE, DO_END_DATE, DO_OPEN_DATE, DO_CLOSE_DATE, 
+	DO_PP, DO_NOWPP, DO_DETAIL, DO_OPT_GENDER, DO_OPT_AGE, DO_STATUS
+</sql>
+	
+<resultMap type="Model.DTO.kimDTO.Kendo" id="kendo">
+	<id column="DO_NUM" jdbcType="VARCHAR" property="doNum"/>
+	<result column="HOST_NUM" jdbcType="VARCHAR" property="hostNum"/>
+	<result column="DO_NAME" jdbcType = "VARCHAR" 	property="doName"/>
+	<result column="DO_START_DATE" jdbcType="TIMESTAMP" property="doStartDate"/>
+	<result column="DO_END_DATE" jdbcType="TIMESTAMP" property="doEndDate"/>
+	<result column="DO_OPEN_DATE" jdbcType="TIMESTAMP" property="doOpenDate"/>
+	<result column="DO_CLOSE_DATE" jdbcType="TIMESTAMP" property="doCloseDate"/>
+	<result column="DO_PP" jdbcType="BIGINT" property="doPp"/>
+	<result column="DO_NOWPP" jdbcType="BIGINT" property="doNowPp"/>
+	<result column="DO_DETAIL" jdbcType="VARCHAR" property="doDetail"/>
+	<result column="DO_OPT_GENDER" jdbcType = "VARCHAR" property="doOptGender"/>
+	<result column="DO_OPT_AGE" jdbcType = "VARCHAR" property="doOptAge"/>
+	<result column="DO_STATUS" jdbcType = "VARCHAR" property="doStatus"/>
+</resultMap>
+
+
+<select id="getKendoJoinList" resultMap="kendo">
+	select * from  ( select rownum rn, 
+							<include refid="kendocolumn" />
+						from (select  
+								<include refid="kendocolumn" />	
+						  	 from KENDO
+						 	 order by DO_NUM desc))
+</select>
+
+
+
+
+
+
+
+
+
+
+
+<insert id="insertSendLetter" parameterType="Model.DTO.kimDTO.Letter" >
+	insert into LETTER (LETTER_NUM, MEMBER_NUM, COMPANY_NUM, LETTER_DATE, LETTER_SENDER, LETTER_RECEIVER, LETTER_CONTENT)
+	values ('LT'|| LETTER_NUM_SEQ.nextval,'NM1100','CM1200',#{letterDate}, #{letterSender}, #{letterReceiver},#{letterContent})
 </insert>
--->
+
+
+<resultMap type="Model.DTO.kimDTO.Letter" id="letter">
+	<id column="LETTER_NUM" jdbcType="VARCHAR" property="letterNum"/>
+	<result column="MEMBER_NUM" jdbcType="VARCHAR" property="memberNum"/>
+	<result column="COMPANY_NUM" jdbcType = "VARCHAR" 	property="companyNum"/>
+	<result column="LETTER_DATE" jdbcType="TIMESTAMP" property="letterDate"/>
+	<result column="LETTER_SENDER" jdbcType="TIMESTAMP" property="letterSender"/>
+	<result column="LETTER_RECEIVER" jdbcType="TIMESTAMP" property="letterReceiver"/>
+	<result column="LETTER_CONTENT" jdbcType="TIMESTAMP" property="letterContent"/>
+</resultMap>
+
+
+<select id="getSendBoxList" resultMap="letter">
+	select LETTER_DATE, LETTER_SENDER, LETTER_RECEIVER, LETTER_CONTENT
+	from LETTER
+	where LETTER_SENDER ='admin'
+ 	order by LETTER_DATE desc
+</select>
+
+<select id="getReceiveBoxList" resultMap="letter">
+	select LETTER_DATE, LETTER_SENDER, LETTER_RECEIVER, LETTER_CONTENT
+	from LETTER
+	where LETTER_RECEIVER ='admin'
+ 	order by LETTER_DATE desc
+</select>
+
+
+
+
+
+
+
+
+
+	<sql id="companycolumn">
+		COMPANY_NUM, COMPANY_KIND, COMPANY_ID, COMPANY_PW, COMPANY_BN, COMPANY_NAME, COMPANY_CAP, COMPANY_PH, 
+		COMPANY_EMAIL, MANAGER_NAME, COMPANY_ADDR, COMPANY_BANK, COMPANY_ACC, COMPANY_STATUS
+	</sql>
+	
+	<resultMap type="Model.DTO.kimDTO.Company" id="baseCompany">
+		<id column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum" />
+		<result column="COMPANY_KIND" jdbcType="VARCHAR" property="companyKind" />
+		<result column="COMPANY_ID" jdbcType="VARCHAR" property="companyId" />
+		<result column="COMPANY_PW" jdbcType="VARCHAR" property="companyPw" />
+		<result column="COMPANY_BN" jdbcType="VARCHAR" property="companyBn" />
+		<result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName" />
+		<result column="COMPANY_CAP" jdbcType="VARCHAR" property="companyCap" />
+		<result column="COMPANY_PH" jdbcType="BIGINT" property="companyPh" />
+		<result column="COMPANY_EMAIL" jdbcType="VARCHAR" property="companyEmail" />
+		<result column="MANAGER_NAME" jdbcType="VARCHAR" property="managerName" />
+		<result column="COMPANY_ADDR" jdbcType="VARCHAR" property="companyAddr" />
+		
+		<result column="COMPANY_BANK" jdbcType="VARCHAR" property="companyBank" />
+		<result column="COMPANY_ACC" jdbcType="VARCHAR" property="companyAcc" />
+		<result column="COMPANY_STATUS" jdbcType="VARCHAR" property="companyStatus" />
+</resultMap>
+	
+<select id="updateCompanyReg" resultMap="baseCompany">
+	select <include refid="companycolumn" />
+	from COMPANY
+	where COMPANY_STATUS ='미승인'
+ 	order by COMPANY_NUM desc
+</select>
+
+
+<select id="selectCompanyDetail" parameterType="String" resultMap="baseCompany">
+	select <include refid="companycolumn" />
+	from COMPANY
+	where COMPANY_NAME = #{companyName}
+</select>
+
+<update id="comRegOk" parameterType="String" >
+	update COMPANY 
+	set COMPANY_STATUS ='승인완료'
+	where COMPANY_NUM = #{companyNum}
+</update>
+
 </mapper>

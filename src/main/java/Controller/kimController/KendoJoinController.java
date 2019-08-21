@@ -1,14 +1,16 @@
 package Controller.kimController;
 
-import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 import Command.kimCommand.GuestPayCommand;
+import Command.kimCommand.KendoDetailCommand;
 import Command.kimCommand.KendoJoinCommand;
 import Service.kimService.KendoJoinService;
 
@@ -17,31 +19,45 @@ public class KendoJoinController {
 	String path = "";
 	@Autowired
 	private KendoJoinService kendoJoinService;
+
+	
+	@RequestMapping("/kim")
+	public String kim() {
+		path = "kimView/kim";
+		return path;
+	}
+	
+	@RequestMapping("kendoDetail")
+	public String kendoDetail(Model model) {
+		path = "kimView/kendoDetail";
+		return path;
+	}
 	
 	
 	@RequestMapping("/kendoJoin")
-	public String kendoJoin(Model model) {
+	public String kendoJoin(Model model,KendoDetailCommand kendoDetailCommand) {
+
 		path = "kimView/kendoJoin";
+		model.addAttribute("kdc",kendoDetailCommand);
 		return path;
 	}
 	
-	@RequestMapping(value = "/guestPay", method = RequestMethod.POST)
-	public String kendoJoinAction(HttpServletRequest request, Model model,KendoJoinCommand kendoJoinCommand) {
-		path = kendoJoinService.addKendoJoin(model, kendoJoinCommand);
+	@RequestMapping("/kendoJoinAction")
+	public String kendoJoinAction(Model model,KendoJoinCommand kendoJoinCommand, KendoDetailCommand kendoDetailCommand) {
+		path = kendoJoinService.addKendoJoin(model, kendoJoinCommand, kendoDetailCommand);
 		return path;		
 	}
 	
-	/*
-	@RequestMapping("/guestPay")
-	public String guestPay(Model model) {
-		path = "kimView/kendoPayment";
-		return path;
+	@RequestMapping("/guestPayAction")
+	public String guestPayAction(Model model,GuestPayCommand guestPayCommand, KendoJoinCommand kendoJoinCommand, HttpSession session) {
+		System.out.println("guestPayDetail");
+		path = kendoJoinService.guestPayDetail(model, guestPayCommand, kendoJoinCommand,session);
+		return path;		
 	}
-*/
-	@RequestMapping(value ="/guestPayAction", method = RequestMethod.POST)
-	public String guestPay(Model model,KendoJoinCommand kendoJoinCommand, GuestPayCommand guestPayCommand) {
-		path = kendoJoinService.guestPay(model,kendoJoinCommand,guestPayCommand);
-		
-		return path;
+	
+	@RequestMapping("/kendoJoinList")
+	public String kendoJoinList(Model model) {
+		return kendoJoinService.kendoJoinList(model);
+	
 	}
 }
