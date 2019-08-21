@@ -5,6 +5,12 @@
 	<typeAliases>
 		<!-- <typeAlias type="Model.DTO.Member" alias="Member"/> -->
 		
+		<!-- 이재학 LEE -->
+		<typeAlias type="Model.DTO.LEEDTO.Member" alias="Member"/> 
+      	<typeAlias type="Model.DTO.LEEDTO.Company" alias="Company"/> 
+		<typeAlias type="Model.DTO.LEEDTO.Dodo" alias="Dodo"/> 
+		<typeAlias type="Model.DTO.LEEDTO.StartEndPage" alias="StartEndPage"/> 
+		
 		<!-- 임영 YYY  -->
 		<typeAlias type="Service.YYYService.GoodsListService" alias="GoodsList"/>
 		<typeAlias type="Model.DTO.YYYDTO.MapLarge" alias="MapLarge"/>
@@ -13,8 +19,6 @@
 		<typeAlias type="Model.DTO.YYYDTO.ThemeLarge" alias="ThemeLarge"/>
 		<typeAlias type="Model.DTO.YYYDTO.ThemeMedium" alias="ThemeMedium"/>
 		<typeAlias type="Model.DTO.YYYDTO.ThemeSmall" alias="ThemeSmall"/>
-		
-		
-		
+
 	</typeAliases>
 </configuration>
