@@ -10,12 +10,21 @@
 
 <!-- Controller -->
 <bean class = "Controller.YYYController.GoodsRegController" />
+<bean class = "Controller.YYYController.GoodsListController" />
 
 
 <!-- Command -->
-<bean class = "Command.YYYCommand.PlaceGoodsRegCommand" />
+<bean class = "Command.YYYCommand.PlaceRegCommand" />
 
 <!-- DTO -->
+<bean id = "mapLarge"  class="Model.DTO.YYYDTO.MapLarge" />
+<bean id = "mapMedium"  class="Model.DTO.YYYDTO.MapMedium" />
+<bean id = "mapSmall"  class="Model.DTO.YYYDTO.MapSmall" />
 <bean id = "placeGoods"  class="Model.DTO.YYYDTO.PlaceGoods" />
+<bean id = "goodsImg"  class="Model.DTO.YYYDTO.GoodsImg" /> 
+
+<bean id = "themeLarge"  class="Model.DTO.YYYDTO.ThemeLarge" />
+<bean id = "themeMedium"  class="Model.DTO.YYYDTO.ThemeMedium" />
+<bean id = "themeSmall"  class="Model.DTO.YYYDTO.ThemeSmall" />
 
 </beans>

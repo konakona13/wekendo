@@ -1,31 +1,59 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" 
-				uri="http://www.springframework.org/tags/form" %>
+            uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src = "js/jquery.form.js"></script>
+<script>
+	   $(function(){
+	      $.ajax({
+	         type:"POST",
+	         url :"mapL",
+	         datatype: "html",
+	         success: function(data1){
+	            $("#mapMain").html(data1);
+	         }
+	      });
+	   })
+	    $(function(){
+	      $.ajax({
+	         type:"POST",
+	         url :"themeL",
+	         datatype: "html",
+	         success: function(dataTheme1){
+	            $("#themeMain").html(dataTheme1);
+	         }
+	      });
+	   })
+
+</script>
 </head>
 <body>
-<form:form action="goodsRegistAction" name="frm" id="frm" method="POST" commandName="placeGoodsRegCommand">
-¾÷Ã¼¸í: ${company.companyName }
-»óÇ°¸í: <form:input path="goodsName" id="goodsName" placeholder=""/><br>
-¸ŞÀÎ ÀÌ¹ÌÁö: <input type= "file" id="goodsMainImg" /><br><br>
-»ó¼¼ ÀÌ¹ÌÁö: <input type= "file" id="goodsDetailImg" /><br><br>
-»ó¼¼³»¿ë : <form:input path = "text" placeholder=""/><br>
-ÁÖÀÇ»çÇ× : <form:input path = "text" placeholder="ex: ³ë¾àÀÚ ¹× ¹ÌÃëÇĞ ¾Æµ¿°ú ÀÓ»êºÎ ÀÌ¿ë ºÒ°¡´É µî"/><br>
-¼ö·® : <form:input path = "text" placeholder=""/><br>
-»óÇ°±İ¾× : <form:input path = "text" placeholder=""/><br>
-
-<input type ="submit" value="µî·Ï½ÅÃ»" id="submit1" />
-<input type="reset" name="reset" value="´Ù½ÃÀÛ¼º">
-<input type ="button" value="µî·Ï¾ÈÇÔ"	
-				onclick="javascript:location.href='main'" />
-
-</form:form>
+	<form:form action="GoodsRegAction" name="frm" id="frm" method="POST" commandName="placeRegCommand">
+		<h3> ì¥ì†Œ ìƒí’ˆ ë“±ë¡ <h3>
+		<br><br><br>
+		ì§€ì—­ì„ íƒ	 <div id = "mapMain"> </div>  	<br>
+		í…Œë§ˆì„ íƒ 	 <div id = "themeMain"> </div>  <br>
+		
+		ìƒí’ˆëª…: <form:input path="goodsName" id="goodsName" placeholder=""/><br><br>
+		ë©”ì¸ ì´ë¯¸ì§€: <input type= "file" id="goodsMainImg" /><br><br>
+		ìƒì„¸ ì´ë¯¸ì§€: <input type= "file" id="goodsDetailImg" /><br><br>
+		ìƒì„¸ë‚´ìš© : <form:input path = "goodsDetail" placeholder=""/><br><br>
+		ì£¼ì˜ì‚¬í•­ : <form:input path = "goodsDanger" placeholder="ex: ë§¤ì£¼ ì›”ìš”ì¼ íœ´ë¬´"/><br><br>
+		ìˆ˜ëŸ‰ : <form:input path = "goodsStock" placeholder=""/><br><br>
+		ìƒí’ˆê¸ˆì•¡ : <form:input path = "goodsPrice" placeholder=""/><br><br>
+		
+		<input type ="submit" value="ë“±ë¡ì‹ ì²­" id="submit1" />
+		<input type="reset" name="reset" value="ë‹¤ì‹œì‘ì„±">
+		<input type ="button" value="ë“±ë¡ì•ˆí•¨"   onclick="javascript:location.href='goodsMain'" />
+	
+	</form:form>
 
 </body>
 </html>
