@@ -1,6 +1,9 @@
 package Command.kimCommand;
 
-public class GuestPayCommand {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class GuestPayCommand implements Serializable{
 	private String payStyle;
 	private String payCardName;
 	private Integer payCardNum;

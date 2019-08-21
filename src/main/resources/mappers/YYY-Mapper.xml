@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="YYY-Mapper">
+<cache/>
+
+<!-- 상품등록 -->
+
+<insert id="placeRegist" parameterType="Model.DTO.YYYDTO.PlaceGoods">
+   INSERT INTO GOODS
+   (GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, 
+   GOODS_NAME, GOODS_PRICE, GOODS_DETAIL, GOODS_DANGER, GOODS_STATUS, GOODS_STOCK, COMPANY_NUM, REG_DATE)
+   VALUES ('GDP' || GOODS_NUM_SEQ.nextval, #{mapLNum}, #{mapMNum}, #{mapSNum}, '1', '1-2',
+   '1-2-1', #{goodsName}, #{goodsPrice}, #{goodsDetail}, #{goodsDanger}, '승인대기',
+   #{goodsStock}, 'CO1003', sysdate)
+</insert>
+
+
+<!-- 상품리스트 -->
+
+<resultMap type="Model.DTO.YYYDTO.PlaceGoods" id="goods">
+   <id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>
+   <result column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum"/>
+   <result column="MAP_M_NUM" jdbcType="VARCHAR" property="mapMNum"/>
+   <result column="MAP_S_NUM" jdbcType="VARCHAR" property="mapSNum"/>
+   <result column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum"/>
+   <result column="THEME_M_NUM" jdbcType="VARCHAR" property="themeMNum"/>
+   <result column="THEME_S_NUM" jdbcType="VARCHAR" property="themeSNum"/>
+   <result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName"/>
+   <result column="GOODS_PRICE" jdbcType="BIGINT" property="goodsPrice"/>
+   <result column="GOODS_DETAIL" jdbcType="VARCHAR" property="goodsDetail"/>
+   <result column="GOODS_DANGER" jdbcType="VARCHAR" property="goodsDanger"/>
+   <result column="GOODS_STATUS" jdbcType="VARCHAR" property="goodsStatus"/>
+   <result column="GOODS_STOCK" jdbcType="BIGINT" property="goodsStock"/>
+   <result column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum"/>
+   <result column="REG_DATE" jdbcType="TIMESTAMP" />   
+</resultMap>
+
+<resultMap type="Model.DTO.YYYDTO.GoodsImg" id="goodsImg">
+   <id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>
+   <result column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum"/>
+   <result column="GOODS_IMG_NAME" jdbcType="VARCHAR" property="goodsImgName"/>
+   <result column="GOODS_IMG_NUM" jdbcType="VARCHAR" property="goodsImgNum"/>
+   <result column="GOODS_IMG_KIND" jdbcType="VARCHAR" property="goodsImgKind"/>
+</resultMap>
+
+<select id="getGoodsList" resultMap="goods">
+      SELECT GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, 
+      THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, 
+      GOODS_NAME, GOODS_PRICE, GOODS_DETAIL, GOODS_DANGER, GOODS_STATUS, 
+      GOODS_STOCK, COMPANY_NUM, REG_DATE
+      FROM GOODS
+</select>
+
+
+
+<!-- 지역 도미노 -->
+
+<resultMap type="Model.DTO.YYYDTO.MapLarge" id="mapLarge">
+   <id column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum" />
+   <result column="MAP_L_NAME" jdbcType="VARCHAR" property="mapLName"/>   
+</resultMap>
+   
+<select id="selectMapLarge" resultMap="mapLarge">
+   SELECT MAP_L_NUM, MAP_L_NAME
+   FROM MapLarge
+
+</select>
+
+<resultMap type="Model.DTO.YYYDTO.MapMedium" id="mapMedium">
+   <id column="MAP_M_NUM" jdbcType="VARCHAR" property="mapMNum" />
+   <id column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum" />
+   <result column="MAP_M_NAME" jdbcType="VARCHAR" property="mapMName"/>   
+</resultMap>
+
+<select id="selectMapMedium" parameterType="MapLarge" resultMap="mapMedium">
+	SELECT MAP_L_NUM, MAP_M_NUM, MAP_M_NAME
+	FROM MAPMEDIUM
+	WHERE MAP_L_NUM = #{mapLNum}
+
+</select>
+
+<resultMap type="Model.DTO.YYYDTO.MapSmall" id="mapSmall">
+	<id column="MAP_S_NUM" jdbcType="VARCHAR" property="mapSNum" />
+	<id column="MAP_M_NUM" jdbcType="VARCHAR" property="mapMNum" />
+    <id column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum" />
+    <result column="MAP_S_NAME" jdbcType="VARCHAR" property="mapSName"/>   
+</resultMap>
+
+<select id="selectMapSmall" parameterType="MapMedium" resultMap="mapSmall">
+	SELECT MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, MAP_S_NAME
+	FROM MAPSMALL
+	WHERE MAP_L_NUM = #{mapLNum} and MAP_M_NUM = #{mapMNum}
+
+</select>
+
+<!-- 테마 도미노 -->
+
+<resultMap type="Model.DTO.YYYDTO.ThemeLarge" id="themeLarge">
+   <id column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum" />
+   <result column="THEME_L_NAME" jdbcType="VARCHAR" property="themeLName"/>   
+</resultMap>
+   
+<select id="selectThemeLarge" resultMap="themeLarge">
+   SELECT THEME_L_NUM, THEME_L_NAME
+   FROM THEMELARGE
+</select>
+
+<resultMap type="Model.DTO.YYYDTO.ThemeMedium" id="themeMedium">
+   <id column="THEME_M_NUM" jdbcType="VARCHAR" property="themeMNum" />
+   <id column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum" />
+   <result column="THEME_M_NAME" jdbcType="VARCHAR" property="themeMName"/>
+</resultMap>
+
+<select id="selectThemeMedium" parameterType="ThemeLarge" resultMap="themeMedium">
+	SELECT THEME_L_NUM, THEME_M_NUM, THEME_M_NAME
+	FROM THEMEMEDIUM
+	WHERE THEME_L_NUM = #{themeLNum}
+</select>
+
+<resultMap type="Model.DTO.YYYDTO.ThemeSmall" id="themeSmall">
+	<id column="THEME_S_NUM" jdbcType="VARCHAR" property="mapSNum" />
+   <id column="THEME_M_NUM" jdbcType="VARCHAR" property="themeMNum" />
+   <id column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum" />
+   <result column="THEME_S_NAME" jdbcType="VARCHAR" property="themeSName"/>
+</resultMap>
+
+<select id="selectThemeSmall" parameterType="ThemeMedium" resultMap="themeSmall">
+	SELECT THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, THEME_S_NAME
+	FROM THEMESMALL
+	WHERE THEME_M_NUM = #{themeMNum} and THEME_L_NUM = #{themeLNum}
+</select>
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
