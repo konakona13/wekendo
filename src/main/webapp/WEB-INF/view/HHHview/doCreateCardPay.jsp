@@ -15,6 +15,7 @@ $(function(){
 	{
 		var txt = "카드결제완료";
 		opener.document.getElementById("confirmPay").value = txt;
+		opener.payComplete();
 		window.close();
 	});
 });

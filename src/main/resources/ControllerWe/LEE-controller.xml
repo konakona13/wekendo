@@ -6,6 +6,5 @@
 			">
 
 	<bean class="Controller.LEEController.MemberController" />
-
-
+	<bean class="Controller.LEEController.AdminController" />
 </beans>

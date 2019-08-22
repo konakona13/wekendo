@@ -204,6 +204,7 @@ commandName="loginCommand">
 관리자 페이지<br>
 관리자 이름 : ${memAuth.name }<br>
  <a href="Logout" >로그아웃</a>
+ <a href="kendo_list" >활동리스트</a>
  <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>
