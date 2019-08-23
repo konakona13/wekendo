@@ -22,7 +22,7 @@ public class KendoJoinController {
 
 	
 	
-	@RequestMapping("/memberMain")
+	@RequestMapping("/main")
 	public String memberMain() {
 		path = "memberMain";
 		return path;

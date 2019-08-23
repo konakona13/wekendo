@@ -40,6 +40,18 @@
 	DO_PP, DO_NOWPP, DO_DETAIL, DO_OPT_GENDER, DO_OPT_AGE, DO_STATUS,
 	JOIN_DATE, JOIN_KAKAOID, JOIN_INTRODUCE, JOIN_QTY, PAY_DUCTCH
 </sql>
+
+
+<update id="updateDoNowPp" parameterType="Integer" >
+	update KENDO 
+	set DO_NOWPP = DO_NOWPP + #{}
+	where COMPANY_NUM = #{companyNum}
+</update>
+
+
+
+
+
 	
 <resultMap type="Model.DTO.kimDTO.KendoList" id="kendoList">
 	<id column="JOIN_NUM" jdbcType="VARCHAR" property="joinNum"/>
@@ -165,7 +177,7 @@
 <select id="selectCompanyDetail" parameterType="String" resultMap="baseCompany">
 	select <include refid="companycolumn" />
 	from COMPANY
-	where COMPANY_NAME = #{companyName}
+	where COMPANY_NUM = #{companyNum}
 </select>
 
 <update id="comRegOk" parameterType="String" >

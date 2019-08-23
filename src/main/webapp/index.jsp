@@ -11,7 +11,7 @@
 <body>
 
 <script type="text/javascript">
-	location.href= "memberMain";
+	location.href= "main";
 </script>
 </body>
 </html>

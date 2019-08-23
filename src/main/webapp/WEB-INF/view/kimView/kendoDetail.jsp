@@ -7,6 +7,9 @@
 <%
 	response.setCharacterEncoding("utf-8");
  %>
+ 
+
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,10 +30,11 @@
                     활동구분 :<input type = "hidden" name = "theme" value = "취미>커피"/> 취미>커피  <br />
                     활동지역 :<input type = "hidden" name = "map" value = "서울>영등포구>양평동"/> 서울>영등포구>양평동 <br />
                     <h3><input type = "hidden" name = "doName" value = "바리스타가 되자 !"/>바리스타가 되자 !</h3> <br />
-                    수량 : <input type = "number" name = "doQty" min="1" required/><br /> 
-                    <span class="price" id="price">
-
-                    가격 : <input type = "hidden" name = "doPrice" value = "30000"/>30000</span><br /> 
+                    정      원  :<input type = "hidden" name = "doPp" value = "5"/>5<br />
+                    현재신청인원  :<input type = "hidden" name = "doNowPp" value = "1"/>1<br />
+                    신청수량 : <input type = "number" id ="doQty" name = "doQty" min="1" max="" required/><br /> 
+                    가 격 : <input type = "hidden" name = "doPrice" value = "30000"/>30000</span><br /> 
+                                  <span class="price" id="price"><br />      
                     <input type = "submit" value = "활동참가" name = "doJoin"/>
                     <input type = "submit" value = "찜하기" name = "bookmark"/><br />       
                 </td>
