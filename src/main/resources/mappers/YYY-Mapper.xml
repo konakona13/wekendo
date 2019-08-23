@@ -12,7 +12,7 @@
    (GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, 
    GOODS_NAME, GOODS_PRICE, GOODS_DETAIL, GOODS_DANGER, GOODS_STATUS, GOODS_STOCK, COMPANY_NUM, REG_DATE)
    VALUES ('GDP' || GOODS_NUM_SEQ.nextval, #{mapLNum}, #{mapMNum}, #{mapSNum}, #{themeLNum}, #{themeMNum},
-   #{themeSNum}, #{goodsName}, #{goodsPrice}, #{goodsDetail}, #{goodsDanger}, '승인대기',
+   #{themeSNum}, #{goodsName}, #{goodsPrice}, #{goodsDetail}, #{goodsDanger}, #{goodsStatus},
    #{goodsStock}, #{companyNum}, sysdate)
 </insert>
 

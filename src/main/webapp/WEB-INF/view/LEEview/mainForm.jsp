@@ -138,7 +138,7 @@ commandName="loginCommand">
 			<a href="memberJoin" >일반회원 가입</a>&nbsp;
 			<a href="companyJoin" >기업회원 가입</a>
 		</td>
-	<tr>
+	</tr>
 </table>
 </form:form>
 <% }else if(session.getAttribute("memAuth")!= null && memNum.substring(0, 2).equals("NM") && !adminId.equals("admin")){ %>
@@ -187,6 +187,8 @@ commandName="loginCommand">
 </tr>
 </table>
 <a href="Logout" >로그아웃</a>
+<a href= "#" >매출분석 신청</a>
+<a href="goodsMain" >상품리스트 보기</a>
 <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>
@@ -198,13 +200,13 @@ commandName="loginCommand">
 <a href="email" >메일보내기</a>
 <a href="emailAll" >전체 메일 보내기</a>
 <a href="ajaxForm" >Ajax</a>
-<a href= "domino" >도미노 속성</a>
  -->
 <% }else if(session.getAttribute("memAuth")!= null && memNum.substring(0, 2).equals("NM") && adminId.equals("admin")){ %>
 관리자 페이지<br>
 관리자 이름 : ${memAuth.name }<br>
  <a href="Logout" >로그아웃</a>
  <a href="kendo_list" >활동리스트</a>
+ <a href="Cashin" >정산관리</a>
  <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>

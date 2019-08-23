@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문 게시판</title>
+<title>정산 게시판</title>
 </head>
 <script type="text/javascript" 
 	src="http://code.jquery.com/jquery-latest.js" ></script>
@@ -22,61 +22,60 @@
 	}
 </script>
 <body>
-<table width=80% border="1" cellpadding="0" cellspacing="0" >
-<c:if test="${! empty dodos}">
+<table width=50% border="1" cellpadding="0" cellspacing="0" >
+<c:if test="${! empty cashins}">
 	<tr align="center" valign="middle">
-		<td colspan="4">활동리스트</td>
+		<td colspan="4">정산리스트</td>
 		<td align=right>
-			<font size=2>활동 수  : ${listcount }</font>
+			<font size=2>정산 수  : ${listcount }</font>
 		</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
-			<div align="center">활동번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="30%">
-			<div align="center">활동명</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">모집시작일</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">모집종료일</div>
+			<div align="center">정산번호</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
-			<div align="center">현재인원/모집인원</div>
+			<div align="center">결제번호</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">기업번호</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">상품판매월</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">정산현황</div>
 		</td>
 	</tr>
-<c:forEach var="dodo" items="${dodos}">
+<c:forEach var="cashin" items="${cashins}">
 	<tr align="center" valign="middle" bordercolor="#333333"
 		onmouseover="this.style.backgroundColor='F8F8F8'"
 		onmouseout="this.style.backgroundColor=''">
 		<td height="23" style="font-family:Tahoma;font-size:10pt;">
-			${dodo.doNum }
+			${cashin.cashinNum }
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left">
 			<input type="hidden" id="doNum" name="doNum" value="${dodo.doNum }">
 			<a href="javascript:openChildWindow();" >
-				${dodo.doName }
+				${cashin.payNum }
 			</a>
 			</div>
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">
-			<fmt:formatDate value="${dodo.openDate }" pattern="yy년 MM월 dd일" />
+			<div align="center">${cashin.companyNum }
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<fmt:formatDate value="${dodo.closeDate }" pattern="yy년 MM월 dd일" />
+			<fmt:formatDate value="${cashin.month }" pattern="yy년 MM월" />
 			</div>
 		</td>	
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">${dodo.nowPP }/${dodo.doPP }명</div>
+			<div align="center">${cashin.status }</div>
 		</td>
 	</tr>
 </c:forEach>
@@ -101,11 +100,11 @@
 		</td>
 	</tr>
 </c:if>
-<c:if test="${empty dodos}">
+<c:if test="${empty cashins}">
 	<tr align="center" valign="middle">
-		<td colspan="4">활동리스트</td>
+		<td colspan="4">정산리스트</td>
 		<td align=right>
-			<font size=2>등록된 활동이 없습니다. 얘들아 나가놀아라.</font>
+			<font size=2>정산내역이 없습니다. 돈벌자</font>
 		</td>
 	</tr>
 </c:if>

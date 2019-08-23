@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import Command.YYYCommand.AuthInfoCommand;
 import Command.YYYCommand.PlaceRegCommand;
 import Model.DTO.YYYDTO.PlaceGoods;
 import Service.YYYService.GoodsDetailService;
@@ -30,12 +31,13 @@ public class GoodsRegController {
 	} 
 	
 	@RequestMapping(value = "/goodsRegAction", method = RequestMethod.POST)
-	public String goodsRegAction(Model model, PlaceGoods dto, PlaceRegCommand command, HttpSession session, Errors errors) {
+	public String goodsRegAction(Model model, PlaceRegCommand command, HttpSession session, Errors errors) {
 		
-		System.out.println("상품등록완료_지역대분류번호 : " + command.getMapLNum());
+		//System.out.println("상품등록완료_지역소분류번호 : " + command.getMapSNum());
+		//System.out.println("상품등록완료_테마소분류번호: " + command.getThemeSNum());
 		
 		String path= placeRegService.goodsRegist(model, command, session);
-
+			
 		return path;
 	}
 	

@@ -17,6 +17,7 @@
 
 <!-- Command -->
 <bean class = "Command.YYYCommand.PlaceRegCommand" />
+<bean class = "Command.YYYCommand.AuthInfoCommand" />
 
 <!-- DTO -->
 <bean id = "mapLarge"  class="Model.DTO.YYYDTO.MapLarge" />

@@ -28,6 +28,7 @@ public class DominoController {
 		}
 		@RequestMapping(value = "/mapM", method=RequestMethod.POST)
 		public String bb(Model model, MapLarge large) {
+			//System.out.println("컨트롤로 지역대분류: " + large.getMapLName());
 			dominoService.execute1(model, large);
 			return "YYYView/map_theme/mapMedium";
 		}
@@ -46,6 +47,7 @@ public class DominoController {
 		}
 		@RequestMapping(value = "/themeM", method=RequestMethod.POST)
 		public String themeMedium(Model model, ThemeLarge themeLarge ) {
+			//System.out.println("컨트롤로 테마대분류: " + themeLarge.getThemeLName());
 			dominoService.execute4(model, themeLarge);
 			return "YYYView/map_theme/themeMedium";
 		}

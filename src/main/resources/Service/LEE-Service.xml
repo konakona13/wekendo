@@ -19,4 +19,5 @@
 		class="Service.LEEService.CompanyLoginService" />
 	<bean id="kendoListService"
 		class="Service.LEEService.KendoListService" />
+	<bean id="cashInService" class="Service.LEEService.CashInService" />
 </beans>

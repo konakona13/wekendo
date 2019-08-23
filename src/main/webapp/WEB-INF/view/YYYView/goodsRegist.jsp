@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" 
-            uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -41,6 +40,7 @@
 		지역선택	 <div id = "mapMain"> </div>  	<br>
 		테마선택 	 <div id = "themeMain"> </div>  <br>
 		
+		회사명: ${comAuth.name} <br><br>
 		상품명: <form:input path="goodsName" id="goodsName" placeholder=""/><br><br>
 		메인 이미지: <input type= "file" id="goodsMainImg" /><br><br>
 		상세 이미지: <input type= "file" id="goodsDetailImg" /><br><br>
