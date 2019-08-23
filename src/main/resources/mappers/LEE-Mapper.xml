@@ -3,8 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="LEE-Mapper">
 	<cache />
-	<insert id="memberInsert"
-		parameterType="Model.DTO.LEEDTO.Member">
+	<insert id="memberInsert" parameterType="Member">
 		insert into
 		member(MEMBER_NUM,MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_PH,
 		MEMBER_ADDR,MEMBER_EMAIL,GENDER,MEMBER_PHOTO,MEMBER_BIRTH,
@@ -32,8 +31,19 @@
 		DO_OPT_AGE,
 		DO_STATUS
 	</sql>
+	<sql id="basecolumnCashin">
+		CASHIN_NUM, PAY_NUM, COMPANY_NUM, CASHIN_TOTAL_PRICE,
+		CASHIN_COMMISSION, CASHIN_BALANCE, CASHIN_DAYS, CASHIN_MONTH,
+		CASHIN_STATUS
+	</sql>
+	<sql id="basecolumnBuybuy">
+		BUY_NUM, DO_NUM, PAY_NUM, HOST_NUM, GOODS_NUM, COMPANY_NUM,
+		MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM, THEME_M_NUM,
+		THEME_S_NUM, BUY_QTY, BUY_START_DATE, BUY_END_DATE, BUY_DAYS,
+		BUY_PRICE
+	</sql>
 
-	<resultMap type="Model.DTO.LEEDTO.Member" id="baseMember">
+	<resultMap type="Member" id="baseMember">
 		<id column="MEMBER_NUM" jdbcType="VARCHAR" property="memberNum" />
 		<result column="MEMBER_NAME" jdbcType="VARCHAR"
 			property="memberName" />
@@ -55,7 +65,7 @@
 			property="memberPw" />
 	</resultMap>
 
-	<resultMap type="Model.DTO.LEEDTO.Company" id="baseCompany">
+	<resultMap type="Company" id="baseCompany">
 		<id column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum" />
 		<result column="COMPANY_KIND" jdbcType="VARCHAR"
 			property="companyKind" />
@@ -85,7 +95,7 @@
 			property="companyStatus" />
 	</resultMap>
 
-	<resultMap type="Model.DTO.LEEDTO.Dodo" id="baseDo">
+	<resultMap type="Dodo" id="baseDo">
 		<id column="DO_NUM" jdbcType="VARCHAR" property="doNum" />
 		<result column="HOST_NUM" jdbcType="VARCHAR" property="hostNum" />
 		<result column="DO_NAME" jdbcType="VARCHAR" property="doName" />
@@ -108,14 +118,64 @@
 		<result column="DO_STATUS" jdbcType="VARCHAR" property="status" />
 	</resultMap>
 
-	<select id="userCheck" parameterType="Model.DTO.LEEDTO.Member"
+	<resultMap type="Model.DTO.LEEDTO.CashIn" id="baseCashin">
+		<id column="CASHIN_NUM" jdbcType="VARCHAR" property="cashinNum" />
+		<result column="PAY_NUM" jdbcType="VARCHAR" property="payNum" />
+		<result column="COMPANY_NUM" jdbcType="VARCHAR"
+			property="companyNum" />
+		<result column="CASHIN_TOTAL_PRICE" jdbcType="BIGINT"
+			property="totalPrice" />
+		<result column="CASHIN_COMMISSION" jdbcType="BIGINT"
+			property="commission" />
+		<result column="CASHIN_BALANCE" jdbcType="BIGINT"
+			property="balance" />
+		<result column="CASHIN_DAYS" jdbcType="TIMESTAMP"
+			property="days" />
+		<result column="CASHIN_MONTH" jdbcType="TIMESTAMP"
+			property="month" />
+		<result column="CASHIN_STATUS" jdbcType="VARCHAR"
+			property="status" />
+	</resultMap>
+
+	<resultMap type="Model.DTO.LEEDTO.Buybuy" id="baseBuybuy">
+		<id column="BUY_NUM" jdbcType="VARCHAR" property="buyNum" />
+		<result column="DO_NUM" jdbcType="VARCHAR" property="doNum" />
+		<result column="PAY_NUM" jdbcType="VARCHAR" property="payNum" />
+		<result column="HOST_NUM" jdbcType="VARCHAR" property="hostNum" />
+		<result column="GOODS_NUM" jdbcType="VARCHAR"
+			property="goodsNum" />
+		<result column="COMPANY_NUM" jdbcType="VARCHAR"
+			property="companyNum" />
+		<result column="MAP_L_NUM" jdbcType="VARCHAR"
+			property="mapLnum" />
+		<result column="MAP_M_NUM" jdbcType="VARCHAR"
+			property="mapMnum" />
+		<result column="MAP_S_NUM" jdbcType="VARCHAR"
+			property="mapSnum" />
+		<result column="THEME_L_NUM" jdbcType="VARCHAR"
+			property="themeLnum" />
+		<result column="THEME_M_NUM" jdbcType="VARCHAR"
+			property="themeMnum" />
+		<result column="THEME_S_NUM" jdbcType="VARCHAR"
+			property="themeSnum" />
+		<result column="BUY_QTY" jdbcType="BIGINT" property="buyQty" />
+		<result column="BUY_START_DATE" jdbcType="TIMESTAMP"
+			property="startDate" />
+		<result column="BUY_END_DATE" jdbcType="TIMESTAMP"
+			property="endDate" />
+		<result column="BUY_DAYS" jdbcType="BIGINT" property="buyDays" />
+		<result column="BUY_PRICE" jdbcType="BIGINT"
+			property="buyPrice" />
+	</resultMap>
+
+	<select id="userCheck" parameterType="Member"
 		resultMap="baseMember">
 		select
 		<include refid="basecolumn" />
 		from member
 		where member_id = #{memberId} and member_pw = #{memberPw}
 	</select>
-	<select id="userCheck1" parameterType="Model.DTO.LEEDTO.Member"
+	<select id="userCheck1" parameterType="Member"
 		resultMap="baseMember">
 		select
 		<include refid="basecolumn" />
@@ -123,8 +183,7 @@
 		where member_id = #{memberId}
 	</select>
 
-	<insert id="companyInsert"
-		parameterType="Model.DTO.LEEDTO.Company">
+	<insert id="companyInsert" parameterType="Company">
 		insert into company
 		(COMPANY_NUM, COMPANY_KIND,
 		COMPANY_ID, COMPANY_PW,
@@ -142,8 +201,8 @@
 		#{managerEmail}, #{managerName},
 		#{companyAddr},#{companyBank},#{companyAcc},#{companyStatus} )
 	</insert>
-	<select id="companyCheck"
-		parameterType="Model.DTO.LEEDTO.Company" resultMap="baseCompany">
+	<select id="companyCheck" parameterType="Company"
+		resultMap="baseCompany">
 		select
 		<include refid="basecolumnCompany" />
 		from company
@@ -151,8 +210,8 @@
 		#{companyPw}
 	</select>
 
-	<select id="getDoList"
-		parameterType="Model.DTO.LEEDTO.StartEndPage" resultMap="baseDo">
+	<select id="getDoList" parameterType="StartEndPage"
+		resultMap="baseDo">
 		select * from ( select rownum rn,
 		<include refid="basecolumnDo" />
 		from (select
@@ -166,5 +225,49 @@
 	<select id="getDoListCount" resultType="int">
 		select count(*) from
 		KENDO
+	</select>
+	<select id="getDoDetail" parameterType="String"
+		resultMap="baseDo">
+		select
+		<include refid="basecolumnDo" />
+		from KENDO
+		where DO_NUM = #{doNum}
+	</select>
+
+	<select id="getCashList" parameterType="StartEndPage"
+		resultMap="baseCashin">
+		select * from ( select rownum rn,
+		<include refid="basecolumnCashin" />
+		from (select
+		<include refid="basecolumnCashin" />
+		from cashin
+		order by CASHIN_DAYS desc))
+		where rn &gt;= #{startRow}
+		and
+		rn &lt;=
+		#{endRow}
+		and CASHIN_STATUS = 'complete'
+	</select>
+	<select id="getCashListCount" resultType="int">
+		select count(*) from
+		cashin
+	</select>
+
+	<select id="getBuybuyList" parameterType="startEndPage"
+		resultMap="baseBuybuy">
+		select * from ( select rownum rn,
+		<include refid="basecolumnBuybuy" />
+		from (select
+		<include refid="basecolumnBuybuy" />
+		from BUYBUY
+		order by BUY_NUM desc))
+		where rn &gt;= #{startRow}
+		and
+		rn &lt;=
+		#{endRow}
+	</select>
+	<select id="getBuyListCount" resultType="int">
+		select count(*) from
+		BUYBUY
 	</select>
 </mapper>

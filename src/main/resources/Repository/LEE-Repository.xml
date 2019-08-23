@@ -14,4 +14,6 @@
 	<bean id="company" class="Model.DTO.LEEDTO.Company" />
 	<bean id="dodo" class="Model.DTO.LEEDTO.Dodo" />
 	<bean id="startEndPage" class="Model.DTO.LEEDTO.StartEndPage" />
+	<bean id="cashIn" class="Model.DTO.LEEDTO.CashIn" />
+	<bean id="buybuy" class="Model.DTO.LEEDTO.Buybuy" />
 </beans>

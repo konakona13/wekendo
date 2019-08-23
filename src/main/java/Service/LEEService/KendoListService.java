@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import Model.DTO.LEEDTO.Buybuy;
+import Model.DTO.LEEDTO.CashIn;
 import Model.DTO.LEEDTO.Dodo;
 import Repository.LEERepository.AdminSessionRepository;
 
@@ -39,7 +41,8 @@ public class KendoListService {
 
 	public String doDetail(Model model, String doNum) {
 		// TODO Auto-generated method stub
-		return null;
+		Dodo dodo = adminSessionRepository.getDoDetail(doNum);
+		model.addAttribute("doDetail", dodo);
+		return "LEEview/doDetail";
 	}
-
 }

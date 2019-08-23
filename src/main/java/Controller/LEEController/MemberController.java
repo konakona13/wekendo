@@ -39,7 +39,8 @@ public class MemberController {
 	private CompanyLoginService companyLoginService;
 
 	@RequestMapping("/loginmain")
-	public String mainView() {
+	public String mainView(HttpServletRequest request) {
+		System.out.println(request.getRealPath("/WEB-INF/view/LEEview/upload"));
 		return "LEEview/mainForm";
 	}
 
