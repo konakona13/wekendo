@@ -52,17 +52,18 @@ public class DominoRepository {
 	}
 
 
-	public List<ThemeMedium> selectThemeM() {
+	public List<ThemeMedium> selectThemeM(ThemeLarge themeLarge) {
 		String statement = namespace + ".selectThemeMedium";
-		List<ThemeMedium> result3 = sqlSession.selectList(statement);
+		List<ThemeMedium> result3 = sqlSession.selectList(statement, themeLarge);
+		
 		
 		return result3;
 	}
 
 
-	public List<ThemeSmall> selectThemeS() {
+	public List<ThemeSmall> selectThemeS(ThemeMedium themeMedium) {
 		String statement = namespace + ".selectThemeSmall";
-		List<ThemeSmall> result4 = sqlSession.selectList(statement);
+		List<ThemeSmall> result4 = sqlSession.selectList(statement, themeMedium);
 		
 		return result4;
 	}

@@ -10,6 +10,6 @@
 	
 	<bean id = "goodsRepository"  class="Repository.YYYRepository.GoodsRepository" />
 	<bean id = "dominoRepository"  class="Repository.YYYRepository.DominoRepository" />
-
+	<bean id = "confrimRepository"  class="Repository.YYYRepository.ConfirmRepository" />
 	
 </beans>

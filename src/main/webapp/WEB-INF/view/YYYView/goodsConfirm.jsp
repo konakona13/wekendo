@@ -1,85 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 등록 승인_관리자페이지</title>
 </head>
 <body>
-
-
-<table>
-
-<c:if test="${! empty hotList}">
-
-<tr align="center" valign="middle">
-      <td colspan="4">승인 대기 목록</td>
-      <td align=right>
-         <font size=2>${ReadCountUpdate}</font>
-      </td>
-   </tr>
-   
-   <tr align="center" valign="middle" bordercolor="#333333">
-      <td style="font-family:Tahoma;font-size:8pt;" width="8%" height="26">
-         <div align="center">번호</div>
-      </td>
-      <td style="font-family:Tahoma;font-size:8pt;" width="50%">
-         <div align="center">제목</div>
-      </td>
-      <td style="font-family:Tahoma;font-size:8pt;" width="14%">
-         <div align="center">작성자</div>
-      </td>
-      <td style="font-family:Tahoma;font-size:8pt;" width="17%">
-         <div align="center">날짜</div>
-      </td>
-      <td style="font-family:Tahoma;font-size:8pt;" width="17%">
-         <div align="center">승인</div>
-      </td>
-      <td style="font-family:Tahoma;font-size:8pt;" width="17%">
-         <div align="center">승인 상태</div>
-      </td>
-   </tr>
-   <tr align="right">
-      <td colspan="5">
-            <a href="GoodsReg">[글쓰기]</a>
-      </td>
-   </tr>
-
-<c:forEach var="hotplace" items="${hotList}">
-   <tr align="center" valign="middle" bordercolor="#333333"
-      onmouseover="this.style.backgroundColor='F8F8F8'"
-      onmouseout="this.style.backgroundColor=''">
-      <td height="23" style="font-family:Tahoma;font-size:10pt;">
-         ${hotplace.hpNum}
-      </td>
-      
-      <td style="font-family:Tahoma;font-size:10pt;">
-         <div align="left">
-
-         
-         <a href="./HpMainView.hp?num=${hotplace.hpNum}">
-         <img  width=50% alt="" src="HotplaceView/fileupload/${hotplace.hpFile }">&nbsp;
-		 ${hotplace.hpSubject }         
-         </a>
-         </div>
-      </td>
-      
-      <td style="font-family:Tahoma;font-size:10pt;">
-         <div align="center">${hotplace.memberId}</div>
-      </td>
-      <td style="font-family:Tahoma;font-size:10pt;">
-         <div align="center">
-         <fmt:formatDate value="${hotplace.hpDate }"type="Date" />
-         </div>
-      </td>   
-   </tr>
-</c:forEach>
+	상품 등록 승인
+	<div>
+		<table border ="1" >
+        	<tr>
+				<td>상품번호</td>			
+                <td>상품명</td>
+                <td>작성자</td>
+                <td>등록일</td>
+                <td>승인상태</td>
+                <td>관리</td>                      
+             </tr>
+<c:if test="${! empty list}">                
+	<c:forEach var="list" items="${list}">
+            <tr>
+                <td><input type="text" name = "chkGoodsNum" value="${list.goodsNum}"/></td>  
+                <td>${list.goodsName}</td>  
+                <td>${list.companyNum}</td>   
+                <td>${list.regDate}</td>
+                <td>${list.goodsStatus}</td>
+                <td>
+                	<input type="button" value="승인" id="confirm" 
+                	 onclick="javascript:location.href='goodsConfirm'"/>
+                	<input type="button" value="거부" id="confirm" 
+                	 onclick="javascript:location.href='goodsCancel'"/>
+                
+                </td>      
+             </tr>
+        
+	</c:forEach>
+</c:if>               
+		</table>     
+	</div>
+	
+	<div>
+<c:if test="${empty list}">
+미승인 내역이 없습니다.
 </c:if>
+	</div>
 
- </table>
- 
+<br/>               
 
+        
+<a href="../goodsMain" >메인</a>
 </body>
 </html>

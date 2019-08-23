@@ -49,16 +49,18 @@ public class DominoService {
 
 
 	public void execute4(Model model, ThemeLarge themeLarge) {
-		List<ThemeMedium> result3 = reposiotry.selectThemeM();
+		List<ThemeMedium> result3 = reposiotry.selectThemeM(themeLarge);
 		model.addAttribute("result3", result3);		
 		
+		System.out.println("테마대분류:  " + themeLarge.getThemeLName());
 	}
 
 
 	public void execute5(Model model, ThemeMedium themeMedium) {
-		List<ThemeSmall> result4 = reposiotry.selectThemeS();
+		List<ThemeSmall> result4 = reposiotry.selectThemeS(themeMedium);
 		model.addAttribute("result4", result4);	
 		
+		System.out.println("테마중분류번호:  " + themeMedium.getThemeMName());
 	}
 
 }

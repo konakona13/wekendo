@@ -11,9 +11,9 @@
    INSERT INTO GOODS
    (GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, 
    GOODS_NAME, GOODS_PRICE, GOODS_DETAIL, GOODS_DANGER, GOODS_STATUS, GOODS_STOCK, COMPANY_NUM, REG_DATE)
-   VALUES ('GDP' || GOODS_NUM_SEQ.nextval, #{mapLNum}, #{mapMNum}, #{mapSNum}, '1', '1-2',
-   '1-2-1', #{goodsName}, #{goodsPrice}, #{goodsDetail}, #{goodsDanger}, '승인대기',
-   #{goodsStock}, 'CO1003', sysdate)
+   VALUES ('GDP' || GOODS_NUM_SEQ.nextval, #{mapLNum}, #{mapMNum}, #{mapSNum}, #{themeLNum}, #{themeMNum},
+   #{themeSNum}, #{goodsName}, #{goodsPrice}, #{goodsDetail}, #{goodsDanger}, '승인대기',
+   #{goodsStock}, #{companyNum}, sysdate)
 </insert>
 
 
@@ -45,17 +45,35 @@
    <result column="GOODS_IMG_KIND" jdbcType="VARCHAR" property="goodsImgKind"/>
 </resultMap>
 
+<sql id="goodsAllSelect">
+	GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, 
+    THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, 
+    GOODS_NAME, GOODS_PRICE, GOODS_DETAIL, GOODS_DANGER, GOODS_STATUS, 
+    GOODS_STOCK, COMPANY_NUM, REG_DATE
+</sql>
+
 <select id="getGoodsList" resultMap="goods">
-      SELECT GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, 
-      THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, 
-      GOODS_NAME, GOODS_PRICE, GOODS_DETAIL, GOODS_DANGER, GOODS_STATUS, 
-      GOODS_STOCK, COMPANY_NUM, REG_DATE
+      SELECT 
+      	<include refid="goodsAllSelect" />
       FROM GOODS
 </select>
 
 
+<!-- 상세보기 -->
+<select id="getGoodsDetail" resultMap="goods">
+		SELECT
+	  		<include refid="goodsAllSelect" />
+		FROM GOODS
+		WHERE GOODS_NUM = #{goodsNum}
+</select>
+
+
+
+
+
 
 <!-- 지역 도미노 -->
+
 
 <resultMap type="Model.DTO.YYYDTO.MapLarge" id="mapLarge">
    <id column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum" />
@@ -113,31 +131,81 @@
    <result column="THEME_M_NAME" jdbcType="VARCHAR" property="themeMName"/>
 </resultMap>
 
-<select id="selectThemeMedium" parameterType="ThemeLarge" resultMap="themeMedium">
+<select id="selectThemeMedium" parameterType="Model.DTO.YYYDTO.ThemeLarge" resultMap="themeMedium">
 	SELECT THEME_L_NUM, THEME_M_NUM, THEME_M_NAME
 	FROM THEMEMEDIUM
 	WHERE THEME_L_NUM = #{themeLNum}
 </select>
 
 <resultMap type="Model.DTO.YYYDTO.ThemeSmall" id="themeSmall">
-	<id column="THEME_S_NUM" jdbcType="VARCHAR" property="mapSNum" />
+	<id column="THEME_S_NUM" jdbcType="VARCHAR" property="themeSNum" />
    <id column="THEME_M_NUM" jdbcType="VARCHAR" property="themeMNum" />
    <id column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum" />
    <result column="THEME_S_NAME" jdbcType="VARCHAR" property="themeSName"/>
 </resultMap>
 
-<select id="selectThemeSmall" parameterType="ThemeMedium" resultMap="themeSmall">
+<select id="selectThemeSmall" parameterType="Model.DTO.YYYDTO.ThemeMedium" resultMap="themeSmall">
 	SELECT THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, THEME_S_NAME
 	FROM THEMESMALL
 	WHERE THEME_M_NUM = #{themeMNum} and THEME_L_NUM = #{themeLNum}
 </select>
 
 
+<!-- 기업회원 정보 조회 -->
+
+<resultMap type="Model.DTO.YYYDTO.Company" id="company">
+		<id column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum" />
+		<result column="COMPANY_KIND" jdbcType="VARCHAR" property="companyKind" />
+		<result column="COMPANY_ID" jdbcType="VARCHAR" property="companyId" />
+		<result column="COMPANY_PW" jdbcType="VARCHAR" property="companyPw" />
+		<result column="COMPANY_BN" jdbcType="VARCHAR" property="companyBn" />
+		<result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName" />
+		<result column="COMPANY_CAP" jdbcType="VARCHAR" property="companyCap" />
+		<result column="COMPANY_PH" jdbcType="BIGINT" property="companyPh" />
+		<result column="COMPANY_EMAIL" jdbcType="VARCHAR" property="companyEmail" />
+		<result column="MANAGER_NAME" jdbcType="VARCHAR" property="managerName" />
+		<result column="COMPANY_ADDR" jdbcType="VARCHAR" property="companyAddr" />
+		<result column="COMPANY_BANK" jdbcType="VARCHAR" property="companyBank" />
+		<result column="COMPANY_ACC" jdbcType="VARCHAR"	property="companyAcc" />
+		<result column="COMPANY_STATUS" jdbcType="VARCHAR" property="companyStatus" />
+</resultMap>
+
+<sql id="basecolumnCompany">
+		COMPANY_NUM, COMPANY_KIND, COMPANY_ID, COMPANY_PW,
+		COMPANY_BN, COMPANY_NAME, COMPANY_CAP, COMPANY_PH, COMPANY_EMAIL,
+		MANAGER_NAME, COMPANY_ADDR, COMPANY_BANK, COMPANY_ACC, COMPANY_STATUS
+</sql>
+
+<select id="getReadyOk" resultMap="company">
+	  	SELECT
+	  		<include refid="basecolumnCompany" />
+		FROM COMPANY
+		WHERE COMPANY_STATUS = '승인대기' or COMPANY_STATUS = '미승인'
+
+</select>
+
+<select id="getCompanyInfo" resultMap="company">
+	  	SELECT COMPANY_NUM, COMPANY_NAME	  		
+		FROM COMPANY c, GOODS g
+		WHERE c.COMPANY_NUM = ${companyNum}
+
+</select>
 
 
+<!-- 등록 승인_관리자페이지 -->
 
 
+<update id="upGoodsStatus" parameterType="String" >
+	update COMPANY 
+	set COMPANY_STATUS ='승인완료'
+	WHERE COMPANY_NUM = #{companyNum}
+</update>
 
+<update id="upGoodsStatusX" parameterType="String" >
+	update COMPANY 
+	set COMPANY_STATUS ='승인거부'
+	WHERE COMPANY_NUM = #{companyNum}
+</update>
 
 
 

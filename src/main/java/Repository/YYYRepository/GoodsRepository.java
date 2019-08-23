@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
+import Command.YYYCommand.PlaceRegCommand;
+import Model.DTO.YYYDTO.Company;
 import Model.DTO.YYYDTO.GoodsImg;
 import Model.DTO.YYYDTO.PlaceGoods;
 
@@ -45,4 +47,27 @@ public class GoodsRepository {
 		return result;
 	}
 	
+	//상품 상세
+	
+		public PlaceGoods getGoodsDetail(PlaceRegCommand command) {
+			PlaceGoods goods = null;
+			System.out.println("getGoodsDetail  : " +  command);
+			String statement =  namespace + ".getGoodsDetail"; 
+			System.out.println("DetailRepository= " + command);
+			goods = sqlSession.selectOne(statement, command);
+			
+			return goods;
+		}
+		
+		//기업회원 정보 조회
+		
+		public Company getCompanyDetail(String companyNum) {
+			Company company = null;
+			String statement =  namespace + ".getCompanyInfo"; 
+			System.out.println("DetailRepository= " + companyNum);
+			company = sqlSession.selectOne(statement, companyNum);
+			
+			return company;
+		}
+
 }

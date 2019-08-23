@@ -4,9 +4,16 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 @SuppressWarnings("serial")
-public class Kendo implements Serializable{
+public class KendoList implements Serializable{
+	private String joinNum;
+	
+	private String guestNum;
+	private String guestId;
+	
+	
 	private String doNum;
 	private String hostNum;
+	private String hostId;
 	private String doName;
 	private Timestamp doStartDate;
 	private Timestamp doEndDate;
@@ -19,6 +26,30 @@ public class Kendo implements Serializable{
 	private String doOptAge;
 	private String doStatus;
 	
+	private Timestamp joinDate;
+	private String joinKakaoid;
+	private String joinIntroduce;
+	private Integer joinQty;
+	private Integer joinPrice;
+	
+	public String getJoinNum() {
+		return joinNum;
+	}
+	public void setJoinNum(String joinNum) {
+		this.joinNum = joinNum;
+	}
+	public String getGuestNum() {
+		return guestNum;
+	}
+	public void setGuestNum(String guestNum) {
+		this.guestNum = guestNum;
+	}
+	public String getGuestId() {
+		return guestId;
+	}
+	public void setGuestId(String guestId) {
+		this.guestId = guestId;
+	}
 	public String getDoNum() {
 		return doNum;
 	}
@@ -30,6 +61,12 @@ public class Kendo implements Serializable{
 	}
 	public void setHostNum(String hostNum) {
 		this.hostNum = hostNum;
+	}
+	public String getHostId() {
+		return hostId;
+	}
+	public void setHostId(String hostId) {
+		this.hostId = hostId;
 	}
 	public String getDoName() {
 		return doName;
@@ -97,6 +134,40 @@ public class Kendo implements Serializable{
 	public void setDoStatus(String doStatus) {
 		this.doStatus = doStatus;
 	}
+	public Timestamp getJoinDate() {
+		return joinDate;
+	}
+	public void setJoinDate(Timestamp joinDate) {
+		this.joinDate = joinDate;
+	}
+	public String getJoinKakaoid() {
+		return joinKakaoid;
+	}
+	public void setJoinKakaoid(String joinKakaoid) {
+		this.joinKakaoid = joinKakaoid;
+	}
+	public String getJoinIntroduce() {
+		return joinIntroduce;
+	}
+	public void setJoinIntroduce(String joinIntroduce) {
+		this.joinIntroduce = joinIntroduce;
+	}
+	public Integer getJoinQty() {
+		return joinQty;
+	}
+	public void setJoinQty(Integer joinQty) {
+		this.joinQty = joinQty;
+	}
+	public Integer getJoinPrice() {
+		return joinPrice;
+	}
+	public void setJoinPrice(Integer joinPrice) {
+		this.joinPrice = joinPrice;
+	}
+	
+
+	
+
 	
 	
 	
