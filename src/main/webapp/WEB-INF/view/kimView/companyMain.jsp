@@ -7,11 +7,15 @@
 <%
 	response.setCharacterEncoding("utf-8");
  %>  
+<!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 <body>
-
-<script type="text/javascript">
-	location.href= "loginmain";
-</script>
+<h2>기업회원 페이지</h2>
+<a href="GoodsReg" >상품등록</a> <br/>
+<a href="goodsMain" >상품리스트</a> <br/>
 </body>
 </html>

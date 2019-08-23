@@ -11,7 +11,7 @@ import Command.kimCommand.GuestPayCommand;
 import Command.kimCommand.KendoJoinCommand;
 import Model.DTO.kimDTO.Friend;
 import Model.DTO.kimDTO.GuestPay;
-import Model.DTO.kimDTO.Kendo;
+import Model.DTO.kimDTO.KendoList;
 import Model.DTO.kimDTO.KendoJoin;
 @Repository
 public class KendoJoinRepository {
@@ -25,7 +25,7 @@ public class KendoJoinRepository {
 	@Autowired
 	private GuestPay guestPay;
 	@Autowired
-	private Kendo kendo;
+	private KendoList kendo;
 	
 	private final String namespace = "KIM-Mapper";
 
@@ -47,8 +47,8 @@ public class KendoJoinRepository {
 		
 	}
 
-	public List<Kendo> getKendoJoinList() {
-		List<Kendo> result = null;
+	public List<KendoList> getKendoJoinList() {
+		List<KendoList> result = null;
 
 		String statement =  namespace + ".getKendoJoinList"; 
 		result = sqlSession.selectList(statement);
