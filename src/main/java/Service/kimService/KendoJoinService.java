@@ -21,7 +21,7 @@ import Command.kimCommand.KendoJoinCommand;
 
 import Model.DTO.kimDTO.Friend;
 import Model.DTO.kimDTO.GuestPay;
-import Model.DTO.kimDTO.Kendo;
+import Model.DTO.kimDTO.KendoList;
 import Model.DTO.kimDTO.KendoJoin;
 import Repository.kimRepository.KendoJoinRepository;
 import oracle.sql.TIMESTAMP;
@@ -43,7 +43,7 @@ public class KendoJoinService {
 	private GuestPay guestPay;
 	
 	@Autowired
-	private Kendo kendo;
+	private KendoList kendo;
 	
 	@Autowired
 	KendoJoinRepository kendoJoinRepository;
@@ -154,7 +154,7 @@ public class KendoJoinService {
 	public String kendoJoinList(Model model) {
 		String path = "";
 
-		List<Kendo> list = kendoJoinRepository.getKendoJoinList();
+		List<KendoList> list = kendoJoinRepository.getKendoJoinList();
 		
 		System.out.println("kendoJoins.size : "+list.size());
 	
