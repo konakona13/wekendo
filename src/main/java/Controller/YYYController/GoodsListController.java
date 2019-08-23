@@ -1,5 +1,7 @@
 package Controller.YYYController;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +20,17 @@ public class GoodsListController {
 	@Autowired
 	private GoodsImg img;
 	
-	
-	@RequestMapping(value = "/goodsMain", method = RequestMethod.GET)
-	public String goodsList(Model model) { 
-		String path= listService.goodsList(model);
+	//목록(메인)
+	@RequestMapping("/goodsMain")
+	public String goodsList(Model model, HttpSession session) { 
+		String path= listService.goodsList(model, session);
 		return path;
+		
+		
+
+	//수정
+		
+
+	//삭제
 }
 }

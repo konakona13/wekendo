@@ -11,8 +11,8 @@
 <title>테마 소분류</title>
 </head> 
 <body>
-		<select id="themeSmall" name="themeSNum">
-		<option value= 0 > --- 동을 선택하여주세요 --- </option>
+		<select id="themeSmall" name="themeSNum" onchange="themeS(this.value)">
+		<option value= 0 > --- 소분류를 선택하여주세요 --- </option>
 		<% for(ThemeSmall ff : result4) { %>
 		
 		 <option value= "<%= ff.getThemeSNum() %>"> <%= ff.getThemeSName() %></option>

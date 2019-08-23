@@ -26,15 +26,15 @@
 		});
 	}
 	
-	function themeM(val1){
-		var aval1 = $("#themeLarge").val1(); 
+	function themeM(val){
+		var aval = $("#themeLarge").val(); // a테이블에서 aNum 가져오기
 		$.ajax({
 			type:"POST",
 			url :"themeS",
-			data: "themeMNum=" +val1 + "&themeLNum="+ aval1 ,
+			data: "themeMNum=" +val + "&themeLNum="+ aval ,
 			datatype: "html",
-			success: function(dataTheme){ 
-				$("#themeSmall").html(dataTheme); 
+			success: function(data){ 
+				$("#themeSmall").html(data); //aNum 가져와서 c테이블에 넘기기
 			}
 		});
 		
@@ -52,7 +52,7 @@
 		<% for(ThemeLarge dd : result2 ) { %>
 		
 		 <option value= "<%= dd.getThemeLNum() %>"> <%= dd.getThemeLName() %></option>
-		
+		 
 		<% } %>
 
 	</select>

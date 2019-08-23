@@ -1,5 +1,7 @@
 package Service.YYYService;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -13,11 +15,7 @@ import Repository.YYYRepository.GoodsRepository;
 public class PlaceRegService {
 	
 	@Autowired
-	private PlaceRegCommand command;
-	@Autowired
 	private PlaceGoods dto;	
-	@Autowired
-	private GoodsImg img;
 	@Autowired
 	GoodsRepository repository;
 
@@ -26,13 +24,9 @@ public class PlaceRegService {
 	}
 	
 
-	public void setImg(GoodsImg img) {
-		this.img = img;
-	}
 
-
-
-	public String goodsRegist(Model model, PlaceRegCommand command ) {
+	public String goodsRegist(Model model, PlaceRegCommand command, HttpSession session ) {
+		dto.setCompanyNum((String) session.getAttribute("companyNum")); //기업회원번호
 		dto.setGoodsName(command.getGoodsName()); //상품명
 		dto.setGoodsDetail(command.getGoodsDetail()); //상품상세
 		dto.setGoodsDanger(command.getGoodsDanger()); //주의사항
@@ -47,12 +41,8 @@ public class PlaceRegService {
 		dto.setThemeLNum(command.getThemeLNum());
 		dto.setThemeMNum(command.getThemeMNum());
 		dto.setThemeSNum(command.getThemeSNum());
-		
-		//이미지
-		//img.setGoodsImgName(command.getGoodsImgName()); //이미지 테이블 저장
 
 		repository.insertGoods(dto);
-		//repository.insertImg(img);
 		
 		return "YYYView/goodsMain";
 		
