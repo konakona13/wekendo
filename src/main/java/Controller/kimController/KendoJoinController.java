@@ -21,6 +21,13 @@ public class KendoJoinController {
 	private KendoJoinService kendoJoinService;
 
 	
+	
+	@RequestMapping("/memberMain")
+	public String memberMain() {
+		path = "memberMain";
+		return path;
+	}
+	
 	@RequestMapping("/kim")
 	public String kim() {
 		path = "kimView/kim";
