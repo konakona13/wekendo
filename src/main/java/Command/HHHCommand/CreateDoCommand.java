@@ -1,7 +1,5 @@
 package Command.HHHCommand;
 
-import java.sql.Timestamp;
-
 public class CreateDoCommand
 {
 	private String doName;

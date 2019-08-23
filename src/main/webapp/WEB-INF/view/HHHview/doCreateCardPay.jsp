@@ -15,7 +15,16 @@ $(function(){
 	{
 		var txt = "카드결제완료";
 		opener.document.getElementById("confirmPay").value = txt;
+		
+		opener.document.getElementById("cardCompany").value = $("#cardCompany").val();
+		opener.document.getElementById("cardNum").value = $("#cardNum").val();
+		opener.document.getElementById("cardCvc").value = $("#cardCvc").val();
+		opener.document.getElementById("cardPass").value =  $("#cardPass").val();
+		opener.document.getElementById("cardDate").value =  $("#cardDate").val();
+		opener.document.getElementById("cardEmail").value =  $("#cardEmail").val();
+		
 		opener.payComplete();
+		
 		window.close();
 	});
 });
@@ -31,17 +40,18 @@ $(function(){
         <h1>새창으로뜬 카드결제?</h1>
         <p>
             카드사명
-             <select name="" id="">
-            <option value="">신한</option>
-            <option value="">삼성</option>
-            <option value="">현대</option>
+             <select name="" id="cardCompany">
+            <option value="sinhan">신한</option>
+            <option value="samsung">삼성</option>
+            <option value="hyundai">현대</option>
         </select>
         </p>
-        <p>카드소유자명<input type="text"></p>
-        <p>카드번호<input type="text"></p>
-        <p>카드유효기간<input type="text"></p>
-        <p>카드비밀번호<input type="text"></p>
-        <p>이메일(선택:영수증)<input type="text"></p>
+        
+        <p>카드번호<input type="text" id="cardNum"></p>
+        <p>CVC<input type="text" id="cardCvc"></p>
+        <p>카드비밀번호<input type="password" id="cardPass"></p>
+        <p>카드유효기간<input type="text" id="cardDate"></p>
+        <p>이메일(선택:영수증)<input type="text" id="cardEmail"></p>
        
         <input id="cardPay" type="submit" value="결제">
         

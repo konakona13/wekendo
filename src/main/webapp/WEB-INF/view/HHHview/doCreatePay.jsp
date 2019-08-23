@@ -35,6 +35,7 @@ function payComplete()
 </head>
 <body>
 	
+	
     <h1>최종견적서?</h1>
     <p>고객명(활동장) : ${kendo.hostNum }</p>
     <p>활동명 :  ${kendo.doName}</p>
@@ -74,7 +75,20 @@ function payComplete()
             <input type="submit" value="카카오페이">
     </form>
     
-    <form action="HDO" id="comp"></form>
+    <form action="doPayComplete" id="comp">
+    	
+    	<input type="text" id="hostNum" name="hostNum" value="${kendo.hostNum }">
+    	<input type="text" id="pp" name="pp" value="${kendo.doPp}">
+    	<input type="text" id="price" name="price" value="${placeGoods.goodsPrice}">
+    	
+    	<p>카드회사명<input type="text" id="cardCompany" name="cardCompany"></p>
+    	<p>카드번호<input type="text" id="cardNum" name="cardNum"></p>
+        <p>CVC<input type="text" id="cardCvc" name="cardCvc"></p>
+        <p>카드비밀번호<input type="text" id="cardPass" name="cardPass"></p>
+        <p>카드유효기간<input type="text" id="cardDate" name="cardDate"></p>
+        <p>이메일(선택:영수증)<input type="text" id="cardEmail" name="cardEmail" value="none"></p>
+    	
+    </form>
     
 </body>
 </html>

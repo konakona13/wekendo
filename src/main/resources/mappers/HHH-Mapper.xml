@@ -136,16 +136,17 @@
 
 	<!-- select 문 끝 -->
 
+	<!-- insert 문 시작 -->
 	<sql id="basekendo">
 		DO_NUM, HOST_NUM, DO_NAME, DO_START_DATE, DO_END_DATE, 
 		DO_OPEN_DATE, DO_CLOSE_DATE, DO_PP, DO_NOWPP, DO_DETAIL,  
 		DO_OPT_GENDER, DO_OPT_AGE, DO_STATUS
 	</sql>
 	<insert id="insertKendo" parameterType="Model.DTO.HHHDTO.Kendo">
-		INSERT INTO kendo(<include refid="basekendo" />)
+		INSERT INTO KENDO(<include refid="basekendo" />)
 		VALUES
-		('DO'||DO_NUM_SEQ.NEXTVAL, #{hostNum},#{doName},#{doStartDate},#{doEndDate},
-		#{doOpenDate},#{doCloseDate},#{doPp},#{doNowpp},#{doDetail},
+		('DO'||DO_NUM_SEQ.NEXTVAL, #{hostNum},#{doName},SYSDATE,SYSDATE,
+		SYSDATE,SYSDATE,#{doPp},#{doNowpp},#{doDetail},
 		#{doOptGender},#{doOptAge},#{doStatus})
 	</insert>
 	
@@ -154,9 +155,28 @@
 	</sql>
 	<insert id="insertDoimg" parameterType="Model.DTO.HHHDTO.DoIMG">
 		INSERT INTO do_img(<include refid="basedoimg" />)
-		VALUES('DO'||DO_NUM_SEQ.CURRVAL,#{hostNum},#{doImgName},'DI'||DO_IMG_NUM_SEQ.NEXTVAL,#{doKindNum})
+		VALUES('DO'||DO_NUM_SEQ.CURRVAL,#{hostNum},#{doImgName},'DI'||DO_IMG_NUM_SEQ.NEXTVAL,#{doImgKind})
 	</insert>
-
+	
+	<insert id="insertPayment" parameterType="Command.HHHCommand.DoPayComplete">
+		INSERT INTO PAYMENT(PAY_NUM, PAY_PP, PAY_DUCTCH, PAY_TOTALPRICE)
+		VALUES('PAY'||PAY_NUM_SEQ.NEXTVAL,#{pp},#{dutch},#{price})
+	</insert>
+	
+	<sql id="hostPayCol">
+		PAY_NUM, DO_NUM, HOST_NUM, DUTCH_DATE, DUTCH_STATUS, PAY_STYLE,
+		PAY_CARDNAME, PAY_CARDNUM, PAY_CVCNUM, PAY_DATE
+	</sql>
+	
+	
+	<insert id="insertHostPay" parameterType="Command.HHHCommand.DoPayComplete">
+		INSERT INTO HOSTPAY(<include refid="hostPayCol" />)
+		VALUES('PAY'||PAYMENT_NUM_SEQ.CURRVAL,'DO'||DO_NUM_SEQ.CURRVAL,#{hostNum},SYSDATE,
+		'결제완료','CARD',#{cardCompany},#{cardNum},#{cardCvc},#{cardDate})
+	</insert>
+	
+	
+	<!-- insert 문 끝 -->
 
 
 </mapper>

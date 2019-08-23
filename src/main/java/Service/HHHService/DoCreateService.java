@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import Command.HHHCommand.CreateDoCommand;
-import Command.LEECommand.AuthInfo;
+import Command.HHHCommand.DoPayComplete;
 import Model.DTO.HHHDTO.DoIMG;
 import Model.DTO.HHHDTO.Kendo;
 import Model.DTO.HHHDTO.Member;
@@ -29,6 +29,7 @@ public class DoCreateService
 	UploadImgService uploadImgService;
 	
 	Kendo kendo = new Kendo();
+	MultipartFile mainPhoto;
 
 	public String getGoodsList(Model model)
 	{
@@ -66,7 +67,8 @@ public class DoCreateService
 		//활동DTO 끝
 		
 		model.addAttribute("kendo",kendo);
-		
+		session.setAttribute("kendo",kendo);
+		this.mainPhoto = mainPhoto;
 		//int result = doCreateReporsitory.insertKendo(kendo);
 		//if(result > 0)
 		{
@@ -99,7 +101,7 @@ public class DoCreateService
 	
 	public void upLoadDoIMG(Model model,MultipartFile mainPhoto,HttpServletRequest request,HttpSession session)
 	{
-		AuthInfo memInfo = (AuthInfo) session.getAttribute("memAuth");
+		String memInfo = (String) session.getAttribute("testHHHid");
 		try
 		{
 			//이미지 업로드
@@ -108,7 +110,7 @@ public class DoCreateService
 			DoIMG doImg = new DoIMG();
 			doImg.setDoImgKind("main");
 			doImg.setDoImgName(storedFileName);
-			doImg.setHostNum(memInfo.getMemNum());
+			doImg.setHostNum(memInfo);
 			
 			doCreateReporsitory.insertDoimg(doImg);
 		}
@@ -122,6 +124,21 @@ public class DoCreateService
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void payComplete(Model model, DoPayComplete doPayComplete,HttpServletRequest request, HttpSession session)
+	{
+		Kendo kendo = (Kendo) session.getAttribute("kendo"); 
+		if(kendo != null)
+		{
+			System.out.println(kendo.getDoName());
+		}
+		
+		//doCreateReporsitory.insertKendo(kendo);
+		//upLoadDoIMG(model, mainPhoto, request, session);
+		
+		//doCreateReporsitory.insertPayment(doPayComplete);
+		//doCreateReporsitory.inserthostPay(doPayComplete);
 	}
 	
 

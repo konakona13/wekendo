@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import Command.HHHCommand.CreateDoCommand;
+import Command.HHHCommand.DoPayCommand;
+import Command.HHHCommand.DoPayComplete;
 import Model.DTO.HHHDTO.Kendo;
 import Service.HHHService.DoCreateService;
 
@@ -61,10 +63,11 @@ public class DoCreateController
 	}
 	
 	@RequestMapping("/doPayComplete")
-	public String doPayComplete(Model model)
+	public String doPayComplete(Model model,DoPayComplete doPayComplete,HttpServletRequest request,HttpSession session)
 	{
+		doCreateService.payComplete(model, doPayComplete,request, session);
 		
-		return null;
+		return "HHHview/startrotjf";
 	}
 	
 	@RequestMapping("/doCreateCardPay")
