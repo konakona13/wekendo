@@ -16,23 +16,42 @@
   
 <insert id="insertFriend" parameterType="Model.DTO.kimDTO.Friend" >
 	insert into FRIEND (JOIN_NUM, DO_NUM, GUEST_NUM, HOST_NUM, FRIEND_NAME, FRIEND_PH, FRIEND_AGE)
-	values ('JN1000','DO1100','GU1200','HO1300', #{friendName}, 820||#{friendPh},#{friendAge})
+	values ('JN'||JOIN_NUM_SEQ.currval,
+			(select DO_NUM from KENDOJOIN where JOIN_NUM = 'JN'||JOIN_NUM_SEQ.currval),
+			(select GUEST_NUM from KENDOJOIN where JOIN_NUM = 'JN'||JOIN_NUM_SEQ.currval),
+			(select HOST_NUM from KENDOJOIN where JOIN_NUM = 'JN'||JOIN_NUM_SEQ.currval),
+			 #{friendName}, 820||#{friendPh},#{friendAge})
 </insert>
  
 <insert id="insertGuestPay" parameterType="Model.DTO.kimDTO.GuestPay" >
 	insert into GUESTPAY (PAY_NUM, DO_NUM, GUEST_NUM, HOST_NUM, JOIN_NUM, DUTCH_DATE, DUTCH_STATUS, PAY_STYLE, PAY_CARDNAME, PAY_CARDNUM, PAY_CVCNUM, PAY_DATE)
-	values ('PY1000','DO1100','GU1200','HO1300','JN1000', sysdate, '승인',#{payStyle},#{payCardName},#{payCardNum}, #{payCvcNum},#{payDate})
+	values ('PM1000',
+			(select DO_NUM from KENDOJOIN where JOIN_NUM = 'JN'||JOIN_NUM_SEQ.currval),
+			(select GUEST_NUM from KENDOJOIN where JOIN_NUM = 'JN'||JOIN_NUM_SEQ.currval),
+			(select HOST_NUM from KENDOJOIN where JOIN_NUM = 'JN'||JOIN_NUM_SEQ.currval),
+			(select JOIN_NUM from KENDOJOIN where JOIN_NUM = 'JN'||JOIN_NUM_SEQ.currval), sysdate, '승인',
+			#{payStyle},#{payCardName},#{payCardNum}, #{payCvcNum},#{payDate})
 </insert>
 
 
 <sql id="kendocolumn">
-	DO_NUM, HOST_NUM, DO_NAME, DO_START_DATE, DO_END_DATE, DO_OPEN_DATE, DO_CLOSE_DATE, 
-	DO_PP, DO_NOWPP, DO_DETAIL, DO_OPT_GENDER, DO_OPT_AGE, DO_STATUS
+	JOIN_NUM, GUEST_NUM, GUEST_ID, DO_NUM, HOST_NUM, HOST_ID, 
+	DO_NAME, DO_START_DATE, DO_END_DATE, DO_OPEN_DATE, DO_CLOSE_DATE, 
+	DO_PP, DO_NOWPP, DO_DETAIL, DO_OPT_GENDER, DO_OPT_AGE, DO_STATUS,
+	JOIN_DATE, JOIN_KAKAOID, JOIN_INTRODUCE, JOIN_QTY, PAY_DUCTCH
 </sql>
 	
-<resultMap type="Model.DTO.kimDTO.Kendo" id="kendo">
-	<id column="DO_NUM" jdbcType="VARCHAR" property="doNum"/>
+<resultMap type="Model.DTO.kimDTO.KendoList" id="kendoList">
+	<id column="JOIN_NUM" jdbcType="VARCHAR" property="joinNum"/>
+	
+	<result column="GUEST_NUM" jdbcType="VARCHAR" property="guestNum"/>
+	<result column="GUEST_ID" jdbcType="VARCHAR" property="guestId"/>
+	
+	<result column="DO_NUM" jdbcType="VARCHAR" property="doNum"/>
+
 	<result column="HOST_NUM" jdbcType="VARCHAR" property="hostNum"/>
+	<result column="HOST_ID" jdbcType="VARCHAR" property="hostId"/>
+		
 	<result column="DO_NAME" jdbcType = "VARCHAR" 	property="doName"/>
 	<result column="DO_START_DATE" jdbcType="TIMESTAMP" property="doStartDate"/>
 	<result column="DO_END_DATE" jdbcType="TIMESTAMP" property="doEndDate"/>
@@ -44,14 +63,21 @@
 	<result column="DO_OPT_GENDER" jdbcType = "VARCHAR" property="doOptGender"/>
 	<result column="DO_OPT_AGE" jdbcType = "VARCHAR" property="doOptAge"/>
 	<result column="DO_STATUS" jdbcType = "VARCHAR" property="doStatus"/>
+	
+	<result column="JOIN_DATE" jdbcType = "VARCHAR" property="joinDate"/>
+	<result column="JOIN_KAKAOID" jdbcType = "VARCHAR" property="joinKakaoid"/>
+	<result column="JOIN_INTRODUCE" jdbcType = "VARCHAR" property="joinIntroduce"/>
+	<result column="JOIN_QTY" jdbcType = "VARCHAR" property="joinQty"/>
+	<result column="PAY_DUCTCH" jdbcType = "VARCHAR" property="joinPrice"/>
+	
 </resultMap>
 
 
-<select id="getKendoJoinList" resultMap="kendo">
-	select * from  ( select rownum rn, 
+<select id="getKendoJoinList" resultMap="kendoList">
+	select * from  ( select rownum rownum, 
 							<include refid="kendocolumn" />
 						from (select  
-								<include refid="kendocolumn" />	
+								<include refid="kendocolumn" />
 						  	 from KENDO
 						 	 order by DO_NUM desc))
 </select>

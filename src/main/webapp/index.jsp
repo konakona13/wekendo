@@ -1,6 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%
+	response.setCharacterEncoding("utf-8");
+ %>  
 <html>
 <body>
-<h2>WeKenDo</h2>
-<h2>WeKenDo</h2>
+
+<script type="text/javascript">
+	location.href= "memberMain";
+</script>
 </body>
 </html>

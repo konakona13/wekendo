@@ -10,6 +10,7 @@
 	
 	<!-- <bean id = "member"  class="Model.DTO.Member" /> -->
 	<bean id = "doCreateReporsitory"  class="Repository.HHHRepository.DoCreateReporsitory" />
-
+	<bean id = "createDoCommand"  class="Command.HHHCommand.CreateDoCommand" />
+	
 	
 </beans>

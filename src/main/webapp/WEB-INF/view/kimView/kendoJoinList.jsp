@@ -20,20 +20,31 @@
 	<div>
 		<table border ="1" >
         	<tr>
-				<td>DO No.</td>
+        		<td>Join No.</td>
+
                 <td>DO 이름</td>
+				<td>HOST ID</td>
                 <td>DO 시작날짜</td>
                 <td>DO 종료날짜</td>
-                <td>DO 진행상태</td>                      
+                <td>DO 진행상태</td>  
+				<td>결제 날짜</td>
+				<td>결제 수량</td>
+				<td>결제  금액</td>        
+                                  
              </tr>
 <c:if test="${! empty kendoJoins}">                
 	<c:forEach var="kendoJoin" items="${kendoJoins}">
             <tr>
-                <td>${kendoJoin.doNum}</td>
+            	<td>${kendoJoin.joinNum}</td>
+
                 <td>${kendoJoin.doName}</td>  
+                <td>${kendoJoin.hostID}</td>                 
                 <td>${kendoJoin.doStartDate}</td>  
                 <td>${kendoJoin.doEndDate}</td>   
-                <td>${kendoJoin.doStatus}</td>    
+                <td>${kendoJoin.doStatus}</td>
+                <td>${kendoJoin.joinDate}</td>
+				<td>${kendoJoin.joinQty}</td>
+				<td>${kendoJoin.joinQty}</td>  
              </tr>
 	</c:forEach>
 </c:if>               

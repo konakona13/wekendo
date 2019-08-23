@@ -13,8 +13,7 @@ public class UpdateComRegRepository {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	@Autowired
-	private Company Company;
+	
 	
 	private final String namespace = "KIM-Mapper";
 	

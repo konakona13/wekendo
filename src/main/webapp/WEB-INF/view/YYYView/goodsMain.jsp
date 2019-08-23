@@ -44,7 +44,7 @@
       
       <td style="font-family:Tahoma;font-size:10pt;">
          <div align="left">
-         <a href="./GoodsRegDetail.goods?num=${list.goodsNum}">
+         <a href="./goodsRegDetail.goods/${list.goodsNum}">
          <%-- <img  width=50% alt="" src="YYYView/fileupload/${list2.goodsImgName}">&nbsp; --%>
 		 ${list.goodsName}         
          </a>
@@ -70,14 +70,14 @@
 
    <tr align="right">
       <td colspan="5">
-            <a href="GoodsReg">[글쓰기]</a>
+            <a href="goodsReg">[글쓰기]</a>
       </td>
    </tr>
 <c:if test="${empty list}">
 	<tr align="center" valign="middle">
-		<td colspan="4">MVC 회원리스트</td>
+		<td colspan="4">상품목록</td>
 		<td align=right>
-			<font size=2>등록된 회원이 없습니다.</font>
+			<font size=2>등록된 상품이 없습니다.</font>
 		</td>
 	</tr>
 </c:if>

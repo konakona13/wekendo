@@ -4,41 +4,179 @@
 <mapper namespace="CreateGoodsMapper">
 <cache />
 
-<sql id="basecolumn">
+	<sql id="basecolumn">
 		GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM,
 		 THEME_M_NUM, THEME_S_NUM, GOODS_NAME, GOODS_PRICE, GOODS_DETAIL,
-		  GOODS_DANGER, GOODS_STATUS, GOODS_STOCK, COMPANY_NUM
+		  GOODS_DANGER, GOODS_STATUS, GOODS_STOCK, COMPANY_NUM,REG_DATE
 	</sql>
-<resultMap type="Model.DTO.HHHDTO.PlaceGoods" id="baseGoods">
-		<id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum;"/>
-		<result column="COMPANY_NUM" jdbcType = "VARCHAR" property="companyNum;"/>
-		<result column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum;"/>
-		<result column="MAP_M_NUM" jdbcType = "VARCHAR" property="mapMNum;"/>
-		<result column="MAP_S_NUM" jdbcType="VARCHAR" property="mapSNum;"/>
-		<result column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum;"/>
-		<result column="THEME_M_NUM" jdbcType="VARCHAR" property="themeMNum;"/>
-		<result column="THEME_S_NUM" jdbcType="VARCHAR" property="themeSNum;"/>
-		<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName;"/>
-		<result column="GOODS_PRICE" jdbcType="BIGINT" property="goodsPrice;"/>
-		<result column="GOODS_DETAIL" jdbcType="VARCHAR" property="goodsDetail;"/>
-		<result column="GOODS_DANGER" jdbcType = "VARCHAR" property="goodsDanger;"/>
-		<result column="GOODS_STATUS" jdbcType = "VARCHAR" property="goodsStatus;"/>
-		<result column="GOODS_STOCK" jdbcType = "BIGINT" property="goodsStock;"/>
-		
+	
+	<sql id="membercolumn">
+		MEMBER_NUM,MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_PH,
+		MEMBER_ADDR,MEMBER_EMAIL,GENDER,MEMBER_PHOTO,MEMBER_BIRTH,
+		MEMBER_STATUS
+	</sql>
+	
+	<sql id="basecolumnCompany">
+		COMPANY_NUM, COMPANY_KIND, COMPANY_ID, COMPANY_PW,
+		COMPANY_BN, COMPANY_NAME, COMPANY_CAP, COMPANY_PH, COMPANY_EMAIL,
+		MANAGER_NAME, COMPANY_ADDR, COMPANY_BANK, COMPANY_ACC, COMPANY_STATUS
+	</sql>
+	
+	
+	
+	<resultMap type="Model.DTO.HHHDTO.PlaceGoods" id="baseGoods">
+		<id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>
+		<result column="COMPANY_NUM" jdbcType = "VARCHAR" property="companyNum"/>
+		<result column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum"/>
+		<result column="MAP_M_NUM" jdbcType = "VARCHAR" property="mapMNum"/>
+		<result column="MAP_S_NUM" jdbcType="VARCHAR" property="mapSNum"/>
+		<result column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum"/>
+		<result column="THEME_M_NUM" jdbcType="VARCHAR" property="themeMNum"/>
+		<result column="THEME_S_NUM" jdbcType="VARCHAR" property="themeSNum"/>
+		<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName"/>
+		<result column="GOODS_PRICE" jdbcType="BIGINT" property="goodsPrice"/>
+		<result column="GOODS_DETAIL" jdbcType="VARCHAR" property="goodsDetail"/>
+		<result column="GOODS_DANGER" jdbcType = "VARCHAR" property="goodsDanger"/>
+		<result column="GOODS_STATUS" jdbcType = "VARCHAR" property="goodsStatus"/>
+		<result column="GOODS_STOCK" jdbcType = "BIGINT" property="goodsStock"/>
+		<result column="REG_DATE" jdbcType = "TIMESTAMP" property="regDate"/>
 		
 	</resultMap>
+	
+	<resultMap type="Model.DTO.HHHDTO.Member" id="baseMember">
+		<id column="MEMBER_NUM" jdbcType="VARCHAR" property="memberNum" />
+		<result column="MEMBER_NAME" jdbcType="VARCHAR"
+			property="memberName" />
+		<result column="MEMBER_BIRTH" jdbcType="TIMESTAMP"
+			property="memberBir" />
+		<result column="MEMBER_PH" jdbcType="BIGINT"
+			property="memberPh1" />
+		<result column="MEMBER_EMAIL" jdbcType="VARCHAR"
+			property="email" />
+		<result column="MEMBER_ADDR" jdbcType="VARCHAR" property="addr" />
+		<result column="GENDER" jdbcType="VARCHAR" property="gender" />
+		<result column="MEMBER_PHOTO" jdbcType="VARCHAR"
+			property="fileName" />
+		<result column="MEMBER_STATUS" jdbcType="VARCHAR"
+			property="status" />
+		<result column="MEMBER_ID" jdbcType="VARCHAR"
+			property="memberId" />
+		<result column="MEMBER_PW" jdbcType="VARCHAR"
+			property="memberPw" />
+	</resultMap>
 
-<select id="placeList" resultMap="baseGoods">
+	<resultMap type="Model.DTO.HHHDTO.Company" id="baseCompany">
+		<id column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum" />
+		<result column="COMPANY_KIND" jdbcType="VARCHAR"
+			property="companyKind" />
+		<result column="COMPANY_ID" jdbcType="VARCHAR"
+			property="companyId" />
+		<result column="COMPANY_PW" jdbcType="VARCHAR"
+			property="companyPw" />
+		<result column="COMPANY_BN" jdbcType="VARCHAR"
+			property="companyBn" />
+		<result column="COMPANY_NAME" jdbcType="VARCHAR"
+			property="companyName" />
+		<result column="COMPANY_CAP" jdbcType="VARCHAR"
+			property="companyCap" />
+		<result column="COMPANY_PH" jdbcType="BIGINT"
+			property="companyPh" />
+		<result column="COMPANY_EMAIL" jdbcType="VARCHAR"
+			property="managerEmail" />
+		<result column="MANAGER_NAME" jdbcType="VARCHAR"
+			property="managerName" />
+		<result column="COMPANY_ADDR" jdbcType="VARCHAR"
+			property="companyAddr" />
+		<result column="COMPANY_BANK" jdbcType="VARCHAR"
+			property="companyBank" />
+		<result column="COMPANY_ACC" jdbcType="VARCHAR"
+			property="companyAcc" />
+		<result column="COMPANY_STATUS" jdbcType="VARCHAR"
+			property="companyStatus" />
+	</resultMap>
+	
+	<!-- select 문 시작 -->
+	
+	<select id="placeList" resultMap="baseGoods">
 		SELECT
 	  		<include refid="basecolumn" />
-		FROM member
+		FROM goods
 		<!-- <where>
 			<if test="id1 != null">
 				MEMBER_ID = #{id1}
 			</if>
 		</where>	 -->
 	</select>
+	
+	<select id="getOneGoods" parameterType="String" resultMap="baseGoods">
+		SELECT
+			  <include refid="basecolumn" />
+		FROM goods
+		<where>
+			GOODS_NUM = #{num}
+		</where>	 
 
+	</select>
+	
+	<select id="getUserInfo" parameterType="Member"
+		resultMap="baseMember">
+		select
+		<include refid="membercolumn" />
+		from member
+		where member_id = #{memberId}
+	</select>
+	
+	<select id="companyCheck" parameterType="Company"
+		resultMap="baseCompany">
+		select
+		<include refid="basecolumnCompany" />
+		from company
+		where COMPANY_ID = #{companyId} and COMPANY_PW = #{companyPw}
+	</select>
+
+	<!-- select 문 끝 -->
+
+	<!-- insert 문 시작 -->
+	<sql id="basekendo">
+		DO_NUM, HOST_NUM, DO_NAME, DO_START_DATE, DO_END_DATE, 
+		DO_OPEN_DATE, DO_CLOSE_DATE, DO_PP, DO_NOWPP, DO_DETAIL,  
+		DO_OPT_GENDER, DO_OPT_AGE, DO_STATUS
+	</sql>
+	<insert id="insertKendo" parameterType="Model.DTO.HHHDTO.Kendo">
+		INSERT INTO KENDO(<include refid="basekendo" />)
+		VALUES
+		('DO'||DO_NUM_SEQ.NEXTVAL, #{hostNum},#{doName},SYSDATE,SYSDATE,
+		SYSDATE,SYSDATE,#{doPp},#{doNowpp},#{doDetail},
+		#{doOptGender},#{doOptAge},#{doStatus})
+	</insert>
+	
+	<sql id="basedoimg">
+		DO_NUM, HOST_NUM, DO_IMG_NAME, DO_IMG_NUM, DO_IMG_KIND
+	</sql>
+	<insert id="insertDoimg" parameterType="Model.DTO.HHHDTO.DoIMG">
+		INSERT INTO do_img(<include refid="basedoimg" />)
+		VALUES('DO'||DO_NUM_SEQ.CURRVAL,#{hostNum},#{doImgName},'DI'||DO_IMG_NUM_SEQ.NEXTVAL,#{doImgKind})
+	</insert>
+	
+	<insert id="insertPayment" parameterType="Command.HHHCommand.DoPayComplete">
+		INSERT INTO PAYMENT(PAY_NUM, PAY_PP, PAY_DUCTCH, PAY_TOTALPRICE)
+		VALUES('PAY'||PAY_NUM_SEQ.NEXTVAL,#{pp},#{dutch},#{price})
+	</insert>
+	
+	<sql id="hostPayCol">
+		PAY_NUM, DO_NUM, HOST_NUM, DUTCH_DATE, DUTCH_STATUS, PAY_STYLE,
+		PAY_CARDNAME, PAY_CARDNUM, PAY_CVCNUM, PAY_DATE
+	</sql>
+	
+	
+	<insert id="insertHostPay" parameterType="Command.HHHCommand.DoPayComplete">
+		INSERT INTO HOSTPAY(<include refid="hostPayCol" />)
+		VALUES('PAY'||PAYMENT_NUM_SEQ.CURRVAL,'DO'||DO_NUM_SEQ.CURRVAL,#{hostNum},SYSDATE,
+		'결제완료','CARD',#{cardCompany},#{cardNum},#{cardCvc},#{cardDate})
+	</insert>
+	
+	
+	<!-- insert 문 끝 -->
 
 
 </mapper>

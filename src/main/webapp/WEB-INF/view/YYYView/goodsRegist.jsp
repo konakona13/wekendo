@@ -35,7 +35,7 @@
 </script>
 </head>
 <body>
-	<form:form action="GoodsRegAction" name="frm" id="frm" method="POST" commandName="placeRegCommand">
+	<form:form action="goodsRegAction" name="frm" id="frm" method="POST" commandName="placeRegCommand">
 		<h3> 장소 상품 등록 <h3>
 		<br><br><br>
 		지역선택	 <div id = "mapMain"> </div>  	<br>
@@ -49,7 +49,7 @@
 		수량 : <form:input path = "goodsStock" placeholder=""/><br><br>
 		상품금액 : <form:input path = "goodsPrice" placeholder=""/><br><br>
 		
-		<input type ="submit" value="등록신청" id="submit1" />
+		<input type ="submit" value="등록신청" id="submit1"/>
 		<input type="reset" name="reset" value="다시작성">
 		<input type ="button" value="등록안함"   onclick="javascript:location.href='goodsMain'" />
 	

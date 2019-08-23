@@ -11,8 +11,7 @@ import Repository.kimRepository.UpdateComRegRepository;
 
 @Service
 public class UpdateComRegService {
-	@Autowired
-	private Company company;
+
 	
 	@Autowired
 	private UpdateComRegRepository updateComRegRepository;

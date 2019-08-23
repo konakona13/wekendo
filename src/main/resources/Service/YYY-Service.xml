@@ -12,6 +12,9 @@
 	 <bean id = "placeReg"  class="Service.YYYService.PlaceRegService" />
 	 <bean id = "domino"  class="Service.YYYService.DominoService" />
 	 <bean id = "goodsList"  class="Service.YYYService.GoodsListService" />
-	 
+	 <bean id = "goodsDetailService"  class="Service.YYYService.GoodsDetailService" />
+	 <bean id = "goodsConfirmService"  class="Service.YYYService.GoodsConfirmService" />
+	 <bean id = "confirmListService"  class="Service.YYYService.ConfirmListServcie" />
+	  <bean id = "goodsCancelService"  class="Service.YYYService.GoodsCancelService" />
 	
 </beans>

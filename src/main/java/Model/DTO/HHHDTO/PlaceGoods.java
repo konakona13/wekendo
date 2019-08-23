@@ -1,6 +1,11 @@
 package Model.DTO.HHHDTO;
+import java.io.Serializable;
+import java.sql.Timestamp;
 
-public class PlaceGoods {
+
+@SuppressWarnings("serial")
+public class PlaceGoods implements Serializable
+{
 	
 	String goodsNum;
 	String mapLNum;
@@ -16,8 +21,17 @@ public class PlaceGoods {
 	String goodsStatus;
 	Integer goodsStock;
 	String companyNum;
+	Timestamp regDate;
 	
 	
+	public Timestamp getRegDate()
+	{
+		return regDate;
+	}
+	public void setRegDate(Timestamp regDate)
+	{
+		this.regDate = regDate;
+	}
 	public String getGoodsNum() {
 		return goodsNum;
 	}

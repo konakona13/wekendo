@@ -23,8 +23,8 @@
         <h3>활동선택확인</h3>
         <p>
         <form name="frm" action="guestPayAction" method="POST">
-            활동번호 :  <input type="hidden" name = "doNum"/>${kdc.doNum}<br /> 
-            활동이름 :  <input type="hidden" name = "doName"/>${kdc.doName}<br />
+            활동번호 :  <input type="hidden" name = "doNum" value="${kdc.doNum}"/>${kdc.doNum}<br /> 
+            활동이름 :  <input type="hidden" name = "doName" value="${kdc.doName}"/>${kdc.doName}<br />
             
             수     량  : <input type="hidden" name = "joinQty" value = "${kdc.doQty}"/>${kdc.doQty}<br />
             카카오톡 아이디  : <input type="hidden" name = "joinKakaoId"  value ="${kjc.joinKakaoId}"/> ${kjc.joinKakaoId}<br />

@@ -2,6 +2,8 @@ package Service.YYYService;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -18,7 +20,9 @@ public class GoodsListService {
 	private GoodsRepository repository;
 	
 
-	public String goodsList(Model model) {
+	public String goodsList(Model model, HttpSession session) {
+		
+		session.getAttribute("comNum");
 		List<PlaceGoods> list = repository.getGoodsList();
 		model.addAttribute("list", list);
 		

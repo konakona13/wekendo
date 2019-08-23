@@ -21,13 +21,20 @@ public class KendoJoinController {
 	private KendoJoinService kendoJoinService;
 
 	
+	
+	@RequestMapping("/memberMain")
+	public String memberMain() {
+		path = "memberMain";
+		return path;
+	}
+	
 	@RequestMapping("/kim")
 	public String kim() {
 		path = "kimView/kim";
 		return path;
 	}
 	
-	@RequestMapping("kendoDetail")
+	@RequestMapping("/kendoDetail")
 	public String kendoDetail(Model model) {
 		path = "kimView/kendoDetail";
 		return path;
@@ -49,9 +56,9 @@ public class KendoJoinController {
 	}
 	
 	@RequestMapping("/guestPayAction")
-	public String guestPayAction(Model model,GuestPayCommand guestPayCommand, KendoJoinCommand kendoJoinCommand, HttpSession session) {
+	public String guestPayAction(Model model,GuestPayCommand guestPayCommand, KendoJoinCommand kendoJoinCommand,KendoDetailCommand kendoDetailCommand, HttpSession session) {
 		System.out.println("guestPayDetail");
-		path = kendoJoinService.guestPayDetail(model, guestPayCommand, kendoJoinCommand,session);
+		path = kendoJoinService.guestPayDetail(model, guestPayCommand, kendoJoinCommand,kendoDetailCommand,session);
 		return path;		
 	}
 	

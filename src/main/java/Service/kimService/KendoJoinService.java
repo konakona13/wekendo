@@ -21,7 +21,7 @@ import Command.kimCommand.KendoJoinCommand;
 
 import Model.DTO.kimDTO.Friend;
 import Model.DTO.kimDTO.GuestPay;
-import Model.DTO.kimDTO.Kendo;
+import Model.DTO.kimDTO.KendoList;
 import Model.DTO.kimDTO.KendoJoin;
 import Repository.kimRepository.KendoJoinRepository;
 import oracle.sql.TIMESTAMP;
@@ -43,7 +43,7 @@ public class KendoJoinService {
 	private GuestPay guestPay;
 	
 	@Autowired
-	private Kendo kendo;
+	private KendoList kendo;
 	
 	@Autowired
 	KendoJoinRepository kendoJoinRepository;
@@ -63,6 +63,7 @@ public class KendoJoinService {
 		model.addAttribute("kjc",kjc);
 		model.addAttribute("kdc",kdc);
 		
+		System.out.println("kdc.getDoNum()1 : " + kdc.getDoNum());
 			
 		path = "kimView/kendoPayment" ;
 		
@@ -72,27 +73,21 @@ public class KendoJoinService {
 	}
 
 
-	public String guestPayDetail(Model model, GuestPayCommand gpc, KendoJoinCommand kjc, HttpSession session) {
+	public String guestPayDetail(Model model, GuestPayCommand gpc, KendoJoinCommand kjc, KendoDetailCommand kdc, HttpSession session) {
 		String path = "";
 		String memberNum = (String)session.getAttribute("memNum");
-
-/*
-		System.out.println(gpc.getPayStyle());
-		System.out.println(gpc.getPayCardName());
-		System.out.println(gpc.getPayCardNum());
-		System.out.println(gpc.getPayCvcNum());
-		System.out.println(gpc.getPayDate());
-*/		
+		
 		model.addAttribute("gpc",gpc);
 
+		kendoJoin.setDoNum(kdc.getDoNum());
+		System.out.println("kendoJoin2 : " + kendoJoin.getDoNum());
 		
 		tst = new Timestamp(new Date().getTime());
 		kendoJoin.setJoinDate(tst);			
 		kendoJoin.setJoinKakaoid(kjc.getJoinKakaoId());
 		kendoJoin.setJoinIntroduce(kjc.getJoinIntroduce());
 		kendoJoin.setJoinQty(kjc.getJoinQty());
-		kendoJoin.setDoNum(kjc.getDoNum());
-		System.out.println("kjc.getDoNum() : " + kjc.getDoNum());
+
 		kendoJoin.setGuestNum(memberNum);
 		
 		System.out.println("guestPayDetail : aaa");
@@ -159,7 +154,7 @@ public class KendoJoinService {
 	public String kendoJoinList(Model model) {
 		String path = "";
 
-		List<Kendo> list = kendoJoinRepository.getKendoJoinList();
+		List<KendoList> list = kendoJoinRepository.getKendoJoinList();
 		
 		System.out.println("kendoJoins.size : "+list.size());
 	
