@@ -108,11 +108,30 @@ $(function(){
             <div id="selectPlace">
             	
             	장소 : <input type="text" id="PlaceName" value="없음">
-            		<input type="text" name="PlaceNum" id="PlaceNum" value="장소번호">
+            		<input type="text" name="placeNum" id="PlaceNum" value="장소번호">
             	<input id="selectPlaceBtn" type="button" value="장소선택">
             
             </div>
+           <div id="buyInfoDiv">
+           		<input type="text" id="companyNum" name="companyNum">
+           		
+           		<input type="text" id="mapLNum" name="mapLNum" value="mapLNum">
+           		<input type="text" id="mapMNum" name="mapMNum" value="mapMNum">
+           		<input type="text" id="mapSNum" name="mapSNum" value="mapSNum">
+           		<input type="text" id="themeLNum" name="themeLNum" value="themeLNum">
+           		<input type="text" id="themeMNum" name="themeMNum" value="themeMNum">
+           		<input type="text" id="themeSNum" name="themeSNum" value="themeSNum">
+           		
+           		<input type="text" id="buyQty" name="buyQty">
+           		<input type="text" id="buyStartDate" name="buyStartDate">
+           		<input type="text" id="buyEndDate" name="buyEndDate">
+           		<input type="text" id="buyDays" name="buyDays">
+           		<input type="text" id="buyPrice" name="buyPrice">
+           		
+           		
+           		
            
+           </div>
             
 
             <input type="button" id ="submit1" value="다음"/>
