@@ -1,7 +1,5 @@
 package Controller.LEEController;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import Command.LEECommand.CompanyJoinCommand;
 import Command.LEECommand.LoginCommand;
 import Command.LEECommand.MemberJoinCommand;
-import Model.DTO.LEEDTO.Dodo;
 import Service.LEEService.CompanyCashService;
 import Service.LEEService.CompanyJoinService;
 import Service.LEEService.CompanyLoginService;
