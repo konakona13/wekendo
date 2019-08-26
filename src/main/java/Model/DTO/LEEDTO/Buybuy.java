@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 @SuppressWarnings("serial")
-public class Buybuy implements Serializable{
+public class Buybuy implements Serializable {
 	private String buyNum;
 	private String doNum;
 	private String payNum;
@@ -22,6 +22,15 @@ public class Buybuy implements Serializable{
 	private Timestamp endDate;
 	private Long buyDays;
 	private Long buyPrice;
+	private String companyName;
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
 
 	public String getBuyNum() {
 		return buyNum;

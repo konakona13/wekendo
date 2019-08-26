@@ -166,6 +166,8 @@
 		<result column="BUY_DAYS" jdbcType="BIGINT" property="buyDays" />
 		<result column="BUY_PRICE" jdbcType="BIGINT"
 			property="buyPrice" />
+		<result column="COMPANY_NAME" jdbcType="VARCHAR"
+			property="companyName" />
 	</resultMap>
 
 	<select id="userCheck" parameterType="Member"
@@ -244,7 +246,8 @@
 		order by CASHIN_DAYS desc))
 		where rn &gt;= #{startRow}
 		and
-		rn &lt;=
+		rn
+		&lt;=
 		#{endRow}
 		and CASHIN_STATUS = 'complete'
 	</select>
@@ -255,19 +258,102 @@
 
 	<select id="getBuybuyList" parameterType="startEndPage"
 		resultMap="baseBuybuy">
-		select * from ( select rownum rn,
-		<include refid="basecolumnBuybuy" />
-		from (select
-		<include refid="basecolumnBuybuy" />
-		from BUYBUY
-		order by BUY_NUM desc))
-		where rn &gt;= #{startRow}
+		select
+		BUY_NUM, b.DO_NUM, b.PAY_NUM, b.HOST_NUM, b.GOODS_NUM,
+		c.COMPANY_NUM, company_name,
+		MAP_L_NUM, MAP_M_NUM, MAP_S_NUM,
+		THEME_L_NUM, THEME_M_NUM,
+		THEME_S_NUM, BUY_QTY, BUY_START_DATE,
+		BUY_END_DATE, BUY_DAYS,
+		BUY_PRICE
+		from BUYBUY b, company c, kendo kd
+		where b.company_num = c.company_num
+		and b.do_num = kd.do_num
 		and
-		rn &lt;=
-		#{endRow}
+		(do_status = 'doend'
+		or do_status = 'cashcomplete')
+		order by BUY_NUM desc
 	</select>
 	<select id="getBuyListCount" resultType="int">
 		select count(*) from
 		BUYBUY
 	</select>
+
+	<select id="getCashListComName" parameterType="String"
+		resultMap="baseCashin">
+		select CASHIN_NUM, cashin.PAY_NUM, cashin.COMPANY_NUM,
+		CASHIN_TOTAL_PRICE,
+		CASHIN_COMMISSION, CASHIN_BALANCE, CASHIN_DAYS,
+		CASHIN_MONTH,
+		CASHIN_STATUS
+		from cashin cashin, company com
+		where
+		cashin.company_num = com.company_num
+		and CASHIN_STATUS = 'complete'
+		and
+		com.company_name = #{comName}
+		order by CASHIN_DAYS desc
+	</select>
+	<select id="getBuybuyListComName" parameterType="String"
+		resultMap="baseBuybuy">
+		select
+		BUY_NUM, b.DO_NUM, b.PAY_NUM, b.HOST_NUM, b.GOODS_NUM,
+		c.COMPANY_NUM, company_name,
+		MAP_L_NUM, MAP_M_NUM, MAP_S_NUM,
+		THEME_L_NUM, THEME_M_NUM,
+		THEME_S_NUM, BUY_QTY, BUY_START_DATE,
+		BUY_END_DATE, BUY_DAYS,
+		BUY_PRICE
+		from BUYBUY b, company c, kendo kd
+		where b.company_num = c.company_num
+		and b.do_num = kd.do_num
+		and company_name = #{comName}
+		and
+		(do_status = 'doend'
+		or do_status = 'cashcomplete')
+		order by BUY_NUM desc
+	</select>
+
+	<insert id="insertCashin" parameterType="String">
+		insert into cashin
+		(CASHIN_NUM, PAY_NUM, COMPANY_NUM, CASHIN_TOTAL_PRICE,
+		CASHIN_COMMISSION, CASHIN_BALANCE, CASHIN_DAYS, CASHIN_MONTH,
+		CASHIN_STATUS)
+		select
+		'CI'||CASHIN_NUM_SEQ.nextval, b.PAY_NUM,
+		b.COMPANY_NUM,
+		BUY_PRICE, 0.5, BUY_PRICE*0.5,
+		to_char(trunc(add_months(BUY_END_DATE, + 1),'mm')
+		,'yy/mm/dd
+		hh24:mi:ss'), BUY_END_DATE, 'complete'
+		from BUYBUY b, company c, kendo
+		kd
+		where b.company_num = c.company_num
+		and b.do_num
+		= kd.do_num
+		and
+		do_status = 'doend'
+		and company_name = #{comName}
+	</insert>
+	<update id="updateKendo" parameterType="String">
+		UPDATE kendo k
+		SET k.do_status = 'cashcomplete'
+		WHERE k.do_status = 'doend'
+		and k.do_num = (select b.do_num from buybuy b
+		where b.company_num = (select c.company_num from company c
+		WHERE c.company_name = #{comName}))
+	</update>
+	
+	<update id="updateDoing" parameterType="String">
+		UPDATE kendo
+		SET do_status = #{doing}
+		WHERE do_status = 'invited'
+		and DO_CLOSE_DATE &lt;= sysdate
+	</update>
+	<update id="updateDoend" parameterType="String">
+		UPDATE kendo
+		SET do_status = #{doend}
+		WHERE do_status = 'doing'
+		and DO_END_DATE &lt;= sysdate
+	</update>
 </mapper>

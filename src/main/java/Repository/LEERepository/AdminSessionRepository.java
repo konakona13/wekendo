@@ -89,4 +89,28 @@ public class AdminSessionRepository {
 		result = sqlSession.selectOne(statement);
 		return result;
 	}
+
+	public List<CashIn> getComNameCashList(int page1, int limit, String comName) {
+		// TODO Auto-generated method stub
+		List<CashIn> result = null;
+		String statement = namespace + ".getCashListComName";
+		result = sqlSession.selectList(statement, comName);
+		return result;
+	}
+
+	public List<Buybuy> getNameBuyList(int page1, int limit, String comName) {
+		// TODO Auto-generated method stub
+		List<Buybuy> result = null;
+		String statement = namespace + ".getBuybuyListComName";
+		result = sqlSession.selectList(statement, comName);
+		return result;
+	}
+
+	public void cashinInsert(String comName) {
+		// TODO Auto-generated method stub
+		String statement = namespace + ".insertCashin";
+		sqlSession.insert(statement, comName);
+		String statement1 = namespace + ".updateKendo";
+		sqlSession.update(statement1, comName);
+	}
 }

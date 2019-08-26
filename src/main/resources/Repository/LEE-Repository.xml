@@ -9,6 +9,8 @@
 		class="Repository.LEERepository.SessionRepository" />
 	<bean id="adminSessionRepository"
 		class="Repository.LEERepository.AdminSessionRepository" />
+	<bean id="doStatusUpdateRepository"
+		class="Repository.LEERepository.DoStatusUpdateRepository" />
 
 	<bean id="member" class="Model.DTO.LEEDTO.Member" />
 	<bean id="company" class="Model.DTO.LEEDTO.Company" />
