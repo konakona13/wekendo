@@ -35,7 +35,7 @@ public class CompanyLoginService {
 		}
 		String idStore = loginCommand.getIdStore();
 		setCookie(idStore, response, loginCommand);
-		return "redirect:loginmain";
+		return "companyMain";
 	}
 
 	public void setCookie(String idStore, HttpServletResponse response, LoginCommand loginCommand) {
