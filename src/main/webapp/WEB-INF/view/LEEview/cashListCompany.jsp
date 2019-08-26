@@ -15,23 +15,13 @@
 <script type="text/javascript" 
  			src="/mybatis-spring-smrit/js/jquery.form.js"></script>
 <script type="text/javascript">
-	function func_cash(){
-		if($("#cashInBalance").val()<=0){
-			alert('정산할 내역이 더 이상 없습니다.');
-			history.back();
-			return false;
-		}else{
-			$("#frm").submit();
-			return false;
-		}
-	}
+
 </script>
 <body>
 	<div id="container" style="width: 1400px">
 		<div id="header" style="background-color: blue;">
 		<form action="buybuySearch" name="frm" method="post">
-			기업이름 : <input type="text" name="comName" ><input type="submit" name="comNameSubmit" value="검색">
-			<a href="Cashin">전체 기업 리스트</a>
+			기업이름 : ${comAuth.name }
 		</form>
 		</div>
 		<div id="content1"
@@ -56,6 +46,9 @@
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">상품판매월</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">정산일</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">정산현황</div>
@@ -86,7 +79,12 @@
 			<div align="center">
 			<fmt:formatDate value="${cashin.month }" pattern="yy년 MM월" />
 			</div>
-		</td>	
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+			<fmt:formatDate value="${cashin.days }" pattern="yy년 MM월 dd일" />
+			</div>
+		</td>		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">${cashin.status }</div>
 		</td>
@@ -228,24 +226,10 @@
 
 <c:set var = "sumBuy" value = "0" />
 <c:forEach var="buybuy1" items="${buybuys}">
-${buybuy1.payNum }
 <c:set var= "sumBuy" value="${sumBuy + buybuy1.buyPrice}"/>
 </c:forEach>
 <br>
 구매리스트 총 금액 : <c:out value="${sumBuy}"/>원
-			
-			
-		</div>
-		<div id="footer" style="background-color: green; height:300px; clear: both;">
-		정산 예정 금액 계산 : <br>
-		(${sumBuy} - ${sumCash}) * 위켄두수수료(판매가50%) = <c:out value="${(sumBuy - sumCash) * 0.5}"/> 원
-		<form action="cashInsert" id="frm" name="frm" method="post">
-			<input type="button" name="cashSubmit" value="정산승인" onclick="func_cash()"> 
-			<input type="hidden" value="${comName }" name="comName2">
-			<input type="hidden" id="cashInBalance" name="cashInBalance" value="<c:out value="${(sumBuy - sumCash) * 0.5}"/>"> 
-			<input type="hidden" name="cashInTotal" value="(${sumBuy} - ${sumCash})"> 
-		</form>
-		</div>
 	</div>
 </body>
 </html>

@@ -189,10 +189,10 @@ commandName="loginCommand">
 <a href="Logout" >로그아웃</a>
 <a href= "#" >매출분석 신청</a>
 <a href="goodsMain" >상품리스트 보기</a>
+<a href="companyCash">정산내역 확인</a>
 <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>
-<a href="board_list" >게시글</a>
 <a href="member_list" >회원리스트</a>
 <a href="goods_list" >상품리스트</a>
 <a href="survey" >설문지</a>

@@ -1,5 +1,9 @@
 package Controller.LEEController;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,9 +31,21 @@ public class AdminController {
 	public String doDetail(Model model, @RequestParam(value = "dodoNum") String doNum1) {
 		return kendoListService.doDetail(model, doNum1);
 	}
-	
+
 	@RequestMapping("/Cashin")
 	public String cashList(Model model, @RequestParam(value = "page", defaultValue = "1") String page) {
 		return cashInService.listCashBuy(model, page);
+	}
+
+	@RequestMapping("buybuySearch")
+	public String buybuySearch(Model model, @RequestParam(value = "page", defaultValue = "1") String page,
+			@RequestParam(value = "comName") String comName) {
+		return cashInService.buybuySearch(model, comName, page);
+	}
+
+	@RequestMapping("/cashInsert")
+	public String cashInsert(Model model, @RequestParam(value = "comName2") String comName,
+			HttpServletResponse response) throws Exception {
+		return cashInService.cashInsert(model, comName);
 	}
 }

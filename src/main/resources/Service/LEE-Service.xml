@@ -20,4 +20,8 @@
 	<bean id="kendoListService"
 		class="Service.LEEService.KendoListService" />
 	<bean id="cashInService" class="Service.LEEService.CashInService" />
+	<bean id="companyCashService"
+		class="Service.LEEService.CompanyCashService" />
+	<bean id="updateDoStatusService"
+		class="Service.LEEService.UpdateDoStatusService" />
 </beans>
