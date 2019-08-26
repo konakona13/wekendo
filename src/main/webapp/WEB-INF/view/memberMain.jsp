@@ -45,6 +45,12 @@ $(function(){
 });
 
 </script>
+<style type="text/css">
+
+table{
+	text-align: center;
+}
+</style>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/flexslider.css">
 <link rel="stylesheet" href="css/jquery.fancybox.css">
@@ -58,11 +64,18 @@ $(function(){
 <!-- header top section -->
 <section class="banner" role="banner">
   <header id="header">
-    <div class="header-content clearfix"> <a class="logo" href="memberMain.html"><img src="images/logom.png" width = "170" alt=""></a>
+    <div class="header-content clearfix"> <a class="logo" href="memberMain.html"><img src="images/logom.png" width = "200" alt=""></a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
           <li><a href="memberJoin">회원가입</a></li>
-          <li><a href="loginmain">로그인</a></li>
+          <li>
+          	<c:if test="${memAuth.id == null}">
+          		<a href="loginmain">로그인</a>
+          	</c:if>
+          	<c:if test="${memAuth.id != null}">
+          		<a href="Logout">로그아웃</a>
+          	</c:if>
+          </li>
           <li><a href="#">고객센터</a></li>
         </ul>
       </nav>
@@ -95,7 +108,7 @@ $(function(){
 
 <!-- header menu section --> 
 
-<table align="center"  width="750">
+<table align="center"  width="750" border="1">
   <tr>
     <td width = "150"><a href="#"><h4>추천DO</h4> </a><br/></td>
     <td width = "150" id = "menu_activity" class="menu_activity" ><a href="#"><h4>액티비티DO</h4></a><br/></td>
@@ -104,7 +117,8 @@ $(function(){
     <td width = "150"><a href="kendoJoinList"><h4>마이페이지</h4></a><br/></td>
   </tr>
 
-  <tr align="center">
+
+  <tr>
     <td></td>
     <td id = "menu_activity"><div id="actmsg"></div></td>
     <td id = "menu_hobby"><div id="hobmsg"></div></td>
@@ -118,18 +132,25 @@ $(function(){
 <!-- portfolio grid section -->
 <section id="portfolio">
     <div class="container">
-        <div class="row">
+    <!-- <div class="row">
             <div class="col-lg-12 text-center">
                 <hr class="section">
             </div>
         </div>
+    -->
+    <br/><br/>
     <div class="">
+    
+    <c:if test="${memAuth.id != null}">
+    <h5> ${memAuth.id} 님 환영합니다.</h5> <br/><br/>
+    </c:if>
+    
         <img src="images/main_event1.jpg" class="img-responsive" alt="" align = "center"/>
     </div>
 <br/><br/>
 
 <h4>** 추천 DO</h4>
-    <div class="col-sm-6 portfolio-item"> <a href="work-details.html" class="portfolio-link">
+    <div class="col-sm-6 portfolio-item"> <a href="kendoDetail" class="portfolio-link">
         <div class="caption">
           <div class="caption-content">
             <h3>바라스타가 되자!</h3>
@@ -148,7 +169,7 @@ $(function(){
           </div>
         </div>
         <img src="images/portfolio/work-2.jpg" class="img-responsive" alt=""> </a> </div>
-<br/><br/>
+
 <h4>** 추천 멘토</h4>          
       <div class="col-sm-6 portfolio-item"> <a href="work-details.html" class="portfolio-link">
         <div class="caption">

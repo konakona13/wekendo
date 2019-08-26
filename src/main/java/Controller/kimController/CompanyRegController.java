@@ -24,8 +24,8 @@ public class CompanyRegController {
 	
 	
 	@RequestMapping("/companyRegDetail/{num}")
-	public String companyRegDetail(@PathVariable("num") String companyName, Model model) {
-		path = updateComRegService.companyDetail(companyName, model);
+	public String companyRegDetail(@PathVariable("num") String companyNum, Model model) {
+		path = updateComRegService.companyDetail(companyNum, model);
 		return path;
 	}
 

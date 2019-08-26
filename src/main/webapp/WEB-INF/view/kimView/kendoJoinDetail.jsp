@@ -7,6 +7,9 @@
 <%
 	response.setCharacterEncoding("utf-8");
  %> 
+ <!--  $(":input").bind('keyup mouseup', function () {
+    alert("changed");            
+}); -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,21 +54,16 @@ KendoJoin 상세보기
 			<td>DO 결제금액</td>
 			<td>${kendoJoin.doNum}</td>			
 		</tr>						
-<!--<c:if test="${! empty letters}"> -->		
+<!--<c:if test="${! empty letters}">		
 	<c:forEach var="receiveBox" items="${receiveBox}">
-		<tr>
-			<td>${receiveBox.letterDate}</td>
-			<td>${receiveBox.letterSender}</td>
-			<td>${receiveBox.letterReceiver}</td>
-			<td>${receiveBox.letterContent}</td>
-		</tr>
+
 	</c:forEach>
-<!--</c:if> -->		
+	</c:if> -->		
 	</table>
 	
 </div>
 <br/>               
     
-<a href="kim" >메인</a>
+<a href="main" >메인</a>
 </body>
 </html>
