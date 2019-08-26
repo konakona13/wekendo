@@ -42,7 +42,7 @@
 </sql>
 
 
-<update id="updateDoNowPp" parameterType="KendoJoin" >
+<update id="updateDoNowPp" parameterType="Model.DTO.kimDTO.KendoJoin" >
 	update KENDO 
 	set DO_NOWPP = DO_NOWPP + #{joinQty}
 	where DO_NUM = #{doNum}
