@@ -55,9 +55,9 @@ public class KendoJoinRepository {
 		return result;
 	}
 
-	public void updateDoNowPp(KendoList kendo) {
+	public void updateDoNowPp(KendoJoin kendoJoin) {
 		String statement =  namespace + ".updateDoNowPp";
-		sqlSession.update(statement, kendo);
+		sqlSession.update(statement, kendoJoin);
 		
 	}
 

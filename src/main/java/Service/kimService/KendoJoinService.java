@@ -144,7 +144,7 @@ public class KendoJoinService {
 		
 		kendo.setDoNowPp(kdc.getDoNowPp());
 		
-		kendoJoinRepository.updateDoNowPp(kendo);
+		kendoJoinRepository.updateDoNowPp(kendoJoin);
 
 		
 		path =  "kimView/payDone";
