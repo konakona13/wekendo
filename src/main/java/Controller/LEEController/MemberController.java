@@ -16,11 +16,13 @@ import org.springframework.web.multipart.MultipartFile;
 import Command.LEECommand.CompanyJoinCommand;
 import Command.LEECommand.LoginCommand;
 import Command.LEECommand.MemberJoinCommand;
+import Service.LEEService.CompanyCashService;
 import Service.LEEService.CompanyJoinService;
 import Service.LEEService.CompanyLoginService;
 import Service.LEEService.MemberJoinService;
 import Service.LEEService.MemberLoginService;
 import Service.LEEService.MemberLogoutService;
+import Service.LEEService.UpdateDoStatusService;
 import Validator.LoginCommandValidator;
 import Validator.RegisterRequestValidator;
 
@@ -37,9 +39,15 @@ public class MemberController {
 	private MemberLogoutService memberLogoutService;
 	@Autowired
 	private CompanyLoginService companyLoginService;
+	@Autowired
+	private CompanyCashService companyCashService;
+	@Autowired
+	private UpdateDoStatusService updateDoStatusService;
 
 	@RequestMapping("/loginmain")
-	public String mainView() {
+	public String mainView(HttpServletRequest request, Model model) {
+		// System.out.println(request.getRealPath("/WEB-INF/view/LEEview/upload"));
+		updateDoStatusService.updateStatus(model);
 		return "LEEview/mainForm";
 	}
 
@@ -97,7 +105,7 @@ public class MemberController {
 			if (errors.hasErrors())
 				return "redirect:index.jsp"; // 수정
 			path = memberLoginService.loginPro(model, loginCommand, session, response);
-		} else if(selectLogin.equals("company")) {
+		} else if (selectLogin.equals("company")) {
 			new LoginCommandValidator().validate(loginCommand, errors);
 			if (errors.hasErrors())
 				return "redirect:index.jsp"; // 수정
@@ -112,9 +120,9 @@ public class MemberController {
 		return "redirect:loginmain";
 	}
 
-	@RequestMapping("/confirmId")
-	public String confirmId(@RequestParam(value = "id1") String id1, Model model) {
-
-		return "LEEview/confirmId";
+	@RequestMapping("companyCash")
+	public String companyCash(Model model, HttpSession session,
+			@RequestParam(value = "page", defaultValue = "1") String page) {
+		return companyCashService.cashAndBuyList(model, session, page);
 	}
 }

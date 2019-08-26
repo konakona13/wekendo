@@ -78,8 +78,9 @@ public class KendoJoinService {
 		String memberNum = (String)session.getAttribute("memNum");
 		
 		model.addAttribute("gpc",gpc);
-
+		
 		kendoJoin.setDoNum(kdc.getDoNum());
+		
 		System.out.println("kendoJoin2 : " + kendoJoin.getDoNum());
 		
 		tst = new Timestamp(new Date().getTime());
@@ -141,6 +142,9 @@ public class KendoJoinService {
 		kendoJoinRepository.insertKendoJoin(kendoJoin);
 		kendoJoinRepository.insertGuestPay(guestPay);
 		
+		kendo.setDoNowPp(kdc.getDoNowPp());
+		
+		kendoJoinRepository.updateDoNowPp(kendoJoin);
 
 		
 		path =  "kimView/payDone";

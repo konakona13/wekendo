@@ -10,7 +10,23 @@ public class KendoDetailCommand implements Serializable{
 	private String doName;
 	private Integer doQty;
 	private Integer doPrice;
+	private Integer doPp;
+	private Integer doNowPp;
 	
+	
+	
+	public Integer getDoNowPp() {
+		return doNowPp;
+	}
+	public void setDoNowPp(Integer doNowPp) {
+		this.doNowPp = doNowPp;
+	}
+	public Integer getDoPp() {
+		return doPp;
+	}
+	public void setDoPp(Integer doPp) {
+		this.doPp = doPp;
+	}
 	public String getDoNum() {
 		return doNum;
 	}

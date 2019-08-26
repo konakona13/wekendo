@@ -11,18 +11,17 @@
 <title>주문 게시판</title>
 </head>
 <script type="text/javascript" 
- src="http://code.jquery.com/jquery-latest.js" >
+	src="http://code.jquery.com/jquery-latest.js" ></script>
+<script type="text/javascript" 
+ 			src="/mybatis-spring-smrit/js/jquery.form.js"></script>
 <script type="text/javascript">
 	function openChildWindow() {
-		alert("aaaaa")
 		// 새창에 대한 세팅(옵션)
-		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=750,left=0,top=0';
-		window.open("KendoDetail?num=" + $("#doNum").val(), "KendoDetail", settings);
-		var doNum = document.getElementById('doNum').value;
+		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=750,left=500,top=20';
+		window.open("DodoDetail?dodoNum=" + $("#doNum").val(), "KendoDetail", settings);
 	}
 </script>
 <body>
-<a href = "#">활동조회</a>
 <table width=80% border="1" cellpadding="0" cellspacing="0" >
 <c:if test="${! empty dodos}">
 	<tr align="center" valign="middle">
@@ -60,7 +59,7 @@
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left">
 			<input type="hidden" id="doNum" name="doNum" value="${dodo.doNum }">
-			<a href="" onclick="javascript:openChildWindow();">
+			<a href="javascript:openChildWindow();" >
 				${dodo.doName }
 			</a>
 			</div>

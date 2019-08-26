@@ -52,7 +52,7 @@ public class DominoService {
 		List<ThemeMedium> result3 = reposiotry.selectThemeM(themeLarge);
 		model.addAttribute("result3", result3);		
 		
-		System.out.println("테마대분류:  " + themeLarge.getThemeLName());
+		//System.out.println("테마대분류:  " + themeLarge.getThemeLName());
 	}
 
 
@@ -60,7 +60,7 @@ public class DominoService {
 		List<ThemeSmall> result4 = reposiotry.selectThemeS(themeMedium);
 		model.addAttribute("result4", result4);	
 		
-		System.out.println("테마중분류번호:  " + themeMedium.getThemeMName());
+		//System.out.println("테마중분류번호:  " + themeMedium.getThemeMName());
 	}
 
 }

@@ -29,10 +29,11 @@
 <c:if test="${! empty updateComReg}">                
 	<c:forEach var="updateComReg" items="${updateComReg}">
             <tr>
-                <td><input type = "hidden" value = "${updateComReg.companyNum}" name = "companyNum"/>${updateComReg.companyNum}</td>
+                <td><input type = "hidden" value = "${updateComReg.companyNum}" name = "companyNum"/>
+                <a href="./companyRegDetail/${updateComReg.companyNum}">  
+                ${updateComReg.companyNum}</td>
                 <td>${updateComReg.companyKind}</td>
                 <td><input type = "hidden" value = "${updateComReg.companyName}" name = "companyName"/>
-                <a href="./companyRegDetail/${updateComReg.companyName}">  
                 ${updateComReg.companyName}</a>
                 </td>  
                 <td>${updateComReg.managerName}</td>   
