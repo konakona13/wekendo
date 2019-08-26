@@ -3,19 +3,25 @@
 <%@ taglib prefix="c" 
 			uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" 
-			uri="http://java.sun.com/jsp/jstl/fmt" %>
+			uri="http://java.sun.com/jsp/jstl/fmt" %>			
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>상품목록</title>
+<script type="text/javascript">
+
+
+</script>
 </head>
 <body>
 
 <table width=50% border="1" cellpadding="0" cellspacing="0">
 
 <tr align="center" valign="middle">
-      <td colspan="3">상품 목록</td>
+      <td colspan="4">상품 목록</td>
+      <td>개수 : ${list.size()}</td>
    </tr>
    
    <tr align="center" valign="middle" bordercolor="#333333">
@@ -36,7 +42,7 @@
       </td>
    </tr>
 
-<c:forEach var="list" items="${list}">
+<c:forEach var="list" items="${list}" varStatus="status">
    <tr align="center" valign="middle">
       <td height="23" style="font-family:Tahoma;font-size:10pt;">
          ${list.goodsNum}
@@ -45,19 +51,19 @@
       <td style="font-family:Tahoma;font-size:10pt;">
          <div align="left">
          <a href="./goodsRegDetail.goods/${list.goodsNum}">
-         <%-- <img  width=50% alt="" src="YYYView/fileupload/${list2.goodsImgName}">&nbsp; --%>
+        <!-- <img  width=50% alt="" src="YYYView/fileupload/${imgList.goodsImgName}">&nbsp;  --> 
 		 ${list.goodsName}         
          </a>
          </div>
       </td>
       
       <td style="font-family:Tahoma;font-size:10pt;">
-         <div align="center">${list.companyNum}</div>
+         <div align="center">${company[status.index].companyName }</div>
       </td>
       
       <td style="font-family:Tahoma;font-size:10pt;">
          <div align="center">
-         <fmt:formatDate value="${list.regDate}" type="both" />
+         ${list.regDate}
          </div>
       </td>
          
@@ -68,19 +74,21 @@
    </tr>
 </c:forEach>
 
+<c:if test="${empty list}">
+	<tr rowspan="5" align="center" valign="middle">
+	<td colspan="5">
+			<font size=2>등록된 상품이 없습니다.</font>
+	</td>
+	</tr>
+</c:if>
+
+
    <tr align="right">
       <td colspan="5">
             <a href="goodsReg">[글쓰기]</a>
       </td>
    </tr>
-<c:if test="${empty list}">
-	<tr align="center" valign="middle">
-		<td colspan="4">상품목록</td>
-		<td align=right>
-			<font size=2>등록된 상품이 없습니다.</font>
-		</td>
-	</tr>
-</c:if>
+
  </table>
  
 </body>

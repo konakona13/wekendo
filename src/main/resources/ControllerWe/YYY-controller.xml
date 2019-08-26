@@ -18,6 +18,7 @@
 <!-- Command -->
 <bean class = "Command.YYYCommand.PlaceRegCommand" />
 <bean class = "Command.YYYCommand.AuthInfoCommand" />
+<bean class = "Command.YYYCommand.MapThemeCommand" />
 
 <!-- DTO -->
 <bean id = "mapLarge"  class="Model.DTO.YYYDTO.MapLarge" />

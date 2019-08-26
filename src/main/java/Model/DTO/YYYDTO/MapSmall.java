@@ -10,6 +10,7 @@ public class MapSmall implements Serializable{
 	String mapSName;
 	
 	
+	
 	public String getMapLNum() {
 		return mapLNum;
 	}

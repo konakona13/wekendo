@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import Model.DTO.YYYDTO.Company;
 import Model.DTO.YYYDTO.GoodsImg;
 import Model.DTO.YYYDTO.PlaceGoods;
 import Repository.YYYRepository.GoodsRepository;
@@ -17,13 +18,16 @@ import Repository.YYYRepository.GoodsRepository;
 public class GoodsListService {
 	
 	@Autowired
-	private GoodsRepository repository;
+	private GoodsRepository goodsRepository;
 	
 
 	public String goodsList(Model model, HttpSession session) {
 		
-		session.getAttribute("comNum");
-		List<PlaceGoods> list = repository.getGoodsList();
+		String companyNum = (String) session.getAttribute("comNum");
+		List<Company> company = goodsRepository.getCompanyList(companyNum);
+		model.addAttribute("company", company);
+		
+		List<PlaceGoods> list = goodsRepository.getGoodsList();
 		model.addAttribute("list", list);
 		
 		System.out.println("List테스트     " + list.size());
