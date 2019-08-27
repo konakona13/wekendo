@@ -108,6 +108,20 @@
 		</where>	 -->
 	</select>
 	
+	<select id="goodsList" parameterType="String" resultMap="baseGoods">
+		SELECT
+	  		<include refid="basecolumn" />
+		FROM goods
+		<where>
+			 <if test="value != null"> -->
+				goods_num LIKE #{value}||'%'
+			 </if> 
+		</where>
+	</select>
+	
+
+	
+	
 	<select id="getOneGoods" parameterType="String" resultMap="baseGoods">
 		SELECT
 			  <include refid="basecolumn" />
@@ -195,6 +209,14 @@
 		VALUES('BUY'||BUY_NUM_SEQ.nextval,#{doNum},#{payNum},#{hostNum},#{placeNum}
 		, #{companyNum},#{mapLNum},#{mapMNum},#{mapSNum},#{themeLNum},#{themeMNum},#{themeSNum},
 		#{buyQty},#{buyStartDate},#{buyEndDate},#{buyDays},#{buyPrice})
+	</insert>
+	
+	<insert id="insertBuy2" parameterType="Command.HHHCommand.DoCreatePay">
+		INSERT INTO BUYBUY(<include refid="buybuyCol" />)
+		VALUES('BUY'||BUY_NUM_SEQ.nextval,#{doNum},#{payNum},#{hostNum},#{placeGoods.goodsNum}
+		, #{placeGoods.companyNum},#{placeGoods.mapLNum},#{placeGoods.mapMNum},#{placeGoods.mapSNum},
+		#{placeGoods.themeLNum},#{placeGoods.themeMNum},#{placeGoods.themeSNum},
+		1,#{selectBuyGoods.buyStartDate},#{selectBuyGoods.buyEndDate},#{selectBuyGoods.buyDays},#{selectBuyGoods.totalPrice})
 	</insert>
 	
 	

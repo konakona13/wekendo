@@ -1,7 +1,7 @@
 package Service.HHHService;
 
 import java.io.IOException;
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import Command.HHHCommand.CreateDoCommand;
 import Command.HHHCommand.DoCreatePay;
 import Command.HHHCommand.DoPayComplete;
+import Command.HHHCommand.SelectBuyGoods;
 import Model.DTO.HHHDTO.DoIMG;
 import Model.DTO.HHHDTO.Kendo;
 import Model.DTO.HHHDTO.Member;
@@ -36,12 +37,12 @@ public class DoCreateService
 	MultipartFile mainPhoto;
 	DoCreatePay doCreatePay;
 	
-	public String getGoodsList(Model model)
+	public String getGoodsList(Model model, String goodsKind)
 	{
-		
-		List<PlaceGoods> goodsList = doCreateReporsitory.getGoodsList();
+		System.out.println("getGoodsList 서비스진입");
+		List<PlaceGoods> goodsList = doCreateReporsitory.getGDList(goodsKind);
 		model.addAttribute("list",goodsList);
-		System.out.println("장소상품 갯수"+goodsList.size());
+		System.out.println(goodsKind + " 상품 갯수"+goodsList.size());
 		return "HHHview/doCreatePlace";
 	}
 
@@ -70,6 +71,10 @@ public class DoCreateService
 		kendo.setHostNum(memId);
 		kendo = getKendo(createDoCommand);
 		
+		//26일 여러개의 상품
+		
+		//
+		
 		doCreatePay.setHostNum(memId);
 		//활동DTO 끝
 		
@@ -80,12 +85,12 @@ public class DoCreateService
 		this.doCreatePay = doCreatePay;
 		//int result = doCreateReporsitory.insertKendo(kendo);
 		//if(result > 0)
-		{
-			//상품정보
-			String num = createDoCommand.getPlaceNum();
-			PlaceGoods goods =  doCreateReporsitory.getOneGoods(num);
-			model.addAttribute("placeGoods",goods);
-		}
+		
+		//상품정보
+		String num = createDoCommand.getPlaceNum();
+		PlaceGoods goods =  doCreateReporsitory.getOneGoods(num);
+		model.addAttribute("placeGoods",goods);
+	
 		
 	
 	}
@@ -143,12 +148,32 @@ public class DoCreateService
 			System.out.println(kendo.getDoName());
 		}
 		
-		String doNum = doCreateReporsitory.insertKendo(kendo,doPayComplete,doCreatePay);
+		String doNum = doCreateReporsitory.insertKendo(kendo,doPayComplete,doCreatePay ,session);
 		upLoadDoIMG(model, mainPhoto, request, session , doNum);
 		//doCreateReporsitory.insertPayment(doPayComplete,doCreatePay);
 		
 		
 		
+	}
+
+	@SuppressWarnings("unchecked")
+	public void selectBuyGoods(Model model,SelectBuyGoods selectBuyGoods,HttpSession session)
+	{
+		List<SelectBuyGoods> goodsList = null;
+		if(session.getAttribute("goodsList") == null)
+		{
+			System.out.println("goodsList == null");
+			goodsList = new ArrayList<SelectBuyGoods>();
+			goodsList.add(selectBuyGoods);
+			session.setAttribute("goodsList", goodsList);
+			
+		}
+		else
+		{
+			System.out.println("goodsList  not null");
+			goodsList = (List<SelectBuyGoods>) session.getAttribute("goodsList");
+			goodsList.add(selectBuyGoods);
+		}
 	}
 	
 
