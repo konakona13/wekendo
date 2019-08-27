@@ -1,52 +1,33 @@
 package Model.DTO.YYYDTO;
 
-import java.io.Serializable;
-import java.util.List;
-
-public class GoodsImg implements Serializable {
-	
+public class Review {
+	//13
+	String reviewNum;
 	String goodsNum;
-	String companyNum;
-	String goodsImgName;
-	String goodsImgNum;
-	String goodsImgKind;
 	String mapLNum;
 	String mapMNum;
 	String mapSNum;
 	String themeLNum;
 	String themeMNum;
 	String themeSNum;
-	List<String> list;
+	String memberNum;
+	String companyNum;
+	int reviewScore;
+	String reviewDate;
+	String reviewContent;
 	
+	
+	public String getReviewNum() {
+		return reviewNum;
+	}
+	public void setReviewNum(String reviewNum) {
+		this.reviewNum = reviewNum;
+	}
 	public String getGoodsNum() {
 		return goodsNum;
 	}
 	public void setGoodsNum(String goodsNum) {
 		this.goodsNum = goodsNum;
-	}
-	public String getCompanyNum() {
-		return companyNum;
-	}
-	public void setCompanyNum(String companyNum) {
-		this.companyNum = companyNum;
-	}
-	public String getGoodsImgName() {
-		return goodsImgName;
-	}
-	public void setGoodsImgName(String goodsImgName) {
-		this.goodsImgName = goodsImgName;
-	}
-	public String getGoodsImgNum() {
-		return goodsImgNum;
-	}
-	public void setGoodsImgNum(String goodsImgNum) {
-		this.goodsImgNum = goodsImgNum;
-	}
-	public String getGoodsImgKind() {
-		return goodsImgKind;
-	}
-	public void setGoodsImgKind(String goodsImgKind) {
-		this.goodsImgKind = goodsImgKind;
 	}
 	public String getMapLNum() {
 		return mapLNum;
@@ -84,11 +65,35 @@ public class GoodsImg implements Serializable {
 	public void setThemeSNum(String themeSNum) {
 		this.themeSNum = themeSNum;
 	}
-	public List<String> getList() {
-		return list;
+	public String getMemberNum() {
+		return memberNum;
 	}
-	public void setList(List<String> list) {
-		this.list = list;
+	public void setMemberNum(String memberNum) {
+		this.memberNum = memberNum;
+	}
+	public String getCompanyNum() {
+		return companyNum;
+	}
+	public void setCompanyNum(String companyNum) {
+		this.companyNum = companyNum;
+	}
+	public int getReviewScore() {
+		return reviewScore;
+	}
+	public void setReviewScore(int reviewScore) {
+		this.reviewScore = reviewScore;
+	}
+	public String getReviewDate() {
+		return reviewDate;
+	}
+	public void setReviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
+	}
+	public String getReviewContent() {
+		return reviewContent;
+	}
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
 	}
 	
 	

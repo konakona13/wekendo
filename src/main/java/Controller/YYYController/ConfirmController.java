@@ -30,18 +30,18 @@ public class ConfirmController {
 	}
 
 	//"승인완료"
-	@RequestMapping(value ="/goodsConfirm", method = {RequestMethod.POST,RequestMethod.GET})
-	public String goodsConfirm(@RequestParam("chkGoodsNum") String goodsNum, Model model) { 
+	@RequestMapping("/confirmList/ok")
+	public String goodsConfirm(@RequestParam("goodsNum") String goodsNum, Model model) { 
 		System.out.println("goodsNum1: " + goodsNum);
-		String path = goodsConfirmService.goodsConfirm(model, goodsNum);		
+		String path = goodsConfirmService.goodsConfirm(goodsNum, model);		
 		
 		return path;
 	}
 	
 	//"승인거부"
-	@RequestMapping(value ="/goodsCancel", method = RequestMethod.POST)
-	public String goodsCancel(Model model) { 
-		String path = goodsCancelService.goodsCancel(model);		
+	@RequestMapping(value ="/confirmList/no", method = RequestMethod.POST)
+	public String goodsCancel(Model model, String goodsNum) { 
+		String path = goodsCancelService.goodsCancel(model, goodsNum);		
 		
 		return path;
 	}	

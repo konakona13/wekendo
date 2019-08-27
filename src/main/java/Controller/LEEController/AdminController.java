@@ -48,4 +48,19 @@ public class AdminController {
 			HttpServletResponse response) throws Exception {
 		return cashInService.cashInsert(model, comName);
 	}
+
+	@RequestMapping(value = "/BuybuyDetail", method = RequestMethod.GET)
+	public String BuybuyDetail(Model model, @RequestParam(value = "buyNum") String buyNum) {
+		return cashInService.buybuyDetail(model, buyNum);
+	}
+
+	@RequestMapping(value = "/goodsDetail", method = RequestMethod.GET)
+	public String goodsDetail(Model model, @RequestParam(value = "goodsName") String goodsName) {
+		return cashInService.goodsDetail(model, goodsName);
+	}
+
+	@RequestMapping(value = "/DoBuyDetail", method = RequestMethod.GET)
+	public String DoBuyDetail(Model model, @RequestParam(value = "doName") String doName) {
+		return cashInService.doBuyDetail(model, doName);
+	}
 }

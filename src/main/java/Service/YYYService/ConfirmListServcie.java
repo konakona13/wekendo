@@ -18,8 +18,8 @@ public class ConfirmListServcie {
 
 
 	public String getGoodsDetail(Model model, HttpSession session) {
-		session.getAttribute("companyNum");
-		List<PlaceGoods> goods = repository.getGoodsList();
+		session.getAttribute("comNum");
+		List<PlaceGoods> goods = repository.getGoodsAll();
 		model.addAttribute("list", goods);
 		
 		return "YYYView/goodsConfirm";

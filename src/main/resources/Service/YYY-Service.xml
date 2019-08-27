@@ -16,5 +16,6 @@
 	 <bean id = "goodsConfirmService"  class="Service.YYYService.GoodsConfirmService" />
 	 <bean id = "confirmListService"  class="Service.YYYService.ConfirmListServcie" />
 	  <bean id = "goodsCancelService"  class="Service.YYYService.GoodsCancelService" />
+
 	
 </beans>

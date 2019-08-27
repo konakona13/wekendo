@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 
 import Model.DTO.LEEDTO.Buybuy;
 import Model.DTO.LEEDTO.CashIn;
+import Model.DTO.LEEDTO.Dodo;
+import Model.DTO.LEEDTO.Goods;
 import Repository.LEERepository.AdminSessionRepository;
 
 @Service
@@ -92,8 +94,28 @@ public class CashInService {
 	public String cashInsert(Model model, String comName) {
 		// TODO Auto-generated method stub
 		adminSessionRepository.cashinInsert(comName);
-		
 		String path = "LEEview/cashList3";
 		return path;
+	}
+
+	public String buybuyDetail(Model model, String buyNum) {
+		// TODO Auto-generated method stub
+		Buybuy buybuy = adminSessionRepository.getBuyDetail(buyNum);
+		model.addAttribute("buyDetail", buybuy);
+		return "LEEview/buyDetail";
+	}
+
+	public String goodsDetail(Model model, String goodsName) {
+		// TODO Auto-generated method stub
+		Goods goods = adminSessionRepository.getGoodsDetail(goodsName);
+		model.addAttribute("goodsDetail", goods);
+		return "LEEview/goodsDetail";
+	}
+
+	public String doBuyDetail(Model model, String doName) {
+		// TODO Auto-generated method stub
+		Dodo doBuy = adminSessionRepository.getDoBuyDetail(doName);
+		model.addAttribute("DoBuyDetail", doBuy);
+		return "LEEview/DoBuyDetail";
 	}
 }

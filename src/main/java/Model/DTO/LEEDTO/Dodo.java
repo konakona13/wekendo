@@ -18,6 +18,33 @@ public class Dodo implements Serializable {
 	private String optGender;
 	private String optAge;
 	private String status;
+	private String memName;
+	private Long memPh;
+	private String profile;
+
+	public String getMemName() {
+		return memName;
+	}
+
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+
+	public Long getMemPh() {
+		return memPh;
+	}
+
+	public void setMemPh(Long memPh) {
+		this.memPh = memPh;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 
 	public String getDoNum() {
 		return doNum;
