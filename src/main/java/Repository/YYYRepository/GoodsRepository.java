@@ -22,20 +22,20 @@ public class GoodsRepository {
 	private String goodsNum= "";
 	
 	//상품등록
-	public String insertGoods(PlaceGoods placeGoods, GoodsImg goodsImg, List<String> list) {
+	public String insertPlace(PlaceGoods placeGoods, GoodsImg goodsImg, List<String> list) {
 		
 		int result = 0;
 		String statement= "";
 		
 		statement =  namespace + ".placeRegist"; 
 		result = sqlSession.insert(statement, placeGoods);
-		System.out.println("1: " + statement);
+		System.out.println("상품테이블 입력 완료 -" + statement);
 		
 		statement = namespace + ".getMaxNum";
-		System.out.println("2: " + statement);
+		//System.out.println("2: " + statement);
 		
 		goodsNum = sqlSession.selectOne(statement);
-		System.out.println("?" + goodsNum);
+		//System.out.println("?" + goodsNum);
 
 		goodsImg.setGoodsNum(goodsNum);
 		//goodsImg.setList(list);
@@ -53,11 +53,21 @@ public class GoodsRepository {
 	
 	
 	
-	//상품리스트
-	public List<PlaceGoods> getGoodsList() {
+	//상품리스트 
+	//회원용
+	public List<PlaceGoods> getGoodsList(String companyNum) {
 		List<PlaceGoods> result = null;
 		String statement =  namespace + ".getGoodsList"; 
+		result = sqlSession.selectList(statement, companyNum);
+		
+		return result;
+	}
+	//관리자용
+	public List<PlaceGoods> getGoodsAll(){
+		List<PlaceGoods> result = null;
+		String statement =  namespace + ".getGoodsAll"; 
 		result = sqlSession.selectList(statement);
+		System.out.println("DB조회 상품 게시글 수 : " +result.size());
 		
 		return result;
 	}

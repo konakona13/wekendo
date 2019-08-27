@@ -11,10 +11,20 @@
    INSERT INTO GOODS
    (GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, 
    GOODS_NAME, GOODS_PRICE, GOODS_DETAIL, GOODS_DANGER, GOODS_STATUS, GOODS_STOCK, COMPANY_NUM, REG_DATE)
-   VALUES ('GDP' || GOODS_NUM_SEQ.nextval, #{mapLNum}, #{mapMNum}, #{mapSNum}, #{themeLNum}, #{themeMNum},
+   VALUES (#{goodsNum}|| GOODS_NUM_SEQ.nextval, #{mapLNum}, #{mapMNum}, #{mapSNum}, #{themeLNum}, #{themeMNum},
    #{themeSNum}, #{goodsName}, #{goodsPrice}, #{goodsDetail}, #{goodsDanger}, #{goodsStatus},
    #{goodsStock}, #{companyNum}, sysdate)
 </insert>
+
+<insert id="hotelRegist" parameterType="Model.DTO.YYYDTO.PlaceGoods">
+   INSERT INTO GOODS
+   (GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, 
+   GOODS_NAME, GOODS_PRICE, GOODS_DETAIL, GOODS_DANGER, GOODS_STATUS, GOODS_STOCK, COMPANY_NUM, REG_DATE)
+   VALUES ('GDH' || GOODS_NUM_SEQ.nextval, #{mapLNum}, #{mapMNum}, #{mapSNum}, #{themeLNum}, #{themeMNum},
+   #{themeSNum}, #{goodsName}, #{goodsPrice}, #{goodsDetail}, #{goodsDanger}, #{goodsStatus},
+   #{goodsStock}, #{companyNum}, sysdate)
+</insert>
+
 
 <!-- 이미지등록 -->
 
@@ -62,7 +72,15 @@
     GOODS_STOCK, COMPANY_NUM, REG_DATE
 </sql>
 
-<select id="getGoodsList" resultMap="goods">
+<select id="getGoodsList" resultType="String" resultMap="goods">
+      SELECT 
+      	<include refid="goodsAllSelect" />
+      FROM GOODS
+      WHERE COMPANY_NUM = #{companyNum}
+      ORDER BY REG_DATE DESC
+</select>
+
+<select id="getGoodsAll" resultMap="goods">
       SELECT 
       	<include refid="goodsAllSelect" />
       FROM GOODS
@@ -217,7 +235,7 @@
 </select>
 
 <select id="getCompanyInfo" parameterType ="Model.DTO.YYYDTO.Company" resultMap="company">
-	  	SELECT COMPANY_NUM, COMPANY_NAME	  		
+	  	SELECT COMPANY_NUM, COMPANY_NAME, COMPANY_KIND	  		
 		FROM COMPANY
 		WHERE COMPANY_NUM = #{companyNum}
 
@@ -225,8 +243,10 @@
 
 <!-- 목록에 회사명 가져오기 위해 -->
 <select id="getCompanyList" parameterType ="Model.DTO.YYYDTO.Company" resultMap="company">
-      SELECT COMPANY_NUM, COMPANY_NAME
-      FROM COMPANY
+		SELECT G.COMPANY_NUM, C.COMPANY_KIND, C.COMPANY_NAME, G.GOODS_NUM, G.GOODS_NAME
+		FROM GOODS G JOIN COMPANY C
+		ON G.COMPANY_NUM = C.COMPANY_NUM  
+		WHERE G.COMPANY_NUM = #{companyNum};
 </select>
 
 

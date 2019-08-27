@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import Command.YYYCommand.PlaceRegCommand;
+import Model.DTO.YYYDTO.Company;
 import Model.DTO.YYYDTO.GoodsImg;
 import Model.DTO.YYYDTO.PlaceGoods;
 import Repository.YYYRepository.GoodsRepository;
@@ -25,7 +26,9 @@ public class PlaceRegService {
 
 	
 	@Autowired
-	private PlaceGoods placeGoods;	
+	private PlaceGoods placeGoods;
+	@Autowired
+	private Company company;
 	@Autowired
 	private GoodsRepository goodsRepository;
 	@Autowired
@@ -45,9 +48,27 @@ public class PlaceRegService {
 						      MultipartFile[] reports, HttpServletRequest request ) throws IOException	{
 		
 		String companyNum = (String) session.getAttribute("comNum");
+		
+		//기업회원 구분별 상품번호 입력하기
+		company = goodsRepository.getCompanyDetail(companyNum);
+		String companyKind = company.getCompanyKind();
+		
+		
+		if (companyKind == "place") {
+			companyKind = "GDP";
+		} else if (companyKind == "hotel") {
+			companyKind = "GDH";
+		} else if (companyKind == "car") {
+			companyKind = "GDC";
+		} else if (companyKind == "mentor") {
+			companyKind = "GDM";
+		}
+		
+		
 		placeGoods.setCompanyNum(companyNum); //기업회원번호
 		//System.out.println(companyNum);
-		
+		System.out.println("기업회원 구분: " + companyKind);
+		placeGoods.setGoodsNum(companyKind); //상품번호
 		placeGoods.setGoodsName(command.getGoodsName()); //상품명
 		placeGoods.setGoodsDetail(command.getGoodsDetail()); //상품상세
 		placeGoods.setGoodsDanger(command.getGoodsDanger()); //주의사항
@@ -56,7 +77,7 @@ public class PlaceRegService {
 		placeGoods.setGoodsStatus("미승인");
 
 		
-		System.out.println("입력 상품명: " + placeGoods.getGoodsName());
+		//System.out.println("입력 상품명: " + placeGoods.getGoodsName());
 		
 		
 		//지역및 테마 분류
@@ -82,10 +103,10 @@ public class PlaceRegService {
 		for(MultipartFile report : reports) {
 
 			storedFileName = UUID.randomUUID().toString().replace("-", "");
-			System.out.println("realPath : " + realPath);
+			/*System.out.println("realPath : " + realPath);
 			System.out.println("originalFile : " + originalFile);
 			System.out.println("storedFileName : " + storedFileName);
-			System.out.println("fileSize : " + report.getSize());
+			System.out.println("fileSize : " + report.getSize());*/
 			
 			goodsImg.setGoodsImgName(storedFileName);
 			goodsImg.setGoodsImgNum(companyNum + ++i);
@@ -101,11 +122,9 @@ public class PlaceRegService {
 			report.transferTo(file);
 			list.add(storedFileName);
 			
-			
-			
 		}
 		
-			goodsRepository.insertGoods(placeGoods, goodsImg, list);
+			goodsRepository.insertPlace(placeGoods, goodsImg, list);
 
 		return "redirect:./goodsMain";
 }

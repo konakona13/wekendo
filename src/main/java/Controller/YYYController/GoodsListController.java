@@ -20,7 +20,6 @@ public class GoodsListController {
 	@RequestMapping("/goodsMain")
 	public String goodsList(Model model, HttpSession session) { 
 		String path= listService.goodsList(model, session);
-		System.out.println("session에서 회사번호 받기: " + session.getAttribute("comNum"));
 		return path;
 		
 		

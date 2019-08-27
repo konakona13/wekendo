@@ -37,7 +37,7 @@ public class GoodsRegController {
 		
 		//System.out.println("상품등록완료_지역소분류번호 : " + command.getMapSNum());
 		//System.out.println("상품등록완료_테마소분류번호: " + command.getThemeSNum());
-		System.out.println("뷰에서 받아오는 imgname: " + report.length);
+		System.out.println("뷰에서 입력한 이미지 장수: " + report.length);
 		
 		String path = placeRegService.goodsRegist(model, command, session, report, request);	
 
