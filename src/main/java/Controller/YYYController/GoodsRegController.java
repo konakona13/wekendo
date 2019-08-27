@@ -15,12 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import Command.YYYCommand.PlaceRegCommand;
 import Service.YYYService.GoodsDetailService;
-import Service.YYYService.PlaceRegService;
+import Service.YYYService.GoodsRegService;
 
 @Controller
 public class GoodsRegController {
 	@Autowired
-	private PlaceRegService placeRegService;
+	private GoodsRegService placeRegService;
 	@Autowired
 	private GoodsDetailService detailService;
 

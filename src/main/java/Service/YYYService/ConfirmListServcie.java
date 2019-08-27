@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import Model.DTO.YYYDTO.PlaceGoods;
+import Model.DTO.YYYDTO.GoodsList;
+import Model.DTO.YYYDTO.Goods;
 import Repository.YYYRepository.GoodsRepository;
 
 @Service
@@ -19,7 +20,7 @@ public class ConfirmListServcie {
 
 	public String getGoodsDetail(Model model, HttpSession session) {
 		session.getAttribute("comNum");
-		List<PlaceGoods> goods = repository.getGoodsAll();
+		List<GoodsList> goods = repository.getGoodsAll();
 		model.addAttribute("list", goods);
 		
 		return "YYYView/goodsConfirm";

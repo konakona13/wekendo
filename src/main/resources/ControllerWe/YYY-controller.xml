@@ -13,6 +13,7 @@
 <bean class = "Controller.YYYController.DominoController" />
 <bean class = "Controller.YYYController.GoodsListController" />
 <bean class = "Controller.YYYController.ConfirmController" />
+<bean class = "Controller.YYYController.ReviewController" />
 
 
 <!-- Command -->
@@ -28,8 +29,9 @@
 <bean id = "themeMedium"  class="Model.DTO.YYYDTO.ThemeMedium" />
 <bean id = "themeSmall"  class="Model.DTO.YYYDTO.ThemeSmall" />
 
-<bean id = "placeGoods"  class="Model.DTO.YYYDTO.PlaceGoods" />
+<bean id = "goods"  class="Model.DTO.YYYDTO.Goods" />
 <bean id = "goodsImg"  class="Model.DTO.YYYDTO.GoodsImg" /> 
 <bean id = "company"  class="Model.DTO.YYYDTO.Company" />
+<bean id = "goodsList"  class="Model.DTO.YYYDTO.GoodsList" />
 
 </beans>
