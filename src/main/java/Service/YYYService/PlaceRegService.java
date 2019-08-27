@@ -54,13 +54,13 @@ public class PlaceRegService {
 		String companyKind = company.getCompanyKind();
 		
 		
-		if (companyKind == "place") {
+		if (companyKind.equals("place")) {
 			companyKind = "GDP";
-		} else if (companyKind == "hotel") {
+		} else if (companyKind.equals("hotel")) {
 			companyKind = "GDH";
-		} else if (companyKind == "car") {
+		} else if (companyKind.equals("car")) {
 			companyKind = "GDC";
-		} else if (companyKind == "mentor") {
+		} else if (companyKind.equals("mentor")) {
 			companyKind = "GDM";
 		}
 		
