@@ -18,9 +18,51 @@
 			opener.document.getElementById("PlaceName").value = txt;
 			var txt = $('#goodPlaceNum').val();
 			opener.document.getElementById("PlaceNum").value = txt;
+			var txt = $('#companyNum').val();
+			opener.document.getElementById("companyNum").value = txt;
+			
+			var txt = $('#buyQty').val();
+			opener.document.getElementById("buyQty").value = txt;
+			var txt = $('#buyStartDate').val();
+			opener.document.getElementById("buyStartDate").value = txt;
+			var txt = $('#buyEndDate').val();
+			opener.document.getElementById("buyEndDate").value = txt;
+			var txt = $('#buyDays').val();
+			opener.document.getElementById("buyDays").value = txt;
+			var txt = $('#buyPrice').text();
+			opener.document.getElementById("buyPrice").value = txt;
+			
+			
+			
 			
 			window.close();
 		});
+		
+		$("#buyQty").click(function()
+		{
+			var price = $('#goodspri').text();
+			price = Number(price);
+			var qty = $('#buyQty').val();
+			qty = Number(qty);
+			var dayby = $('#buyDays').val();
+			
+			price = price*qty*dayby;
+			var totalPrice = $('#buyPrice').text(price);
+		});
+		
+		$("#buyDays").click(function()
+				{
+					var price = $('#goodspri').text();
+					price = Number(price);
+					var qty = $('#buyQty').val();
+					qty = Number(qty);
+					var dayby = $('#buyDays').val();
+					
+					price = price*qty*dayby;
+					var totalPrice = $('#buyPrice').text(price);
+				});
+		
+		
 	});
 
 
@@ -32,19 +74,22 @@
 <body>
 <input type="hidden" id="goodPlaceName" value="${goods.goodsName}">
 <input type="text" id="goodPlaceNum" value="${goods.goodsNum}">
+<input type="text" id="companyNum" value="${goods.companyNum}">
     <h1> 상세페이지</h1>
     <p>상품이름 : ${goods.goodsName}</p>
    	<p>상세내용 : ${goods.goodsDetail}</p>
     <p>주의사항 : ${goods.goodsDanger}</p>
     <p>상품수량 : ${goods.goodsStock}</p>
-    <p>금액(1일1인) : ${goods.goodsPrice}</p>
-    <p>장소명</p>
+    <p>금액(1일1인) : <span id="goodspri">${goods.goodsPrice}</span></p>
     <p>메인사진</p>
     <p>연락처</p>
     <p>상세주소</p>
     <p>상세사진</p>
-    
-    <p>총금액</p>
+    <p>대여시작날짜 <input type="text" id="buyStartDate"> </p>
+    <p>반납예정날짜 <input type="text" id="buyEndDate"> </p>
+    <p>총대여일 <input type="number" id="buyDays" name="buyDays" min="1" max="30" value="1" required/> </p>
+    <p>상품수량<input type = "number" id="buyQty" name = "buyQty" min="1" max="${goods.goodsStock}" value="1" required/></p>
+    <p>총금액 : <span id="buyPrice">${goods.goodsPrice}</span></p>
     
     <p> <input type="button" id="selctPlaceBtn" value="선택"></p>
    

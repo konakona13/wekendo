@@ -6,11 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import Model.DTO.YYYDTO.GoodsImg;
-import Model.DTO.YYYDTO.PlaceGoods;
 import Service.YYYService.GoodsListService;
 
 @Controller
@@ -24,6 +20,7 @@ public class GoodsListController {
 	@RequestMapping("/goodsMain")
 	public String goodsList(Model model, HttpSession session) { 
 		String path= listService.goodsList(model, session);
+		System.out.println("session에서 회사번호 받기: " + session.getAttribute("comNum"));
 		return path;
 		
 		

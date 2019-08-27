@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import Command.HHHCommand.CreateDoCommand;
+import Command.HHHCommand.DoCreatePay;
 import Command.HHHCommand.DoPayCommand;
 import Command.HHHCommand.DoPayComplete;
 import Model.DTO.HHHDTO.Kendo;
@@ -27,6 +28,13 @@ public class DoCreateController
 	{
 		System.out.println("HDO컨트롤러111ss");
 		return "HHHview/startrotjf";
+	}
+	
+	@RequestMapping("/testF")
+	public String testF(Model model)
+	{
+		System.out.println("HDO컨트롤러111ss");
+		return "HHHview/testff";
 	}
 	
 	@RequestMapping("/doCreateEnter")
@@ -50,15 +58,17 @@ public class DoCreateController
 	}
 	
 	@RequestMapping("/doCreatePay")
-	public String doCreatePay(Model model,CreateDoCommand createDoCommand,
+	public String doCreatePay(Model model,CreateDoCommand createDoCommand,DoCreatePay doCreatePay,
 			HttpServletRequest request ,@RequestParam("mainPhoto") MultipartFile mainPhoto,
-			@RequestParam("PlaceNum") String placeNum,
+			@RequestParam("placeNum") String placeNum,
 			HttpSession session)
 	{
 		//String placeNum = (String) request.getAttribute("PlaceNum");
+		
 		createDoCommand.setPlaceNum(placeNum);
+		System.out.println(doCreatePay.getBuyDays());
 		System.out.println(placeNum);
-		doCreateService.completeDoForm(model,mainPhoto,createDoCommand,session);
+		doCreateService.completeDoForm(model,mainPhoto,createDoCommand,doCreatePay,session);
 		return "HHHview/doCreatePay";
 	}
 	
@@ -67,7 +77,7 @@ public class DoCreateController
 	{
 		doCreateService.payComplete(model, doPayComplete,request, session);
 		
-		return "HHHview/startrotjf";
+		return "redirect:HDO";
 	}
 	
 	@RequestMapping("/doCreateCardPay")

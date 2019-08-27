@@ -5,7 +5,7 @@ public class PlaceRegCommand {
 	//13
 	String companyName; //업체명
 	String goodsName; //상품명
-	String goodsImgName; //메인이미지
+	String goodsImgName; //이미지
 	String goodsDetail; // 상세내용
 	String goodsDanger; //주의사항
 	Integer goodsStock; //수량

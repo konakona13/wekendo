@@ -1,7 +1,7 @@
 package Command.HHHCommand;
 
 
-public class DoPayComplete
+public class DoCreatePay
 {
 	private String cardCompany;
 	private String hostNum;
@@ -239,3 +239,4 @@ public class DoPayComplete
 	
 
 }
+

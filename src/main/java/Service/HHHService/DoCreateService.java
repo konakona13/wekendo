@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import Command.HHHCommand.CreateDoCommand;
+import Command.HHHCommand.DoCreatePay;
 import Command.HHHCommand.DoPayComplete;
 import Model.DTO.HHHDTO.DoIMG;
 import Model.DTO.HHHDTO.Kendo;
@@ -28,9 +29,13 @@ public class DoCreateService
 	@Autowired
 	UploadImgService uploadImgService;
 	
+	
+	
 	Kendo kendo = new Kendo();
+	
 	MultipartFile mainPhoto;
-
+	DoCreatePay doCreatePay;
+	
 	public String getGoodsList(Model model)
 	{
 		
@@ -57,18 +62,22 @@ public class DoCreateService
 	}
 
 	public void completeDoForm(Model model,MultipartFile mainPhoto, CreateDoCommand createDoCommand,
-			HttpSession session)
+			DoCreatePay doCreatePay, HttpSession session)
 	{
 		//AuthInfo memInfo = (AuthInfo) session.getAttribute("memAuth");
 		String memId = (String) session.getAttribute("testHHHid"); 
-		//활동DTO 생성
+		//아이디값 삽입
 		kendo.setHostNum(memId);
 		kendo = getKendo(createDoCommand);
+		
+		doCreatePay.setHostNum(memId);
 		//활동DTO 끝
+		
 		
 		model.addAttribute("kendo",kendo);
 		session.setAttribute("kendo",kendo);
 		this.mainPhoto = mainPhoto;
+		this.doCreatePay = doCreatePay;
 		//int result = doCreateReporsitory.insertKendo(kendo);
 		//if(result > 0)
 		{
@@ -99,7 +108,7 @@ public class DoCreateService
 		return kendo;
 	}
 	
-	public void upLoadDoIMG(Model model,MultipartFile mainPhoto,HttpServletRequest request,HttpSession session)
+	public void upLoadDoIMG(Model model,MultipartFile mainPhoto,HttpServletRequest request,HttpSession session, String doNum)
 	{
 		String memInfo = (String) session.getAttribute("testHHHid");
 		try
@@ -111,7 +120,7 @@ public class DoCreateService
 			doImg.setDoImgKind("main");
 			doImg.setDoImgName(storedFileName);
 			doImg.setHostNum(memInfo);
-			
+			doImg.setDoNum(doNum);
 			doCreateReporsitory.insertDoimg(doImg);
 		}
 		catch (IllegalStateException e)
@@ -134,11 +143,12 @@ public class DoCreateService
 			System.out.println(kendo.getDoName());
 		}
 		
-		//doCreateReporsitory.insertKendo(kendo);
-		//upLoadDoIMG(model, mainPhoto, request, session);
+		String doNum = doCreateReporsitory.insertKendo(kendo,doPayComplete,doCreatePay);
+		upLoadDoIMG(model, mainPhoto, request, session , doNum);
+		//doCreateReporsitory.insertPayment(doPayComplete,doCreatePay);
 		
-		//doCreateReporsitory.insertPayment(doPayComplete);
-		//doCreateReporsitory.inserthostPay(doPayComplete);
+		
+		
 	}
 	
 

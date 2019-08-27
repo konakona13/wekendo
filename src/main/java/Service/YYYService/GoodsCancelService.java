@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 
 import Command.YYYCommand.PlaceRegCommand;
 import Model.DTO.YYYDTO.Company;
+import Model.DTO.YYYDTO.PlaceGoods;
 import Repository.YYYRepository.ConfirmRepository;
 
 @Service
@@ -13,10 +14,10 @@ public class GoodsCancelService {
 	@Autowired
 	ConfirmRepository confirmRepository;
 
-	public String goodsCancel(Model model) {
+	public String goodsCancel(Model model, String goodsNum) {
 		
-		Company company = confirmRepository.goodsCancel();
-		model.addAttribute("company", company);
+		PlaceGoods placeGoods = confirmRepository.goodsCancel(goodsNum);
+		model.addAttribute("placeGoods", placeGoods);
 		
 		return "YYYView/goodsConfirm";
 	}

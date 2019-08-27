@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
+import Command.HHHCommand.DoCreatePay;
 import Command.HHHCommand.DoPayComplete;
 import Model.DTO.HHHDTO.DoIMG;
 import Model.DTO.HHHDTO.Kendo;
@@ -44,13 +45,48 @@ public class DoCreateReporsitory
 		result = sqlSession.selectOne(statement,memberId);
 		return result;
 	}
-	public int insertKendo(Kendo kendo)
+	public String insertKendo(Kendo kendo, DoPayComplete doPayComplete, DoCreatePay doCreatePay)
 	{
 		int result = 0;
+		
 		String statement =  namespace + ".insertKendo";
 		result = sqlSession.insert(statement,kendo);
 		System.out.println("활동테이블insert");
-		return result;
+		String doNum = getMaxNum(1);
+		doPayComplete.setDoNum(getMaxNum(1));
+		doCreatePay.setDoNum(getMaxNum(1));
+		System.out.println("DoNum 세팅");
+		
+		statement =  namespace + ".insertPayment";
+		result = sqlSession.insert(statement,doPayComplete);
+		System.out.println("결제테이블insert");
+		
+		doPayComplete.setPayNum(getMaxNum(2));
+		doCreatePay.setPayNum(getMaxNum(2));
+		
+		statement =  namespace + ".insertHostPay";
+		result = sqlSession.insert(statement,doPayComplete);
+		System.out.println("방장결제insert");
+		
+		statement =  namespace + ".insertBuy";
+		
+		System.out.println("검증디버그 시작");
+		System.out.println("getBuyStartDate : " + doCreatePay.getBuyStartDate());
+		System.out.println("getBuyEndDate : " + doCreatePay.getBuyEndDate());
+		System.out.println("getDoNum : " + doCreatePay.getDoNum());
+		System.out.println("getPayNum : " + doCreatePay.getPayNum());
+		System.out.println("getBuyPrice : " + doCreatePay.getBuyPrice());
+		System.out.println("hostNum : " + doCreatePay.getHostNum());
+		System.out.println("getBuyPrice : " + doCreatePay.getPlaceNum());
+//		#{hostNum},#{PlaceNum}
+//		, #{companyNum},#{mapLNum},#{mapMNum},#{mapSNum},#{themeLNum},#{themeMNum},#{themeSNum},
+//		#{buyQty},#{buyStartDate},#{buyEndDate},#{buyDays},#{buyPrice}
+		
+		result = sqlSession.insert(statement,doCreatePay);
+		
+		System.out.println("구매Buy insert");
+		
+		return doNum;
 	}
 	public int insertDoimg(DoIMG doImg)
 	{
@@ -61,32 +97,25 @@ public class DoCreateReporsitory
 		return result;
 		
 	}
-	public int insertPayment(DoPayComplete doPayComplete)
+	
+	public String getMaxNum(int select)
 	{
-		int result = 0;
-		
-		String statement =  namespace + ".insertPayment";
-		String dutch = "";
-		String price = doPayComplete.getPrice();
-		String pp =  doPayComplete.getPp();
-		
-		int priceI = Integer.parseInt(price);
-		int ppI = Integer.parseInt(pp);
-		priceI = priceI/ppI;	
-		doPayComplete.setDutch(Integer.toString(priceI));
-		
-		result = sqlSession.insert(statement,doPayComplete);
-		System.out.println("결제테이블insert");
+		String statement = null;
+		if(select == 1)
+		{
+			statement =  namespace + ".maxDoNum";
+		}
+		else	
+		{
+			statement =  namespace + ".maxPayNum";
+		}
+		String result = sqlSession.selectOne(statement);
+		System.out.println("maxNum : " + result);		
 		return result;
 	}
-	public int inserthostPay(DoPayComplete doPayComplete)
-	{
-		int result = 0;
-		String statement =  namespace + ".insertHostPay";
-		result = sqlSession.insert(statement,doPayComplete);
-		System.out.println("방장결제insert");
-		return result;
-	}
+	
+	
+	
 
 	
 

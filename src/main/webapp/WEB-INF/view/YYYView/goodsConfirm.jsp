@@ -8,6 +8,32 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 등록 승인_관리자페이지</title>
+<script type="text/javascript">
+	function mapL(val){
+		$.ajax({
+			type:"POST",
+			url :"mapM",
+			data: "mapLNum=" +val,
+			datatype: "html",
+			success: function(data1){
+				$("#mapMedium").html(data1);
+				$("#mapSmall").html("");//a테이블 선택 변경시 c테이블 나오지않도록
+			}
+		});
+	}
+	
+	function confirm(){
+		$("#confirm").click(function(){
+			
+			location.href="confirmList/ok";
+		})
+		$("#confirm").click(function(){
+	
+		location.href="confirmList/no";
+		})
+	});
+
+</script>
 </head>
 <body>
 	상품 등록 승인
@@ -23,24 +49,25 @@
              </tr>
 <c:if test="${! empty list}">                
 	<c:forEach var="list" items="${list}">
-            <tr>
-                <td><input type="text" name = "chkGoodsNum" value="${list.goodsNum}"/></td>  
+		<form action= "confirmList/ok" method="POST" name="okfrm">
+		    <tr>
+                <td><input type="text" name = "goodsNum" id="goodsNum" value="${list.goodsNum}"/></td>  
                 <td>${list.goodsName}</td>  
                 <td>${list.companyNum}</td>   
                 <td>${list.regDate}</td>
                 <td>${list.goodsStatus}</td>
                 <td>
-                	<input type="button" value="승인" id="confirm" 
-                	 onclick="javascript:location.href='goodsConfirm'"/>
-                	<input type="button" value="거부" id="confirm" 
-                	 onclick="javascript:location.href='goodsCancel'"/>
+                	<input type="submit" value="승인" id="confirm" />
+                	<input type="button" value="거부" id="cancel" onclick="javascript:location.href='confirmList'"/>
                 
                 </td>      
              </tr>
+           </form> 
         
 	</c:forEach>
 </c:if>               
-		</table>     
+		</table>  
+ 
 	</div>
 	
 	<div>
@@ -52,6 +79,6 @@
 <br/>               
 
         
-<a href="../goodsMain" >메인</a>
+<a href="./" >메인</a>
 </body>
 </html>

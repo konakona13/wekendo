@@ -16,8 +16,16 @@
    #{goodsStock}, #{companyNum}, sysdate)
 </insert>
 
+<!-- 이미지등록 -->
 
-<!-- 상품리스트 -->
+<insert id="setGoodsImg" parameterType="Model.DTO.YYYDTO.GoodsImg">
+	INSERT INTO GOODS_IMG
+   (GOODS_NUM, COMPANY_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_M_NUM, THEME_L_NUM, THEME_S_NUM, GOODS_IMG_NAME, GOODS_IMG_NUM, GOODS_IMG_KIND)
+   VALUES (#{goodsNum}, #{companyNum}, #{mapLNum}, #{mapMNum}, #{mapSNum}, #{themeLNum}, #{themeMNum},
+   #{themeSNum}, #{goodsImgName}, GOODS_IMG_NUM_SEQ.nextval, 'place')
+</insert>
+
+
 
 <resultMap type="Model.DTO.YYYDTO.PlaceGoods" id="goods">
    <id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>
@@ -37,13 +45,15 @@
    <result column="REG_DATE" jdbcType="TIMESTAMP" />   
 </resultMap>
 
-<resultMap type="Model.DTO.YYYDTO.GoodsImg" id="goodsImg">
-   <id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>
-   <result column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum"/>
-   <result column="GOODS_IMG_NAME" jdbcType="VARCHAR" property="goodsImgName"/>
-   <result column="GOODS_IMG_NUM" jdbcType="VARCHAR" property="goodsImgNum"/>
-   <result column="GOODS_IMG_KIND" jdbcType="VARCHAR" property="goodsImgKind"/>
-</resultMap>
+
+<!-- 상품번호 가져오기 -->
+
+<select id="getMaxNum" resultType="String">
+      SELECT MAX(GOODS_NUM)
+      FROM GOODS
+</select>
+
+<!-- 상품리스트 -->
 
 <sql id="goodsAllSelect">
 	GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, 
@@ -56,17 +66,39 @@
       SELECT 
       	<include refid="goodsAllSelect" />
       FROM GOODS
+      ORDER BY REG_DATE DESC
 </select>
 
+<!-- 이미지조회 -->
+
+<resultMap type="Model.DTO.YYYDTO.GoodsImg" id="goodsImg">
+   <id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>   
+   <result column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum"/>
+   <result column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum"/>
+   <result column="MAP_M_NUM" jdbcType="VARCHAR" property="mapMNum"/>
+   <result column="MAP_S_NUM" jdbcType="VARCHAR" property="mapSNum"/>
+   <result column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum"/>
+   <result column="THEME_M_NUM" jdbcType="VARCHAR" property="themeMNum"/>
+   <result column="THEME_S_NUM" jdbcType="VARCHAR" property="themeSNum"/>
+   <result column="GOODS_IMG_NAME" jdbcType="VARCHAR" property="goodsImgName"/>
+   <result column="GOODS_IMG_NUM" jdbcType="VARCHAR" property="goodsImgNum"/>
+   <result column="GOODS_IMG_KIND" jdbcType="VARCHAR" property="goodsImgKind"/>
+</resultMap>
+
+<select id="getImages" parameterType="String" resultMap="goodsImg">
+      SELECT GOODS_NUM, COMPANY_NUM, GOODS_IMG_NAME, GOODS_IMG_NUM, GOODS_IMG_KIND
+      FROM GOODS_IMG
+      WHERE GOODS_NUM = #{goodsNum}
+</select>
 
 <!-- 상세보기 -->
-<select id="getGoodsDetail" resultMap="goods">
+<select id="getGoodsDetail" parameterType="String" resultMap="goods">
 		SELECT
 	  		<include refid="goodsAllSelect" />
 		FROM GOODS
 		WHERE GOODS_NUM = #{goodsNum}
+		
 </select>
-
 
 
 
@@ -180,31 +212,38 @@
 	  	SELECT
 	  		<include refid="basecolumnCompany" />
 		FROM COMPANY
-		WHERE COMPANY_STATUS = '승인대기' or COMPANY_STATUS = '미승인'
+		WHERE COMPANY_STATUS COMPANY_STATUS = '미승인'
 
 </select>
 
-<select id="getCompanyInfo" resultMap="company">
+<select id="getCompanyInfo" parameterType ="Model.DTO.YYYDTO.Company" resultMap="company">
 	  	SELECT COMPANY_NUM, COMPANY_NAME	  		
-		FROM COMPANY c, GOODS g
-		WHERE c.COMPANY_NUM = ${companyNum}
+		FROM COMPANY
+		WHERE COMPANY_NUM = #{companyNum}
 
 </select>
+
+<!-- 목록에 회사명 가져오기 위해 -->
+<select id="getCompanyList" parameterType ="Model.DTO.YYYDTO.Company" resultMap="company">
+      SELECT COMPANY_NUM, COMPANY_NAME
+      FROM COMPANY
+</select>
+
 
 
 <!-- 등록 승인_관리자페이지 -->
 
 
 <update id="upGoodsStatus" parameterType="String" >
-	update COMPANY 
-	set COMPANY_STATUS ='승인완료'
-	WHERE COMPANY_NUM = #{companyNum}
+	UPDATE GOODS 
+	SET GOODS_STATUS ='승인완료'
+	WHERE GOODS_NUM = #{goodsNum}
 </update>
 
 <update id="upGoodsStatusX" parameterType="String" >
-	update COMPANY 
-	set COMPANY_STATUS ='승인거부'
-	WHERE COMPANY_NUM = #{companyNum}
+	UPDATE GOODS 
+	SET GOODS_STATUS ='승인거부'
+	WHERE GOODS_NUM = #{goodsNum}
 </update>
 
 
