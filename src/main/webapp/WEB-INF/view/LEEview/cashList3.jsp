@@ -25,6 +25,25 @@
 			return false;
 		}
 	}
+	
+	function openBuyNumWindow() {
+		// 새창에 대한 세팅(옵션)
+		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=750,left=500,top=20';
+		window.open("BuybuyDetail?buyNum=" + $("#buyNum").val(), "buybuyDetail", settings);
+	}
+	
+	function openGoodsNumWindow() {
+		// 새창에 대한 세팅(옵션)
+		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=750,left=500,top=20';
+		window.open("goodsDetail?goodsName=" + $("#goodsName").val(), "goodsDetail", settings);
+	}
+	
+	function openDoNumWindow() {
+		// 새창에 대한 세팅(옵션)
+		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=750,left=500,top=20';
+		window.open("DoBuyDetail?doName=" + $("#doName").val(), "doBuyDetail", settings);
+	}
+	
 </script>
 <body>
 	<div id="container" style="width: 1400px">
@@ -138,7 +157,7 @@
 			<table width=100% border="1" cellpadding="0" cellspacing="0" >
 <c:if test="${! empty buybuys}">
 	<tr align="center" valign="middle">
-		<td colspan="5">구매리스트</td>
+		<td colspan="6">구매리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
@@ -146,16 +165,16 @@
 			<div align="center">구매번호</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
-			<div align="center">활동번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
-			<div align="center">상품번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
-			<div align="center">기업번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">기업이름</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">상품명</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">활동이름</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">상품수량</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">상품가격</div>
@@ -166,28 +185,36 @@
 		onmouseover="this.style.backgroundColor='F8F8F8'"
 		onmouseout="this.style.backgroundColor=''">
 		<td height="23" style="font-family:Tahoma;font-size:10pt;">
-			${buybuy.buyNum }
-		</td>
-		
-		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
-			<input type="hidden" id="doNum" name="doNum" value="${dodo.doNum }">
-			<a href="javascript:openChildWindow();" >
-				${buybuy.doNum }
+		<div align="center">
+			<input type="hidden" id="buyNum" name="buyNum" value="${buybuy.buyNum }">
+			<a href="javascript:openBuyNumWindow();" >
+				${buybuy.buyNum }
 			</a>
 			</div>
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">${buybuy.goodsNum }
-			</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">${buybuy.companyNum }
-			</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">${buybuy.companyName }
+			</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+			<input type="hidden" id="goodsName" name="goodsName" value="${buybuy.goodsName }">
+			<a href="javascript:openGoodsNumWindow();" >
+				${buybuy.goodsName }
+			</a>
+			</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+			<input type="hidden" id="doName" name="doName" value="${buybuy.doName }">
+			<a href="javascript:openDoNumWindow();" >
+				${buybuy.doName }
+			</a>
+			</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">${buybuy.buyQty }
 			</div>
 		</td>		
 		<td style="font-family:Tahoma;font-size:10pt;">
@@ -228,7 +255,6 @@
 
 <c:set var = "sumBuy" value = "0" />
 <c:forEach var="buybuy1" items="${buybuys}">
-${buybuy1.payNum }
 <c:set var= "sumBuy" value="${sumBuy + buybuy1.buyPrice}"/>
 </c:forEach>
 <br>

@@ -42,6 +42,12 @@
 		THEME_S_NUM, BUY_QTY, BUY_START_DATE, BUY_END_DATE, BUY_DAYS,
 		BUY_PRICE
 	</sql>
+	<sql id="basecolumnGoods">
+		GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM,
+		THEME_M_NUM, THEME_S_NUM, GOODS_NAME, GOODS_PRICE, GOODS_DETAIL,
+		GOODS_DANGER, GOODS_STATUS, GOODS_STOCK, COMPANY_NUM,
+		REG_DATE
+	</sql>
 
 	<resultMap type="Member" id="baseMember">
 		<id column="MEMBER_NUM" jdbcType="VARCHAR" property="memberNum" />
@@ -116,6 +122,11 @@
 		<result column="DO_OPT_AGE" jdbcType="VARCHAR"
 			property="optAge" />
 		<result column="DO_STATUS" jdbcType="VARCHAR" property="status" />
+		<result column="MEMBER_NAME" jdbcType="VARCHAR"
+			property="memName" />
+		<result column="MEMBER_PH" jdbcType="BIGINT" property="memPh" />
+		<result column="MEMBER_PHOTO" jdbcType="VARCHAR"
+			property="profile" />
 	</resultMap>
 
 	<resultMap type="Model.DTO.LEEDTO.CashIn" id="baseCashin">
@@ -167,6 +178,43 @@
 		<result column="BUY_PRICE" jdbcType="BIGINT"
 			property="buyPrice" />
 		<result column="COMPANY_NAME" jdbcType="VARCHAR"
+			property="companyName" />
+		<result column="GOODS_NAME" jdbcType="VARCHAR"
+			property="goodsName" />
+		<result column="DO_NAME" jdbcType="VARCHAR" property="doName" />
+	</resultMap>
+
+	<resultMap type="Model.DTO.LEEDTO.Goods" id="baseGoods">
+		<id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum" />
+		<result column="MAP_L_NUM" jdbcType="VARCHAR"
+			property="mapLnum" />
+		<result column="MAP_M_NUM" jdbcType="VARCHAR"
+			property="mapMnum" />
+		<result column="MAP_S_NUM" jdbcType="VARCHAR"
+			property="mapSnum" />
+		<result column="THEME_L_NUM" jdbcType="VARCHAR"
+			property="themeLnum" />
+		<result column="THEME_M_NUM" jdbcType="VARCHAR"
+			property="themeMnum" />
+		<result column="THEME_S_NUM" jdbcType="VARCHAR"
+			property="themeSnum" />
+		<result column="GOODS_NAME" jdbcType="VARCHAR"
+			property="goodsName" />
+		<result column="GOODS_PRICE" jdbcType="BIGINT"
+			property="goodsPrice" />
+		<result column="GOODS_DETAIL" jdbcType="VARCHAR"
+			property="goodsDetail" />
+		<result column="GOODS_DANGER" jdbcType="VARCHAR"
+			property="goodsDanger" />
+		<result column="GOODS_STATUS" jdbcType="VARCHAR"
+			property="goodsStatus" />
+		<result column="GOODS_STOCK" jdbcType="BIGINT"
+			property="goodsStock" />
+		<result column="COMPANY_NUM" jdbcType="VARCHAR"
+			property="companyNum" />
+		<result column="REG_DATE" jdbcType="TIMESTAMP"
+			property="goodsRegDate" />
+		<result column="company_name" jdbcType="VARCHAR"
 			property="companyName" />
 	</resultMap>
 
@@ -260,17 +308,23 @@
 		resultMap="baseBuybuy">
 		select
 		BUY_NUM, b.DO_NUM, b.PAY_NUM, b.HOST_NUM, b.GOODS_NUM,
-		c.COMPANY_NUM, company_name,
-		MAP_L_NUM, MAP_M_NUM, MAP_S_NUM,
-		THEME_L_NUM, THEME_M_NUM,
-		THEME_S_NUM, BUY_QTY, BUY_START_DATE,
+		c.COMPANY_NUM, company_name, GOODS_NAME, DO_NAME,
+		b.MAP_L_NUM,
+		b.MAP_M_NUM, b.MAP_S_NUM,
+		b.THEME_L_NUM, b.THEME_M_NUM,
+		b.THEME_S_NUM,
+		BUY_QTY, BUY_START_DATE,
 		BUY_END_DATE, BUY_DAYS,
 		BUY_PRICE
-		from BUYBUY b, company c, kendo kd
+		from BUYBUY b,
+		company c, kendo kd, goods g
 		where b.company_num = c.company_num
-		and b.do_num = kd.do_num
 		and
-		(do_status = 'doend'
+		b.do_num = kd.do_num
+		and b.goods_num = g.goods_num
+		and
+		(do_status =
+		'doend'
 		or do_status = 'cashcomplete')
 		order by BUY_NUM desc
 	</select>
@@ -298,20 +352,32 @@
 		resultMap="baseBuybuy">
 		select
 		BUY_NUM, b.DO_NUM, b.PAY_NUM, b.HOST_NUM, b.GOODS_NUM,
-		c.COMPANY_NUM, company_name,
-		MAP_L_NUM, MAP_M_NUM, MAP_S_NUM,
-		THEME_L_NUM, THEME_M_NUM,
-		THEME_S_NUM, BUY_QTY, BUY_START_DATE,
+		c.COMPANY_NUM, company_name, GOODS_NAME, DO_NAME,
+		b.MAP_L_NUM,
+		b.MAP_M_NUM,
+		b.MAP_S_NUM,
+		b.THEME_L_NUM, b.THEME_M_NUM,
+		b.THEME_S_NUM,
+		BUY_QTY,
+		BUY_START_DATE,
 		BUY_END_DATE, BUY_DAYS,
 		BUY_PRICE
-		from BUYBUY b, company c, kendo kd
+		from BUYBUY b,
+		company
+		c, kendo kd, goods g
 		where b.company_num = c.company_num
-		and b.do_num = kd.do_num
-		and company_name = #{comName}
+		and
+		b.do_num =
+		kd.do_num
+		and b.goods_num = g.goods_num
+		and company_name =
+		#{comName}
 		and
 		(do_status = 'doend'
 		or do_status = 'cashcomplete')
-		order by BUY_NUM desc
+		order
+		by BUY_NUM
+		desc
 	</select>
 
 	<insert id="insertCashin" parameterType="String">
@@ -337,23 +403,67 @@
 	</insert>
 	<update id="updateKendo" parameterType="String">
 		UPDATE kendo k
-		SET k.do_status = 'cashcomplete'
+		SET
+		k.do_status = 'cashcomplete'
 		WHERE k.do_status = 'doend'
-		and k.do_num = (select b.do_num from buybuy b
-		where b.company_num = (select c.company_num from company c
+		and k.do_num =
+		(select b.do_num from buybuy b
+		where b.company_num = (select
+		c.company_num from company c
 		WHERE c.company_name = #{comName}))
 	</update>
-	
+
 	<update id="updateDoing" parameterType="String">
 		UPDATE kendo
-		SET do_status = #{doing}
+		SET do_status
+		= #{doing}
 		WHERE do_status = 'invited'
 		and DO_CLOSE_DATE &lt;= sysdate
 	</update>
 	<update id="updateDoend" parameterType="String">
 		UPDATE kendo
-		SET do_status = #{doend}
+		SET do_status
+		= #{doend}
 		WHERE do_status = 'doing'
 		and DO_END_DATE &lt;= sysdate
 	</update>
+
+	<select id="getBuyDetail" parameterType="String"
+		resultMap="baseBuybuy">
+		select
+		<include refid="basecolumnBuybuy" />
+		from BUYBUY
+		where BUY_NUM = #{buyNum}
+	</select>
+
+	<select id="getGoodsDetail" parameterType="String"
+		resultMap="baseGoods">
+		select
+		GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM,
+		THEME_L_NUM,
+		THEME_M_NUM, THEME_S_NUM, GOODS_NAME, GOODS_PRICE,
+		GOODS_DETAIL,
+		GOODS_DANGER, GOODS_STATUS, GOODS_STOCK, g.COMPANY_NUM,
+		company_name, REG_DATE
+		from GOODS g, company c
+		where g.COMPANY_NUM =
+		c.COMPANY_NUM
+		and GOODS_NAME = #{goodsName}
+	</select>
+
+	<select id="getDoBuyDetail" parameterType="String"
+		resultMap="baseDo">
+		select
+		DO_NUM, k.HOST_NUM, DO_NAME, DO_START_DATE, DO_END_DATE,
+		DO_OPEN_DATE,
+		DO_CLOSE_DATE, DO_PP, DO_NOWPP, DO_DETAIL, DO_OPT_GENDER,
+		DO_OPT_AGE,
+		DO_STATUS, MEMBER_NAME,MEMBER_PH,MEMBER_PHOTO
+		from kendo k,
+		member m
+		where k.HOST_NUM =
+		m.MEMBER_NUM
+		and DO_NAME =
+		#{doName}
+	</select>
 </mapper>

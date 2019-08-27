@@ -201,9 +201,9 @@ commandName="loginCommand">
 <a href="emailAll" >전체 메일 보내기</a>
 <a href="ajaxForm" >Ajax</a>
  -->
-<% }else if(session.getAttribute("memAuth")!= null && memNum.substring(0, 2).equals("NM") && adminId.equals("admin")){ %>
+<% }else if(session.getAttribute("comAuth")!= null && adminId.equals("admin")){ %>
 관리자 페이지<br>
-관리자 이름 : ${memAuth.name }<br>
+관리자 이름 : ${comAuth.name }<br>
  <a href="Logout" >로그아웃</a>
  <a href="kendo_list" >활동리스트</a>
  <a href="Cashin" >정산관리</a>
