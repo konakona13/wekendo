@@ -14,12 +14,16 @@
 	$(function(){
 		$("#selctPlaceBtn").click(function()
 		{
+			
 			if($("#goodsKind").val() == "place")
 				{
 				var txt = $('#goodPlaceName').val();
 				opener.document.getElementById("PlaceName").value = txt;
 				var txt = $('#goodPlaceNum').val();
 				opener.document.getElementById("PlaceNum").value = txt;
+				var txt = $('#buyDays').val();
+				opener.document.getElementById("placeDays").value = txt;
+				
 				}
 			else if($("#goodsKind").val() == "hotel")
 				{
@@ -27,24 +31,39 @@
 				opener.document.getElementById("hotelName").value = txt;
 				var txt = $('#goodPlaceNum').val();
 				opener.document.getElementById("hotelNum").value = txt;
+				var txt = $('#buyDays').val();
+				opener.document.getElementById("hotelDays").value = txt;
 				}
-			
-			/* var txt = $('#companyNum').val();
-			opener.document.getElementById("companyNum").value = txt;
-			
-			var txt = $('#buyQty').val();
-			opener.document.getElementById("buyQty").value = txt;
-			var txt = $('#buyStartDate').val();
-			opener.document.getElementById("buyStartDate").value = txt;
-			var txt = $('#buyEndDate').val();
-			opener.document.getElementById("buyEndDate").value = txt;
-			var txt = $('#buyDays').val();
-			opener.document.getElementById("buyDays").value = txt;
-			var txt = $('#buyPrice').text();
-			opener.document.getElementById("buyPrice").value = txt; */
-			
+			else if($("#goodsKind").val() == "rent")
+				{
+				var txt = $('#goodPlaceName').val();
+				opener.document.getElementById("rentName").value = txt;
+				var txt = $('#goodPlaceNum').val();
+				opener.document.getElementById("rentNum").value = txt;
+				}
+			else if($("#goodsKind").val() == "mento")
+				{
+				var txt = $('#goodPlaceName').val();
+				opener.document.getElementById("mentoName").value = txt;
+				var txt = $('#goodPlaceNum').val();
+				opener.document.getElementById("mentoNum").value = txt;
+				}
 			$("#frm").submit();
-			 window.close(); 
+			
+			 
+			 /* var txt = $('#companyNum').val();
+				opener.document.getElementById("companyNum").value = txt;
+				
+				var txt = $('#buyQty').val();
+				opener.document.getElementById("buyQty").value = txt;
+				var txt = $('#buyStartDate').val();
+				opener.document.getElementById("buyStartDate").value = txt;
+				var txt = $('#buyEndDate').val();
+				opener.document.getElementById("buyEndDate").value = txt;
+				var txt = $('#buyDays').val();
+				opener.document.getElementById("buyDays").value = txt;
+				var txt = $('#buyPrice').text();
+				opener.document.getElementById("buyPrice").value = txt; */
 		});
 		
 		$("#buyQty").click(function()
@@ -72,6 +91,18 @@
 					var totalPrice = $('#buyPrice').text(price);
 					$('#totalPrice').val(price);
 				});
+		
+		/* $("#buyQty").click(function()
+				{
+					
+					var startD = $('#buyStartDate').val();
+					
+					var endD = $('#buyEndDate').val();
+					
+					
+					
+					$('#buyEndDate').val(startD);
+				}); */
 		
 		
 	});
