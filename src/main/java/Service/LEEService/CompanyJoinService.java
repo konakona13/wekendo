@@ -37,7 +37,7 @@ public class CompanyJoinService {
 		com.setCompanyBank(request.getParameter("companyBank"));
 		com.setCompanyStatus("미승인");
 		sessionRepository.insertCompany(com);
-		path = "LEEview/mainForm";
+		path = "redirect:main";
 		return path;
 	}
 

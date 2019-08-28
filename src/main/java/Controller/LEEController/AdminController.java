@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import Service.LEEService.CashInService;
 import Service.LEEService.KendoListService;
+import Service.LEEService.MemListService;
 
 @Controller
 public class AdminController {
@@ -19,16 +20,20 @@ public class AdminController {
 	private KendoListService kendoListService;
 	@Autowired
 	private CashInService cashInService;
+	@Autowired
+	private MemListService memListService;
 
 	@RequestMapping("/kendo_list")
 	public String doList(Model model, @RequestParam(value = "page", defaultValue = "1") String page) {
 		return kendoListService.doList(model, page);
 	}
 
+	/*
 	@RequestMapping(value = "/DodoDetail", method = RequestMethod.GET)
 	public String doDetail(Model model, @RequestParam(value = "dodoNum") String doNum1) {
 		return kendoListService.doDetail(model, doNum1);
 	}
+	*/
 
 	@RequestMapping("/Cashin")
 	public String cashList(Model model, @RequestParam(value = "page", defaultValue = "1") String page) {
@@ -67,4 +72,10 @@ public class AdminController {
 		System.out.println(doNum1);
 		return kendoListService.doGoodsDetail(model, doNum1);
 	}
+	
+	@RequestMapping("/memcomList")
+	public String memberList(Model model, @RequestParam(value = "page", defaultValue = "1") String page) {
+		return memListService.memcomList(model, page);
+	}
+	
 }

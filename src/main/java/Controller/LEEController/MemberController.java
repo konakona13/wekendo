@@ -1,5 +1,7 @@
 package Controller.LEEController;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import Command.LEECommand.CompanyJoinCommand;
 import Command.LEECommand.LoginCommand;
 import Command.LEECommand.MemberJoinCommand;
+import Model.DTO.YYYDTO.GoodsList;
+import Repository.YYYRepository.GoodsRepository;
 import Service.LEEService.CompanyCashService;
 import Service.LEEService.CompanyJoinService;
 import Service.LEEService.CompanyLoginService;
@@ -43,6 +47,8 @@ public class MemberController {
 	private CompanyCashService companyCashService;
 	@Autowired
 	private UpdateDoStatusService updateDoStatusService;
+	@Autowired
+	private GoodsRepository goodsRepository;
 
 	@RequestMapping("/loginmain")
 	public String mainView(HttpServletRequest request, Model model) {
@@ -124,5 +130,17 @@ public class MemberController {
 	public String companyCash(Model model, HttpSession session,
 			@RequestParam(value = "page", defaultValue = "1") String page) {
 		return companyCashService.cashAndBuyList(model, session, page);
+	}
+	
+	@RequestMapping("goodsMainLEE")
+	public String comGoods(Model model, @RequestParam(value = "comNum") String comNum) {
+		List<GoodsList> list = goodsRepository.getGoodsList(comNum);
+		model.addAttribute("list", list);
+		return "YYYView/goodsMain";
+	}
+	
+	@RequestMapping("kakao")
+	public String kakaotest(Model model) {
+		return "LEEview/kakaopaytest";
 	}
 }

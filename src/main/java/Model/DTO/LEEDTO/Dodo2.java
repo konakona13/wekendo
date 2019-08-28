@@ -31,7 +31,21 @@ public class Dodo2 implements Serializable {
 	private String themeMnum;
 	private String themeSnum;
 	private Long goodsDays;
+	private Long goodsPrice;
+	private Long buyPrice;
 	
+	public Long getGoodsPrice() {
+		return goodsPrice;
+	}
+	public void setGoodsPrice(Long goodsPrice) {
+		this.goodsPrice = goodsPrice;
+	}
+	public Long getBuyPrice() {
+		return buyPrice;
+	}
+	public void setBuyPrice(Long buyPrice) {
+		this.buyPrice = buyPrice;
+	}
 	public String getDoNum() {
 		return doNum;
 	}

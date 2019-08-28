@@ -48,7 +48,7 @@ public class MemberJoinService {
 		String storedFileName = reportSubmissionService.report(memId, report, model, request, mjc, session);
 		mem.setFileName(storedFileName);
 		sessionRepository.insertMem(mem);
-		path = "LEEview/mainForm";
+		path = "redirect:main";
 		return path;
 	}
 
