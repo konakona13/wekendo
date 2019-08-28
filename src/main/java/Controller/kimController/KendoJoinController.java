@@ -29,6 +29,19 @@ public class KendoJoinController {
 		return path;
 	}
 	
+	
+	@RequestMapping("/comMain")
+	public String comMain() {
+		path = "companyMain";
+		return path;
+	}
+	
+	@RequestMapping("/adminMain")
+	public String adminMain() {
+		path = "adminMain";
+		return path;
+	}
+	
 	@RequestMapping("/kim")
 	public String kim() {
 		path = "kimView/kim";

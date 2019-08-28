@@ -95,7 +95,7 @@ table{
     <div class="header-content clearfix"> <a class="logo" href="memberMain.html"><img src="images/logom.png" width = "200" alt=""></a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
-          <li><a href="memberJoin">회원가입</a></li>
+          <li><a href="memberJoin">기업회원가입</a></li>
           <li>
           	<c:if test="${comAuth.id == null}">
           		<a href="loginmain">로그인</a>
