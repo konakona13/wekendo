@@ -22,6 +22,7 @@ public class UploadImgService
 	{
 		filePath = "WEB-INF\\view\\HHHview\\doIMG\\";
 		realPath = request.getServletContext().getRealPath(filePath);
+		//System.out.println("리얼패스" + realPath);
 		// realPath =
 		// "D:\\Hk004\\Spring\\sp4-smrit\\src\\main\\webapp\\WEB-INF\\view\\UploadFile\\upload\\";
 		

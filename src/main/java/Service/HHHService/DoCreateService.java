@@ -70,11 +70,7 @@ public class DoCreateService
 		//아이디값 삽입
 		kendo.setHostNum(memId);
 		kendo = getKendo(createDoCommand);
-		
-		//26일 여러개의 상품
-		
-		//
-		
+						
 		doCreatePay.setHostNum(memId);
 		//활동DTO 끝
 		
@@ -90,7 +86,15 @@ public class DoCreateService
 		String num = createDoCommand.getPlaceNum();
 		PlaceGoods goods =  doCreateReporsitory.getOneGoods(num);
 		model.addAttribute("placeGoods",goods);
-	
+		
+		int sumPrice = 0;
+		@SuppressWarnings("unchecked")
+		List<SelectBuyGoods> goodsList = (List<SelectBuyGoods>) session.getAttribute("goodsList");
+		for (SelectBuyGoods selectBuyGoods : goodsList)
+		{
+			sumPrice += Integer.parseInt(selectBuyGoods.getTotalPrice());
+		}
+		model.addAttribute("sumPrice",sumPrice);
 		
 	
 	}
@@ -150,7 +154,7 @@ public class DoCreateService
 		
 		String doNum = doCreateReporsitory.insertKendo(kendo,doPayComplete,doCreatePay ,session);
 		upLoadDoIMG(model, mainPhoto, request, session , doNum);
-		//doCreateReporsitory.insertPayment(doPayComplete,doCreatePay);
+		
 		
 		
 		

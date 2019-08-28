@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" 
+	uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" 
+	uri = "http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,24 +46,51 @@ function payComplete()
     <p>활동시작일 : ${kendo.doStartDate}</p>
     <p>활동종료일 : ${kendo.doEndDate}</p>
     <p>모집인원 : ${kendo.doPp}</p>
-
-    <p>활동장소명 : ${placeGoods.goodsName} </p>
-    <p>장소이용금액 : ${placeGoods.goodsPrice} </p>
+	
+	<c:forEach var="goods" items="${goodsList}">
+    <c:set var="goodsNum" value="${goods.goodPlaceNum}"></c:set>
     
-    <p>이용숙박상품명 : </p>
-    <p>숙박이용기간 : </p>
-    <p>숙박이용총금액 : </p>
+    <%-- <c:if test="${fn:contains(goodsNum,'GDP') }">
+     	<p>if활동장소명 : ${goods.goodPlaceName} </p>
+    	<p>장소이용금액 : ${goods.totalPrice} </p>
+   	</c:if>  --%>
+   	★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆
+	    <c:choose>
+				<c:when test="${fn:contains(goodsNum,'GDP') }">
+					=장소상품=
+					<p>활동장소명 : ${goods.goodPlaceName} </p>
+					<p>장소사용기간 : ${goods.buyDays} 일</p>
+		    		<p>장소이용금액 : ${goods.totalPrice} </p>
+				</c:when>
+				
+				<c:when test="${fn:contains(goodsNum,'GDH') }">
+					=숙박상품=
+				 	<p>숙박상품명 : ${goods.goodPlaceName} </p>
+				 	<p>숙박사용기간 : ${goods.buyDays} 일</p>
+				    <p>숙박이용총금액 : ${goods.totalPrice}</p>
+				</c:when>
+				
+				<c:when test="${fn:contains(goodsNum,'GDC') }">
+					=렌트카상품=
+				    <p>렌터카상품명 : ${goods.goodPlaceName} </p>
+				    <p>렌터카이용기간 : ${goods.buyDays} 일</p>
+				    <p>렌터카이용총금액 : ${goods.totalPrice}</p>
+				</c:when>
+				
+				<c:when test="${fn:contains(goodsNum,'GDM') }">
+					=멘토상품=
+				 	<p>멘토명 : ${goods.goodPlaceName} </p>
+				 	<p>멘토이용기간 : ${goods.buyDays} 일</p>
+				    <p>멘토이용총금액 : ${goods.totalPrice}</p>
+				</c:when>
+				
+				<c:otherwise> ... </c:otherwise>
+				
+	    </c:choose>
+	</c:forEach>
+   	 ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆
+    <p>결제 금액 : ${sumPrice}</p>
     
-    <p>렌터카상품명</p>
-    <p>렌터카이용기간</p>
-    <p>렌터카이용총금액</p>
-    
-    <p>멘토명</p>
-	<p>멘토이용기간</p>
-    <p>멘토이용총금액</p>
-    
-    <p>전상품총금액</p>
-    <p>인당결제금액</p>
 
 	<div id="confirmPayDiv">
 	<input id="confirmPay" type="text" value="미완료">
@@ -71,8 +102,10 @@ function payComplete()
 	</div>
 	
     
-    <form action="#">
+    <form action="kakao">
             <input type="submit" value="카카오페이">
+            <input type="text" name="doName" value="${kendo.doName}">
+            <input type="text" name="sumPrice" value="${sumPrice}">
     </form>
     
     <form action="doPayComplete" id="comp">

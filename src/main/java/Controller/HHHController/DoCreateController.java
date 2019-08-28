@@ -83,7 +83,7 @@ public class DoCreateController
 		System.out.println("진입테스트 : selectBuyGoods");
 		doCreateService.selectBuyGoods(model,selectBuyGoods,session);
 		System.out.println("아웃테스트 : selectBuyGoods");
-		return "self.close()";
+		return "HHHview/closeWinH";
 	}
 	
 	@RequestMapping("/doPayComplete")
@@ -91,7 +91,7 @@ public class DoCreateController
 	{
 		doCreateService.payComplete(model, doPayComplete,request, session);
 		session.removeAttribute("goodsList");
-		return "redirect:HDO";
+		return "redirect:main";
 	}
 	
 	@RequestMapping("/doCreateCardPay")

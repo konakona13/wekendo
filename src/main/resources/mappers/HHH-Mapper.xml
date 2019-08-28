@@ -223,11 +223,13 @@
 	
 	<!-- insert 문 끝 -->
 	
-<!-- 	<update id="updateGoodsStock" parameterType="String">
+	<update id="updateGoodsStock" parameterType="String">
 	UPDATE goods set goods_stock = 0 
-	WHERE goods_num = #{}
-	
+	WHERE 
+	<if test="value != null"> -->
+				goods_num = #{value}
+	</if> 
 	</update>
- -->
+
 
 </mapper>
