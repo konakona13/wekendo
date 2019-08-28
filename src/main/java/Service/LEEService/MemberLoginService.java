@@ -44,7 +44,7 @@ public class MemberLoginService {
 		}
 		String idStore = loginCommand.getIdStore();
 		setCookie(idStore, response, loginCommand);
-		return "LEEview/mainForm";
+		return "redirect:main";
 	}
 
 	public void setCookie(String idStore, HttpServletResponse response, LoginCommand loginCommand) {

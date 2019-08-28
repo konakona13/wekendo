@@ -36,7 +36,10 @@ public class CompanyLoginService {
 		}
 		String idStore = loginCommand.getIdStore();
 		setCookie(idStore, response, loginCommand);
-		return "LEEview/mainForm";
+		if (company.getCompanyId().equals("admin")) {
+			return "redirect:adminMain";
+		}
+		return "redirect:comMain";
 	}
 
 	public void setCookie(String idStore, HttpServletResponse response, LoginCommand loginCommand) {

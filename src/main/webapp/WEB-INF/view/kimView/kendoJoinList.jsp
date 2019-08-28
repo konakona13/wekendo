@@ -76,7 +76,7 @@
 		<span class="pnum" id="pnum">상품번호 : ${kendoJoin.doNum}</span><br />
 		호스트번호 : ${kendoJoin.hostNum}<br />
 		<h3><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/><a href="./kendoDetail/${kendoJoin.doNum}">${kendoJoin.doName}</a></h3><br />
-		
+		모집인원 : ${kendoJoin.doNowPp}/${kendoJoin.doPp}<br/>
 	</td>
 </tr>
 <tr>

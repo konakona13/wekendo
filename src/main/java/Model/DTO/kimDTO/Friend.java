@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Friend implements Serializable {
+	
 	private String joinNum;
 	private String doNum;
 	private String guestNum;	
