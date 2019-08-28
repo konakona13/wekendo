@@ -58,7 +58,6 @@
 
 
 
-
 	
 <resultMap type="Model.DTO.kimDTO.KendoList" id="kendoList">
 

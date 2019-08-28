@@ -170,6 +170,7 @@ public class KendoJoinService {
 		
 		System.out.println("kendoJoins.size : "+list.size());
 		System.out.println("getPayDutch : "+ list.get(0).getPaymentKim().getPayDutch());
+		System.out.println("list.get(0).getDoNowPp:" + list.get(0).getDoNowPp());
 		model.addAttribute("kendoJoins",list);
 		
 		return "kimView/kendoJoinList" ;
