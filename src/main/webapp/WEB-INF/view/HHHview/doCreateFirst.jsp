@@ -29,8 +29,8 @@ $(function(){
 		 var url = "doCreatePlace?doPlay="+$("#doPlay").val()
 							  +"&doArea="+$("#doArea").val()
 							  +"&goodsKind=place"; 
-		openWin = window.open(url,"DP","width=300, height=500");
-		openWin.document.getElementById("goodsKind").value = 'place';
+		openWin = window.open(url,"장소선택","width=300, height=500");
+		
 	});
 	
 	$("#selectHotelBtn").click(function()
@@ -38,8 +38,26 @@ $(function(){
 		var url = "doCreatePlace?doPlay="+$("#doPlay").val()
 							  +"&doArea="+$("#doArea").val()
 							  +"&goodsKind=hotel";
-		openWin = open(url,"DP","width=300, height=500");
-		openWin.document.getElementById("goodsKind").value = "hotel";
+		openWin = open(url,"숙박선택","width=300, height=500");
+		
+	});
+	
+	$("#selectRentBtn").click(function()
+	{
+		var url = "doCreatePlace?doPlay="+$("#doPlay").val()
+							  +"&doArea="+$("#doArea").val()
+							  +"&goodsKind=rent";
+		openWin = open(url,"차량선택","width=300, height=500");
+		
+	});
+	
+	$("#selectMentoBtn").click(function()
+	{
+		var url = "doCreatePlace?doPlay="+$("#doPlay").val()
+							  +"&doArea="+$("#doArea").val()
+							  +"&goodsKind=mento";
+		openWin = open(url,"멘토선택","width=300, height=500");
+		
 	});
 	
 	
@@ -135,11 +153,29 @@ $(function(){
             	 <input type="hidden" id ="doStartDate" />
             	장소 : <input type="text" id="PlaceName" value="장소이름">
             		 <input type="hidden" name="placeNum" id="PlaceNum" value="장소번호">
+            		 <input type="hidden" id="placeDays">
             		 <input id="selectPlaceBtn" type="button" value="장소선택">
             </div>	
-            	숙박 :  <input type="text" id="hotelName" value="숙박이름">
+            <div>
+           		 숙박 :  <input type="text" id="hotelName" value="숙박이름">
             		 <input type="hidden" name="hotelNum" id="hotelNum" value="숙박번호">
+            		 <input type="hidden" id="hotelDays">
             		<input id="selectHotelBtn" type="button" value="숙박선택">
+            
+            </div>
+             <div>
+           		 렌트카 :  <input type="text" id="rentName" value="차량이름">
+            		 <input type="hidden" name="rentNum" id="rentNum" value="차량번호">
+            		 <input id="selectRentBtn" type="button" value="차량선택">
+            
+            </div>
+             <div>
+           		 멘토 :  <input type="text" id="mentoName" value="멘토이름">
+            		 <input type="hidden" name="mentoNum" id="mentoNum" value="멘토번호">
+      	      		 <input id="selectMentoBtn" type="button" value="멘토선택">
+            
+            </div>
+            	
             	
             
             

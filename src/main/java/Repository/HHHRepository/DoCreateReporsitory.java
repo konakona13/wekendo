@@ -43,6 +43,15 @@ public class DoCreateReporsitory
 			goodsKind = "GDH";
 			break;
 
+		case "rent":
+			goodsKind = "GDC";
+			break;
+			
+		case "mento":
+			goodsKind = "GDM";
+			break;
+			
+
 		default:
 			goodsKind = null;
 			break;
@@ -125,10 +134,10 @@ public class DoCreateReporsitory
 //			#{buyQty},#{buyStartDate},#{buyEndDate},#{buyDays},#{buyPrice}
 			
 			
-			/*
-			 * statement = namespace + ".updateGoodsStock";
-			 * sqlSession.insert(statement,doCreatePay.getPlaceNum());
-			 */
+			
+			statement = namespace + ".updateGoodsStock";
+			sqlSession.insert(statement,selectBuyGoods.getGoodPlaceNum());
+			
 			statement =  namespace + ".insertBuy2";
 			sqlSession.insert(statement,doCreatePay);
 		}

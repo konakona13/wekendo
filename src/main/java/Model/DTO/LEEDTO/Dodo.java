@@ -22,6 +22,15 @@ public class Dodo implements Serializable {
 	private Long memPh;
 	private String profile;
 	private String doImg;
+	private Long payTotal;
+
+	public Long getPayTotal() {
+		return payTotal;
+	}
+
+	public void setPayTotal(Long payTotal) {
+		this.payTotal = payTotal;
+	}
 
 	public String getDoImg() {
 		return doImg;

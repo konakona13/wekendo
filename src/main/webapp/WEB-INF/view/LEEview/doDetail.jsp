@@ -21,11 +21,13 @@
 호스트명 : ${doDetail.memName }<br>
 활동이미지 : <img src="HHHview/doIMG/${doDetail.doImg }" /><br>
 활동상세설명: ${doDetail.doDetail }<br>
+활동총금액 : <fmt:formatNumber value="${doDetail.payTotal }" pattern="#,###" /> 원<br>
+<br>
 <br>
 <table width=100% border="1" cellpadding="0" cellspacing="0" >
 <c:if test="${! empty dodos2}">
 	<tr align="center" valign="middle">
-		<td colspan="5">상품리스트</td>
+		<td colspan="7">활동에서 이용하는 상품내역</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
@@ -35,14 +37,20 @@
 		<td style="font-family:Tahoma;font-size:8pt;" width="30%">
 			<div align="center">상품명</div>
 		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="20%">
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">지역대중소</div>
 		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="20%">
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">테마대중소</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">소비자가</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">이용기간</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">구매가격</div>
 		</td>
 	</tr>
 <c:forEach var="dodo2" items="${dodos2}">
@@ -68,9 +76,15 @@
 			<div align="center">
 			${dodo2.themeLnum }/${dodo2.themeMnum }/${dodo2.themeSnum }
 			</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center"><fmt:formatNumber value="${dodo2.goodsPrice }" pattern="#,###" /> 원</div>
 		</td>	
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">${dodo2.goodsDays }</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center"><fmt:formatNumber value="${dodo2.buyPrice }" pattern="#,###" /> 원</div>
 		</td>
 	</tr>
 </c:forEach>
