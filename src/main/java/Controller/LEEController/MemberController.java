@@ -117,7 +117,7 @@ public class MemberController {
 	@RequestMapping("Logout")
 	public String logout(HttpSession session, HttpServletResponse response) {
 		memberLogoutService.logout(session, response);
-		return "redirect:loginmain";
+		return "redirect:main";
 	}
 
 	@RequestMapping("companyCash")

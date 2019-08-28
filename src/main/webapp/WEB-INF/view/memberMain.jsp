@@ -88,7 +88,7 @@ table{
           <c:if test="${memAuth.id != null}">
           		<a href="Logout">로그아웃</a>     	
           </li>
-          <li> <a href="#">마이페이지</a></li> 
+          <li> <a href="loginmain">마이페이지</a></li> 
           <li> <a href="#" id ="sendBoxList">쪽지함</a></li>
           </c:if>
           	

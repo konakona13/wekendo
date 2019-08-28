@@ -106,7 +106,7 @@ table{
           </li>
           <li>
           	<c:if test="${comAuth.id != null}">
-          		<a href="#">마이페이지</a>
+          		<a href="loginmain">마이페이지</a>
           	</c:if>
           </li>                  
           <li><a href="#">고객센터</a></li>
@@ -144,9 +144,9 @@ table{
 <table align="center"  width="750" border="1">
   <tr>
     <!-- <td width = "150" id = "menu_memMng" class="menu_memMng" ><a href="#"><h4>회원관리</h4> </a><br/></td>-->
-    <td width = "150" id = "menu_goodsMng" class="menu_goodsMng" ><a href="#"><h4>상품관리</h4></a><br/></td>
+    <td width = "150" id = "menu_goodsMng" class="menu_goodsMng" ><a href="goodsMain"><h4>상품관리</h4></a><br/></td>
     <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="#"><h4>주문관리</h4></a><br/></td>
-        <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="#"><h4>매출관리</h4></a><br/></td>
+        <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="companyCash"><h4>매출관리</h4></a><br/></td>
     <td width = "150" id = "menu_salesMng" class="menu_salesMng"><a href="#"><h4>상품문의</h4></a><br/></td>
   </tr>
 

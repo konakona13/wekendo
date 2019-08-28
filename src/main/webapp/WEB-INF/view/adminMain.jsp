@@ -140,11 +140,12 @@ table{
 
 <table align="center"  width="750" border="1">
   <tr>
-    <td width = "150" id = "menu_memMng" class="menu_memMng" ><a href="companyReg"><h4>회원관리</h4> </a><br/></td>
-    <td width = "150" id = "menu_goodsMng" class="menu_goodsMng" ><a href="#"><h4>상품관리</h4></a><br/></td>
+    <td width = "150" id = "menu_memMng" class="menu_memMng" ><a href="companyReg"><h4>회원관리-기업회원 가입승인</h4> </a><br/></td>
+    <td width = "150" id = "menu_goodsMng" class="menu_goodsMng" ><a href="confirmList"><h4>상품관리-업체상품승인</h4></a><br/></td>
+    <td width = "150" id = "menu_goodsMng" class="menu_goodsMng" ><a href="goodsMain"><h4>상품관리-업체상품리스트</h4></a><br/></td>
     <td width = "150" id = "menu_doMng" class="menu_doMng"><a href="#"><h4>DO관리</h4></a><br/></td>
-    <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="#"><h4>주문관리</h4></a><br/></td>
-    <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="#"><h4>매출관리</h4></a><br/></td>
+    <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="kendo_list"><h4>주문관리-활동리스트</h4></a><br/></td>
+    <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="Cashin"><h4>매출관리</h4></a><br/></td>
   </tr>
 
 
