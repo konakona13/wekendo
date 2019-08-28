@@ -55,7 +55,7 @@ public class DoCreateService
 
 	public String getMemberInfo(Model model,HttpSession session)
 	{
-		String memId = (String) session.getAttribute("testHHHid"); 
+		String memId = (String) session.getAttribute("memNum"); 
 		Member member = doCreateReporsitory.getmemberInfo(memId);
 		model.addAttribute("member",member);
 		model.addAttribute("createDoCommand", new CreateDoCommand());
@@ -66,7 +66,7 @@ public class DoCreateService
 			DoCreatePay doCreatePay, HttpSession session)
 	{
 		//AuthInfo memInfo = (AuthInfo) session.getAttribute("memAuth");
-		String memId = (String) session.getAttribute("testHHHid"); 
+		String memId = (String) session.getAttribute("memNum"); 
 		//아이디값 삽입
 		kendo.setHostNum(memId);
 		kendo = getKendo(createDoCommand);
@@ -115,7 +115,7 @@ public class DoCreateService
 	
 	public void upLoadDoIMG(Model model,MultipartFile mainPhoto,HttpServletRequest request,HttpSession session, String doNum)
 	{
-		String memInfo = (String) session.getAttribute("testHHHid");
+		String memInfo = (String) session.getAttribute("memNum");
 		try
 		{
 			//이미지 업로드

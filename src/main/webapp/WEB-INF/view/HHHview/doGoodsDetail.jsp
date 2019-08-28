@@ -44,7 +44,7 @@
 			opener.document.getElementById("buyPrice").value = txt; */
 			
 			$("#frm").submit();
-			window.close();
+			 window.close(); 
 		});
 		
 		$("#buyQty").click(function()
@@ -100,8 +100,8 @@
     <p>연락처</p>
     <p>상세주소</p>
     <p>상세사진</p>
-    <p>대여시작날짜 <input type="text" id="buyStartDate" name="buyStartDate"> </p>
-    <p>반납예정날짜 <input type="text" id="buyEndDate" name="buyEndDate"> </p>
+    <p>대여시작날짜 <input type="date" id="buyStartDate" name="buyStartDate"> </p>
+    <p>반납예정날짜 <input type="date" id="buyEndDate" name="buyEndDate"> </p>
     <p>총대여일 <input type="number" id="buyDays" name="buyDays" min="1" max="30" value="1" required/> </p>
     <p>상품수량<input type = "number" id="buyQty" name = "buyQty" min="1" max="${goods.goodsStock}" value="1" required/></p>
     <p>총금액 : <span id="buyPrice">${goods.goodsPrice}</span></p>

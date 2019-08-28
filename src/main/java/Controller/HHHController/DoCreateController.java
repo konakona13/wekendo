@@ -42,7 +42,7 @@ public class DoCreateController
 	@RequestMapping("/doCreateEnter")
 	public String doCreateEnter(Model model, HttpSession session)
 	{
-		session.setAttribute("testHHHid", "nm02");
+		//session.setAttribute("testHHHid", "nm02");
 		return doCreateService.getMemberInfo(model,session);
 	}
 	
@@ -71,7 +71,7 @@ public class DoCreateController
 		//String placeNum = (String) request.getAttribute("PlaceNum");
 		
 		createDoCommand.setPlaceNum(placeNum);
-		System.out.println(doCreatePay.getBuyDays());
+		System.out.println(doCreatePay.getBuyDays());//null?
 		System.out.println("from placeNum"+placeNum);
 		doCreateService.completeDoForm(model,mainPhoto,createDoCommand,doCreatePay,session);
 		return "HHHview/doCreatePay";
@@ -82,7 +82,8 @@ public class DoCreateController
 	{
 		System.out.println("진입테스트 : selectBuyGoods");
 		doCreateService.selectBuyGoods(model,selectBuyGoods,session);
-		return "slef.close()";
+		System.out.println("아웃테스트 : selectBuyGoods");
+		return "self.close()";
 	}
 	
 	@RequestMapping("/doPayComplete")

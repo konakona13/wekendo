@@ -84,17 +84,17 @@ $(function(){
                         <td> 활동명 <form:input type="text" path="doName"/></td>
                     </tr>
                      <tr>
-                        <td> 활동시작일  <form:input path="doStartDate" type="text"/></td>
+                        <td> 활동시작일  <form:input path="doStartDate" type="date"/></td>
                     </tr>
                     <tr>
                     	
                     </tr>
                       <tr>
-                        <td> 활동종료일  <form:input path="doEndDate" type="text"/></td>
+                        <td> 활동종료일  <form:input path="doEndDate" type="date"/></td>
                     </tr>
                     
                      <tr>
-                        <td> 모집종료일  <form:input type="text" path="doCloseDate"/></td>
+                        <td> 모집종료일  <form:input type="date" path="doCloseDate"/></td>
                     </tr>
                     <tr>
                             <td>모집인원  <form:input type="text" path="doPp"/></td>

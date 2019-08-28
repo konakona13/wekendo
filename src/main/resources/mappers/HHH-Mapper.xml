@@ -115,6 +115,7 @@
 		<where>
 			 <if test="value != null"> -->
 				goods_num LIKE #{value}||'%'
+				AND goods_stock = 1
 			 </if> 
 		</where>
 	</select>
@@ -169,7 +170,7 @@
 		INSERT INTO KENDO(<include refid="basekendo" />)
 		VALUES
 		('DO'||DO_NUM_SEQ.NEXTVAL, #{hostNum},#{doName},#{doStartDate},#{doEndDate},
-		SYSDATE,SYSDATE,#{doPp},#{doNowpp},#{doDetail},
+		SYSDATE,SYSDATE,#{doPp},1,#{doDetail},
 		#{doOptGender},#{doOptAge},'inviting')
 	</insert>
 	
@@ -221,6 +222,12 @@
 	
 	
 	<!-- insert 문 끝 -->
-
+	
+<!-- 	<update id="updateGoodsStock" parameterType="String">
+	UPDATE goods set goods_stock = 0 
+	WHERE goods_num = #{}
+	
+	</update>
+ -->
 
 </mapper>
