@@ -24,7 +24,7 @@
                 <tr>
                     <td>활동번호 </td>
                     <td> <input type=hidden name = "doNum" value="${kdc.doNum}"/>${kdc.doNum}
-                    	호스트번호 : <input type = "hidden" name = "hostNum" value = " ${kdc.hostNum}"/>${kdc.hostNum}
+                    	호스트번호 : <input type = "hidden" name = "hostNum" value = "${kdc.hostNum}"/>${kdc.hostNum}
                     </td>
                     
                 </tr>
@@ -70,7 +70,9 @@
                 </tr>  
                 <tr>
                     <td>단가 </td>
-                    <td><input type="hidden" name = "doPrice" value="${kdc.doPrice}"/>${kdc.doPrice}</td>
+                    <td><input type="hidden" name = "doPrice" value="${kdc.doPrice}"/>${kdc.doPrice}
+                    	<input type="hidden" name = "doPp" value="${kdc.doPp}"/>
+                    	<input type="hidden" name = "doNowPp" value="${kdc.doNowPp}"/></td>
                 </tr>                               
                 <tr>
                     <td>총금액 </td>

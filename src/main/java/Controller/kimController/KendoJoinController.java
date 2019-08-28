@@ -66,7 +66,7 @@ public class KendoJoinController {
 	
 	@RequestMapping("/kendoDetail/guestPayAction")
 	public String guestPayAction(Model model,GuestPayCommand guestPayCommand, KendoJoinCommand kendoJoinCommand,KendoDetailCommand kendoDetailCommand, HttpSession session) {
-		System.out.println("guestPayDetail");
+		System.out.println("guestPayDetail11111");
 		path = kendoJoinService.guestPayDetail(model, guestPayCommand, kendoJoinCommand,kendoDetailCommand,session);
 		return path;		
 	}
