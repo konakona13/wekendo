@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import Model.DTO.LEEDTO.Buybuy;
 import Model.DTO.LEEDTO.CashIn;
 import Model.DTO.LEEDTO.Dodo;
+import Model.DTO.LEEDTO.Dodo2;
 import Model.DTO.LEEDTO.Goods;
 import Model.DTO.LEEDTO.StartEndPage;
 
@@ -136,6 +137,14 @@ public class AdminSessionRepository {
 		Dodo result = new Dodo();
 		String statement = namespace + ".getDoBuyDetail";
 		result = sqlSession.selectOne(statement, doName);
+		return result;
+	}
+
+	public List<Dodo2> getDoinGoodsDetail(String doNum1) {
+		// TODO Auto-generated method stub
+		List<Dodo2> result = null;
+		String statement = namespace + ".getDoinGoodsDetail";
+		result = sqlSession.selectList(statement, doNum1);
 		return result;
 	}
 }

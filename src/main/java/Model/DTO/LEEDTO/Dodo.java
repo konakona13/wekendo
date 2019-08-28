@@ -21,6 +21,15 @@ public class Dodo implements Serializable {
 	private String memName;
 	private Long memPh;
 	private String profile;
+	private String doImg;
+
+	public String getDoImg() {
+		return doImg;
+	}
+
+	public void setDoImg(String doImg) {
+		this.doImg = doImg;
+	}
 
 	public String getMemName() {
 		return memName;

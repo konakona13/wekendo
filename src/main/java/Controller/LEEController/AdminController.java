@@ -1,7 +1,5 @@
 package Controller.LEEController;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +60,11 @@ public class AdminController {
 	@RequestMapping(value = "/DoBuyDetail", method = RequestMethod.GET)
 	public String DoBuyDetail(Model model, @RequestParam(value = "doName") String doName) {
 		return cashInService.doBuyDetail(model, doName);
+	}
+	
+	@RequestMapping("/DodoDetail2")
+	public String doGoodsDetail(Model model, @RequestParam(value = "dodoNum") String doNum1) {
+		System.out.println(doNum1);
+		return kendoListService.doGoodsDetail(model, doNum1);
 	}
 }

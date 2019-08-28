@@ -25,6 +25,15 @@ public class Buybuy implements Serializable {
 	private String companyName;
 	private String goodsName;
 	private String doName;
+	private Timestamp dutchDate;
+
+	public Timestamp getDutchDate() {
+		return dutchDate;
+	}
+
+	public void setDutchDate(Timestamp dutchDate) {
+		this.dutchDate = dutchDate;
+	}
 
 	public String getGoodsName() {
 		return goodsName;
