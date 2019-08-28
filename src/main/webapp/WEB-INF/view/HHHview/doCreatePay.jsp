@@ -47,8 +47,8 @@ function payComplete()
     <p>장소이용금액 : ${placeGoods.goodsPrice} </p>
     
     <p>이용숙박상품명 : </p>
-    <p>숙박이용기간</p>
-    <p>숙박이용총금액</p>
+    <p>숙박이용기간 : </p>
+    <p>숙박이용총금액 : </p>
     
     <p>렌터카상품명</p>
     <p>렌터카이용기간</p>

@@ -73,14 +73,24 @@ public class DoCreateReporsitory
 	public String insertKendo(Kendo kendo, DoPayComplete doPayComplete, DoCreatePay doCreatePay, HttpSession session)
 	{
 		int result = 0;
+		int sumPrice = 0;
+		//가격총합
+		@SuppressWarnings("unchecked")
+		List<SelectBuyGoods> goodsList = (List<SelectBuyGoods>) session.getAttribute("goodsList");
+		for (SelectBuyGoods selectBuyGoods : goodsList)
+		{
+			sumPrice += Integer.parseInt(selectBuyGoods.getTotalPrice());
+		}
+		System.out.println("활동 총결제액 : " + sumPrice);
+		doPayComplete.setPrice(Integer.toString(sumPrice));
 		
 		String statement =  namespace + ".insertKendo";
 		result = sqlSession.insert(statement,kendo);
 		System.out.println("활동테이블insert");
 		String doNum = getMaxNum(1);
-		doPayComplete.setDoNum(getMaxNum(1));
-		doCreatePay.setDoNum(getMaxNum(1));
-		System.out.println("DoNum 세팅");
+		doPayComplete.setDoNum(doNum);
+		doCreatePay.setDoNum(doNum);
+		System.out.println("DoNum 세팅 : doNum");
 		
 		statement =  namespace + ".insertPayment";
 		result = sqlSession.insert(statement,doPayComplete);
@@ -94,8 +104,7 @@ public class DoCreateReporsitory
 		System.out.println("방장결제insert");
 		
 		
-		@SuppressWarnings("unchecked")
-		List<SelectBuyGoods> goodsList = (List<SelectBuyGoods>) session.getAttribute("goodsList");
+		
 		
 		for (SelectBuyGoods selectBuyGoods : goodsList)
 		{
@@ -114,8 +123,14 @@ public class DoCreateReporsitory
 //			#{hostNum},#{PlaceNum}
 //			, #{companyNum},#{mapLNum},#{mapMNum},#{mapSNum},#{themeLNum},#{themeMNum},#{themeSNum},
 //			#{buyQty},#{buyStartDate},#{buyEndDate},#{buyDays},#{buyPrice}
+			
+			
+			/*
+			 * statement = namespace + ".updateGoodsStock";
+			 * sqlSession.insert(statement,doCreatePay.getPlaceNum());
+			 */
 			statement =  namespace + ".insertBuy2";
-			result = sqlSession.insert(statement,doCreatePay);
+			sqlSession.insert(statement,doCreatePay);
 		}
 		
 		
