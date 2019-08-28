@@ -127,6 +127,36 @@
 		<result column="MEMBER_PH" jdbcType="BIGINT" property="memPh" />
 		<result column="MEMBER_PHOTO" jdbcType="VARCHAR"
 			property="profile" />
+		<result column="DO_IMG_NAME" jdbcType="VARCHAR"
+			property="doImg" />
+	</resultMap>
+
+	<resultMap type="Model.DTO.LEEDTO.Dodo2" id="baseDo2">
+		<id column="DO_NUM" jdbcType="VARCHAR" property="doNum" />
+		<result column="GOODS_NUM" jdbcType="VARCHAR"
+			property="goodsNum" />
+		<result column="COMPANY_NUM" jdbcType="VARCHAR"
+			property="companyNum" />
+		<result column="GOODS_NAME" jdbcType="VARCHAR"
+			property="goodsName" />
+		<result column="DO_IMG_NAME" jdbcType="VARCHAR"
+			property="doImage" />
+		<result column="COMPANY_NAME" jdbcType="VARCHAR"
+			property="companyName" />
+		<result column="MAP_L_NUM" jdbcType="VARCHAR"
+			property="mapLnum" />
+		<result column="MAP_M_NUM" jdbcType="VARCHAR"
+			property="mapMnum" />
+		<result column="MAP_S_NUM" jdbcType="VARCHAR"
+			property="mapSnum" />
+		<result column="THEME_L_NUM" jdbcType="VARCHAR"
+			property="themeLnum" />
+		<result column="THEME_M_NUM" jdbcType="VARCHAR"
+			property="themeMnum" />
+		<result column="THEME_S_NUM" jdbcType="VARCHAR"
+			property="themeSnum" />
+		<result column="BUY_DAYS" jdbcType="VARCHAR"
+			property="goodsDays" />
 	</resultMap>
 
 	<resultMap type="Model.DTO.LEEDTO.CashIn" id="baseCashin">
@@ -182,6 +212,8 @@
 		<result column="GOODS_NAME" jdbcType="VARCHAR"
 			property="goodsName" />
 		<result column="DO_NAME" jdbcType="VARCHAR" property="doName" />
+		<result column="do_open_date" jdbcType="TIMESTAMP"
+			property="dutchDate" />
 	</resultMap>
 
 	<resultMap type="Model.DTO.LEEDTO.Goods" id="baseGoods">
@@ -279,9 +311,15 @@
 	<select id="getDoDetail" parameterType="String"
 		resultMap="baseDo">
 		select
-		<include refid="basecolumnDo" />
-		from KENDO
-		where DO_NUM = #{doNum}
+		k.DO_NUM,k.HOST_NUM,DO_NAME,DO_START_DATE,DO_END_DATE,DO_OPEN_DATE,
+		DO_CLOSE_DATE,DO_PP,DO_NOWPP,DO_DETAIL,DO_OPT_GENDER,DO_OPT_AGE,DO_STATUS,
+		MEMBER_PH,MEMBER_PHOTO,DO_IMG_NAME
+		from KENDO k, Member m, DO_IMG d
+		where k.host_num = m.member_num
+		and
+		k.do_num = d.do_num
+		and k.DO_NUM =
+		#{doNum}
 	</select>
 
 	<select id="getCashList" parameterType="StartEndPage"
@@ -315,10 +353,11 @@
 		b.THEME_S_NUM,
 		BUY_QTY, BUY_START_DATE,
 		BUY_END_DATE, BUY_DAYS,
-		BUY_PRICE
+		BUY_PRICE, do_open_date
 		from BUYBUY b,
 		company c, kendo kd, goods g
-		where b.company_num = c.company_num
+		where b.company_num =
+		c.company_num
 		and
 		b.do_num = kd.do_num
 		and b.goods_num = g.goods_num
@@ -326,7 +365,8 @@
 		(do_status =
 		'doend'
 		or do_status = 'cashcomplete')
-		order by BUY_NUM desc
+		order by do_open_date
+		desc
 	</select>
 	<select id="getBuyListCount" resultType="int">
 		select count(*) from
@@ -361,22 +401,25 @@
 		BUY_QTY,
 		BUY_START_DATE,
 		BUY_END_DATE, BUY_DAYS,
-		BUY_PRICE
+		BUY_PRICE, do_open_date
 		from BUYBUY b,
 		company
 		c, kendo kd, goods g
-		where b.company_num = c.company_num
+		where b.company_num =
+		c.company_num
 		and
 		b.do_num =
 		kd.do_num
 		and b.goods_num = g.goods_num
-		and company_name =
+		and
+		company_name =
 		#{comName}
 		and
 		(do_status = 'doend'
-		or do_status = 'cashcomplete')
+		or do_status =
+		'cashcomplete')
 		order
-		by BUY_NUM
+		by do_open_date
 		desc
 	</select>
 
@@ -454,9 +497,11 @@
 	<select id="getDoBuyDetail" parameterType="String"
 		resultMap="baseDo">
 		select
-		DO_NUM, k.HOST_NUM, DO_NAME, DO_START_DATE, DO_END_DATE,
+		DO_NUM, k.HOST_NUM, DO_NAME, DO_START_DATE,
+		DO_END_DATE,
 		DO_OPEN_DATE,
-		DO_CLOSE_DATE, DO_PP, DO_NOWPP, DO_DETAIL, DO_OPT_GENDER,
+		DO_CLOSE_DATE, DO_PP, DO_NOWPP, DO_DETAIL,
+		DO_OPT_GENDER,
 		DO_OPT_AGE,
 		DO_STATUS, MEMBER_NAME,MEMBER_PH,MEMBER_PHOTO
 		from kendo k,
@@ -465,5 +510,23 @@
 		m.MEMBER_NUM
 		and DO_NAME =
 		#{doName}
+	</select>
+
+	<select id="getDoinGoodsDetail" parameterType="String"
+		resultMap="baseDo2">
+		select
+		k.DO_NUM,g.GOODS_NUM,c.COMPANY_NUM,company_NAME,GOODS_NAME,DO_IMG_NAME,
+		b.MAP_L_NUM,b.MAP_M_NUM,b.MAP_S_NUM,b.THEME_L_NUM,b.THEME_M_NUM,
+		b.THEME_S_NUM,BUY_DAYS
+		from KENDO k, company c, buybuy b, goods
+		g,do_img dimg
+		where k.do_num = b.do_num
+		and
+		b.goods_num = g.goods_num
+		and
+		g.company_num = c.company_num
+		and k.do_num = dimg.do_num
+		and k.DO_NUM =
+		#{doNum1}
 	</select>
 </mapper>

@@ -17,7 +17,7 @@
 <script type="text/javascript">
 </script>
 <body>
-<h1>>구매번호  ${goodsDetail.goodsNum } 의 상세내용</h1><br>
+<h1>>상품번호  ${goodsDetail.goodsNum } 의 상세내용</h1><br>
 상품명 : ${goodsDetail.goodsName }<br>
 판매사명 : ${goodsDetail.companyName }<br>
 상품원가 : ${goodsDetail.goodsPrice }<br>

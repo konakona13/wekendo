@@ -158,10 +158,12 @@ commandName="loginCommand">
 </table>
 <a href="Logout" >로그아웃</a>
 <a href="HDO" >활동개설</a>
+<a href="kendoJoin" >활동참가</a>
+
 <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>
-<a href="board_list" >게시글</a>
+
 <a href="member_list" >회원리스트</a>
 <a href="goods_list" >상품리스트</a>
 <a href="survey" >설문지</a>
@@ -205,21 +207,23 @@ commandName="loginCommand">
 관리자 페이지<br>
 관리자 이름 : ${comAuth.name }<br>
  <a href="Logout" >로그아웃</a>
- <a href="kendo_list" >활동리스트</a>
- <a href="Cashin" >정산관리</a>
- <a href="confirmList" >업체상품 승인</a>
- <a href="goodsMain" >협력 업체 상품리스트</a>
+ <a href="kendo_list" >주문관리-활동리스트</a>
+ <a href="Cashin" >매출관리</a>
+ <a href="confirmList" >상품관리 - 업체상품승인</a>
+ <a href="goodsMain" >상품관리 - 업체 상품리스트</a>
+ <a href="companyReg" >회원관리 - 기업 가입 승인</a>
+ <a href="kendoJoinList" >유선씨켄두조인리스트?</a>
  <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>
 <a href="board_list" >게시글</a>
-<a href="member_list" >회원리스트</a>
+
 
 <a href="submission" >파일 업로드</a>
 <a href="email" >메일보내기</a>
 <a href="emailAll" >전체 메일 보내기</a>
 <a href="ajaxForm" >Ajax</a>
-<a href= "domino" >도미노 속성</a>
+
  -->
  <%} %>
 </body>

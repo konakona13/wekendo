@@ -12,9 +12,16 @@ public class KendoDetailCommand implements Serializable{
 	private Integer doPrice;
 	private Integer doPp;
 	private Integer doNowPp;
+	private String hostNum;
 	
 	
 	
+	public String getHostNum() {
+		return hostNum;
+	}
+	public void setHostNum(String hostNum) {
+		this.hostNum = hostNum;
+	}
 	public Integer getDoNowPp() {
 		return doNowPp;
 	}

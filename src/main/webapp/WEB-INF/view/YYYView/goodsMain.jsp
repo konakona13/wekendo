@@ -11,6 +11,9 @@
 <meta charset="UTF-8">
 <title>상품목록</title>
 <script type="text/javascript">
+	var timestamp = 1476508607 * 1000;
+	var date = new Date(timestamp);
+	console.log('year is ' + date.getFullYear());
 
 
 </script>
@@ -51,7 +54,7 @@
          ${list.goodsNum}
       </td>
        <td style="font-family:Tahoma;font-size:10pt;">
-         <div align="center">${company.companyKind}</div>
+         <div align="center">${list.companyKind}</div>
       </td>
       
       <td style="font-family:Tahoma;font-size:10pt;">
@@ -64,12 +67,12 @@
       </td>
       
       <td style="font-family:Tahoma;font-size:10pt;">
-         <div align="center">${company.companyName}</div>
+         <div align="center">${list.companyName}</div>
       </td>
       
       <td style="font-family:Tahoma;font-size:10pt;">
-         <div align="center">
-         ${list.regDate}
+         <div align="center"> 
+         <fmt:formatDate value="${list.regDate}" pattern="yy.MM.dd" />
          </div>
       </td>
          

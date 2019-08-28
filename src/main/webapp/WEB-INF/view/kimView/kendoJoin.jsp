@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -23,7 +23,10 @@
             <table>
                 <tr>
                     <td>활동번호 </td>
-                    <td> <input type=hidden name = "doNum" value="${kdc.doNum}"/>${kdc.doNum}</td>
+                    <td> <input type=hidden name = "doNum" value="${kdc.doNum}"/>${kdc.doNum}
+                    	호스트번호 : <input type = "hidden" name = "hostNum" value = " ${kdc.hostNum}"/>${kdc.hostNum}
+                    </td>
+                    
                 </tr>
                 <tr>
                     <td>활동구분 </td>

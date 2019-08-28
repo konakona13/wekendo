@@ -3,7 +3,7 @@ package Model.DTO.YYYDTO;
 import java.io.Serializable;
 import java.security.Timestamp;
 
-public class PlaceGoods implements Serializable {
+public class Goods implements Serializable {
 	
 	String goodsNum;
 	String mapLNum;
