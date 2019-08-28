@@ -18,7 +18,6 @@ public class KendoJoin implements Serializable{
 	private String joinIntroduce;
 	private Integer joinQty;
 	
-	
 	public String getJoinNum() {
 		return joinNum;
 	}
@@ -68,6 +67,7 @@ public class KendoJoin implements Serializable{
 		this.joinQty = joinQty;
 	}
 	
+
 	
 
 	

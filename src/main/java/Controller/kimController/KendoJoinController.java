@@ -6,8 +6,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import Command.kimCommand.GuestPayCommand;
 import Command.kimCommand.KendoDetailCommand;
@@ -34,14 +35,9 @@ public class KendoJoinController {
 		return path;
 	}
 	
-	@RequestMapping("/kendoDetail")
-	public String kendoDetail(Model model) {
-		path = "kimView/kendoDetail";
-		return path;
-	}
+
 	
-	
-	@RequestMapping("/kendoJoin")
+	@RequestMapping("/kendoDetail/kendoJoin")
 	public String kendoJoin(Model model,KendoDetailCommand kendoDetailCommand) {
 
 		path = "kimView/kendoJoin";
@@ -49,13 +45,13 @@ public class KendoJoinController {
 		return path;
 	}
 	
-	@RequestMapping("/kendoJoinAction")
+	@RequestMapping("/kendoDetail/kendoJoinAction")
 	public String kendoJoinAction(Model model,KendoJoinCommand kendoJoinCommand, KendoDetailCommand kendoDetailCommand) {
 		path = kendoJoinService.addKendoJoin(model, kendoJoinCommand, kendoDetailCommand);
 		return path;		
 	}
 	
-	@RequestMapping("/guestPayAction")
+	@RequestMapping("/kendoDetail/guestPayAction")
 	public String guestPayAction(Model model,GuestPayCommand guestPayCommand, KendoJoinCommand kendoJoinCommand,KendoDetailCommand kendoDetailCommand, HttpSession session) {
 		System.out.println("guestPayDetail");
 		path = kendoJoinService.guestPayDetail(model, guestPayCommand, kendoJoinCommand,kendoDetailCommand,session);
@@ -67,4 +63,10 @@ public class KendoJoinController {
 		return kendoJoinService.kendoJoinList(model);
 	
 	}
+	
+	@RequestMapping("/kendoDetail/{num}")
+	public String kendoDetail(@PathVariable("num") String doNum, Model model) {
+		return kendoJoinService.kendoDetail(doNum, model);
+	}
+
 }

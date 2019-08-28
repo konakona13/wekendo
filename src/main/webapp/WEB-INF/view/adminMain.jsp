@@ -8,6 +8,8 @@
 	String memberNum = (String)session.getAttribute("memNum");
 	session.getAttribute("memAuth");
 	response.setCharacterEncoding("utf-8");
+	String admin = (String)session.getAttribute("admin");
+	
  %> 
 <!DOCTYPE html>
 <html>
@@ -97,18 +99,13 @@ table{
         <ul class="primary-nav">
           <li><a href="memberJoin">회원가입</a></li>
           <li>
-          	<c:if test="${comAuth.id == null}">
+          	<c:if test="${admin == null}">
           		<a href="loginmain">로그인</a>
           	</c:if>
-          	<c:if test="${comAuth.id != null}">
+          	<c:if test="${admin != null}">
           		<a href="Logout">로그아웃</a>
           	</c:if>
           </li>
-          <li>
-          	<c:if test="${comAuth.id != null}">
-          		<a href="#">마이페이지</a>
-          	</c:if>
-          </li>                  
           <li><a href="#">고객센터</a></li>
         </ul>
       </nav>
@@ -143,11 +140,11 @@ table{
 
 <table align="center"  width="750" border="1">
   <tr>
-    <!-- <td width = "150" id = "menu_memMng" class="menu_memMng" ><a href="#"><h4>회원관리</h4> </a><br/></td>-->
+    <td width = "150" id = "menu_memMng" class="menu_memMng" ><a href="companyReg"><h4>회원관리</h4> </a><br/></td>
     <td width = "150" id = "menu_goodsMng" class="menu_goodsMng" ><a href="#"><h4>상품관리</h4></a><br/></td>
+    <td width = "150" id = "menu_doMng" class="menu_doMng"><a href="#"><h4>DO관리</h4></a><br/></td>
     <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="#"><h4>주문관리</h4></a><br/></td>
-        <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="#"><h4>매출관리</h4></a><br/></td>
-    <td width = "150" id = "menu_salesMng" class="menu_salesMng"><a href="#"><h4>상품문의</h4></a><br/></td>
+    <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="#"><h4>매출관리</h4></a><br/></td>
   </tr>
 
 
@@ -174,8 +171,8 @@ table{
     <br/><br/>
     <div class="">
     
-    <c:if test="${comAuth.id != null}">
-    <h5> ${comAuth.id} 님 환영합니다.</h5> <br/><br/>
+    <c:if test="${admin != null}">
+    <h5> ${admin} 님 로그인 되었습니다.</h5> <br/><br/>
     </c:if>
     
         <img src="images/main_event1.jpg" class="img-responsive" alt="" align = "center"/>

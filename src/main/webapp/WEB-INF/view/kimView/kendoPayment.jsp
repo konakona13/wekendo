@@ -25,7 +25,7 @@
         <form name="frm" action="guestPayAction" method="POST">
             활동번호 :  <input type="hidden" name = "doNum" value="${kdc.doNum}"/>${kdc.doNum}<br /> 
             활동이름 :  <input type="hidden" name = "doName" value="${kdc.doName}"/>${kdc.doName}<br />
-            
+        호스트번호  :  <input type="hidden" name = "hostNum" value="${kdc.hostNum}"/>${kdc.hostNum}<br />     
             수     량  : <input type="hidden" name = "joinQty" value = "${kdc.doQty}"/>${kdc.doQty}<br />
             카카오톡 아이디  : <input type="hidden" name = "joinKakaoId"  value ="${kjc.joinKakaoId}"/> ${kjc.joinKakaoId}<br />
             자기소개  :  <input type="hidden" name = "joinIntroduce"  value ="${kjc.joinIntroduce}"/>${kjc.joinIntroduce}<br />

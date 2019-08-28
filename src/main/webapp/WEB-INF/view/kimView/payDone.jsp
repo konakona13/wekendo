@@ -18,7 +18,7 @@
         </p> 
         
 
-      <a href="kim" >메인</a>    
+      <a href="../main" >메인</a>    
 
     </div>
 </body>
