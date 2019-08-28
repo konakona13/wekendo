@@ -2,12 +2,15 @@ package Repository.HHHRepository;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import Command.HHHCommand.DoCreatePay;
 import Command.HHHCommand.DoPayComplete;
+import Command.HHHCommand.SelectBuyGoods;
 import Model.DTO.HHHDTO.DoIMG;
 import Model.DTO.HHHDTO.Kendo;
 import Model.DTO.HHHDTO.Member;
@@ -26,10 +29,32 @@ public class DoCreateReporsitory
 		String statement =  namespace + ".placeList";
 		result = sqlSession.selectList(statement);
 		return result;
-		
-		
-		
 	}
+	
+	public List<PlaceGoods> getGDList(String goodsKind)
+	{
+		System.out.println("getGDList 리포진입");
+		switch (goodsKind)
+		{
+		case "place":
+			goodsKind = "GDP";
+			break;
+		case "hotel":
+			goodsKind = "GDH";
+			break;
+
+		default:
+			goodsKind = null;
+			break;
+		}
+		
+		System.out.println("goodsKind : " + goodsKind);		
+		List<PlaceGoods> result = null;
+		String statement =  namespace + ".goodsList";
+		result = sqlSession.selectList(statement,goodsKind);
+		return result;
+	}
+	
 	public PlaceGoods getOneGoods(String num)
 	{
 		PlaceGoods result = null;
@@ -45,7 +70,7 @@ public class DoCreateReporsitory
 		result = sqlSession.selectOne(statement,memberId);
 		return result;
 	}
-	public String insertKendo(Kendo kendo, DoPayComplete doPayComplete, DoCreatePay doCreatePay)
+	public String insertKendo(Kendo kendo, DoPayComplete doPayComplete, DoCreatePay doCreatePay, HttpSession session)
 	{
 		int result = 0;
 		
@@ -68,21 +93,32 @@ public class DoCreateReporsitory
 		result = sqlSession.insert(statement,doPayComplete);
 		System.out.println("방장결제insert");
 		
-		statement =  namespace + ".insertBuy";
 		
-		System.out.println("검증디버그 시작");
-		System.out.println("getBuyStartDate : " + doCreatePay.getBuyStartDate());
-		System.out.println("getBuyEndDate : " + doCreatePay.getBuyEndDate());
-		System.out.println("getDoNum : " + doCreatePay.getDoNum());
-		System.out.println("getPayNum : " + doCreatePay.getPayNum());
-		System.out.println("getBuyPrice : " + doCreatePay.getBuyPrice());
-		System.out.println("hostNum : " + doCreatePay.getHostNum());
-		System.out.println("getBuyPrice : " + doCreatePay.getPlaceNum());
-//		#{hostNum},#{PlaceNum}
-//		, #{companyNum},#{mapLNum},#{mapMNum},#{mapSNum},#{themeLNum},#{themeMNum},#{themeSNum},
-//		#{buyQty},#{buyStartDate},#{buyEndDate},#{buyDays},#{buyPrice}
+		@SuppressWarnings("unchecked")
+		List<SelectBuyGoods> goodsList = (List<SelectBuyGoods>) session.getAttribute("goodsList");
 		
-		result = sqlSession.insert(statement,doCreatePay);
+		for (SelectBuyGoods selectBuyGoods : goodsList)
+		{
+			doCreatePay.setSelectBuyGoods(selectBuyGoods);
+			PlaceGoods placeGoods = getOneGoods(selectBuyGoods.getGoodPlaceNum());
+			doCreatePay.setPlaceGoods(placeGoods);
+			System.out.println("검증디버그 시작");
+			System.out.println("getBuyStartDate : " + selectBuyGoods.getBuyStartDate());
+			System.out.println("getBuyEndDate : " + selectBuyGoods.getBuyEndDate());
+			System.out.println("getDoNum : " + doCreatePay.getDoNum());
+			System.out.println("getPayNum : " + doCreatePay.getPayNum());
+			System.out.println("hostNum : " + doCreatePay.getHostNum());
+			System.out.println("getPlaceNum : " + doCreatePay.getPlaceNum());
+			System.out.println("getBuyPrice : " + selectBuyGoods.getTotalPrice());
+			
+//			#{hostNum},#{PlaceNum}
+//			, #{companyNum},#{mapLNum},#{mapMNum},#{mapSNum},#{themeLNum},#{themeMNum},#{themeSNum},
+//			#{buyQty},#{buyStartDate},#{buyEndDate},#{buyDays},#{buyPrice}
+			statement =  namespace + ".insertBuy2";
+			result = sqlSession.insert(statement,doCreatePay);
+		}
+		
+		
 		
 		System.out.println("구매Buy insert");
 		

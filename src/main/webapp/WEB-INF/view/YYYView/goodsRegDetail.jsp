@@ -7,6 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
+<script type="text/javascript">
+		$(function(){
+		    $.ajax({
+		       type:"POST",
+		       url :"mapL" "mapM" "mapS"
+		       datatype: "html",
+		       success: function(data1){
+		          $("#mapMain").html(data1);
+		       }
+		    });
+		 })
+		  $(function(){
+		    $.ajax({
+		       type:"POST",
+		       url :"themeL",
+		       datatype: "html",
+		       success: function(dataTheme1){
+		          $("#themeMain").html(dataTheme1);
+		       }
+		    });
+		 })
+
+</script>
 </head>
 <body>
 
@@ -23,9 +46,10 @@
 		
 		  
 		지역:  <!-- mapLarge,M,S 테이블에서 이름 불러오기 -->
-			<!--<a> ${maptheme.mapLName} &nbsp; ${maptheme.mapMName} &nbsp; ${maptheme.mapSName} </a> <br><br>	 -->
+			<div id = "mapMain"> </div> <br>
+			
 		테마:  <!-- themeLarge,M,S 테이블에서 이름 불러오기 -->
-			<!--<a>${maptheme.themeLName} &nbsp; ${maptheme.themeMName} &nbsp; ${maptheme.themeSName} </a> <br><br>	-->
+			<div id = "themeMain"> </div> <br>
 		
 		이미지  <br><br>
 		<c:forEach var="list" items="${imgList}">
@@ -40,8 +64,8 @@
 		
 		<br><br><br><br>
 		
-		<a href="goodsModify/${goods.goodsNum}">[수정]</a>&nbsp;&nbsp;
-		<a href="goodsDelete/${goods.goodsNum}">[삭제]</a>&nbsp;&nbsp;
+		<a href="../goodsModify/${goods.goodsNum}">[수정]</a>&nbsp;&nbsp;
+		<a href="../goodsDelete/${goods.goodsNum}">[삭제]</a>&nbsp;&nbsp;
 		<a href="../goodsMain">[목록]</a>&nbsp;&nbsp;
 
 

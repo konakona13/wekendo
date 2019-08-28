@@ -15,6 +15,9 @@
 <bean id = "kendoList"  class="Model.DTO.kimDTO.KendoList" />
 <bean id = "letter"  class="Model.DTO.kimDTO.Letter" />
 
+<bean id = "buybuyKim"  class="Model.DTO.kimDTO.BuybuyKim" />
+<bean id = "paymentKim"  class="Model.DTO.kimDTO.PaymentKim" />
+
 
 <bean id = "kendoJoinRepository"  class="Repository.kimRepository.KendoJoinRepository" />
 <bean id = "letterRepository"  class="Repository.kimRepository.LetterRepository" />	

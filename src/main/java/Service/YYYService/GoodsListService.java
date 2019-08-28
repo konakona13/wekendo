@@ -12,7 +12,8 @@ import org.springframework.ui.Model;
 
 import Model.DTO.YYYDTO.Company;
 import Model.DTO.YYYDTO.GoodsImg;
-import Model.DTO.YYYDTO.PlaceGoods;
+import Model.DTO.YYYDTO.GoodsList;
+import Model.DTO.YYYDTO.Goods;
 import Repository.YYYRepository.GoodsRepository;
 
 
@@ -21,26 +22,32 @@ public class GoodsListService {
 	
 	@Autowired
 	private GoodsRepository goodsRepository;
+	@Autowired Company company;
+	@Autowired GoodsList goodsList;
 	
 	private String companyNum;
+	
 	
 
 	public String goodsList(Model model, HttpSession session) {
 		
-		companyNum = (String)session.getAttribute("comNum");
-		Company company = (Company) goodsRepository.getCompanyDetail(companyNum);
-		model.addAttribute("company", company);
+		companyNum = (String)session.getAttribute("comNum"); //로그인하면 세션에 있는 회사번호를 받아옴
 		
-		List<PlaceGoods> list = new ArrayList<PlaceGoods>();
+		List<GoodsList> list = new ArrayList<GoodsList>();
+		
 		System.out.println("받아오는 Service 회사번호 : " +companyNum);
 		
-		if(companyNum.equals("admin")) {
+		if(companyNum.equals("admin")) { //관리자 로그인 - 전체 상품 조회
 			System.out.println("받아오는 Service 회사번호 : " +companyNum);
 			list = goodsRepository.getGoodsAll();
-		} else {
+		} 
+		
+		else { //기업회원 로그인 - 내것만 조회
+			
 			list = goodsRepository.getGoodsList(companyNum);
 			System.out.println("회사번호 : " +companyNum);
 		}
+		
 		model.addAttribute("list", list);
 		
 		

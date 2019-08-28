@@ -38,5 +38,6 @@
 <input type = "submit" value = "발송" name = "sendLetterAction"/>
  </form>
  </div>
+ <a href="#" onClick="self.close();">닫기</a>
 </body>
 </html>

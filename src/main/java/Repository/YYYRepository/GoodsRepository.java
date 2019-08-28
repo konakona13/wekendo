@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import Model.DTO.YYYDTO.Company;
 import Model.DTO.YYYDTO.GoodsImg;
-import Model.DTO.YYYDTO.PlaceGoods;
+import Model.DTO.YYYDTO.GoodsList;
+import Model.DTO.YYYDTO.Goods;
 
 @Repository
 public class GoodsRepository {
@@ -22,7 +23,7 @@ public class GoodsRepository {
 	private String goodsNum= "";
 	
 	//상품등록
-	public String insertPlace(PlaceGoods placeGoods, GoodsImg goodsImg, List<String> list) {
+	public String insertPlace(Goods placeGoods, GoodsImg goodsImg, List<String> list) {
 		
 		int result = 0;
 		String statement= "";
@@ -45,7 +46,7 @@ public class GoodsRepository {
 			statement = namespace + ".setGoodsImg";
 			result = sqlSession.insert(statement, goodsImg);
 		}
-		
+		System.out.println("상품이미지 입력완료 이미지 장 수: " + list.size());
 		
 		return goodsNum;
 	}
@@ -55,37 +56,29 @@ public class GoodsRepository {
 	
 	//상품리스트 
 	//회원용
-	public List<PlaceGoods> getGoodsList(String companyNum) {
-		List<PlaceGoods> result = null;
+	public List<GoodsList> getGoodsList(String companyNum) {
+		List<GoodsList> result = null;
 		String statement =  namespace + ".getGoodsList"; 
 		result = sqlSession.selectList(statement, companyNum);
 		
 		return result;
 	}
 	//관리자용
-	public List<PlaceGoods> getGoodsAll(){
-		List<PlaceGoods> result = null;
+	public List<GoodsList> getGoodsAll(){
+		List<GoodsList> result = null;
 		String statement =  namespace + ".getGoodsAll"; 
 		result = sqlSession.selectList(statement);
 		System.out.println("DB조회 상품 게시글 수 : " +result.size());
 		
 		return result;
 	}
-	//회사명 가져오기 위해
-	public List<Company> getCompanyList(String companyNum) {
-		List<Company> company = null;
-		String statement =  namespace + ".getCompanyList"; 
-		company = sqlSession.selectList(statement);
-		
-		return company;
-	}
 
 
 	//상품 상세 
 	//1.상품테이블
 	
-		public PlaceGoods getGoodsDetail(String goodsNum) {
-			PlaceGoods goods = null;
+		public Goods getGoodsDetail(String goodsNum) {
+			Goods goods = null;
 			//System.out.println("서비스에서 받아오는 상품번호  : " +  goodsNum);
 			String statement =  namespace + ".getGoodsDetail"; 
 			//System.out.println("DB에서 오는 상품번호: " + goodsNum);
@@ -117,6 +110,18 @@ public class GoodsRepository {
 			goodsImg = sqlSession.selectList(statement, goodsNum);
 			
 			return goodsImg;
+		}
+
+
+
+
+		public void deleteGoods(String goodsNum) {
+			String statement =  "";
+			statement = namespace + ".deleteGoods"; 
+			sqlSession.selectOne(statement, goodsNum);
+			
+			statement =  namespace + ".deleteGoodsImg"; 
+			sqlSession.selectOne(statement, goodsNum);
 		}
 
 

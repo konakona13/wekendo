@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import Model.DTO.YYYDTO.PlaceGoods;
+import Model.DTO.YYYDTO.Goods;
 
 @Repository
 public class ConfirmRepository {
@@ -14,11 +14,11 @@ public class ConfirmRepository {
 	@Autowired
 	private SqlSession sqlSession;
 	@Autowired
-	private PlaceGoods placeGoods;
+	private Goods placeGoods;
 	
 	private final String namespace = "YYY-Mapper";
 
-	public PlaceGoods goodsConfirm(String goodsNum) {
+	public Goods goodsConfirm(String goodsNum) {
 		
 		placeGoods.setGoodsStatus(goodsNum);
 		
@@ -29,7 +29,7 @@ public class ConfirmRepository {
 	}
 
 
-	public PlaceGoods goodsCancel(String goodsNum) {
+	public Goods goodsCancel(String goodsNum) {
 		
 		
 		placeGoods.setGoodsStatus(goodsNum);		

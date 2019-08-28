@@ -7,8 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import Command.kimCommand.GuestPayCommand;
-import Command.kimCommand.KendoJoinCommand;
 import Model.DTO.kimDTO.Friend;
 import Model.DTO.kimDTO.GuestPay;
 import Model.DTO.kimDTO.KendoList;
@@ -28,7 +26,20 @@ public class KendoJoinRepository {
 	private KendoList kendo;
 	
 	private final String namespace = "KIM-Mapper";
+	
+	public Integer getJoinNumSeq() {
+		String statement =  namespace + ".getJoinNumSeq"; 
+		Integer joinNumSeq = sqlSession.selectOne(statement);
+		
+		return joinNumSeq;	
+	}
 
+	public Integer getPayNumSeq() {
+		String statement =  namespace + ".getPayNumSeq"; 
+		Integer payNumSeq = sqlSession.selectOne(statement);
+		return payNumSeq;
+	}
+	
 	public void insertKendoJoin(KendoJoin kendoJoin) {
 		String statement =  namespace + ".insertKendoJoin"; 
 		sqlSession.insert(statement, kendoJoin);	
@@ -55,11 +66,23 @@ public class KendoJoinRepository {
 		return result;
 	}
 
-	public void updateDoNowPp(KendoJoin kendoJoin) {
+	public int updateDoNowPp(KendoJoin kendoJoin) {
 		String statement =  namespace + ".updateDoNowPp";
-		sqlSession.update(statement, kendoJoin);
+		int result = sqlSession.update(statement, kendoJoin);
+		System.out.println("kendoJoin.getDoNum:" + kendoJoin.getDoNum());
+		System.out.println("kendoJoin.getJoinQty:" + kendoJoin.getJoinQty());
+		return result;
 		
 	}
+
+	public KendoList selectKendoDetail(String doNum) {
+		KendoList kendoList = null;
+		String statement =  namespace + ".selectKendoDetail"; 
+		kendoList = sqlSession.selectOne(statement,doNum);
+		return kendoList;
+	}
+
+
 
 
 

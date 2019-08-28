@@ -17,16 +17,16 @@ import org.springframework.web.multipart.MultipartFile;
 import Command.YYYCommand.PlaceRegCommand;
 import Model.DTO.YYYDTO.Company;
 import Model.DTO.YYYDTO.GoodsImg;
-import Model.DTO.YYYDTO.PlaceGoods;
+import Model.DTO.YYYDTO.Goods;
 import Repository.YYYRepository.GoodsRepository;
 
 
 @Service
-public class PlaceRegService {
+public class GoodsRegService {
 
 	
 	@Autowired
-	private PlaceGoods placeGoods;
+	private Goods goods;
 	@Autowired
 	private Company company;
 	@Autowired
@@ -34,8 +34,8 @@ public class PlaceRegService {
 	@Autowired
 	private GoodsImg goodsImg;
 
-	public void setPlace(PlaceGoods placeGoods) {
-		this.placeGoods= placeGoods;
+	public void setPlace(Goods goods) {
+		this.goods= goods;
 	}
 	
 	String originalFile = null;
@@ -46,10 +46,9 @@ public class PlaceRegService {
 
 	public String goodsRegist(Model model, PlaceRegCommand command, HttpSession session, 
 						      MultipartFile[] reports, HttpServletRequest request ) throws IOException	{
-		
+		//기업회원 구분별 상품번호 입력하기
 		String companyNum = (String) session.getAttribute("comNum");
 		
-		//기업회원 구분별 상품번호 입력하기
 		company = goodsRepository.getCompanyDetail(companyNum);
 		String companyKind = company.getCompanyKind();
 		
@@ -65,32 +64,32 @@ public class PlaceRegService {
 		}
 		
 		
-		placeGoods.setCompanyNum(companyNum); //기업회원번호
+		goods.setCompanyNum(companyNum); //기업회원번호
 		//System.out.println(companyNum);
 		System.out.println("기업회원 구분: " + companyKind);
-		placeGoods.setGoodsNum(companyKind); //상품번호
-		placeGoods.setGoodsName(command.getGoodsName()); //상품명
-		placeGoods.setGoodsDetail(command.getGoodsDetail()); //상품상세
-		placeGoods.setGoodsDanger(command.getGoodsDanger()); //주의사항
-		placeGoods.setGoodsStock(command.getGoodsStock()); //재고수량
-		placeGoods.setGoodsPrice(command.getGoodsPrice()); //상품금액
-		placeGoods.setGoodsStatus("미승인");
+		goods.setGoodsNum(companyKind); //상품번호
+		goods.setGoodsName(command.getGoodsName()); //상품명
+		goods.setGoodsDetail(command.getGoodsDetail()); //상품상세
+		goods.setGoodsDanger(command.getGoodsDanger()); //주의사항
+		goods.setGoodsStock(command.getGoodsStock()); //재고수량
+		goods.setGoodsPrice(command.getGoodsPrice()); //상품금액
+		goods.setGoodsStatus("미승인");
 
 		
 		//System.out.println("입력 상품명: " + placeGoods.getGoodsName());
 		
 		
 		//지역및 테마 분류
-		placeGoods.setMapLNum(command.getMapLNum()); 
-		placeGoods.setMapMNum(command.getMapMNum());
-		placeGoods.setMapSNum(command.getMapSNum());
-		placeGoods.setThemeLNum(command.getThemeLNum());
-		placeGoods.setThemeMNum(command.getThemeMNum());
-		placeGoods.setThemeSNum(command.getThemeSNum());
+		goods.setMapLNum(command.getMapLNum()); 
+		goods.setMapMNum(command.getMapMNum());
+		goods.setMapSNum(command.getMapSNum());
+		goods.setThemeLNum(command.getThemeLNum());
+		goods.setThemeMNum(command.getThemeMNum());
+		goods.setThemeSNum(command.getThemeSNum());
 		
-		System.out.println("상품등록서비스_지역소분류번호 : " + placeGoods.getMapSNum());
-		System.out.println("상품등록서비스_테마소분류번호: " + placeGoods.getThemeSNum());
-			
+		System.out.println("상품등록서비스_지역소분류번호 : " + goods.getMapSNum());
+		System.out.println("상품등록서비스_테마소분류번호: " + goods.getThemeSNum());
+		System.out.println("상품종류: "+ companyKind );	
 		
 		//이미지 추가
 		filePath = "WEB-INF\\view\\YYYView\\upload\\";
@@ -111,6 +110,7 @@ public class PlaceRegService {
 			goodsImg.setGoodsImgName(storedFileName);
 			goodsImg.setGoodsImgNum(companyNum + ++i);
 			goodsImg.setCompanyNum(companyNum);
+			goodsImg.setGoodsImgKind(companyKind);
 			goodsImg.setMapLNum(command.getMapLNum());
 			goodsImg.setMapMNum(command.getMapMNum());
 			goodsImg.setMapSNum(command.getMapSNum());
@@ -121,10 +121,11 @@ public class PlaceRegService {
 			File file = new File(realPath + "\\" +storedFileName);
 			report.transferTo(file);
 			list.add(storedFileName);
+			System.out.println("이미지 파일명 : " + storedFileName);
 			
 		}
 		
-			goodsRepository.insertPlace(placeGoods, goodsImg, list);
+			goodsRepository.insertPlace(goods, goodsImg, list);
 
 		return "redirect:./goodsMain";
 }

@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-admin 보낸 편지함
+보낸 편지함
 
 <div>
 
@@ -41,6 +41,6 @@ admin 보낸 편지함
 </div>
 <br/>               
     
-<a href="kim" >메인</a>
+<a href="#" onClick="self.close();">닫기</a>
 </body>
 </html>

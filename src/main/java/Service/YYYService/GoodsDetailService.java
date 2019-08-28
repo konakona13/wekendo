@@ -11,9 +11,7 @@ import org.springframework.ui.Model;
 
 import Model.DTO.YYYDTO.Company;
 import Model.DTO.YYYDTO.GoodsImg;
-
-import Model.DTO.YYYDTO.PlaceGoods;
-
+import Model.DTO.YYYDTO.Goods;
 import Repository.YYYRepository.GoodsRepository;
 
 @Service
@@ -25,7 +23,7 @@ public class GoodsDetailService {
 
 	public String goodsDetail(String goodsNum, Model model, HttpSession session) {
 		
-		PlaceGoods goods = goodsRepository.getGoodsDetail(goodsNum);
+		Goods goods = goodsRepository.getGoodsDetail(goodsNum);
 		model.addAttribute("goods", goods);
 		System.out.println("서비스 상세보기 상품번호 : " +goods.getGoodsName()); //디버깅코드
 		
@@ -45,7 +43,12 @@ public class GoodsDetailService {
 		System.out.println("서비스 상세보기 이미지장수 : " +goodsImg.size());
 		
 		//지역 및 테마명 가져오기 위해 각 테이블 참조
-		//model.addAttribute("mapTheme", mapTheme);
+		
+		/*goods.getMapLNum()
+		
+		if(goodsNum.equals(anObject))
+		mapTheme.setMapLName();
+		model.addAttribute("mapTheme", mapTheme);*/
 		
 		String path = "YYYView/goodsRegDetail";
 		return path;

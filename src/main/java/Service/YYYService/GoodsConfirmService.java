@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import Model.DTO.YYYDTO.PlaceGoods;
+import Model.DTO.YYYDTO.Goods;
 import Repository.YYYRepository.ConfirmRepository;
 
 @Service
@@ -14,7 +14,7 @@ public class GoodsConfirmService {
 
 	public String goodsConfirm(String goodsNum, Model model) {
 		
-		PlaceGoods goods = confirmRepository.goodsConfirm(goodsNum);
+		Goods goods = confirmRepository.goodsConfirm(goodsNum);
 		model.addAttribute("goods", goods);
 		
 		return "redirect:../confirmList";

@@ -5,15 +5,12 @@ import java.sql.Timestamp;
 
 @SuppressWarnings("serial")
 public class KendoList implements Serializable{
-	private String joinNum;
-	
-	private String guestNum;
-	private String guestId;
+
 	
 	
 	private String doNum;
 	private String hostNum;
-	private String hostId;
+	//private String hostId;
 	private String doName;
 	private Timestamp doStartDate;
 	private Timestamp doEndDate;
@@ -26,30 +23,16 @@ public class KendoList implements Serializable{
 	private String doOptAge;
 	private String doStatus;
 	
-	private Timestamp joinDate;
-	private String joinKakaoid;
-	private String joinIntroduce;
-	private Integer joinQty;
-	private Integer joinPrice;
+	private PaymentKim paymentKim;
 	
-	public String getJoinNum() {
-		return joinNum;
+	public PaymentKim getPaymentKim() {
+		return paymentKim;
 	}
-	public void setJoinNum(String joinNum) {
-		this.joinNum = joinNum;
+	
+	public void setPaymentKim(PaymentKim paymentKim) {
+		this.paymentKim = paymentKim;
 	}
-	public String getGuestNum() {
-		return guestNum;
-	}
-	public void setGuestNum(String guestNum) {
-		this.guestNum = guestNum;
-	}
-	public String getGuestId() {
-		return guestId;
-	}
-	public void setGuestId(String guestId) {
-		this.guestId = guestId;
-	}
+
 	public String getDoNum() {
 		return doNum;
 	}
@@ -61,12 +44,6 @@ public class KendoList implements Serializable{
 	}
 	public void setHostNum(String hostNum) {
 		this.hostNum = hostNum;
-	}
-	public String getHostId() {
-		return hostId;
-	}
-	public void setHostId(String hostId) {
-		this.hostId = hostId;
 	}
 	public String getDoName() {
 		return doName;
@@ -134,36 +111,8 @@ public class KendoList implements Serializable{
 	public void setDoStatus(String doStatus) {
 		this.doStatus = doStatus;
 	}
-	public Timestamp getJoinDate() {
-		return joinDate;
-	}
-	public void setJoinDate(Timestamp joinDate) {
-		this.joinDate = joinDate;
-	}
-	public String getJoinKakaoid() {
-		return joinKakaoid;
-	}
-	public void setJoinKakaoid(String joinKakaoid) {
-		this.joinKakaoid = joinKakaoid;
-	}
-	public String getJoinIntroduce() {
-		return joinIntroduce;
-	}
-	public void setJoinIntroduce(String joinIntroduce) {
-		this.joinIntroduce = joinIntroduce;
-	}
-	public Integer getJoinQty() {
-		return joinQty;
-	}
-	public void setJoinQty(Integer joinQty) {
-		this.joinQty = joinQty;
-	}
-	public Integer getJoinPrice() {
-		return joinPrice;
-	}
-	public void setJoinPrice(Integer joinPrice) {
-		this.joinPrice = joinPrice;
-	}
+
+
 	
 
 	

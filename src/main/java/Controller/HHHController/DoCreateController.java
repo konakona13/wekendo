@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +15,7 @@ import Command.HHHCommand.CreateDoCommand;
 import Command.HHHCommand.DoCreatePay;
 import Command.HHHCommand.DoPayCommand;
 import Command.HHHCommand.DoPayComplete;
+import Command.HHHCommand.SelectBuyGoods;
 import Model.DTO.HHHDTO.Kendo;
 import Service.HHHService.DoCreateService;
 
@@ -45,15 +47,18 @@ public class DoCreateController
 	}
 	
 	@RequestMapping("/doCreatePlace")
-	public String doCreatePlace(Model model,@RequestParam("doPlay") String doPlay)
+	public String doCreatePlace(Model model,@RequestParam("doPlay") String doPlay,@RequestParam("goodsKind") String goodsKind)
 	{
+		System.out.println("doCreatePlace 진입" );
 		model.addAttribute("doPlay",doPlay);
-		return doCreateService.getGoodsList(model);
+		model.addAttribute("goodsKind",goodsKind);
+		return doCreateService.getGoodsList(model,goodsKind);
 	}
 	
 	@RequestMapping("/placeDetail")
-	public String placeDetail(Model model,@RequestParam("num") String num)
+	public String placeDetail(Model model,@RequestParam("num") String num,@RequestParam("goodsKind") String goodsKind)
 	{
+		model.addAttribute("goodsKind",goodsKind);
 		return doCreateService.getGoodsDetail(model,num);
 	}
 	
@@ -67,16 +72,24 @@ public class DoCreateController
 		
 		createDoCommand.setPlaceNum(placeNum);
 		System.out.println(doCreatePay.getBuyDays());
-		System.out.println(placeNum);
+		System.out.println("from placeNum"+placeNum);
 		doCreateService.completeDoForm(model,mainPhoto,createDoCommand,doCreatePay,session);
 		return "HHHview/doCreatePay";
+	}
+	
+	@RequestMapping("/selectBuyGoods")
+	public String selectBuyGoods(Model model,SelectBuyGoods selectBuyGoods,HttpSession session)
+	{
+		System.out.println("진입테스트 : selectBuyGoods");
+		doCreateService.selectBuyGoods(model,selectBuyGoods,session);
+		return "slef.close()";
 	}
 	
 	@RequestMapping("/doPayComplete")
 	public String doPayComplete(Model model,DoPayComplete doPayComplete,HttpServletRequest request,HttpSession session)
 	{
 		doCreateService.payComplete(model, doPayComplete,request, session);
-		
+		session.removeAttribute("goodsList");
 		return "redirect:HDO";
 	}
 	
@@ -87,6 +100,13 @@ public class DoCreateController
 		return "HHHview/doCreateCardPay";
 	}
 	
+	
+	@RequestMapping("/listReset")
+	public String listReset(Model model, HttpSession session)
+	{
+		
+		return "HHHview/doCreateCardPay";
+	}
 	
 	
 }
