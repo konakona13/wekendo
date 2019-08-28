@@ -1,7 +1,8 @@
 package Command.HHHCommand;
 
+import Model.DTO.HHHDTO.PlaceGoods;
 
-public class DoPayComplete
+public class DoCreatePay
 {
 	private String cardCompany;
 	private String hostNum;
@@ -32,8 +33,28 @@ public class DoPayComplete
 	private String doNum;
 	private String payNum;
 	
+	private SelectBuyGoods selectBuyGoods;
+	private PlaceGoods placeGoods;
 	
 	
+	
+	
+	public PlaceGoods getPlaceGoods()
+	{
+		return placeGoods;
+	}
+	public void setPlaceGoods(PlaceGoods placeGoods)
+	{
+		this.placeGoods = placeGoods;
+	}
+	public SelectBuyGoods getSelectBuyGoods()
+	{
+		return selectBuyGoods;
+	}
+	public void setSelectBuyGoods(SelectBuyGoods selectBuyGoods)
+	{
+		this.selectBuyGoods = selectBuyGoods;
+	}
 	public String getDoNum()
 	{
 		return doNum;
@@ -239,3 +260,4 @@ public class DoPayComplete
 	
 
 }
+

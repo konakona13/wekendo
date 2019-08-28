@@ -1,6 +1,7 @@
 package Model.DTO.YYYDTO;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class GoodsImg implements Serializable {
 	
@@ -9,6 +10,13 @@ public class GoodsImg implements Serializable {
 	String goodsImgName;
 	String goodsImgNum;
 	String goodsImgKind;
+	String mapLNum;
+	String mapMNum;
+	String mapSNum;
+	String themeLNum;
+	String themeMNum;
+	String themeSNum;
+	List<String> list;
 	
 	public String getGoodsNum() {
 		return goodsNum;
@@ -39,6 +47,48 @@ public class GoodsImg implements Serializable {
 	}
 	public void setGoodsImgKind(String goodsImgKind) {
 		this.goodsImgKind = goodsImgKind;
+	}
+	public String getMapLNum() {
+		return mapLNum;
+	}
+	public void setMapLNum(String mapLNum) {
+		this.mapLNum = mapLNum;
+	}
+	public String getMapMNum() {
+		return mapMNum;
+	}
+	public void setMapMNum(String mapMNum) {
+		this.mapMNum = mapMNum;
+	}
+	public String getMapSNum() {
+		return mapSNum;
+	}
+	public void setMapSNum(String mapSNum) {
+		this.mapSNum = mapSNum;
+	}
+	public String getThemeLNum() {
+		return themeLNum;
+	}
+	public void setThemeLNum(String themeLNum) {
+		this.themeLNum = themeLNum;
+	}
+	public String getThemeMNum() {
+		return themeMNum;
+	}
+	public void setThemeMNum(String themeMNum) {
+		this.themeMNum = themeMNum;
+	}
+	public String getThemeSNum() {
+		return themeSNum;
+	}
+	public void setThemeSNum(String themeSNum) {
+		this.themeSNum = themeSNum;
+	}
+	public List<String> getList() {
+		return list;
+	}
+	public void setList(List<String> list) {
+		this.list = list;
 	}
 	
 	

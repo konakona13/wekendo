@@ -1,10 +1,8 @@
 package Model.DTO.YYYDTO;
 
-import java.io.Serializable;
-import java.security.Timestamp;
-
-public class PlaceGoods implements Serializable {
-	
+public class Review {
+	//13
+	String reviewNum;
 	String goodsNum;
 	String mapLNum;
 	String mapMNum;
@@ -12,16 +10,19 @@ public class PlaceGoods implements Serializable {
 	String themeLNum;
 	String themeMNum;
 	String themeSNum;
-	String goodsName;
-	Integer goodsPrice;
-	String goodsDetail;
-	String goodsDanger;
-	String goodsStatus;
-	Integer goodsStock;
+	String memberNum;
 	String companyNum;
-	Timestamp regDate;
+	int reviewScore;
+	String reviewDate;
+	String reviewContent;
 	
 	
+	public String getReviewNum() {
+		return reviewNum;
+	}
+	public void setReviewNum(String reviewNum) {
+		this.reviewNum = reviewNum;
+	}
 	public String getGoodsNum() {
 		return goodsNum;
 	}
@@ -64,35 +65,11 @@ public class PlaceGoods implements Serializable {
 	public void setThemeSNum(String themeSNum) {
 		this.themeSNum = themeSNum;
 	}
-	public String getGoodsName() {
-		return goodsName;
+	public String getMemberNum() {
+		return memberNum;
 	}
-	public void setGoodsName(String goodsName) {
-		this.goodsName = goodsName;
-	}
-	public String getGoodsDetail() {
-		return goodsDetail;
-	}
-	public void setGoodsDetail(String goodsDetail) {
-		this.goodsDetail = goodsDetail;
-	}
-	public String getGoodsDanger() {
-		return goodsDanger;
-	}
-	public void setGoodsDanger(String goodsDanger) {
-		this.goodsDanger = goodsDanger;
-	}
-	public String getGoodsStatus() {
-		return goodsStatus;
-	}
-	public void setGoodsStatus(String goodsStatus) {
-		this.goodsStatus = goodsStatus;
-	}
-	public Integer getGoodsStock() {
-		return goodsStock;
-	}
-	public void setGoodsStock(Integer goodsStock) {
-		this.goodsStock = goodsStock;
+	public void setMemberNum(String memberNum) {
+		this.memberNum = memberNum;
 	}
 	public String getCompanyNum() {
 		return companyNum;
@@ -100,19 +77,24 @@ public class PlaceGoods implements Serializable {
 	public void setCompanyNum(String companyNum) {
 		this.companyNum = companyNum;
 	}
-	public Integer getGoodsPrice() {
-		return goodsPrice;
+	public int getReviewScore() {
+		return reviewScore;
 	}
-	public void setGoodsPrice(Integer goodsPrice) {
-		this.goodsPrice = goodsPrice;
+	public void setReviewScore(int reviewScore) {
+		this.reviewScore = reviewScore;
 	}
-	public Timestamp getRegDate() {
-		return regDate;
+	public String getReviewDate() {
+		return reviewDate;
 	}
-	public void setRegDate(Timestamp regDate) {
-		this.regDate = regDate;
+	public void setReviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
+	}
+	public String getReviewContent() {
+		return reviewContent;
+	}
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
 	}
 	
 	
-
 }

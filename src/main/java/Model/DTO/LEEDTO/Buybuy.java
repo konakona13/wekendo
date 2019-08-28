@@ -23,6 +23,24 @@ public class Buybuy implements Serializable {
 	private Long buyDays;
 	private Long buyPrice;
 	private String companyName;
+	private String goodsName;
+	private String doName;
+
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+
+	public String getDoName() {
+		return doName;
+	}
+
+	public void setDoName(String doName) {
+		this.doName = doName;
+	}
 
 	public String getCompanyName() {
 		return companyName;

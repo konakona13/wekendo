@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import Model.DTO.LEEDTO.Buybuy;
 import Model.DTO.LEEDTO.CashIn;
 import Model.DTO.LEEDTO.Dodo;
+import Model.DTO.LEEDTO.Goods;
 import Model.DTO.LEEDTO.StartEndPage;
 
 @Repository
@@ -112,5 +113,29 @@ public class AdminSessionRepository {
 		sqlSession.insert(statement, comName);
 		String statement1 = namespace + ".updateKendo";
 		sqlSession.update(statement1, comName);
+	}
+
+	public Buybuy getBuyDetail(String buyNum) {
+		// TODO Auto-generated method stub
+		Buybuy result = new Buybuy();
+		String statement = namespace + ".getBuyDetail";
+		result = sqlSession.selectOne(statement, buyNum);
+		return result;
+	}
+
+	public Goods getGoodsDetail(String goodsName) {
+		// TODO Auto-generated method stub
+		Goods result = new Goods();
+		String statement = namespace + ".getGoodsDetail";
+		result = sqlSession.selectOne(statement, goodsName);
+		return result;
+	}
+
+	public Dodo getDoBuyDetail(String doName) {
+		// TODO Auto-generated method stub
+		Dodo result = new Dodo();
+		String statement = namespace + ".getDoBuyDetail";
+		result = sqlSession.selectOne(statement, doName);
+		return result;
 	}
 }

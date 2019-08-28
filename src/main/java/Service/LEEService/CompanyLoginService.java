@@ -32,10 +32,11 @@ public class CompanyLoginService {
 			authInfo.setComBank(company.getCompanyBank());
 			session.setAttribute("comAuth", authInfo);
 			session.setAttribute("comNum", company.getCompanyNum());
+			session.setAttribute("admin", company.getCompanyId());
 		}
 		String idStore = loginCommand.getIdStore();
 		setCookie(idStore, response, loginCommand);
-		return "redirect:loginmain";
+		return "LEEview/mainForm";
 	}
 
 	public void setCookie(String idStore, HttpServletResponse response, LoginCommand loginCommand) {

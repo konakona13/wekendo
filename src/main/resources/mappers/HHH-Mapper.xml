@@ -108,6 +108,20 @@
 		</where>	 -->
 	</select>
 	
+	<select id="goodsList" parameterType="String" resultMap="baseGoods">
+		SELECT
+	  		<include refid="basecolumn" />
+		FROM goods
+		<where>
+			 <if test="value != null"> -->
+				goods_num LIKE #{value}||'%'
+			 </if> 
+		</where>
+	</select>
+	
+
+	
+	
 	<select id="getOneGoods" parameterType="String" resultMap="baseGoods">
 		SELECT
 			  <include refid="basecolumn" />
@@ -133,7 +147,16 @@
 		from company
 		where COMPANY_ID = #{companyId} and COMPANY_PW = #{companyPw}
 	</select>
-
+	
+	<select id="maxDoNum" resultType="String">
+		SELECT MAX(do_num)
+		from KENDO
+	</select>
+	
+	<select id="maxPayNum" resultType="String">
+		SELECT MAX(PAY_NUM)
+		from PAYMENT
+	</select>
 	<!-- select 문 끝 -->
 
 	<!-- insert 문 시작 -->
@@ -145,9 +168,9 @@
 	<insert id="insertKendo" parameterType="Model.DTO.HHHDTO.Kendo">
 		INSERT INTO KENDO(<include refid="basekendo" />)
 		VALUES
-		('DO'||DO_NUM_SEQ.NEXTVAL, #{hostNum},#{doName},SYSDATE,SYSDATE,
+		('DO'||DO_NUM_SEQ.NEXTVAL, #{hostNum},#{doName},#{doStartDate},#{doEndDate},
 		SYSDATE,SYSDATE,#{doPp},#{doNowpp},#{doDetail},
-		#{doOptGender},#{doOptAge},#{doStatus})
+		#{doOptGender},#{doOptAge},'inviting')
 	</insert>
 	
 	<sql id="basedoimg">
@@ -155,12 +178,12 @@
 	</sql>
 	<insert id="insertDoimg" parameterType="Model.DTO.HHHDTO.DoIMG">
 		INSERT INTO do_img(<include refid="basedoimg" />)
-		VALUES('DO'||DO_NUM_SEQ.CURRVAL,#{hostNum},#{doImgName},'DI'||DO_IMG_NUM_SEQ.NEXTVAL,#{doImgKind})
+		VALUES(#{doNum},#{hostNum},#{doImgName},'DI'||DO_IMG_NUM_SEQ.NEXTVAL,#{doImgKind})
 	</insert>
 	
 	<insert id="insertPayment" parameterType="Command.HHHCommand.DoPayComplete">
 		INSERT INTO PAYMENT(PAY_NUM, PAY_PP, PAY_DUCTCH, PAY_TOTALPRICE)
-		VALUES('PAY'||PAY_NUM_SEQ.NEXTVAL,#{pp},#{dutch},#{price})
+		VALUES('PAY'||PAY_NUM_SEQ.NEXTVAL,#{pp},#{price},#{price})
 	</insert>
 	
 	<sql id="hostPayCol">
@@ -171,8 +194,29 @@
 	
 	<insert id="insertHostPay" parameterType="Command.HHHCommand.DoPayComplete">
 		INSERT INTO HOSTPAY(<include refid="hostPayCol" />)
-		VALUES('PAY'||PAYMENT_NUM_SEQ.CURRVAL,'DO'||DO_NUM_SEQ.CURRVAL,#{hostNum},SYSDATE,
+		VALUES(#{payNum},#{doNum},#{hostNum},SYSDATE,
 		'결제완료','CARD',#{cardCompany},#{cardNum},#{cardCvc},#{cardDate})
+	</insert>
+	
+	<sql id="buybuyCol">
+		BUY_NUM, DO_NUM, PAY_NUM, HOST_NUM, GOODS_NUM, COMPANY_NUM, 
+		MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, 
+		BUY_QTY, BUY_START_DATE, BUY_END_DATE, BUY_DAYS, BUY_PRICE
+	</sql>
+	
+	<insert id="insertBuy" parameterType="Command.HHHCommand.DoCreatePay">
+		INSERT INTO BUYBUY(<include refid="buybuyCol" />)
+		VALUES('BUY'||BUY_NUM_SEQ.nextval,#{doNum},#{payNum},#{hostNum},#{placeNum}
+		, #{companyNum},#{mapLNum},#{mapMNum},#{mapSNum},#{themeLNum},#{themeMNum},#{themeSNum},
+		#{buyQty},#{buyStartDate},#{buyEndDate},#{buyDays},#{buyPrice})
+	</insert>
+	
+	<insert id="insertBuy2" parameterType="Command.HHHCommand.DoCreatePay">
+		INSERT INTO BUYBUY(<include refid="buybuyCol" />)
+		VALUES('BUY'||BUY_NUM_SEQ.nextval,#{doNum},#{payNum},#{hostNum},#{placeGoods.goodsNum}
+		, #{placeGoods.companyNum},#{placeGoods.mapLNum},#{placeGoods.mapMNum},#{placeGoods.mapSNum},
+		#{placeGoods.themeLNum},#{placeGoods.themeMNum},#{placeGoods.themeSNum},
+		1,#{selectBuyGoods.buyStartDate},#{selectBuyGoods.buyEndDate},#{selectBuyGoods.buyDays},#{selectBuyGoods.totalPrice})
 	</insert>
 	
 	

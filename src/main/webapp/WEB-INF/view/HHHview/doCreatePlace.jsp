@@ -16,10 +16,11 @@
 </head>
 <body>
 	${doPlay }
+	<input type="text" id="goodsKind" name="goodsKind" value="${goodsKind}">
     <h1>장소선택?</h1>
      <c:forEach var="placeGoods" items="${list}">
     <div>
-   		 이름 : <a href="placeDetail?num=${placeGoods.goodsNum }">${placeGoods.goodsName }</a>
+   		 이름 : <a href="placeDetail?num=${placeGoods.goodsNum }&goodsKind=${goodsKind}">${placeGoods.goodsName }</a>
    		
    		 
     </div>
