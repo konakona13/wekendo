@@ -22,6 +22,30 @@
  			src="/mybatis-spring-smrit/js/jquery.form.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript">
+
+function payComplete()
+{
+	opener.document.getElementById("cardCompany").value = "KAKAO";
+	opener.document.getElementById("cardNum").value = "9999";
+	opener.document.getElementById("cardCvc").value = "9999";
+	opener.document.getElementById("cardPass").value =  "9999";
+	opener.document.getElementById("cardDate").value =  "01/30";
+	opener.document.getElementById("cardEmail").value = "EMAIL";
+	
+	opener.payComplete();
+	window.close();
+}
+
+function payFail()
+{
+	opener.kakaoFail();
+	window.close();
+}
+
+</script>
+
+
 </head>
 <body>
     <script>
@@ -69,13 +93,14 @@
                     }
                 });
                 //성공시 이동할 페이지
-                location.href='main';
+                payComplete();
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
-                location.href="main";
+                
                 alert(msg);
+                payFail();
             }
         });
         

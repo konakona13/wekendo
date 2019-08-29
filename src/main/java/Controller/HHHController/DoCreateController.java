@@ -64,7 +64,7 @@ public class DoCreateController
 	
 	@RequestMapping("/doCreatePay")
 	public String doCreatePay(Model model,CreateDoCommand createDoCommand,DoCreatePay doCreatePay,
-			HttpServletRequest request ,@RequestParam("mainPhoto") MultipartFile mainPhoto,
+			HttpServletRequest request ,@RequestParam("mainPhoto") MultipartFile mainPhoto,MultipartFile[]  report,
 			@RequestParam("placeNum") String placeNum,
 			HttpSession session)
 	{
@@ -73,7 +73,7 @@ public class DoCreateController
 		createDoCommand.setPlaceNum(placeNum);
 		System.out.println(doCreatePay.getBuyDays());//null?
 		System.out.println("from placeNum"+placeNum);
-		doCreateService.completeDoForm(model,mainPhoto,createDoCommand,doCreatePay,session);
+		doCreateService.completeDoForm(model,mainPhoto,createDoCommand,doCreatePay,session,report);
 		return "HHHview/doCreatePay";
 	}
 	
@@ -107,6 +107,20 @@ public class DoCreateController
 	{
 		
 		return "HHHview/doCreateCardPay";
+	}
+	
+	@RequestMapping("/testCC")
+	public String testCC()
+	{
+		
+		return "HHHview/testCalander";
+	}
+	
+	@RequestMapping("/kakaoFrm")
+	public String kakaoFrm(Model model, @RequestParam("doNum") String doNum,@RequestParam("hostNum") String hostNum)
+	{
+
+		return "memberMain";
 	}
 	
 	

@@ -71,7 +71,48 @@ $(function(){
 
 </script>
     
-    
+<script type="text/javascript">
+
+	var oTbl;
+	var i = 1;
+	//Row 추가
+	function insRow() {
+	oTbl = document.getElementById("addTable");
+	var oRow = oTbl.insertRow();
+	oRow.onmouseover=function(){oTbl.clickedRowIndex=this.rowIndex}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
+	var oCell = oRow.insertCell();
+	var frmTag;
+	if(i < 20){
+		var frmTag = "<input type=file name='report' style=width:350px; height:20px;> ";
+		frmTag += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand'>";
+		oCell.innerHTML = frmTag;
+		i++;
+	}
+	//삽입될 Form Tag
+	
+	}
+	//Row 삭제
+	function removeRow() {
+	oTbl.deleteRow(oTbl.clickedRowIndex);
+	}
+	
+	function frmCheck()
+	{
+	var frm = document.form;
+	
+	for( var i = 1; i <= frm.elements.length - 1; i++ ){
+	   if( frm.elements[i].name == "file" + i )
+	   {
+	       if( !frm.elements[i].value ){
+	           alert("텍스트박스에 값을 입력하세요!");
+	               frm.elements[i].focus();
+		 return;
+	        }
+	    }
+	 }
+	}
+
+</script>   
     
 </head>
 <body>
@@ -102,27 +143,34 @@ $(function(){
                         <td> 활동명 <form:input type="text" path="doName"/></td>
                     </tr>
                      <tr>
+                            <td>모집인원  <form:input type="text" path="doPp"/></td>
+                    </tr>
+                    
+                    <tr>
+                        <td> 모집종료일  <form:input type="date" path="doCloseDate"/></td>
+                    </tr>
+                   
+                     <tr>
                         <td> 활동시작일  <form:input path="doStartDate" type="date"/></td>
                     </tr>
                     <tr>
-                    	
+                  
                     </tr>
                       <tr>
                         <td> 활동종료일  <form:input path="doEndDate" type="date"/></td>
                     </tr>
                     
-                     <tr>
-                        <td> 모집종료일  <form:input type="date" path="doCloseDate"/></td>
-                    </tr>
-                    <tr>
-                            <td>모집인원  <form:input type="text" path="doPp"/></td>
-                        </tr>
+                  
                 </table>
                    <p>
                         메인이미지 <input type="file" name = "mainPhoto"  size = "30" />
                    </p>
                    <p>
-                        상세이미지 <input type="text">
+                        상세이미지: <input type= "file" name="report" multiple="multiple" />
+				 <table id="addTable" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0">
+		            <tr><td align="left"></td></tr>
+		            <tr><td> <input name="addButton" type="button" style="cursor:hand" onClick="insRow()" value="추가"></td></tr>
+		         </table>
                    </p>
                    <p>
                         상세설명 <form:input type="text" path="doDetail"/>
@@ -199,7 +247,10 @@ $(function(){
            		
            
            </div>
+           
             
+
+
 
             <input type="button" id ="submit1" value="다음"/>
         </form:form>
