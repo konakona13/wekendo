@@ -102,7 +102,7 @@ function payComplete()
 	</div>
 	
     
-    <form action="kakao">
+    <form action="kakao" method="post">
             <input type="submit" value="카카오페이">
             <input type="text" name="doName" value="${kendo.doName}">
             <input type="text" name="sumPrice" value="${sumPrice}">

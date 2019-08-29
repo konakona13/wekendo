@@ -24,4 +24,7 @@
 		class="Service.LEEService.CompanyCashService" />
 	<bean id="updateDoStatusService"
 		class="Service.LEEService.UpdateDoStatusService" />
+	<bean id="memListService"
+		class="Service.LEEService.MemListService" />
 </beans>
+

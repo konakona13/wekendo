@@ -38,13 +38,15 @@ public class KendoListService {
 		return "LEEview/kendoList";
 	}
 
+	/*
 	public String doDetail(Model model, String doNum) {
 		// TODO Auto-generated method stub
 		Dodo dodo = adminSessionRepository.getDoDetail(doNum);
 		model.addAttribute("doDetail", dodo);
 		return "LEEview/doDetail";
 	}
-
+	*/
+	
 	public String doGoodsDetail(Model model, String doNum1) {
 		// TODO Auto-generated method stub
 		Dodo dodo = adminSessionRepository.getDoDetail(doNum1);

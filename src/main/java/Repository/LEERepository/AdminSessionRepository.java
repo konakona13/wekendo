@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import Model.DTO.LEEDTO.Buybuy;
 import Model.DTO.LEEDTO.CashIn;
+import Model.DTO.LEEDTO.Company;
 import Model.DTO.LEEDTO.Dodo;
 import Model.DTO.LEEDTO.Dodo2;
 import Model.DTO.LEEDTO.Goods;
+import Model.DTO.LEEDTO.Member;
 import Model.DTO.LEEDTO.StartEndPage;
 
 @Repository
@@ -145,6 +147,48 @@ public class AdminSessionRepository {
 		List<Dodo2> result = null;
 		String statement = namespace + ".getDoinGoodsDetail";
 		result = sqlSession.selectList(statement, doNum1);
+		return result;
+	}
+
+	public List<Member> getMemList(int page1, int limit) {
+		// TODO Auto-generated method stub
+		List<Member> result = null;
+		Long startRow = ((long) page1 - 1) * 10 + 1;
+		Long endRow = startRow + limit - 1;
+		StartEndPage startEndPage = new StartEndPage();
+		startEndPage.setEndRow(endRow);
+		startEndPage.setStartRow(startRow);
+		String statement = namespace + ".getMemList";
+		result = sqlSession.selectList(statement, startEndPage);
+		return result;
+	}
+
+	public int getMemListCount() {
+		// TODO Auto-generated method stub
+		int result = 0;
+		String statement = namespace + ".getMemListCount";
+		result = sqlSession.selectOne(statement);
+		return result;
+	}
+
+	public List<Company> getComList(int page1, int limit) {
+		// TODO Auto-generated method stub
+		List<Company> result = null;
+		Long startRow = ((long) page1 - 1) * 10 + 1;
+		Long endRow = startRow + limit - 1;
+		StartEndPage startEndPage = new StartEndPage();
+		startEndPage.setEndRow(endRow);
+		startEndPage.setStartRow(startRow);
+		String statement = namespace + ".getComList";
+		result = sqlSession.selectList(statement, startEndPage);
+		return result;
+	}
+
+	public int getComListCount() {
+		// TODO Auto-generated method stub
+		int result = 0;
+		String statement = namespace + ".getComListCount";
+		result = sqlSession.selectOne(statement);
 		return result;
 	}
 }

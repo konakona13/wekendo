@@ -56,8 +56,10 @@ public class KendoJoinService {
 		model.addAttribute("kjc",kjc);
 		model.addAttribute("kdc",kdc);
 		
-		System.out.println("kdc.getDoNum()1 : " + kdc.getDoNum());
-		System.out.println("kdc.getHostNum : " + kdc.getHostNum());	
+		System.out.println("kdc.getDoNum()1:" + kdc.getDoNum());
+		System.out.println("kdc.getHostNum:" + kdc.getHostNum());	
+		System.out.println("55kdc.getDoPp:"+kdc.getDoPp());
+		System.out.println("55kdc.getDoNowPp:"+kdc.getDoNowPp());
 		path = "kimView/kendoPayment" ;
 		
 
@@ -78,13 +80,13 @@ public class KendoJoinService {
 		friend.setJoinNum("JN" + joinNumSeq);
 		guestPay.setJoinNum("JN" + joinNumSeq);
 		
-		System.out.println("kendoJoin.getJoinNum: " + kendoJoin.getJoinNum());
-		System.out.println("kdc.getHostNum: " + kdc.getHostNum());
-		System.out.println("kendoJoin.getHostNum: " + kendoJoin.getHostNum());
+		System.out.println("kendoJoin.getJoinNum:" + kendoJoin.getJoinNum());
+		System.out.println("kdc.getHostNum:" + kdc.getHostNum());
+		System.out.println("kendoJoin.getHostNum:" + kendoJoin.getHostNum());
 		
 		kendoJoin.setDoNum(kdc.getDoNum());
 		
-		System.out.println("kendoJoin2 : " + kendoJoin.getDoNum());
+		System.out.println("kendoJoin2 :" + kendoJoin.getDoNum());
 		
 		tst = new Timestamp(new Date().getTime());
 		kendoJoin.setJoinDate(tst);			
@@ -109,7 +111,7 @@ public class KendoJoinService {
 		
 		Integer payNumSeq = kendoJoinRepository.getPayNumSeq();	
 		guestPay.setPayNum("PAY" + payNumSeq);
-		System.out.println("guestPay.getPayNum: " + guestPay.getPayNum());
+		System.out.println("guestPay.getPayNum:" + guestPay.getPayNum());
 		
 		guestPay.setDutchDate(tst);
 		guestPay.setPayStyle(gpc.getPayStyle());
@@ -119,12 +121,12 @@ public class KendoJoinService {
 		guestPay.setPayDate(gpc.getPayDate());
 
 		
-		System.out.println("결제날짜 : "+ guestPay.getDutchDate());
-		System.out.println("결제수단 : "+ guestPay.getPayStyle());
-		System.out.println("카드이름 : "+ guestPay.getPayCardName());
-		System.out.println("카드번호 : "+ guestPay.getPayCardNum());
-		System.out.println("카드cvc : "+ guestPay.getPayCvcNum());
-		System.out.println("유효날짜 : "+ guestPay.getPayDate());
+		System.out.println("결제날짜 :"+ guestPay.getDutchDate());
+		System.out.println("결제수단 :"+ guestPay.getPayStyle());
+		System.out.println("카드이름 :"+ guestPay.getPayCardName());
+		System.out.println("카드번호 :"+ guestPay.getPayCardNum());
+		System.out.println("카드cvc :"+ guestPay.getPayCvcNum());
+		System.out.println("유효날짜 :"+ guestPay.getPayDate());
 		
 		model.addAttribute("guestPay",guestPay);
 		
@@ -137,9 +139,9 @@ public class KendoJoinService {
 			friend.setFriendPh(kjc.getFriendPh());
 			friend.setFriendAge(kjc.getFriendAge());
 
-			System.out.println("친구이름 : "+ friend.getFriendName());
-			System.out.println("친구전화 : "+ friend.getFriendPh());
-			System.out.println("친구나이 : "+ friend.getFriendAge());
+			System.out.println("친구이름 :"+ friend.getFriendName());
+			System.out.println("친구전화 :"+ friend.getFriendPh());
+			System.out.println("친구나이 :"+ friend.getFriendAge());
 			
 			kendoJoinRepository.insertFriend(friend);
 			System.out.println("insertFriend");
@@ -151,12 +153,19 @@ public class KendoJoinService {
 		kendoJoinRepository.insertGuestPay(guestPay);
 		System.out.println("insertGuestPay");
 		
-		
+		System.out.println("getDoNum:" + kendoJoin.getDoNum());
+		System.out.println("getJoinQty:" + kendoJoin.getJoinQty());
+		System.out.println("getHostNum:" + kendoJoin.getHostNum());
 		int result = kendoJoinRepository.updateDoNowPp(kendoJoin);
-		System.out.println("DO번호 : " + kendoJoin.getDoNum());
-		System.out.println("DO주문수량 : " + kendoJoin.getJoinQty());
-		System.out.println("result "  + result) ;
+
+		System.out.println("updateDoNowPp.result :"  + result) ;
 		
+		//kendo 상태변경
+		System.out.println("66invited상태변경");
+		System.out.println("66kdc.getDoPp:"+ kdc.getDoPp());
+		System.out.println("66kdc.getDoNowPp + kdc.getDoQty:"+ kdc.getDoNowPp() + kjc.getJoinQty());
+		int statusResult = kendoJoinRepository.updateDoInvited(kendoJoin);
+		System.out.println("statusResult Invited:" + statusResult);
 		path =  "kimView/payDone";
 		
 
@@ -168,8 +177,8 @@ public class KendoJoinService {
 	public String kendoJoinList(Model model) {
 		List<KendoList> list = kendoJoinRepository.getKendoJoinList();
 		
-		System.out.println("kendoJoins.size : "+list.size());
-		System.out.println("getPayDutch : "+ list.get(0).getPaymentKim().getPayDutch());
+		System.out.println("kendoJoins.size :"+list.size());
+		System.out.println("getPayDutch :"+ list.get(0).getPaymentKim().getPayDutch());
 		System.out.println("list.get(0).getDoNowPp:" + list.get(0).getDoNowPp());
 		model.addAttribute("kendoJoins",list);
 		

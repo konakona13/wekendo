@@ -75,15 +75,27 @@
 	<td class = "desc2" >
 		<span class="pnum" id="pnum">상품번호 : ${kendoJoin.doNum}</span><br />
 		호스트번호 : ${kendoJoin.hostNum}<br />
+		<c:set var ="doNowPp" value="${kendoJoin.doNowPp}" scope="session" />
+		<c:set var ="doPp" value="${kendoJoin.doPp}" scope="session" />
+		<c:if test="${doNowPp < doPp}">
 		<h3><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/><a href="./kendoDetail/${kendoJoin.doNum}">${kendoJoin.doName}</a></h3><br />
+		</c:if>
+		<c:if test="${doNowPp == doPp}">
+		<h3 style="color:grey;"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/><a href="">${kendoJoin.doName}</a></h3><br />
+		</c:if>
 		모집인원 : ${kendoJoin.doNowPp}/${kendoJoin.doPp}<br/>
 	</td>
 </tr>
 <tr>
 	<td class = "desc3" >
 		<div class="right">
-			<span> <span class="price" id="price"><fmt:formatNumber pattern="###,###,###" value="${kendoJoin.paymentKim.payDutch}" />원</span><br />
-			</span>
+	
+		<c:if test="${doNowPp < doPp}">
+			<span class="price" id="price"><fmt:formatNumber pattern="###,###,###" value="${kendoJoin.paymentKim.payDutch}" />원</span><br />
+		</c:if>
+		<c:if test="${doNowPp == doPp}">
+			<h3 style="color:red;">모집종료</h3>
+		</c:if>	
 		</div></td>
 </tr>
 										

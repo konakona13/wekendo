@@ -67,10 +67,14 @@ public class KendoJoinRepository {
 	}
 
 	public int updateDoNowPp(KendoJoin kendoJoin) {
+
 		String statement =  namespace + ".updateDoNowPp";
-		int result = sqlSession.update(statement, kendoJoin);
-		System.out.println("kendoJoin.getDoNum:" + kendoJoin.getDoNum());
+		
+		System.out.println("33kendoJoin.getDoNum:" + kendoJoin.getDoNum());
 		System.out.println("kendoJoin.getJoinQty:" + kendoJoin.getJoinQty());
+		
+		int result = sqlSession.update(statement, kendoJoin);
+
 		return result;
 		
 	}
@@ -81,6 +85,15 @@ public class KendoJoinRepository {
 		kendoList = sqlSession.selectOne(statement,doNum);
 		return kendoList;
 	}
+
+	public int updateDoInvited(KendoJoin kendoJoin2) {
+		String statement =  namespace + ".updateDoInvited";
+		
+		int invitedResult = sqlSession.update(statement, kendoJoin);
+		return invitedResult;
+	}
+
+
 
 
 

@@ -40,8 +40,8 @@
         <table>
             <tr>
                 <td><img class="thum" src="" width="400" height="300" name = "메인사진"><br/></td>
-                <td>활동번호 :<input type = "hidden" name = "doNum" value = " ${kendoDtail.doNum}"/>${kendoDtail.doNum}<br />
-                호스트번호 : <input type = "hidden" name = "hostNum" value = " ${kendoDtail.hostNum}"/>${kendoDtail.hostNum}<br />
+                <td>활동번호 :<input type = "hidden" name = "doNum" value = "${kendoDtail.doNum}"/>${kendoDtail.doNum}<br />
+                호스트번호 : <input type = "hidden" name = "hostNum" value = "${kendoDtail.hostNum}"/>${kendoDtail.hostNum}<br />
                     활동구분 :<input type = "hidden" name = "theme" value = "취미>커피"/> 취미>  <br />
                     활동지역 :<input type = "hidden" name = "map" value = "서울>영등포구>양평동"/> 서울>영등포구>양평동 <br />
                     <h3><input type = "hidden" name = "doName" value = "${kendoDtail.doName}"/>${kendoDtail.doName}</h3> <br />

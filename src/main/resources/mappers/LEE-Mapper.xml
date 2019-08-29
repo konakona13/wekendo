@@ -129,6 +129,8 @@
 			property="profile" />
 		<result column="DO_IMG_NAME" jdbcType="VARCHAR"
 			property="doImg" />
+		<result column="PAY_TOTALPRICE" jdbcType="BIGINT"
+			property="payTotal" />
 	</resultMap>
 
 	<resultMap type="Model.DTO.LEEDTO.Dodo2" id="baseDo2">
@@ -157,6 +159,10 @@
 			property="themeSnum" />
 		<result column="BUY_DAYS" jdbcType="VARCHAR"
 			property="goodsDays" />
+		<result column="GOODS_PRICE" jdbcType="BIGINT"
+			property="goodsPrice" />
+		<result column="BUY_PRICE" jdbcType="BIGINT"
+			property="buyPrice" />
 	</resultMap>
 
 	<resultMap type="Model.DTO.LEEDTO.CashIn" id="baseCashin">
@@ -313,12 +319,16 @@
 		select
 		k.DO_NUM,k.HOST_NUM,DO_NAME,DO_START_DATE,DO_END_DATE,DO_OPEN_DATE,
 		DO_CLOSE_DATE,DO_PP,DO_NOWPP,DO_DETAIL,DO_OPT_GENDER,DO_OPT_AGE,DO_STATUS,
-		MEMBER_PH,MEMBER_PHOTO,DO_IMG_NAME
-		from KENDO k, Member m, DO_IMG d
-		where k.host_num = m.member_num
+		MEMBER_PH,MEMBER_PHOTO,DO_IMG_NAME,member_name,PAY_TOTALPRICE
+		from
+		KENDO k, Member m, DO_IMG d,payment p,hostpay h
+		where k.host_num =
+		m.member_num
 		and
 		k.do_num = d.do_num
-		and k.DO_NUM =
+		and h.pay_num = p.pay_num
+		and
+		k.DO_NUM =
 		#{doNum}
 	</select>
 
@@ -517,16 +527,55 @@
 		select
 		k.DO_NUM,g.GOODS_NUM,c.COMPANY_NUM,company_NAME,GOODS_NAME,DO_IMG_NAME,
 		b.MAP_L_NUM,b.MAP_M_NUM,b.MAP_S_NUM,b.THEME_L_NUM,b.THEME_M_NUM,
-		b.THEME_S_NUM,BUY_DAYS
-		from KENDO k, company c, buybuy b, goods
+		b.THEME_S_NUM,BUY_DAYS,GOODS_PRICE,BUY_PRICE
+		from KENDO k, company c,
+		buybuy b, goods
 		g,do_img dimg
 		where k.do_num = b.do_num
 		and
-		b.goods_num = g.goods_num
+		b.goods_num =
+		g.goods_num
 		and
 		g.company_num = c.company_num
 		and k.do_num = dimg.do_num
 		and k.DO_NUM =
 		#{doNum1}
+	</select>
+
+	<select id="getMemList" parameterType="StartEndPage"
+		resultMap="baseMember">
+		select * from ( select rownum rn,
+		<include refid="basecolumn" />
+		from (select
+		<include refid="basecolumn" />
+		from MEMBER
+		order by MEMBER_NUM desc))
+		where rn &gt;= #{startRow}
+		and
+		rn
+		&lt;=
+		#{endRow}
+	</select>
+	<select id="getMemListCount" resultType="int">
+		select count(*) from
+		MEMBER
+	</select>
+	<select id="getComList" parameterType="StartEndPage"
+		resultMap="baseCompany">
+		select * from ( select rownum rn,
+		<include refid="basecolumnCompany" />
+		from (select
+		<include refid="basecolumnCompany" />
+		from COMPANY
+		order by COMPANY_NUM desc))
+		where rn &gt;= #{startRow}
+		and
+		rn
+		&lt;=
+		#{endRow}
+	</select>
+	<select id="getComListCount" resultType="int">
+		select count(*) from
+		COMPANY
 	</select>
 </mapper>
