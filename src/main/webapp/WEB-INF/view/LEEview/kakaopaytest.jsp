@@ -1,17 +1,25 @@
+<%@page import="org.springframework.ui.Model"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" 
+			uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" 
+			uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
-    String name = "이재학";
+    String name = "test";
     String email = "chri02@nate.com";
     String phone = "010-2656-8722";
-    String address = "안양";
-    int totalPrice = 100;   
+    String address = "seoul";
+    String doName = (String)request.getAttribute("doName1");
+    int price = (int)request.getAttribute("sumPrice1");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" 
+ 			src="/mybatis-spring-smrit/js/jquery.form.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
@@ -26,13 +34,13 @@
             pg : 'kakaopay',
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
-            name : 'KH Books 도서 결제',
-            amount : <%=totalPrice%>,
+            name : '<%=doName%>',
+            amount : '<%=price%>',
             buyer_email : '<%=email%>',
             buyer_name : '<%=name%>',
             buyer_tel : '<%=phone%>',
             buyer_addr : '<%=address%>',
-            buyer_postcode : '123-456',
+            buyer_postcode : '111-111',
             //m_redirect_url : 'http://www.naver.com'
         }, function(rsp) {
             if ( rsp.success ) {
@@ -61,18 +69,17 @@
                     }
                 });
                 //성공시 이동할 페이지
-                location.href='http://www.daum.net';
+                location.href='main';
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
-                location.href="http://www.naver.com";
+                location.href="main";
                 alert(msg);
             }
         });
         
     });
     </script>
- 
 </body>
 </html>

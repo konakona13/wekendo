@@ -130,6 +130,9 @@ commandName="loginCommand">
 			padding="15px"/>
 			 -->
 		</td>
+		<td>
+		<div id="naver_id_login" style="text-align:center"><a href="${url}">
+<img width="150" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
 		</td>
 	</tr>
 	<tr>
@@ -141,7 +144,7 @@ commandName="loginCommand">
 	</tr>
 </table>
 </form:form>
-<% }else if(session.getAttribute("memAuth")!= null && memNum.substring(0, 2).equals("NM") && !adminId.equals("admin")){ %>
+<% }else if(session.getAttribute("memAuth")!= null && memNum.substring(0, 2).equals("NM")){ %>
 <!-- 로그인 된 후의 화면(일반회원) -->
 <%= memNum.substring(0, 2) %> : 일반회원코드 추출<br>
 <%= session.getAttribute("memAuth") %> 님 환영합니다.<br />
@@ -156,7 +159,7 @@ commandName="loginCommand">
 <td>이름 : ${memAuth.name }</td>
 </tr>
 </table>
-<a href="Logout" >로그아웃</a>
+<a href="Logout1" >로그아웃</a>
 <a href="HDO" >활동개설</a>
 <a href="kendoJoin" >활동참가</a>
 
@@ -188,7 +191,7 @@ commandName="loginCommand">
 <td>주거래은행 : ${comAuth.comBank }</td>
 </tr>
 </table>
-<a href="Logout" >로그아웃</a>
+<a href="Logout1" >로그아웃</a>
 <a href= "#" >매출분석 신청</a>
 <a href="goodsMain" >내 상품리스트</a>
 <a href="companyCash">정산내역 확인</a>
@@ -206,7 +209,7 @@ commandName="loginCommand">
 <% }else if(session.getAttribute("comAuth")!= null && adminId.equals("admin")){ %>
 관리자 페이지<br>
 관리자 이름 : ${comAuth.name }<br>
- <a href="Logout" >로그아웃</a>
+ <a href="Logout1" >로그아웃</a>
  <a href="kendo_list" >주문관리-활동리스트</a>
  <a href="Cashin" >매출관리</a>
  <a href="confirmList" >상품관리 - 업체상품승인</a>

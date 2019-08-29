@@ -7,4 +7,7 @@
 
 	<bean class="Controller.LEEController.MemberController" />
 	<bean class="Controller.LEEController.AdminController" />
+	<bean class="Controller.LEEController.NaverLoginController" />
+	<bean class="Controller.LEEController.NaverLoginBO" />
+	<bean class="Controller.LEEController.NaverLoginApi" />
 </beans>

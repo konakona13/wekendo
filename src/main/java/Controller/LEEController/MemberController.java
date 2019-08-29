@@ -53,7 +53,7 @@ public class MemberController {
 	@RequestMapping("/loginmain")
 	public String mainView(HttpServletRequest request, Model model) {
 		// System.out.println(request.getRealPath("/WEB-INF/view/LEEview/upload"));
-		updateDoStatusService.updateStatus(model);
+		// updateDoStatusService.updateStatus(model);
 		return "LEEview/mainForm";
 	}
 
@@ -105,6 +105,7 @@ public class MemberController {
 	@RequestMapping("loginPro")
 	public String loginPro(Model model, LoginCommand loginCommand, HttpSession session, HttpServletResponse response,
 			Errors errors, @RequestParam("selectLogin") String selectLogin) {
+		updateDoStatusService.updateStatus(model);
 		String path = "";
 		if (selectLogin.equals("normal")) {
 			new LoginCommandValidator().validate(loginCommand, errors);
@@ -120,7 +121,7 @@ public class MemberController {
 		return path;
 	}
 
-	@RequestMapping("Logout")
+	@RequestMapping("Logout1")
 	public String logout(HttpSession session, HttpServletResponse response) {
 		memberLogoutService.logout(session, response);
 		return "redirect:main";
@@ -131,16 +132,21 @@ public class MemberController {
 			@RequestParam(value = "page", defaultValue = "1") String page) {
 		return companyCashService.cashAndBuyList(model, session, page);
 	}
-	
+
 	@RequestMapping("goodsMainLEE")
 	public String comGoods(Model model, @RequestParam(value = "comNum") String comNum) {
 		List<GoodsList> list = goodsRepository.getGoodsList(comNum);
 		model.addAttribute("list", list);
 		return "YYYView/goodsMain";
 	}
-	
+
 	@RequestMapping("kakao")
-	public String kakaotest(Model model) {
+	public String kakaotest(Model model, @RequestParam(value = "doName") String doName,
+			@RequestParam(value = "sumPrice") int sumPrice, HttpServletRequest request) {
+		model.addAttribute("doName", doName);
+		model.addAttribute("sumPrice", sumPrice);
+		request.setAttribute("doName1", doName);
+		request.setAttribute("sumPrice1", sumPrice);
 		return "LEEview/kakaopaytest";
 	}
 }
