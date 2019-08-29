@@ -25,13 +25,32 @@ $(function(){
 		}
 		var url = "confirmId?id1="+$("#id1").val(); */
 		var url = "doCreateCardPay"
-		open(url,"Pay","width=300, height=500");
+		open(url,"cardPay","width=300, height=500");
+	});
+	
+	$("#kakaoBtn").click(function()
+			{
+				/* if($("#id1").val()==""|| $("#id1").val()==null)
+				{
+					$("#id1").focus();
+					$("#msg").html("아이디를 입력하세요");
+					return false;
+				}
+				var url = "confirmId?id1="+$("#id1").val(); */
+				var url = "kakao?doName="+$("#doName").val()
+						 +"&sumPrice="+$("#sumPrice").val();
+				open(url,"kakaoPay","width=300, height=500");
 	});
 });
 
 function payComplete()
 {
    $("#comp").submit();
+}
+
+function payFail()
+{
+	location.href = "main";
 }
 
 </script>
@@ -101,12 +120,16 @@ function payComplete()
 	<input type="button" value="카드결제">
 	</div>
 	
-    
+	
     <form action="kakao" method="post">
-            <input type="submit" value="카카오페이">
-            <input type="text" name="doName" value="${kendo.doName}">
-            <input type="text" name="sumPrice" value="${sumPrice}">
+            <input type="button" id="kakaoBtn" value="카카오페이">
+            <input type="text" name="doName" id="doName" value="${kendo.doName}">
+            <input type="text" name="sumPrice" id="sumPrice" value="${sumPrice}">
     </form>
+    
+
+    
+    
     
     <form action="doPayComplete" id="comp">
     	

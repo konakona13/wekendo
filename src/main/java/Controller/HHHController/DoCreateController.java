@@ -116,5 +116,12 @@ public class DoCreateController
 		return "HHHview/testCalander";
 	}
 	
+	@RequestMapping("/kakaoFrm")
+	public String kakaoFrm(Model model, @RequestParam("doNum") String doNum,@RequestParam("hostNum") String hostNum)
+	{
+
+		return "memberMain";
+	}
+	
 	
 }
