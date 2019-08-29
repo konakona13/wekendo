@@ -29,11 +29,13 @@
 		})
 
 	})
+	
+	var comNum = $('#companyNum').val();
 
 	function openComWindow() {
 		// 새창에 대한 세팅(옵션)
 		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1100,left=300,top=20';
-		window.open("goodsMainLEE?comNum=" + $("#companyNum").val(), "comGoodsDetail",	settings);
+		window.open("goodsMainLEE?comNum=" + comNum, "comGoodsDetail",	settings);
 	}
 </script>
 <style>
@@ -114,8 +116,7 @@ ul.tabs li.current {
 		onmouseover="this.style.backgroundColor='F8F8F8'"
 		onmouseout="this.style.backgroundColor=''">
 		<td height="23" style="font-family:Tahoma;font-size:10pt;">
-		<input type="hidden" id="doNum1" name="doNum1" value="${dodo.doNum }">
-			<a href="javascript:openChildWindow1();" >
+			<a href="javascript:openChildWindow1('${dodo.doNum }');" >
 			${member.memberNum }
 			</a>
 		</td>
@@ -202,8 +203,7 @@ ul.tabs li.current {
 		onmouseover="this.style.backgroundColor='F8F8F8'"
 		onmouseout="this.style.backgroundColor=''">
 		<td height="23" style="font-family:Tahoma;font-size:10pt;">
-		<input type="hidden" id="companyNum" name="companyNum" value="${company.companyNum }">
-			<a href="javascript:openComWindow();" >
+			<a href="javascript:openComWindow('${company.companyNum }');" id="companyNum" >
 			${company.companyNum }
 			</a>
 		</td>
