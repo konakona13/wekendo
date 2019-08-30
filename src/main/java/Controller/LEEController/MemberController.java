@@ -46,8 +46,6 @@ public class MemberController {
 	@Autowired
 	private CompanyCashService companyCashService;
 	@Autowired
-	private UpdateDoStatusService updateDoStatusService;
-	@Autowired
 	private GoodsRepository goodsRepository;
 
 	@RequestMapping("/loginmain")
@@ -105,7 +103,7 @@ public class MemberController {
 	@RequestMapping("loginPro")
 	public String loginPro(Model model, LoginCommand loginCommand, HttpSession session, HttpServletResponse response,
 			Errors errors, @RequestParam("selectLogin") String selectLogin) {
-		updateDoStatusService.updateStatus(model);
+		//updateDoStatusService.updateStatus(model);
 		String path = "";
 		if (selectLogin.equals("normal")) {
 			new LoginCommandValidator().validate(loginCommand, errors);

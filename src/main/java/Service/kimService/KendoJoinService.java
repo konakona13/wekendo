@@ -167,6 +167,10 @@ public class KendoJoinService {
 		System.out.println("66invited상태변경");
 		System.out.println("66kdc.getDoPp:"+ kdc.getDoPp());
 		System.out.println("66kdc.getDoNowPp + kdc.getDoQty:"+ kdc.getDoNowPp() + kjc.getJoinQty());
+		
+		if(kdc.getDoPp() == kdc.getDoNowPp() + kjc.getJoinQty()) {
+			
+		}
 		int statusResult = kendoJoinRepository.updateDoInvited(kendoJoin);
 		System.out.println("statusResult Invited:" + statusResult);
 		path =  "kimView/payDone";
@@ -181,10 +185,7 @@ public class KendoJoinService {
 		List<KendoList> list = kendoJoinRepository.getKendoJoinList();
 		//
 		
-		System.out.println("kendoJoins.size :"+list.size());
-		System.out.println("getPayDutch :"+ list.get(0).getPaymentKim().getPayDutch());
-		System.out.println("list.get(0).getDoNowPp:" + list.get(0).getDoNowPp());
-		System.out.println("kendoMainImg:" + list.get(0).getDoImg());
+
 		model.addAttribute("kendoJoins",list);
 		//
 		
@@ -203,7 +204,7 @@ public class KendoJoinService {
 		//member
 		String memberNum = (String)session.getAttribute("memNum");
 		Member member = kendoJoinRepository.userInfo(memberNum);	
-		model.addAttribute("member",member);
+		model.addAttribute("membOpt",member);
 		
 		System.out.println("kendoImgs.size:"+kendoImgs.size());
 		System.out.println("kendoImgs.get(0).getDoImgName:"+kendoImgs.get(0).getDoImgName());
