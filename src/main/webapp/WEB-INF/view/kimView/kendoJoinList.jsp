@@ -6,6 +6,7 @@
 
 <%
 	response.setCharacterEncoding("utf-8");
+	session.getAttribute("memAuth");
  %>
  
 <!DOCTYPE html>
@@ -20,6 +21,8 @@
 	float: left;
 	margin-right: 10px
 }
+
+a { text-decoration:none }
 </style>
 
 </head>
@@ -68,20 +71,27 @@
 <table id = "list" border = "0" cellspacing = "0">
 <tr>
 	<td class = "desc1"rowspan=2 width="300" >
-		<div class="thum">
-		<img class="thum" src="" width="200">
+		<div class="thum">	
+
+			<c:set var ="doImgKind" value="${kendoJoin.doImg.doImgKind}" scope="session" />
+				<c:if test="${doImgKind == 'main'}">	
+					<img src="HHHview/doIMG/${kendoJoin.doImg.doImgName}"  width="400"><br/>
+				</c:if>
 		</div>
 	</td>
 	<td class = "desc2" >
 		<span class="pnum" id="pnum">상품번호 : ${kendoJoin.doNum}</span><br />
+		게스트아이디 : ${memAuth.id}<br/>
 		호스트번호 : ${kendoJoin.hostNum}<br />
-		<c:set var ="doNowPp" value="${kendoJoin.doNowPp}" scope="session" />
-		<c:set var ="doPp" value="${kendoJoin.doPp}" scope="session" />
-		<c:if test="${doNowPp < doPp}">
+		<input type = "hidden" value = "${memAuth.id}" name = "memId"/>
+		<c:set var ="doStatus" value="${kendoJoin.doStatus}" scope="session" />
+
+		<c:if test="${doStatus == 'inviting'}">
 		<h3><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/><a href="./kendoDetail/${kendoJoin.doNum}">${kendoJoin.doName}</a></h3><br />
 		</c:if>
-		<c:if test="${doNowPp == doPp}">
-		<h3 style="color:grey;"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/><a href="">${kendoJoin.doName}</a></h3><br />
+
+		<c:if test="${doStatus == 'invited' || doStatus == 'doing' || doStatus == 'docomplete' || doStatus == 'doend'}">
+		<h3 style="color:grey;"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/>${kendoJoin.doName}</h3><br />
 		</c:if>
 		모집인원 : ${kendoJoin.doNowPp}/${kendoJoin.doPp}<br/>
 	</td>
@@ -90,38 +100,33 @@
 	<td class = "desc3" >
 		<div class="right">
 	
-		<c:if test="${doNowPp < doPp}">
+		<c:if test="${doStatus == 'inviting'}">
 			<span class="price" id="price"><fmt:formatNumber pattern="###,###,###" value="${kendoJoin.paymentKim.payDutch}" />원</span><br />
 		</c:if>
-		<c:if test="${doNowPp == doPp}">
+		<c:if test="${doStatus == 'invited'}">
 			<h3 style="color:red;">모집종료</h3>
 		</c:if>	
+		<c:if test="${doStatus == 'doing'}">
+			<h3 style="color:red;">활동중</h3>
+		</c:if>			
+		<c:if test="${doStatus == 'doend'}">
+			<h3 style="color:red;">활동종료</h3>
+		</c:if>	
+		<c:if test="${doStatus == 'cashcomplete'}">
+			<h3 style="color:red;">정산종료</h3>
+		</c:if>			
+		
 		</div></td>
 </tr>
-										
-	
-
 </table>
 <hr>
 </c:forEach>
+<div>
 
-
-
-
-
-
-
-
-
-
-
-
-	
-	<div>
 <c:if test="${empty kendoJoins}">
 Do 결제 내역이 없습니다.
 </c:if>
-	</div>
+</div>
 
 <br/>               
 

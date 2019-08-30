@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import Command.kimCommand.GuestPayCommand;
 import Command.kimCommand.KendoDetailCommand;
 import Command.kimCommand.KendoJoinCommand;
+import Model.DTO.LEEDTO.Member;
+import Service.LEEService.UpdateDoStatusService;
 import Service.kimService.KendoJoinService;
 
 @Controller
@@ -20,27 +22,33 @@ public class KendoJoinController {
 	String path = "";
 	@Autowired
 	private KendoJoinService kendoJoinService;
-
+	@Autowired
+	private UpdateDoStatusService updateDoStatusService;
 	
 	
 	@RequestMapping("/main")
-	public String memberMain() {
+	public String memberMain(Model model) {
+		updateDoStatusService.updateStatus(model);
 		path = "memberMain";
 		return path;
 	}
 	
 	
 	@RequestMapping("/comMain")
-	public String comMain() {
+	public String comMain(Model model) {
+		updateDoStatusService.updateStatus(model);
 		path = "companyMain";
 		return path;
 	}
 	
 	@RequestMapping("/adminMain")
-	public String adminMain() {
+	public String adminMain(Model model) {
+		updateDoStatusService.updateStatus(model);
 		path = "adminMain";
 		return path;
 	}
+	
+	
 	
 	@RequestMapping("/kim")
 	public String kim() {
@@ -51,10 +59,12 @@ public class KendoJoinController {
 
 	
 	@RequestMapping("/kendoDetail/kendoJoin")
-	public String kendoJoin(Model model,KendoDetailCommand kendoDetailCommand) {
+	public String kendoJoin(Model model,KendoDetailCommand kendoDetailCommand,HttpSession session) {
 
-		path = "kimView/kendoJoin";
+		path = kendoJoinService.userInfo(model,session);
+
 		model.addAttribute("kdc",kendoDetailCommand);
+
 		return path;
 	}
 	
@@ -73,13 +83,15 @@ public class KendoJoinController {
 	
 	@RequestMapping("/kendoJoinList")
 	public String kendoJoinList(Model model) {
+
 		return kendoJoinService.kendoJoinList(model);
 	
 	}
 	
 	@RequestMapping("/kendoDetail/{num}")
-	public String kendoDetail(@PathVariable("num") String doNum, Model model) {
-		return kendoJoinService.kendoDetail(doNum, model);
+	public String kendoDetail(@PathVariable("num") String doNum, Model model,HttpSession session) {
+
+		return kendoJoinService.kendoDetail(doNum, model,session);
 	}
 
 }

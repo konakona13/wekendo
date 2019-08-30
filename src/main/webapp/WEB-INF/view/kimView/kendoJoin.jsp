@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<jsp:useBean id="toDay" class="java.util.Date" />
 <%
 	String memberNum = (String)session.getAttribute("memNum");
 	session.getAttribute("memAuth");
@@ -15,19 +15,29 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+
+	
+</script>
 <body>
         <h3>활동참가신청</h3>
         <p>
-        	신청자 ID : ${memAuth.id}<br/> 
+        	신청자 ID : <input type=hidden name = "memId" value="${memAuth.id}"/>${memAuth.id}<br/> 
         <form name="frm" action="kendoJoinAction" method="POST">
             <table>
                 <tr>
                     <td>활동번호 </td>
                     <td> <input type=hidden name = "doNum" value="${kdc.doNum}"/>${kdc.doNum}
-                    	호스트번호 : <input type = "hidden" name = "hostNum" value = "${kdc.hostNum}"/>${kdc.hostNum}
                     </td>
                     
                 </tr>
+                <tr>
+                    <td>호스트번호 : </td>
+                    <td>
+                    	<input type = "hidden" name = "hostNum" value = "${kdc.hostNum}"/>${kdc.hostNum}
+                    </td>
+                    
+                </tr>                
                 <tr>
                     <td>활동구분 </td>
                     <td><input type=hidden name = "theme" value="${kdc.theme}"/>${kdc.theme}</td>
@@ -46,23 +56,28 @@
                 </tr>
                 <tr>
                     <td>연락처 </td>
-                    <td><input type=hidden name = "memberPh"/>${memAuth.name}</td>
+                    <td><input type=hidden name = "memberPh"/>${member.memberPh1}</td>
                 </tr>
                 <tr>
                     <td>나이 </td>
-                    <td><input type=hidden name = "memberAge"/>${memAuth.name}</td>
+                    <td><fmt:formatDate  value="${toDay}" pattern="yyyy"/><br/>
+                    	<fmt:formatDate value="${member.memberBir}"  pattern="yyyy" /><br/>
+                    	<fmt:formatNumber value="${toDay.year - member.memberBir.year +1}" /><br/>
+                            	
+                    <input type=hidden name = "memberAge"/>
+                    </td>
                 </tr>
                 <tr>
                     <td>성별 </td>
-                    <td><input type=hidden name = "gender"/>${memAuth.name}</td>
+                    <td><input type=hidden name = "gender"/>${member.gender}</td>
                 </tr>
                 <tr>
                     <td>주소 </td>
-                    <td><input type=hidden name = "memberAddr"/>${memAuth.name}</td>
+                    <td><input type=hidden name = "memberAddr"/>${member.addr}</td>
                 </tr>
                 <tr>
                     <td>이메일 </td>
-                    <td><input type=hidden name = "memberEmail"/>${memAuth.email}</td>
+                    <td><input type=hidden name = "memberEmail"/>${member.email}</td>
                 </tr>
                 <tr>
                     <td>신청수량 </td>

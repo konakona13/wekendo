@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import Model.DTO.HHHDTO.DoIMG;
+import Model.DTO.LEEDTO.Member;
 import Model.DTO.kimDTO.Friend;
 import Model.DTO.kimDTO.GuestPay;
 import Model.DTO.kimDTO.KendoList;
@@ -33,13 +35,13 @@ public class KendoJoinRepository {
 		
 		return joinNumSeq;	
 	}
-
+/*
 	public Integer getPayNumSeq() {
 		String statement =  namespace + ".getPayNumSeq"; 
 		Integer payNumSeq = sqlSession.selectOne(statement);
 		return payNumSeq;
 	}
-	
+*/	
 	public void insertKendoJoin(KendoJoin kendoJoin) {
 		String statement =  namespace + ".insertKendoJoin"; 
 		sqlSession.insert(statement, kendoJoin);	
@@ -86,12 +88,33 @@ public class KendoJoinRepository {
 		return kendoList;
 	}
 
-	public int updateDoInvited(KendoJoin kendoJoin2) {
+	public int updateDoInvited(KendoJoin kendoJoin) {
 		String statement =  namespace + ".updateDoInvited";
 		
 		int invitedResult = sqlSession.update(statement, kendoJoin);
 		return invitedResult;
 	}
+
+
+	public List<DoIMG> getKendoImgs(String doNum) {
+		List<DoIMG> doimgs = null;
+
+		String statement =  namespace + ".getKendoImgs"; 
+		doimgs = sqlSession.selectList(statement,doNum);
+		
+		System.out.println("doimg-doNum:" + doimgs.get(0).getDoNum());
+		System.out.println("doimg-hostNum:" + doimgs.get(0).getHostNum());
+		System.out.println("doimg-imgNum:" + doimgs.get(0).getDoImgNum());
+		return doimgs;
+	}
+
+	public Member userInfo(String memberNum) {
+		Member member = null;
+		String statement =  namespace + ".userInfoChk"; 
+		member = sqlSession.selectOne(statement,memberNum);
+		return member;
+	}
+
 
 
 

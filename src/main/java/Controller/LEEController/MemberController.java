@@ -48,8 +48,6 @@ public class MemberController {
 	@Autowired
 	private CompanyCashService companyCashService;
 	@Autowired
-	private UpdateDoStatusService updateDoStatusService;
-	@Autowired
 	private GoodsRepository goodsRepository;
 	@Autowired
 	private MemKendoService memKendoService;
