@@ -160,4 +160,13 @@ public class MemberController {
 		request.setAttribute("sumPrice1", sumPrice);
 		return "LEEview/kakaopaytest";
 	}
+	
+	@RequestMapping("memDoList")
+	public String memKendos1(Model model, @RequestParam(value = "memNum") String memNum) {
+		List<Dodo> hostlist = memKendoService.getHostList(memNum);
+		List<Dodo> guestlist = memKendoService.getGuestList(memNum);
+		model.addAttribute("hostlists", hostlist);
+		model.addAttribute("guestlists", guestlist);
+		return "LEEview/memberPayList";
+	}
 }

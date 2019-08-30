@@ -477,7 +477,7 @@
 		SET do_status
 		= #{doing}
 		WHERE do_status = 'invited'
-		and DO_START_DATE &gt;= sysdate
+		and DO_START_DATE &lt;= sysdate
 		and DO_PP = DO_NOWPP
 	</update>
 	<update id="updateDoend" parameterType="String">

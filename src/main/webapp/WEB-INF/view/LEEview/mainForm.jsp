@@ -160,14 +160,13 @@ commandName="loginCommand">
 </tr>
 </table>
 <a href="Logout1" >로그아웃</a>
-<a href="HDO" >활동개설</a>
-<a href="kendoJoin" >활동참가</a>
+<a href="memDoList?memNum=${memAuth.memNum }" >내 활동 보기</a>
 
 <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>
 
-<a href="member_list" >회원리스트</a>
+
 <a href="goods_list" >상품리스트</a>
 <a href="survey" >설문지</a>
 <a href="submission" >파일 업로드</a>
