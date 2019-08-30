@@ -93,6 +93,7 @@
 		  총금액 : <input type = "text" name = "totalPrice"  id ="totalPrice" value="" placeholder=""/><fmt:formatNumber pattern="###,###,###" value="" />원<br />                     
      	
      	<!-- member 정보 -->
+     	<c:if test="${memAuth.id != null}">
      	*사용자 성별:<input type = "hidden" id = "gender" name = "gender" value = "${membOpt.gender}"/>${membOpt.gender}<br /> 
      	*사용자 생일:<input type = "hidden" id = "birth" name = "birth" value = "${membOpt.memberBir}"/>${membOpt.memberBir}<br /> 
      	
@@ -101,7 +102,7 @@
         
 
         <fmt:formatNumber value="${toDay.year - membOpt.memberBir.year +1}" />
-
+		</c:if>
         <br/>
                     	
                     	

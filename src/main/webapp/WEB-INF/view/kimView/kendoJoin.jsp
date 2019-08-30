@@ -24,6 +24,7 @@
         <p>
         	신청자 ID : <input type=hidden name = "memId" value="${memAuth.id}"/>${memAuth.id}<br/> 
         <form name="frm" action="kendoJoinAction" method="POST">
+        	<h6 style="color:white;"><fmt:formatDate  value="${toDay}" pattern="yyyy"/><fmt:formatDate value="${member.memberBir}"  pattern="yyyy" /></h6>
             <table>
                 <tr>
                     <td>활동번호 </td>
@@ -60,10 +61,8 @@
                 </tr>
                 <tr>
                     <td>나이 </td>
-                    <td><fmt:formatDate  value="${toDay}" pattern="yyyy"/><br/>
-                    	<fmt:formatDate value="${member.memberBir}"  pattern="yyyy" /><br/>
-                    	<fmt:formatNumber value="${toDay.year - member.memberBir.year +1}" /><br/>
-                            	
+                    <td>
+                    	<fmt:formatNumber value="${toDay.year - member.memberBir.year +1}" /><br/>                      	
                     <input type=hidden name = "memberAge"/>
                     </td>
                 </tr>
