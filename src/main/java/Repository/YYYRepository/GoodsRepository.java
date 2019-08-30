@@ -27,16 +27,25 @@ public class GoodsRepository {
 		
 		int result = 0;
 		String statement= "";
+		String goodsNum2 = "";
+		
+		statement =  namespace + ".getGoodsNum"; 
+		goodsNum2 = sqlSession.selectOne(statement);
+		placeGoods.setGoodsNum2(goodsNum2);
 		
 		statement =  namespace + ".placeRegist"; 
 		result = sqlSession.insert(statement, placeGoods);
 		System.out.println("상품테이블 입력 완료 -" + statement);
 		
-		statement = namespace + ".getMaxNum";
+		String comNum = goodsImg.getCompanyNum();
+		System.out.println(comNum);
+		
+		//statement = namespace + ".getMaxNum";
 		//System.out.println("2: " + statement);
 		
-		goodsNum = sqlSession.selectOne(statement);
-		goodsImg.setGoodsNum(goodsNum);
+		//goodsNum = sqlSession.selectOne(statement,comNum);
+		goodsNum = placeGoods.getGoodsNum();
+		goodsImg.setGoodsNum(goodsNum+goodsNum2);
 		System.out.println("이미지테이블 들어갈때 상품번호 : " + goodsNum);
 		//goodsImg.setList(list);
 		
