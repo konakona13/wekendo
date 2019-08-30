@@ -132,6 +132,7 @@
 </c:if>                
 
             <input type = "submit" value = "활동참가신청" name = "kendoJoin"/>
+
         </form>
 
 

@@ -169,10 +169,11 @@ public class KendoJoinService {
 		System.out.println("66kdc.getDoNowPp + kdc.getDoQty:"+ kdc.getDoNowPp() + kjc.getJoinQty());
 		
 		if(kdc.getDoPp() == kdc.getDoNowPp() + kjc.getJoinQty()) {
-			
+			int statusResult = kendoJoinRepository.updateDoInvited(kendoJoin);
+			System.out.println("statusResult Invited:" + statusResult);
 		}
-		int statusResult = kendoJoinRepository.updateDoInvited(kendoJoin);
-		System.out.println("statusResult Invited:" + statusResult);
+		
+		
 		path =  "kimView/payDone";
 		
 

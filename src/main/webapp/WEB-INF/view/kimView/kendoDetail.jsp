@@ -41,7 +41,7 @@
 			//alert("연령제한 :" + doOptAge);
 
 			
-		    if(memGen != doOptGender){
+		    if(doOptGender != 'allPP' && memGen != doOptGender){
 				alert('모집 성별이 맞지 않습니다.');
 				return false;
 			} 
