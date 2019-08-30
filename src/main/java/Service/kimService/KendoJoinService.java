@@ -111,9 +111,9 @@ public class KendoJoinService {
 		System.out.println(kendoJoin.getJoinIntroduce());
 		System.out.println(kendoJoin.getJoinQty());
 		
-		Integer payNumSeq = kendoJoinRepository.getPayNumSeq();	
+		/*Integer payNumSeq = kendoJoinRepository.getPayNumSeq();	
 		guestPay.setPayNum("PAY" + payNumSeq);
-		System.out.println("guestPay.getPayNum:" + guestPay.getPayNum());
+		System.out.println("guestPay.getPayNum:" + guestPay.getPayNum());*/
 		
 		guestPay.setDutchDate(tst);
 		guestPay.setPayStyle(gpc.getPayStyle());
@@ -121,6 +121,7 @@ public class KendoJoinService {
 		guestPay.setPayCardNum(gpc.getPayCardNum());
 		guestPay.setPayCvcNum(gpc.getPayCvcNum());
 		guestPay.setPayDate(gpc.getPayDate());
+		guestPay.setDoNum(kdc.getDoNum());
 
 		
 		System.out.println("결제날짜 :"+ guestPay.getDutchDate());
@@ -191,7 +192,7 @@ public class KendoJoinService {
 	}
 
 
-	public String kendoDetail(String doNum, Model model) {
+	public String kendoDetail(String doNum, Model model, HttpSession session) {
 		KendoList kendoDtail= kendoJoinRepository.selectKendoDetail(doNum);
 		model.addAttribute("kendoDtail",kendoDtail);
 		
@@ -199,7 +200,11 @@ public class KendoJoinService {
 		List<DoIMG> kendoImgs = kendoJoinRepository.getKendoImgs(doNum);
 		model.addAttribute("kendoImgs",kendoImgs);
 		
-
+		//member
+		String memberNum = (String)session.getAttribute("memNum");
+		Member member = kendoJoinRepository.userInfo(memberNum);	
+		model.addAttribute("member",member);
+		
 		System.out.println("kendoImgs.size:"+kendoImgs.size());
 		System.out.println("kendoImgs.get(0).getDoImgName:"+kendoImgs.get(0).getDoImgName());
 		System.out.println("kendoImgs.get(0).getdoImgKind:"+kendoImgs.get(0).getDoImgKind());

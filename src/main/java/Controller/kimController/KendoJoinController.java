@@ -82,9 +82,9 @@ public class KendoJoinController {
 	}
 	
 	@RequestMapping("/kendoDetail/{num}")
-	public String kendoDetail(@PathVariable("num") String doNum, Model model) {
+	public String kendoDetail(@PathVariable("num") String doNum, Model model,HttpSession session) {
 
-		return kendoJoinService.kendoDetail(doNum, model);
+		return kendoJoinService.kendoDetail(doNum, model,session);
 	}
 
 }

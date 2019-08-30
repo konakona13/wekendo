@@ -35,13 +35,13 @@ public class KendoJoinRepository {
 		
 		return joinNumSeq;	
 	}
-
+/*
 	public Integer getPayNumSeq() {
 		String statement =  namespace + ".getPayNumSeq"; 
 		Integer payNumSeq = sqlSession.selectOne(statement);
 		return payNumSeq;
 	}
-	
+*/	
 	public void insertKendoJoin(KendoJoin kendoJoin) {
 		String statement =  namespace + ".insertKendoJoin"; 
 		sqlSession.insert(statement, kendoJoin);	

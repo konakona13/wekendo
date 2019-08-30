@@ -29,9 +29,11 @@
 	SELECT JOIN_NUM_SEQ.nextVAL FROM DUAL
 </select>
 
+<!--  
 <select id="getPayNumSeq" resultType="Integer" >
 	SELECT PAY_NUM_SEQ.nextVAL FROM DUAL
 </select>
+-->
 
 <insert id="insertKendoJoin" parameterType="Model.DTO.kimDTO.KendoJoin" >
 	insert into KENDOJOIN (JOIN_NUM, DO_NUM, GUEST_NUM, HOST_NUM, JOIN_DATE, JOIN_KAKAOID, JOIN_INTRODUCE, JOIN_QTY)
@@ -51,7 +53,8 @@
  
 <insert id="insertGuestPay" parameterType="Model.DTO.kimDTO.GuestPay" >
 	insert into GUESTPAY (PAY_NUM, DO_NUM, GUEST_NUM, HOST_NUM, JOIN_NUM, DUTCH_DATE, DUTCH_STATUS, PAY_STYLE, PAY_CARDNAME, PAY_CARDNUM, PAY_CVCNUM, PAY_DATE)
-	values (#{payNum},
+	values ((select distinct p.pay_num from payment p,buybuy b
+			 where p.pay_num = b.pay_num and b.do_num = #{doNum}),
 			(select DO_NUM from KENDOJOIN where JOIN_NUM = #{joinNum}),
 			(select GUEST_NUM from KENDOJOIN where JOIN_NUM = #{joinNum}),
 			(select HOST_NUM from KENDOJOIN where JOIN_NUM = #{joinNum}),
