@@ -36,12 +36,12 @@ public class GoodsRepository {
 		//System.out.println("2: " + statement);
 		
 		goodsNum = sqlSession.selectOne(statement);
-		//System.out.println("?" + goodsNum);
-
 		goodsImg.setGoodsNum(goodsNum);
+		System.out.println("이미지테이블 들어갈때 상품번호 : " + goodsNum);
 		//goodsImg.setList(list);
 		
 		for(String list2 : list) {
+			
 			goodsImg.setGoodsImgName(list2);
 			statement = namespace + ".setGoodsImg";
 			result = sqlSession.insert(statement, goodsImg);
@@ -106,7 +106,7 @@ public class GoodsRepository {
 			
 			List<GoodsImg> goodsImg = new ArrayList<GoodsImg>();
 			String statement =  namespace + ".getImages"; 
-			//System.out.println("이미지 받을 때 DB에서 오는 상품번호: " + goodsNum);
+			System.out.println("이미지 받을 때 DB에서 오는 상품번호: " + goodsNum);
 			goodsImg = sqlSession.selectList(statement, goodsNum);
 			
 			return goodsImg;
@@ -128,5 +128,11 @@ public class GoodsRepository {
 		
 		//지역,테마 다 가져오기 
 		//4.지역,테마테이블
+		public void getDominoDetail(String goodsNum) {
+			String statement =  "";
+			statement = namespace + ".getDominoDetail"; 
+			sqlSession.selectOne(statement, goodsNum);
+		}
+
 		
 }

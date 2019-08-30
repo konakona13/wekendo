@@ -9,11 +9,12 @@ public class GoodsList implements Serializable {
 	private String companyNum; //기업번호
 	private String companyKind; //기업구분
 	private String companyName;
+	private String companyStatus; //가입승인상태
 	
-	String goodsNum;
-	Timestamp regDate;
-	String goodsName;
-	String goodsStatus;
+	private String goodsNum;
+	private Timestamp regDate;
+	private String goodsName;
+	private String goodsStatus;
 	
 	
 	public String getCompanyNum() {
@@ -40,7 +41,14 @@ public class GoodsList implements Serializable {
 	public void setGoodsNum(String goodsNum) {
 		this.goodsNum = goodsNum;
 	}
+	
 
+	public String getCompanyStatus() {
+		return companyStatus;
+	}
+	public void setCompanyStatus(String companyStatus) {
+		this.companyStatus = companyStatus;
+	}
 	public Timestamp getRegDate() {
 		return regDate;
 	}

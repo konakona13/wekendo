@@ -14,16 +14,22 @@
 
 <script type="text/javascript">
 	function themeL(val1){
-		$.ajax({
-			type:"POST",
-			url :"themeM",
-			data: "themeLNum=" +val1,
-			datatype: "html",
-			success: function(dataTheme1){
-				$("#themeMedium").html(dataTheme1);
-				$("#themeSmall").html("");
-			}
-		});
+		//alert($("#themeLarge").val() );
+		if($("#themeLarge").val() == "3"){
+			$("#themeMedium").html("");
+			$("#themeSmall").html("");
+		}else{
+			$.ajax({
+				type:"POST",
+				url :"themeM",
+				data: "themeLNum=" +val1,
+				datatype: "html",
+				success: function(dataTheme1){
+	                	$("#themeMedium").html(dataTheme1);
+		   				$("#themeSmall").html("");
+				}
+			});
+		}
 	}
 	
 	function themeM(val){
@@ -34,7 +40,7 @@
 			data: "themeMNum=" +val + "&themeLNum="+ aval ,
 			datatype: "html",
 			success: function(data){ 
-				$("#themeSmall").html(data); //aNum 가져와서 c테이블에 넘기기
+				$("#themeSmall").html(data);
 			}
 		});
 		
@@ -51,7 +57,7 @@
 		<option value= 0 > --- 대분류를 선택하여주세요 --- </option>
 		<% for(ThemeLarge dd : result2 ) { %>
 		
-		 <option value= "<%= dd.getThemeLNum() %>"> <%= dd.getThemeLName() %></option>
+		 <option id ="LNum" value= "<%= dd.getThemeLNum() %>"> <%= dd.getThemeLName() %></option>
 		 
 		<% } %>
 

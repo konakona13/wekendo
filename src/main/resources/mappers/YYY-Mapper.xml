@@ -71,6 +71,7 @@
 		<id column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum" />
 		<result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName" />
 		<result column="COMPANY_KIND" jdbcType="VARCHAR" property="companyKind" />
+		<result column="COMPANY_STATUS" jdbcType="VARCHAR" property="companyStatus" />
 		<result column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum" />
 		<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
 		<result column="REG_DATE" jdbcType="TIMESTAMP" property="regDate" />
@@ -84,7 +85,8 @@
 </select>
 
 <select id="getGoodsList" resultType="String" resultMap="goodsList">
-	  	SELECT c.COMPANY_NUM, c.COMPANY_NAME, c.company_kind , G.GOODS_NUM, G.GOODS_NAME, G.REG_DATE, G.GOODS_STATUS	  		
+	  	SELECT c.COMPANY_NUM, c.COMPANY_NAME, c.company_kind , c.COMPANY_STATUS,
+	  				G.GOODS_NUM, G.GOODS_NAME, G.REG_DATE, G.GOODS_STATUS	  		
 		FROM COMPANY c JOIN GOODS g
 		ON c.COMPANY_NUM = g.COMPANY_NUM
 		WHERE c.COMPANY_NUM = #{companyNum}
@@ -107,7 +109,7 @@
    <result column="GOODS_IMG_KIND" jdbcType="VARCHAR" property="goodsImgKind"/>
 </resultMap>
 
-<select id="getImages" parameterType="String" resultMap="goodsImg">
+<select id="getImages" parameterType="Model.DTO.YYYDTO.GoodsImg" resultMap="goodsImg">
       SELECT GOODS_NUM, COMPANY_NUM, GOODS_IMG_NAME, GOODS_IMG_NUM, GOODS_IMG_KIND
       FROM GOODS_IMG
       WHERE GOODS_NUM = #{goodsNum}
@@ -122,7 +124,32 @@
 		
 </select>
 
+<!-- 지역,테마도미노 각 이름 가져오기 -->
 
+<resultMap type="Model.DTO.YYYDTO.MapTheme" id="maptheme">
+   <id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>   
+   <result column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum"/>
+   <result column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum"/>
+   <result column="MAP_L_NAME" jdbcType="VARCHAR" property="mapLName"/>
+   <result column="MAP_M_NUM" jdbcType="VARCHAR" property="mapMNum"/>
+   <result column="MAP_M_NAME" jdbcType="VARCHAR" property="mapMName"/>
+   <result column="MAP_S_NUM" jdbcType="VARCHAR" property="mapSNum"/>
+   <result column="MAP_S_NAME" jdbcType="VARCHAR" property="mapSName"/>
+   <result column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum"/>
+   <result column="THEME_L_NAME" jdbcType="VARCHAR" property="themeLName"/>
+   <result column="THEME_M_NUM" jdbcType="VARCHAR" property="themeMNum"/>
+   <result column="THEME_M_NAME" jdbcType="VARCHAR" property="themeMName"/>
+   <result column="THEME_S_NUM" jdbcType="VARCHAR" property="themeSNum"/>
+   <result column="THEME_S_NAME" jdbcType="VARCHAR" property="themeSName"/>
+</resultMap>
+
+<select id="getDominoDetail" parameterType="String" resultMap="maptheme">
+	SELECT ML.MAP_L_NAME, MM.MAP_M_NAME,MS.MAP_S_NAME, TL.THEME_L_NAME, TM.THEME_M_NAME , TS.THEME_S_NAME
+	FROM GOODS G , MAPLARGE ML , MAPMEDIUM MM , MAPSMALL MS , THEMELARGE TL , THEMEMEDIUM TM , THEMESMALL TS
+	WHERE G.MAP_L_NUM = ML.MAP_L_NUM AND G.MAP_M_NUM = MM.MAP_M_NUM AND G.MAP_S_NUM = MS.MAP_S_NUM
+				AND G.THEME_L_NUM = TL.THEME_L_NUM AND G.THEME_M_NUM = TM.THEME_M_NUM AND G.THEME_S_NUM = TS.THEME_S_NUM
+				AND G.GOODS_NUM = #{goodsNum};		
+</select>
 
 
 
@@ -239,7 +266,7 @@
 </select>
 
 <select id="getCompanyInfo" parameterType ="Model.DTO.YYYDTO.Company" resultMap="company">
-	  	SELECT COMPANY_NUM, COMPANY_NAME, COMPANY_KIND	  		
+	  	SELECT COMPANY_NUM, COMPANY_NAME, COMPANY_KIND, COMPANY_STATUS	  		
 		FROM COMPANY
 		WHERE COMPANY_NUM = #{companyNum}
 

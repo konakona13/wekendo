@@ -83,9 +83,20 @@ public class GoodsRegService {
 		goods.setMapLNum(command.getMapLNum()); 
 		goods.setMapMNum(command.getMapMNum());
 		goods.setMapSNum(command.getMapSNum());
-		goods.setThemeLNum(command.getThemeLNum());
-		goods.setThemeMNum(command.getThemeMNum());
-		goods.setThemeSNum(command.getThemeSNum());
+		
+		String themeLNum = command.getThemeLNum();
+		String themeMNum = command.getThemeMNum();
+		String themeSNum = command.getThemeSNum();
+		
+		if (themeLNum.equals("3")) {
+			goods.setThemeLNum("3");
+			goods.setThemeMNum("3");
+			goods.setThemeSNum("3");
+		} else {
+			goods.setThemeLNum(themeLNum);
+			goods.setThemeMNum(themeMNum);
+			goods.setThemeSNum(themeSNum);
+		}
 		
 		System.out.println("상품등록서비스_지역소분류번호 : " + goods.getMapSNum());
 		System.out.println("상품등록서비스_테마소분류번호: " + goods.getThemeSNum());
@@ -98,7 +109,8 @@ public class GoodsRegService {
 		//System.out.println("realPath :  " + realPath);
 		int i = 10;
 		List<String> list = new ArrayList<String>();
-	
+		companyNum = (String) session.getAttribute("comNum");
+		
 		for(MultipartFile report : reports) {
 
 			storedFileName = UUID.randomUUID().toString().replace("-", "");
