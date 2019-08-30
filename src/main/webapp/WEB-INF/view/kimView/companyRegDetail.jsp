@@ -83,6 +83,6 @@
 <br/>               
 
 <a href="../companyReg" >기업회원 리스트</a>        
-<a href="../kim" >메인</a>
+<a href="../adminMain" >메인</a>
 </body>
 </html>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import Command.kimCommand.GuestPayCommand;
 import Command.kimCommand.KendoDetailCommand;
 import Command.kimCommand.KendoJoinCommand;
+import Model.DTO.LEEDTO.Member;
 import Service.kimService.KendoJoinService;
 
 @Controller
@@ -51,10 +52,12 @@ public class KendoJoinController {
 
 	
 	@RequestMapping("/kendoDetail/kendoJoin")
-	public String kendoJoin(Model model,KendoDetailCommand kendoDetailCommand) {
+	public String kendoJoin(Model model,KendoDetailCommand kendoDetailCommand,HttpSession session) {
 
-		path = "kimView/kendoJoin";
+		path = kendoJoinService.userInfo(model,session);
+
 		model.addAttribute("kdc",kendoDetailCommand);
+
 		return path;
 	}
 	
@@ -73,12 +76,14 @@ public class KendoJoinController {
 	
 	@RequestMapping("/kendoJoinList")
 	public String kendoJoinList(Model model) {
+
 		return kendoJoinService.kendoJoinList(model);
 	
 	}
 	
 	@RequestMapping("/kendoDetail/{num}")
 	public String kendoDetail(@PathVariable("num") String doNum, Model model) {
+
 		return kendoJoinService.kendoDetail(doNum, model);
 	}
 

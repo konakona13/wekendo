@@ -5,7 +5,26 @@
 <mapper namespace="KIM-Mapper">
 
 <cache />
-
+	<resultMap type="Member" id="baseMember">
+		<id column="MEMBER_NUM" jdbcType="VARCHAR" property="memberNum" />
+		<result column="MEMBER_NAME" jdbcType="VARCHAR" property="memberName" />
+		<result column="MEMBER_BIRTH" jdbcType="TIMESTAMP" property="memberBir" />
+		<result column="MEMBER_PH" jdbcType="BIGINT" property="memberPh1" />
+		<result column="MEMBER_EMAIL" jdbcType="VARCHAR" property="email" />
+		<result column="MEMBER_ADDR" jdbcType="VARCHAR" property="addr" />
+		<result column="GENDER" jdbcType="VARCHAR" property="gender" />
+		<result column="MEMBER_PHOTO" jdbcType="VARCHAR" property="fileName" />
+		<result column="MEMBER_STATUS" jdbcType="VARCHAR" property="status" />
+		<result column="MEMBER_ID" jdbcType="VARCHAR" property="memberId" />
+		<result column="MEMBER_PW" jdbcType="VARCHAR" property="memberPw" />
+	</resultMap>
+<select id="userInfoChk" parameterType="String" resultMap="baseMember">
+	select
+		MEMBER_NUM, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_PH, MEMBER_ADDR, MEMBER_EMAIL, GENDER, 
+		MEMBER_PHOTO, MEMBER_BIRTH, MEMBER_STATUS
+	from member
+	where MEMBER_NUM = #{memberNum}
+</select>
 <select id="getJoinNumSeq" resultType="Integer" >
 	SELECT JOIN_NUM_SEQ.nextVAL FROM DUAL
 </select>
@@ -83,7 +102,7 @@
 	<result column="DO_CLOSE_DATE" jdbcType="TIMESTAMP" property="doCloseDate"/>
 	<result column="DO_PP" jdbcType="BIGINT" property="doPp"/>
 	<result column="DO_NOWPP" jdbcType="BIGINT" property="doNowPp"/>
-	<result column="DO_DETAIL" jdbcType="VARCHAR" property="doDetail"/>
+	<result column="DO_DETAIL" jdbcType="VARCHAR" property="doDetail" />
 	<result column="DO_OPT_GENDER" jdbcType = "VARCHAR" property="doOptGender"/>
 	<result column="DO_OPT_AGE" jdbcType = "VARCHAR" property="doOptAge"/>
 	<result column="DO_STATUS" jdbcType = "VARCHAR" property="doStatus"/>
@@ -101,6 +120,15 @@
 		<result column="PAY_PP "  property="payPp"/>		
 		<result column="PAY_DUCTCH" property="payDutch"/>
 		<result column="PAY_TOTALPRICE" property="payTotalPrice"/>
+	</association>
+	
+	
+	<association javaType="Model.DTO.HHHDTO.DoIMG" property="doImg">
+		<id column="DO_NUM " jdbcType="VARCHAR" property="doNum"/>	
+		<result column="HOST_NUM " jdbcType="VARCHAR" property="hostNum"/>		
+		<result column="DO_IMG_NAME" jdbcType = "VARCHAR" 	property="doImgName"/>
+		<result column="DO_IMG_NUM" jdbcType="VARCHAR" property="doImgNum"/>
+		<result column="DO_IMG_KIND" jdbcType="VARCHAR" property="doImgKind"/>
 	</association>
 	
 </resultMap>
@@ -125,20 +153,39 @@
 						 	 order by DO_NUM desc))
 </select>
 -->
+<!-- Kendo IMG select -->
+<resultMap type="Model.DTO.HHHDTO.DoIMG" id="doImgKim">
+
+	<id column="DO_NUM " jdbcType="VARCHAR" property="doNum"/>	
+	<result column="HOST_NUM " jdbcType="VARCHAR" property="hostNum"/>		
+	<result column="DO_IMG_NAME" jdbcType = "VARCHAR" 	property="doImgName"/>
+	<result column="DO_IMG_NUM" jdbcType="VARCHAR" property="doImgNum"/>
+	<result column="DO_IMG_KIND" jdbcType="VARCHAR" property="doImgKind"/>
+</resultMap>
+
+<select id="getKendoImgs" parameterType="String" resultMap="doImgKim">
+	select DO_NUM, HOST_NUM, DO_IMG_NAME, DO_IMG_NUM, DO_IMG_KIND
+	from DO_IMG
+	where DO_NUM = #{doNum}
+</select>
+
+
 <select id="getKendoJoinList" resultMap="kendoList">
 	select distinct k.DO_NUM, k.HOST_NUM, k.DO_NAME, k.DO_START_DATE, k.DO_END_DATE, k.DO_OPEN_DATE, 
         k.DO_CLOSE_DATE, k.DO_PP, k.DO_NOWPP,k.DO_OPT_GENDER, k.DO_OPT_AGE, k.DO_STATUS,
-        p.PAY_NUM, p.PAY_DUCTCH, p.PAY_TOTALPRICE 
+        p.PAY_NUM, p.PAY_DUCTCH, p.PAY_TOTALPRICE, d.do_img_num, d.do_img_name, d.do_img_kind
 	from kendo k  join buybuy b
 	on k.DO_NUM = b.DO_NUM
 	join payment p
 	on b.PAY_NUM = p.PAY_NUM
-	order by k.DO_NUM
+    join do_img d
+    on (k.DO_NUM = D.DO_NUM) AND d.do_img_kind ='main'
+	order by k.DO_NUM desc
 </select>
 
 <select id="selectKendoDetail" parameterType="String" resultMap="kendoList">
-	select distinct k.DO_NUM, k.HOST_NUM, k.DO_NAME, k.DO_START_DATE, k.DO_END_DATE, k.DO_OPEN_DATE, 
-        k.DO_CLOSE_DATE, k.DO_PP, k.DO_NOWPP,k.DO_OPT_GENDER, k.DO_OPT_AGE, k.DO_STATUS,
+	select k.DO_NUM, k.HOST_NUM, k.DO_NAME, k.DO_START_DATE, k.DO_END_DATE, k.DO_OPEN_DATE, 
+        k.DO_CLOSE_DATE, k.DO_PP, k.DO_NOWPP,k.DO_OPT_GENDER, k.DO_OPT_AGE, k.DO_STATUS, k.DO_DETAIL,
         p.PAY_NUM, p.PAY_DUCTCH, p.PAY_TOTALPRICE 
 	from kendo k  join buybuy b
 	on k.DO_NUM = #{doNum} and k.DO_NUM = b.DO_NUM

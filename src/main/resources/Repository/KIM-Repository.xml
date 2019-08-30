@@ -17,7 +17,7 @@
 
 <bean id = "buybuyKim"  class="Model.DTO.kimDTO.BuybuyKim" />
 <bean id = "paymentKim"  class="Model.DTO.kimDTO.PaymentKim" />
-
+<bean id = "doIMG"  class="Model.DTO.HHHDTO.DoIMG" />
 
 <bean id = "kendoJoinRepository"  class="Repository.kimRepository.KendoJoinRepository" />
 <bean id = "letterRepository"  class="Repository.kimRepository.LetterRepository" />	

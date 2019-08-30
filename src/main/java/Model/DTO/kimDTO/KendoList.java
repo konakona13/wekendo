@@ -3,6 +3,8 @@ package Model.DTO.kimDTO;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import Model.DTO.HHHDTO.DoIMG;
+
 @SuppressWarnings("serial")
 public class KendoList implements Serializable{
 
@@ -24,7 +26,17 @@ public class KendoList implements Serializable{
 	private String doStatus;
 	
 	private PaymentKim paymentKim;
+	private DoIMG doImg;
 	
+		
+	public DoIMG getDoImg() {
+		return doImg;
+	}
+
+	public void setDoImg(DoIMG doImg) {
+		this.doImg = doImg;
+	}
+
 	public PaymentKim getPaymentKim() {
 		return paymentKim;
 	}

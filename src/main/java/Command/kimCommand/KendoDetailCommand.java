@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class KendoDetailCommand implements Serializable{
+	private String memId;
 	private String doNum;
 	private String theme;
 	private String map;
@@ -16,6 +17,12 @@ public class KendoDetailCommand implements Serializable{
 	
 	
 	
+	public String getMemId() {
+		return memId;
+	}
+	public void setMemId(String memId) {
+		this.memId = memId;
+	}
 	public String getHostNum() {
 		return hostNum;
 	}

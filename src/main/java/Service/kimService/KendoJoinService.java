@@ -2,6 +2,7 @@ package Service.kimService;
 
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,8 @@ import org.springframework.ui.Model;
 import Command.kimCommand.GuestPayCommand;
 import Command.kimCommand.KendoDetailCommand;
 import Command.kimCommand.KendoJoinCommand;
-
+import Model.DTO.HHHDTO.DoIMG;
+import Model.DTO.LEEDTO.Member;
 import Model.DTO.kimDTO.Friend;
 import Model.DTO.kimDTO.GuestPay;
 import Model.DTO.kimDTO.KendoList;
@@ -37,7 +39,7 @@ public class KendoJoinService {
 	
 	@Autowired
 	private KendoList kendo;
-	
+		
 	@Autowired
 	KendoJoinRepository kendoJoinRepository;
 	
@@ -176,11 +178,14 @@ public class KendoJoinService {
 
 	public String kendoJoinList(Model model) {
 		List<KendoList> list = kendoJoinRepository.getKendoJoinList();
+		//
 		
 		System.out.println("kendoJoins.size :"+list.size());
 		System.out.println("getPayDutch :"+ list.get(0).getPaymentKim().getPayDutch());
 		System.out.println("list.get(0).getDoNowPp:" + list.get(0).getDoNowPp());
+		System.out.println("kendoMainImg:" + list.get(0).getDoImg());
 		model.addAttribute("kendoJoins",list);
+		//
 		
 		return "kimView/kendoJoinList" ;
 	}
@@ -189,6 +194,41 @@ public class KendoJoinService {
 	public String kendoDetail(String doNum, Model model) {
 		KendoList kendoDtail= kendoJoinRepository.selectKendoDetail(doNum);
 		model.addAttribute("kendoDtail",kendoDtail);
+		
+		//kendo Img table
+		List<DoIMG> kendoImgs = kendoJoinRepository.getKendoImgs(doNum);
+		model.addAttribute("kendoImgs",kendoImgs);
+		
+
+		System.out.println("kendoImgs.size:"+kendoImgs.size());
+		System.out.println("kendoImgs.get(0).getDoImgName:"+kendoImgs.get(0).getDoImgName());
+		System.out.println("kendoImgs.get(0).getdoImgKind:"+kendoImgs.get(0).getDoImgKind());
+		System.out.println("doimg-doNum:" + kendoImgs.get(0).getDoNum());
+		System.out.println("doimg-hostNum:" + kendoImgs.get(0).getHostNum());
+		
 		return "kimView/kendoDetail" ;
+	}
+
+
+	public String userInfo(Model model,HttpSession session) {
+		String memberNum = (String)session.getAttribute("memNum");
+		
+		Member member = kendoJoinRepository.userInfo(memberNum);
+		
+		/*
+		//현재날짜
+		SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy");
+		Date currentTime = new Date ( );
+		String dTime = formatter.format (currentTime);
+		System.out.println ( dTime );
+		//생일
+		Timestamp memberBir = member.getMemberBir();
+		Date date = new Date();
+		date.setTime(memberBir.getTime());
+		String birthYear = new SimpleDateFormat("yyyy").format(date);
+		*/
+		
+		model.addAttribute("member",member);
+		return "kimView/kendoJoin";
 	}	
 }
