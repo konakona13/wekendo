@@ -5,13 +5,19 @@
 <mapper namespace="YYY-Mapper">
 <cache/>
 
+<!-- 상품번호 만들기  -->
+<select id="getGoodsNum" resultType="String">
+	SELECT GOODS_NUM_SEQ.nextval
+	FROM DUAL
+</select>
+
 <!-- 상품등록 -->
 
 <insert id="placeRegist" parameterType="Model.DTO.YYYDTO.Goods">
    INSERT INTO GOODS
    (GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, 
    GOODS_NAME, GOODS_PRICE, GOODS_DETAIL, GOODS_DANGER, GOODS_STATUS, GOODS_STOCK, COMPANY_NUM, REG_DATE)
-   VALUES (#{goodsNum}|| GOODS_NUM_SEQ.nextval, #{mapLNum}, #{mapMNum}, #{mapSNum}, #{themeLNum}, #{themeMNum},
+   VALUES (#{goodsNum}||#{goodsNum2}, #{mapLNum}, #{mapMNum}, #{mapSNum}, #{themeLNum}, #{themeMNum},
    #{themeSNum}, #{goodsName}, #{goodsPrice}, #{goodsDetail}, #{goodsDanger}, #{goodsStatus},
    #{goodsStock}, #{companyNum}, sysdate)
 </insert>
@@ -30,6 +36,7 @@
 
 <resultMap type="Model.DTO.YYYDTO.Goods" id="goods">
    <id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>
+   <id column="GOODS_NUM2" jdbcType="VARCHAR" property="goodsNum2"/>
    <result column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum"/>
    <result column="MAP_M_NUM" jdbcType="VARCHAR" property="mapMNum"/>
    <result column="MAP_S_NUM" jdbcType="VARCHAR" property="mapSNum"/>
@@ -49,9 +56,11 @@
 
 <!-- 상품번호 가져오기 -->
 
-<select id="getMaxNum" resultType="String">
-      SELECT MAX(GOODS_NUM)
-      FROM GOODS
+<select id="getMaxNum" parameterType="String">
+      SELECT max(goods_num)
+      FROM GOODS g,company c
+      where g.company_num = c.company_num
+      and c.company_num = #{comNum}
 </select>
 
 <!-- 상품리스트 -->
@@ -96,7 +105,7 @@
 <!-- 이미지조회 -->
 
 <resultMap type="Model.DTO.YYYDTO.GoodsImg" id="goodsImg">
-   <id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>   
+   <id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/> 
    <result column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum"/>
    <result column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum"/>
    <result column="MAP_M_NUM" jdbcType="VARCHAR" property="mapMNum"/>

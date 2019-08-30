@@ -6,6 +6,7 @@ import java.security.Timestamp;
 public class Goods implements Serializable {
 	
 	String goodsNum;
+	String goodsNum2;
 	String mapLNum;
 	String mapMNum;
 	String mapSNum;
@@ -22,6 +23,14 @@ public class Goods implements Serializable {
 	Timestamp regDate;
 	
 	
+	
+	
+	public String getGoodsNum2() {
+		return goodsNum2;
+	}
+	public void setGoodsNum2(String goodsNum2) {
+		this.goodsNum2 = goodsNum2;
+	}
 	public String getGoodsNum() {
 		return goodsNum;
 	}

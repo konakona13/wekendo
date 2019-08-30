@@ -183,12 +183,7 @@ public class KendoJoinService {
 
 	public String kendoJoinList(Model model) {
 		List<KendoList> list = kendoJoinRepository.getKendoJoinList();
-		//
-		
-
-		model.addAttribute("kendoJoins",list);
-		//
-		
+		model.addAttribute("kendoJoins",list);	
 		return "kimView/kendoJoinList" ;
 	}
 

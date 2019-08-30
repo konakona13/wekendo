@@ -14,6 +14,7 @@
 <head>
 <title>Insert title here</title>
 <meta charset="UTF-8">
+
 <style type="text/css">
 .desc1, .desc2 {vertical-align: top;}
 .desc3{vertical-align: bottom;}
@@ -81,16 +82,16 @@ a { text-decoration:none }
 	</td>
 	<td class = "desc2" >
 		<span class="pnum" id="pnum">상품번호 : ${kendoJoin.doNum}</span><br />
-		게스트아이디 : ${memAuth.id}<br/>
+	<!-- 게스트아이디 : ${memAuth.id}<br/> -->
 		호스트번호 : ${kendoJoin.hostNum}<br />
-		<input type = "hidden" value = "${memAuth.id}" name = "memId"/>
+		<input type = "hidden" value = "${memAuth.id}" id = "memId" name = "memId"/>
 		<c:set var ="doStatus" value="${kendoJoin.doStatus}" scope="session" />
 
 		<c:if test="${doStatus == 'inviting'}">
-		<h3><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/><a href="./kendoDetail/${kendoJoin.doNum}">${kendoJoin.doName}</a></h3><br />
+		<h3 id="kendoNum"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/><a href="./kendoDetail/${kendoJoin.doNum}">${kendoJoin.doName}</a></h3><br />
 		</c:if>
 
-		<c:if test="${doStatus == 'invited' || doStatus == 'doing' || doStatus == 'docomplete' || doStatus == 'doend'}">
+		<c:if test="${doStatus == 'invited' || doStatus == 'doing' || doStatus == 'docomplete' || doStatus == 'doend' || doStatus == 'CANCEL'}">
 		<h3 style="color:grey;"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/>${kendoJoin.doName}</h3><br />
 		</c:if>
 		모집인원 : ${kendoJoin.doNowPp}/${kendoJoin.doPp}<br/>
@@ -101,21 +102,35 @@ a { text-decoration:none }
 		<div class="right">
 	
 		<c:if test="${doStatus == 'inviting'}">
+			<div>
 			<span class="price" id="price"><fmt:formatNumber pattern="###,###,###" value="${kendoJoin.paymentKim.payDutch}" />원</span><br />
+			</div>
 		</c:if>
 		<c:if test="${doStatus == 'invited'}">
+			<div>
 			<h3 style="color:red;">모집종료</h3>
+			</div>
 		</c:if>	
 		<c:if test="${doStatus == 'doing'}">
+			<div>
 			<h3 style="color:red;">활동중</h3>
+			</div>
 		</c:if>			
 		<c:if test="${doStatus == 'doend'}">
+			<div>
 			<h3 style="color:red;">활동종료</h3>
+			</div>
 		</c:if>	
 		<c:if test="${doStatus == 'cashcomplete'}">
+			<div>
 			<h3 style="color:red;">정산종료</h3>
+			</div>
 		</c:if>			
-		
+		<c:if test="${doStatus == 'CANCEL'}">
+			<div>
+			<h3 style="color:red;">활동취소</h3>
+			</div>
+		</c:if>	
 		</div></td>
 </tr>
 </table>
