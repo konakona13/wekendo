@@ -131,6 +131,12 @@
 			property="doImg" />
 		<result column="PAY_TOTALPRICE" jdbcType="BIGINT"
 			property="payTotal" />
+		<result column="DUTCH_DATE" jdbcType="TIMESTAMP"
+			property="dutchDate" />
+		<result column="PAY_STYLE" jdbcType="VARCHAR"
+			property="payStyle" />
+		<result column="PAY_CARDNUM" jdbcType="BIGINT"
+			property="cardNum" />
 	</resultMap>
 
 	<resultMap type="Model.DTO.LEEDTO.Dodo2" id="baseDo2">
@@ -471,14 +477,23 @@
 		SET do_status
 		= #{doing}
 		WHERE do_status = 'invited'
-		and DO_CLOSE_DATE &lt;= sysdate
+		and DO_START_DATE &gt;= sysdate
+		and DO_PP = DO_NOWPP
 	</update>
 	<update id="updateDoend" parameterType="String">
 		UPDATE kendo
 		SET do_status
 		= #{doend}
 		WHERE do_status = 'doing'
-		and DO_END_DATE &lt;= sysdate
+		and DO_END_DATE &lt; sysdate
+	</update>
+	<update id="updateCancel" >
+		UPDATE kendo
+		SET do_status
+		= 'CANCEL'
+		WHERE do_status = 'inviting'
+		and DO_CLOSE_DATE &lt; sysdate
+		and DO_PP &lt;&gt; DO_NOWPP
 	</update>
 
 	<select id="getBuyDetail" parameterType="String"
@@ -577,5 +592,30 @@
 	<select id="getComListCount" resultType="int">
 		select count(*) from
 		COMPANY
+	</select>
+
+	<select id="getHostDoList" parameterType="String"
+		resultMap="baseDo">
+		select
+		k.DO_NAME,PAY_TOTALPRICE,DUTCH_DATE,PAY_STYLE,PAY_CARDNUM
+		from
+		kendo k,
+		hostpay h,payment p
+		where k.do_num = h.do_num
+		and h.pay_num =
+		p.pay_num
+		and h.host_num = #{memNum}
+	</select>
+	<select id="getGuestDoList" parameterType="String"
+		resultMap="baseDo">
+		select
+		k.DO_NAME,PAY_TOTALPRICE,DUTCH_DATE,PAY_STYLE,PAY_CARDNUM
+		from
+		kendo k,
+		guestpay g,payment p
+		where k.do_num = g.do_num
+		and g.pay_num =
+		p.pay_num
+		and g.guest_num = #{memNum}
 	</select>
 </mapper>

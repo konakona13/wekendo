@@ -191,4 +191,20 @@ public class AdminSessionRepository {
 		result = sqlSession.selectOne(statement);
 		return result;
 	}
+
+	public List<Dodo> getHostDoList(String memNum) {
+		// TODO Auto-generated method stub
+		List<Dodo> result = null;
+		String statement = namespace + ".getHostDoList";
+		result = sqlSession.selectList(statement, memNum);
+		return result;
+	}
+
+	public List<Dodo> getGuestDoList(String memNum) {
+		// TODO Auto-generated method stub
+		List<Dodo> result = null;
+		String statement = namespace + ".getGuestDoList";
+		result = sqlSession.selectList(statement, memNum);
+		return result;
+	}
 }

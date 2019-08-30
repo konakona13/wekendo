@@ -103,7 +103,7 @@ table{
           		<a href="loginmain">로그인</a>
           	</c:if>
           	<c:if test="${admin != null}">
-          		<a href="Logout">로그아웃</a>
+          		<a href="Logout1">로그아웃</a>
           	</c:if>
           </li>
           <li><a href="#">고객센터</a></li>

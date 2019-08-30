@@ -18,5 +18,6 @@ public class UpdateDoStatusService {
 		String doend = "doend";
 		doStatusUpdateRepository.doingUpdate(doing);
 		doStatusUpdateRepository.doendUpdate(doend);
+		doStatusUpdateRepository.cancelUpdate();
 	}
 }
