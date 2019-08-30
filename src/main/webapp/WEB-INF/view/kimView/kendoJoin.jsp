@@ -39,11 +39,11 @@
                     
                 </tr>                
                 <tr>
-                    <td>활동구분 </td>
+                    <td> </td>
                     <td><input type=hidden name = "theme" value="${kdc.theme}"/>${kdc.theme}</td>
                 </tr>
                 <tr>
-                    <td>활동지역 </td>
+                    <td> </td>
                     <td><input type=hidden name = "map" value="${kdc.map}"/>${kdc.map}</td>
                 </tr>
                 <tr>

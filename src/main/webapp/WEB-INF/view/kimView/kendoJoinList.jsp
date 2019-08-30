@@ -115,7 +115,9 @@ a { text-decoration:none }
 		<c:if test="${doStatus == 'cashcomplete'}">
 			<h3 style="color:red;">정산종료</h3>
 		</c:if>			
-		
+		<c:if test="${doStatus == 'CANCEL'}">
+			<h3 style="color:red;">활동취소</h3>
+		</c:if>	
 		</div></td>
 </tr>
 </table>
