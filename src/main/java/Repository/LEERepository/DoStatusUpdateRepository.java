@@ -24,4 +24,10 @@ public class DoStatusUpdateRepository {
 		sqlSession.update(statement, doend);
 	}
 
+	public void cancelUpdate() {
+		// TODO Auto-generated method stub
+		String statement = namespace + ".updateCancel";
+		sqlSession.update(statement);
+	}
+
 }

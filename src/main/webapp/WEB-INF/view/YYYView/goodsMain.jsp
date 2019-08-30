@@ -11,10 +11,6 @@
 <meta charset="UTF-8">
 <title>상품목록</title>
 <script type="text/javascript">
-	var timestamp = 1476508607 * 1000;
-	var date = new Date(timestamp);
-	console.log('year is ' + date.getFullYear());
-
 
 </script>
 </head>
@@ -59,7 +55,7 @@
       
       <td style="font-family:Tahoma;font-size:10pt;">
          <div align="left">
-         <a href="./goodsRegDetail.goods/${list.goodsNum}">
+         <a href="./goodsRegDetail.goods/${list.goodsNum}" >
         <!-- <img  width=50% alt="" src="YYYView/fileupload/${imgList.goodsImgName}">&nbsp;  --> 
 		 ${list.goodsName}         
          </a>
@@ -86,19 +82,35 @@
 <c:if test="${empty list}">
 	<tr rowspan="5" align="center" valign="middle">
 	<td colspan="6">
-			<font size=2>등록된 상품이 없습니다.</font>
+			<font size=2>상품을 등록해 주세요.</font>
 	</td>
 	</tr>
 </c:if>
 
+<!-- 가입승인 된 회원만 상품등록 가능하게 조건문 -->
 
-   <tr align="right">
-      <td colspan="6">
-            <a href="goodsReg">[글쓰기]</a>
-      </td>
-   </tr>
+<c:set var="status" value="${company.companyStatus}" />
+	
+<c:if test="${status == '승인완료'}">
+		   <tr align="right">
+		      <td colspan="6">
+		            <a href="goodsReg">[글쓰기]</a>
+		      </td>
+		   </tr>
+</c:if>
+		
+<c:if test="${company.companyStatus == '미승인'}">
+  		   <tr align="center">
+		      <td colspan="6">
+		            가입 승인 후에 상품 등록 서비스를 이용하실 수 있습니다.
+		      </td>
+		   </tr>
+</c:if>
+
 
  </table>
+ 
+ <a href="./main">메인</a>&nbsp;&nbsp;
  
 </body>
 </html>

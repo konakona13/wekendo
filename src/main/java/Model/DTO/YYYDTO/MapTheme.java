@@ -5,6 +5,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class MapTheme implements Serializable {
 	
+	String goodsNum;
 	String mapLNum;
 	String mapLName;
 	String mapMNum;
@@ -20,6 +21,14 @@ public class MapTheme implements Serializable {
 	String themeSName;
 	
 	
+	
+	
+	public String getGoodsNum() {
+		return goodsNum;
+	}
+	public void setGoodsNum(String goodsNum) {
+		this.goodsNum = goodsNum;
+	}
 	public String getMapLNum() {
 		return mapLNum;
 	}

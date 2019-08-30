@@ -31,12 +31,20 @@
 	})
 	
 	var comNum = $('#companyNum').val();
+	var memNum = $('#memberNum').val();
 
-	function openComWindow() {
+	function openComWindow(comNum) {
 		// 새창에 대한 세팅(옵션)
 		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1100,left=300,top=20';
 		window.open("goodsMainLEE?comNum=" + comNum, "comGoodsDetail",	settings);
 	}
+	
+	function openMemWindow(memNum) {
+		// 새창에 대한 세팅(옵션)
+		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1100,left=300,top=20';
+		window.open("kendoMainLEE?memNum=" + memNum, "memDoDetail",	settings);
+	}
+	
 </script>
 <style>
 body {
@@ -116,7 +124,7 @@ ul.tabs li.current {
 		onmouseover="this.style.backgroundColor='F8F8F8'"
 		onmouseout="this.style.backgroundColor=''">
 		<td height="23" style="font-family:Tahoma;font-size:10pt;">
-			<a href="javascript:openChildWindow1('${dodo.doNum }');" >
+			<a href="javascript:openMemWindow('${member.memberNum }');" id="memberNum">
 			${member.memberNum }
 			</a>
 		</td>
@@ -173,6 +181,7 @@ ul.tabs li.current {
 </c:if>
 </table>
 		</div>
+		
 		<div id="tab-2" class="tab-content">
 		<table width=100% border="1" cellpadding="0" cellspacing="0" >
 <c:if test="${! empty companys}">

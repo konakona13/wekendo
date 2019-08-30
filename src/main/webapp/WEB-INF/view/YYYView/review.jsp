@@ -4,7 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품리뷰댓글</title>
+<script type="text/javascript">
+	function mapL(val){
+		$.ajax({
+			type:"POST",
+			url :"review/all",
+			data: "mapLNum=" +val,
+			datatype: "html",
+			success: function(data1){
+				$("#mapMedium").html(data1);
+				$("#mapSmall").html("");//a테이블 선택 변경시 c테이블 나오지않도록
+			}
+		});
+	}
+</script>
 </head>
 <body>
 <section class="content container-fluid">

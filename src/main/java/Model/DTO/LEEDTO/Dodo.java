@@ -23,6 +23,33 @@ public class Dodo implements Serializable {
 	private String profile;
 	private String doImg;
 	private Long payTotal;
+	private Timestamp dutchDate;
+	private String payStyle;
+	private Long cardNum;
+	
+	public Long getCardNum() {
+		return cardNum;
+	}
+
+	public void setCardNum(Long cardNum) {
+		this.cardNum = cardNum;
+	}
+
+	public Timestamp getDutchDate() {
+		return dutchDate;
+	}
+
+	public void setDutchDate(Timestamp dutchDate) {
+		this.dutchDate = dutchDate;
+	}
+
+	public String getPayStyle() {
+		return payStyle;
+	}
+
+	public void setPayStyle(String payStyle) {
+		this.payStyle = payStyle;
+	}
 
 	public Long getPayTotal() {
 		return payTotal;

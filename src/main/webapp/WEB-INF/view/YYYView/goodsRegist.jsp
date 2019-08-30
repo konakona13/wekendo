@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src = "js/jquery.form.js"></script>
+<script type="text/javascript" src = "YYYView/js/jquery.form.js"></script>
 <script>
 	//도미노
 	   $(function(){
@@ -20,8 +20,7 @@
 	            $("#mapMain").html(data1);
 	         }
 	      });
-	   })
-	    $(function(){
+	   
 	      $.ajax({
 	         type:"POST",
 	         url :"themeL",
@@ -95,7 +94,7 @@
 		수량 : <form:input path = "goodsStock" placeholder=""/><br><br>
 		상품금액 : <form:input path = "goodsPrice" placeholder=""/><br><br>
 		
-		<input type ="submit" value="등록신청" id="submit1"/>
+		<input type ="submit" value="등록신청" id="submit1" onclick="checkCompany()"/>
 		<input type="reset" name="reset" value="다시작성">
 		<input type ="button" value="등록안함"   onclick="javascript:location.href='goodsMain'" />
 	
