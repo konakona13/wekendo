@@ -40,6 +40,11 @@ public class MemberJoinService {
 		tst = new Timestamp(date.getTime());
 		mem.setMemberBir(tst);
 
+		if (mjc.getUserGender().equals("1")) {
+			mem.setGender("남");
+		} else {
+			mem.setGender("여");
+		}
 		mem.setGender(mjc.getUserGender());
 		mem.setEmail(mjc.getUserEmail());
 		mem.setAddr(mjc.getUserAddr());
