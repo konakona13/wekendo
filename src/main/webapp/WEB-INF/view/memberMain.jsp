@@ -86,7 +86,7 @@ table{
           		<a href="loginmain">로그인</a>
           	</c:if>
           <c:if test="${memAuth.id != null}">
-          		<a href="Logout">로그아웃</a>     	
+          		<a href="Logout1">로그아웃</a>     	
           </li>
           <li> <a href="loginmain">마이페이지</a></li> 
           <li> <a href="#" id ="sendBoxList">쪽지함</a></li>

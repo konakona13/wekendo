@@ -108,6 +108,15 @@ public class DoCreateReporsitory
 		doPayComplete.setPayNum(getMaxNum(2));
 		doCreatePay.setPayNum(getMaxNum(2));
 		
+		String company = doPayComplete.getCardCompany();
+		if(company.equals("KAKAO"))
+		{
+			doPayComplete.setKind("KAKAO");
+		}
+		else
+		{
+			doPayComplete.setKind("CARD");
+		}
 		statement =  namespace + ".insertHostPay";
 		result = sqlSession.insert(statement,doPayComplete);
 		System.out.println("방장결제insert");

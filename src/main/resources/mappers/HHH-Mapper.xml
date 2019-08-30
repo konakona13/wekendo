@@ -196,7 +196,7 @@
 	<insert id="insertHostPay" parameterType="Command.HHHCommand.DoPayComplete">
 		INSERT INTO HOSTPAY(<include refid="hostPayCol" />)
 		VALUES(#{payNum},#{doNum},#{hostNum},SYSDATE,
-		'결제완료','CARD',#{cardCompany},#{cardNum},#{cardCvc},#{cardDate})
+		'결제완료',#{kind},#{cardCompany},#{cardNum},#{cardCvc},#{cardDate})
 	</insert>
 	
 	<sql id="buybuyCol">

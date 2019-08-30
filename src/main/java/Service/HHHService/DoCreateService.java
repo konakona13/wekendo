@@ -35,6 +35,7 @@ public class DoCreateService
 	Kendo kendo = new Kendo();
 	
 	MultipartFile mainPhoto;
+	MultipartFile[] detailIMG;
 	DoCreatePay doCreatePay;
 	
 	public String getGoodsList(Model model, String goodsKind)
@@ -63,7 +64,7 @@ public class DoCreateService
 	}
 
 	public void completeDoForm(Model model,MultipartFile mainPhoto, CreateDoCommand createDoCommand,
-			DoCreatePay doCreatePay, HttpSession session)
+			DoCreatePay doCreatePay, HttpSession session, MultipartFile[] report)
 	{
 		//AuthInfo memInfo = (AuthInfo) session.getAttribute("memAuth");
 		String memId = (String) session.getAttribute("memNum"); 
@@ -78,6 +79,7 @@ public class DoCreateService
 		model.addAttribute("kendo",kendo);
 		session.setAttribute("kendo",kendo);
 		this.mainPhoto = mainPhoto;
+		detailIMG = report;
 		this.doCreatePay = doCreatePay;
 		//int result = doCreateReporsitory.insertKendo(kendo);
 		//if(result > 0)
@@ -117,7 +119,7 @@ public class DoCreateService
 		return kendo;
 	}
 	
-	public void upLoadDoIMG(Model model,MultipartFile mainPhoto,HttpServletRequest request,HttpSession session, String doNum)
+	public void upLoadDoIMG(Model model,MultipartFile mainPhoto,HttpServletRequest request,HttpSession session, String doNum, String kind)
 	{
 		String memInfo = (String) session.getAttribute("memNum");
 		try
@@ -126,7 +128,7 @@ public class DoCreateService
 			String storedFileName =  uploadImgService.upLoadImg(mainPhoto, request);
 			model.addAttribute("mainImg",storedFileName);
 			DoIMG doImg = new DoIMG();
-			doImg.setDoImgKind("main");
+			doImg.setDoImgKind(kind);
 			doImg.setDoImgName(storedFileName);
 			doImg.setHostNum(memInfo);
 			doImg.setDoNum(doNum);
@@ -153,11 +155,15 @@ public class DoCreateService
 		}
 		
 		String doNum = doCreateReporsitory.insertKendo(kendo,doPayComplete,doCreatePay ,session);
-		upLoadDoIMG(model, mainPhoto, request, session , doNum);
-		
-		
-		
-		
+		upLoadDoIMG(model, mainPhoto, request, session , doNum,"main");
+		//MultipartFile[] detailIMG
+		if(detailIMG != null)
+		{
+			for (MultipartFile detailP : detailIMG)
+			{
+				upLoadDoIMG(model, detailP, request, session , doNum,"detail");
+			}
+		}
 	}
 
 	@SuppressWarnings("unchecked")

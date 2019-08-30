@@ -13,6 +13,7 @@ public class DoPayComplete
 	private String cardDate;
 	private String cardEmail;
 	private String dutch;
+	private String kind;
 	
 	private String placeNum;
 	private String companyNum;
@@ -34,6 +35,14 @@ public class DoPayComplete
 	
 	
 	
+	public String getKind()
+	{
+		return kind;
+	}
+	public void setKind(String kind)
+	{
+		this.kind = kind;
+	}
 	public String getDoNum()
 	{
 		return doNum;
