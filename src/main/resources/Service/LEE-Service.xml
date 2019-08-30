@@ -26,5 +26,7 @@
 		class="Service.LEEService.UpdateDoStatusService" />
 	<bean id="memListService"
 		class="Service.LEEService.MemListService" />
+	<bean id="memKendoService"
+		class="Service.LEEService.MemKendoService" />
 </beans>
 

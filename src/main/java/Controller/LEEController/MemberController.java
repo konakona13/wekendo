@@ -18,11 +18,13 @@ import org.springframework.web.multipart.MultipartFile;
 import Command.LEECommand.CompanyJoinCommand;
 import Command.LEECommand.LoginCommand;
 import Command.LEECommand.MemberJoinCommand;
+import Model.DTO.LEEDTO.Dodo;
 import Model.DTO.YYYDTO.GoodsList;
 import Repository.YYYRepository.GoodsRepository;
 import Service.LEEService.CompanyCashService;
 import Service.LEEService.CompanyJoinService;
 import Service.LEEService.CompanyLoginService;
+import Service.LEEService.MemKendoService;
 import Service.LEEService.MemberJoinService;
 import Service.LEEService.MemberLoginService;
 import Service.LEEService.MemberLogoutService;
@@ -46,9 +48,9 @@ public class MemberController {
 	@Autowired
 	private CompanyCashService companyCashService;
 	@Autowired
-	private UpdateDoStatusService updateDoStatusService;
-	@Autowired
 	private GoodsRepository goodsRepository;
+	@Autowired
+	private MemKendoService memKendoService;
 
 	@RequestMapping("/loginmain")
 	public String mainView(HttpServletRequest request, Model model) {
@@ -105,7 +107,7 @@ public class MemberController {
 	@RequestMapping("loginPro")
 	public String loginPro(Model model, LoginCommand loginCommand, HttpSession session, HttpServletResponse response,
 			Errors errors, @RequestParam("selectLogin") String selectLogin) {
-		updateDoStatusService.updateStatus(model);
+		//updateDoStatusService.updateStatus(model);
 		String path = "";
 		if (selectLogin.equals("normal")) {
 			new LoginCommandValidator().validate(loginCommand, errors);
@@ -138,6 +140,15 @@ public class MemberController {
 		List<GoodsList> list = goodsRepository.getGoodsList(comNum);
 		model.addAttribute("list", list);
 		return "YYYView/goodsMain";
+	}
+	
+	@RequestMapping("kendoMainLEE")
+	public String memKendos(Model model, @RequestParam(value = "memNum") String memNum) {
+		List<Dodo> hostlist = memKendoService.getHostList(memNum);
+		List<Dodo> guestlist = memKendoService.getGuestList(memNum);
+		model.addAttribute("hostlists", hostlist);
+		model.addAttribute("guestlists", guestlist);
+		return "LEEview/memberPayList";
 	}
 
 	@RequestMapping("kakao")

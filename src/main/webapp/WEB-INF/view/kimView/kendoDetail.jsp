@@ -25,6 +25,15 @@
 			var totalPrice = doQty * doPrice ;
 			$("#totalPrice").val(totalPrice);
 		});
+		
+		$("#goPament").click(function(){
+			var memGen = $("#gender").val());
+			var memBirth = $("#birth").val());
+			var doOptGender = $("#doOptGender").val());
+			var doOptAge = $("#doOptAge").val());
+			
+			if(memGen == doOptGender)
+		});
 	});
 
 </script>
@@ -51,7 +60,11 @@
                 </div>
                 </td>
                 <td>활동번호 :<input type = "hidden" name = "doNum" value = "${kendoDtail.doNum}"/>${kendoDtail.doNum}<br />
-                호스트번호 : <input type = "hidden" name = "hostNum" value = "${kendoDtail.hostNum}"/>${kendoDtail.hostNum}<br />
+                  호스트번호 : <input type = "hidden" name = "hostNum" value = "${kendoDtail.hostNum}"/>${kendoDtail.hostNum}<br />
+                
+      	 성별 제한: <input type = "hidden" id = "doOptGender" value = "${kendoDtail.doOptGender}"/>${kendoDtail.doOptGender}<br />
+       	나이제한 : <input type = "hidden" id = "doOptAge" value = "${kendoDtail.doOptAge}"/>${kendoDtail.doOptAge}<br />
+               
                <!-- 활동구분 :<input type = "hidden" name = "theme" value = "취미>커피"/> 취미>  <br />
                     활동지역 :<input type = "hidden" name = "map" value = "서울>영등포구>양평동"/> 서울>영등포구>양평동 <br /> -->
                     <h3><input type = "hidden" name = "doName" value = "${kendoDtail.doName}"/>${kendoDtail.doName}</h3> <br />
@@ -60,8 +73,11 @@
                     신청가능수량 : <input type = "number" id ="doQty" name = "doQty" min="1" max="${kendoDtail.doPp - kendoDtail.doNowPp}" required/><br /> 
                     가 격 : <input type = "hidden" name = "doPrice"  id ="doPrice" value = "${kendoDtail.paymentKim.payDutch}"/><fmt:formatNumber pattern="###,###,###" value="${kendoDtail.paymentKim.payDutch}" />원<br /> 
 		     총금액 : <input type = "text" name = "totalPrice"  id ="totalPrice" value="" placeholder=""/><fmt:formatNumber pattern="###,###,###" value="" />원<br />                     
-     
-                    <input type = "submit" value = "활동참가" name = "doJoin"/>
+     	<!-- member 정보 -->
+     	<input type = "hidden" id = "gender" name = "gender" value = "${membOpt.gender}"/>
+     	<input type = "hidden" id = "birth" name = "birth" value = "${membOpt.memberBir}"/>
+     	
+                    <input type = "submit" value = "활동참가" id = "goPament" name = "doJoin"/>
                     <input type = "submit" value = "찜하기" name = "bookmark"/><br />       
                 </td>
             </tr> 
