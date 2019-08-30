@@ -6,6 +6,7 @@ import java.util.List;
 public class GoodsImg implements Serializable {
 	
 	String goodsNum;
+	String goodsNum2;
 	String companyNum;
 	String goodsImgName;
 	String goodsImgNum;
@@ -18,6 +19,14 @@ public class GoodsImg implements Serializable {
 	String themeSNum;
 	List<String> list;
 	
+	
+	
+	public String getGoodsNum2() {
+		return goodsNum2;
+	}
+	public void setGoodsNum2(String goodsNum2) {
+		this.goodsNum2 = goodsNum2;
+	}
 	public String getGoodsNum() {
 		return goodsNum;
 	}
