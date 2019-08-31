@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" 
 				uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,6 +122,7 @@ $(function(){
         <form:form action="doCreatePay" name = "frm" id = "frm" method="POST"
          enctype="multipart/form-data" commandName="createDoCommand">
             <p>${member.memberName }</p>
+            ${member.gender}
            
             <p>
                 활동선택?
@@ -180,15 +182,23 @@ $(function(){
                       나이제한 <form:input type="text" path="limitAge"/> --%>
        		<p>
                         성별제한   <form:select id="lg" path="limitGender">
-                    <form:option value="allPP">무관</form:option>
-                    <form:option value="manPP">남자</form:option>
-                    <form:option value="womanPP">여자</form:option>
+                        <form:option value="무관">무관</form:option>
+                     <c:if test="${member.gender == '남'}">
+          				<form:option value="남">남자</form:option>
+   					 </c:if>
+   					 
+   					 <c:if test="${member.gender == '여'}">
+          				<form:option value="여">여자</form:option>
+   					 </c:if>
+                    
+                    
+                    
                 	</form:select>
              </p>
              <p>
                         나이제한 <form:select id="la" path="limitAge">
-                    <form:option value="allPP">미설정</form:option>
-                    <form:option value="adultPP">성인</form:option>
+                    <form:option value="미설정">미설정</form:option>
+                    <form:option value="성인">성인</form:option>
                 	</form:select>
             </p>
            

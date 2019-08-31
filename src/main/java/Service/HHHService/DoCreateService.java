@@ -60,6 +60,8 @@ public class DoCreateService
 		Member member = doCreateReporsitory.getmemberInfo(memId);
 		model.addAttribute("member",member);
 		model.addAttribute("createDoCommand", new CreateDoCommand());
+//		System.out.println("성별 : " + member.getGender());
+//		System.out.println("번호 : " + member.getMemberNum());
 		return "HHHview/doCreateFirst";
 	}
 

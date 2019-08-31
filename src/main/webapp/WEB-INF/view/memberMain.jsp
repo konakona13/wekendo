@@ -130,7 +130,15 @@ table{
     <td width = "150"><a href="kendoJoinList"><h4>추천DO</h4> </a><br/></td>
     <td width = "150" id = "menu_activity" class="menu_activity" ><a href="#"><h4>액티비티DO</h4></a><br/></td>
     <td width = "150" id = "menu_hobby" class="menu_hobby"><a href="#"><h4>취미DO</h4></a><br/></td>
-    <td width = "150"><a href="doCreateEnter"><h4>DO만들기</h4></a><br/></td>
+    <td width = "150">
+    <c:if test="${memAuth.id == null}">
+          		<a href="loginmain"><h4>DO만들기</h4></a>
+    </c:if>
+    
+    <c:if test="${memAuth.id != null}">
+          		<a href="doCreateEnter"><h4>DO만들기</h4></a>
+    </c:if>
+    <br/></td>
 <!--<td width = "150"><a href="#"><h4>마이페이지</h4></a><br/></td>-->
   </tr>
 

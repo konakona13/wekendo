@@ -116,6 +116,7 @@
 			 <if test="value != null"> -->
 				goods_num LIKE #{value}||'%'
 				AND goods_stock = 1
+				AND goods_status = '승인'
 			 </if> 
 		</where>
 	</select>
