@@ -153,7 +153,7 @@ $(function(){
 	</tr>
 	</table>
 	<input type = "hidden" name = "confirmNum" 
-			id="confirmNum" value="2"/>
+			id="confirmNum" value="1"/>
 </form:form>
 </body>
 </html>

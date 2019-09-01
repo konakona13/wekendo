@@ -107,6 +107,7 @@ commandName="loginCommand">
 <table>
 	<tr><td colspan=3><input type="radio" name="selectLogin" value="normal" checked="checked">일반회원로그인&nbsp;&nbsp;
 	<input type="radio" name="selectLogin" value="company">기업회원로그인&nbsp;&nbsp;
+	<input type="radio" name="selectLogin" value="admin">관리자로그인&nbsp;&nbsp;
 	   <span id = "msg"  style="color:red"><%=msg111 %></span></td><tr>
 	<tr><td> 아이디 </td>
 		<td><input type ="text" id="id1" name="id1" 

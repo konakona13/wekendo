@@ -34,19 +34,19 @@
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
 			<div align="center">기업이름</div>
 		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="30%">
+		<td style="font-family:Tahoma;font-size:8pt;" width="20%">
 			<div align="center">상품명</div>
 		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">지역대중소</div>
 		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">테마대중소</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">소비자가</div>
 		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		<td style="font-family:Tahoma;font-size:8pt;" width="5%">
 			<div align="center">이용기간</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
@@ -69,19 +69,19 @@
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			${dodo2.mapLnum }/${dodo2.mapMnum }/${dodo2.mapSnum }
+			${dodo2.mapLname }/${dodo2.mapMname }/${dodo2.mapSname }
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			${dodo2.themeLnum }/${dodo2.themeMnum }/${dodo2.themeSnum }
+			${dodo2.themeLname }/${dodo2.themeMname }/${dodo2.themeSname }
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center"><fmt:formatNumber value="${dodo2.goodsPrice }" pattern="#,###" /> 원</div>
 		</td>	
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">${dodo2.goodsDays }</div>
+			<div align="center">${dodo2.goodsDays } 일</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center"><fmt:formatNumber value="${dodo2.buyPrice }" pattern="#,###" /> 원</div>

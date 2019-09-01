@@ -64,4 +64,18 @@ public class MemberLoginService {
 			response.addCookie(autoCk);
 		}
 	}
+
+	public void getSelectId(String id1, Model model) {
+		// TODO Auto-generated method stub
+		String userId = sessionRepository.getSelectId(id1);
+		model.addAttribute("userId", id1);
+		if(userId == null) {
+			System.out.println("aaaa");
+			model.addAttribute("msg", "사용가능한 id입니다.");
+			model.addAttribute("num", 2);
+		}else {
+			model.addAttribute("msg", "사용중인 id입니다. 다시작성해 주세요.");
+			model.addAttribute("num", 1);
+		}
+	}
 }

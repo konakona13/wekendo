@@ -99,23 +99,32 @@ ul.tabs li.current {
 		<table width=100% border="1" cellpadding="0" cellspacing="0" >
 <c:if test="${! empty members}">
 	<tr align="center" valign="middle">
-		<td colspan="5">일반회원리스트</td>
+		<td colspan="8">일반회원리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
+		<td style="font-family:Tahoma;font-size:8pt;" width="5%" height="26">
 			<div align="center">회원번호</div>
 		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="30%">
-			<div align="center">이름</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">연락처</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">이메일</div>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">ID</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">이름</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">연락처</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">이메일</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="20%">
+			<div align="center">주소</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">생년월일</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="5%">
 			<div align="center">상태</div>
 		</td>
 	</tr>
@@ -128,7 +137,11 @@ ul.tabs li.current {
 			${member.memberNum }
 			</a>
 		</td>
-		
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="left">
+				${member.memberId }
+			</div>
+		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left">
 				${member.memberName }
@@ -146,12 +159,22 @@ ul.tabs li.current {
 			</div>
 		</td>	
 		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+		${member.addr }
+			</div>
+		</td>	
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+			<fmt:formatDate value="${member.memberBir }" pattern="yy/MM/dd" />
+			</div>
+		</td>	
+		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">${member.status }</div>
 		</td>
 	</tr>
 </c:forEach>
 	<tr align=center height=20>
-		<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
+		<td colspan=8 style=font-family:Tahoma;font-size:10pt;>
 			<c:if test="${pageM <= 1 }">
 			[이전]&nbsp;
 			</c:if>
@@ -186,22 +209,28 @@ ul.tabs li.current {
 		<table width=100% border="1" cellpadding="0" cellspacing="0" >
 <c:if test="${! empty companys}">
 	<tr align="center" valign="middle">
-		<td colspan="4">기업회원리스트</td>
+		<td colspan="6">기업회원리스트</td>
 		<td><a href="companyReg">기업승인관리</a></td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
+		<td style="font-family:Tahoma;font-size:8pt;" width="5%" height="26">
 			<div align="center">회원번호</div>
 		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="30%">
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">회사명</div>
 		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		<td style="font-family:Tahoma;font-size:8pt;" width="5%">
+			<div align="center">대표자명</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">연락처</div>
 		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">담당자이메일</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="20%">
+			<div align="center">주소</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">상태</div>
@@ -222,7 +251,11 @@ ul.tabs li.current {
 				${company.companyName }
 			</div>
 		</td>
-		
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="left">
+				${company.companyCap }
+			</div>
+		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
 			${company.companyPh }
@@ -231,6 +264,11 @@ ul.tabs li.current {
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
 		${company.managerEmail }
+			</div>
+		</td>	
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+		${company.companyAddr }
 			</div>
 		</td>	
 		<td style="font-family:Tahoma;font-size:10pt;">

@@ -107,14 +107,14 @@ public class MemberController {
 	@RequestMapping("loginPro")
 	public String loginPro(Model model, LoginCommand loginCommand, HttpSession session, HttpServletResponse response,
 			Errors errors, @RequestParam("selectLogin") String selectLogin) {
-		//updateDoStatusService.updateStatus(model);
+		// updateDoStatusService.updateStatus(model);
 		String path = "";
 		if (selectLogin.equals("normal")) {
 			new LoginCommandValidator().validate(loginCommand, errors);
 			if (errors.hasErrors())
 				return "redirect:index.jsp"; // 수정
 			path = memberLoginService.loginPro(model, loginCommand, session, response);
-		} else if (selectLogin.equals("company")) {
+		} else if (selectLogin.equals("company") || selectLogin.equals("admin")) {
 			new LoginCommandValidator().validate(loginCommand, errors);
 			if (errors.hasErrors())
 				return "redirect:index.jsp"; // 수정
@@ -141,7 +141,7 @@ public class MemberController {
 		model.addAttribute("list", list);
 		return "YYYView/goodsMain";
 	}
-	
+
 	@RequestMapping("kendoMainLEE")
 	public String memKendos(Model model, @RequestParam(value = "memNum") String memNum) {
 		List<Dodo> hostlist = memKendoService.getHostList(memNum);
@@ -160,7 +160,7 @@ public class MemberController {
 		request.setAttribute("sumPrice1", sumPrice);
 		return "LEEview/kakaopaytest";
 	}
-	
+
 	@RequestMapping("memDoList")
 	public String memKendos1(Model model, @RequestParam(value = "memNum") String memNum) {
 		List<Dodo> hostlist = memKendoService.getHostList(memNum);
@@ -168,5 +168,11 @@ public class MemberController {
 		model.addAttribute("hostlists", hostlist);
 		model.addAttribute("guestlists", guestlist);
 		return "LEEview/memberPayList";
+	}
+
+	@RequestMapping("confirmId")
+	public String confirmId(@RequestParam(value = "id1") String id1, Model model) {
+		memberLoginService.getSelectId(id1, model);
+		return "LEEview/confirmId";
 	}
 }

@@ -18,7 +18,7 @@
 	function func_cash(){
 		if($("#cashInBalance").val()<=0){
 			alert('정산할 내역이 더 이상 없습니다.');
-			history.back();
+			location.href="Cashin";
 			return false;
 		}else{
 			$("#frm").submit();

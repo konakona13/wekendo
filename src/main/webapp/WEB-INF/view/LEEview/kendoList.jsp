@@ -31,10 +31,12 @@
 
 	})
 	
-	function openChildWindow1() {
+	var doNum = $('#doNum1').val();
+	
+	function openChildWindow1(doNum) {
 		// 새창에 대한 세팅(옵션)
 		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1100,left=300,top=20';
-		window.open("DodoDetail2?dodoNum=" + $("#doNum1").val(), "KendoDetail", settings);
+		window.open("DodoDetail2?dodoNum=" + doNum, "KendoDetail", settings);
 	}
 </script>
 <style>
@@ -126,8 +128,7 @@ ul.tabs li.current {
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left">
-			<input type="hidden" id="doNum1" name="doNum1" value="${dodo.doNum }">
-			<a href="javascript:openChildWindow1();" >
+			<a href="javascript:openChildWindow1('${dodo.doNum }');" id="doNum1" >
 				${dodo.doName }
 			</a>
 			</div>
@@ -220,8 +221,7 @@ ul.tabs li.current {
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left">
-			<input type="hidden" id="doNum2" name="doNum2" value="${dodo.doNum }">
-			<a href="javascript:openChildWindow2();" >
+			<a href="javascript:openChildWindow1('${dodo.doNum }');" id="doNum1" >
 				${dodo.doName }
 			</a>
 			</div>
@@ -311,8 +311,7 @@ ul.tabs li.current {
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left">
-			<input type="hidden" id="doNum2" name="doNum2" value="${dodo.doNum }">
-			<a href="javascript:openChildWindow2();" >
+			<a href="javascript:openChildWindow1('${dodo.doNum }');" id="doNum1" >
 				${dodo.doName }
 			</a>
 			</div>
@@ -400,8 +399,7 @@ ul.tabs li.current {
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left">
-			<input type="hidden" id="doNum2" name="doNum2" value="${dodo.doNum }">
-			<a href="javascript:openChildWindow2();" >
+			<a href="javascript:openChildWindow1('${dodo.doNum }');" id="doNum1" >
 				${dodo.doName }
 			</a>
 			</div>
@@ -479,7 +477,7 @@ ul.tabs li.current {
 		</td>
 	</tr>
 <c:forEach var="dodo" items="${dodos}">
-<c:if test="${dodo.status == 'doend' }">
+<c:if test="${dodo.status == 'CANCEL' }">
 	<tr align="center" valign="middle" bordercolor="#333333"
 		onmouseover="this.style.backgroundColor='F8F8F8'"
 		onmouseout="this.style.backgroundColor=''">
@@ -489,8 +487,7 @@ ul.tabs li.current {
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left">
-			<input type="hidden" id="doNum2" name="doNum2" value="${dodo.doNum }">
-			<a href="javascript:openChildWindow2();" >
+			<a href="javascript:openChildWindow1('${dodo.doNum }');" id="doNum1" >
 				${dodo.doName }
 			</a>
 			</div>
@@ -543,6 +540,7 @@ ul.tabs li.current {
 </c:if>
 </table>
 		</div>
+		<a href="adminMain">관리자 메인으로 돌아가기</a>
 	</div>
 </body>
 </html>

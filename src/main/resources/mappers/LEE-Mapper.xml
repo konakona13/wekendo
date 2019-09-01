@@ -169,6 +169,18 @@
 			property="goodsPrice" />
 		<result column="BUY_PRICE" jdbcType="BIGINT"
 			property="buyPrice" />
+		<result column="MAP_L_NAME" jdbcType="VARCHAR"
+			property="mapLname" />
+		<result column="MAP_M_NAME" jdbcType="VARCHAR"
+			property="mapMname" />
+		<result column="MAP_S_NAME" jdbcType="VARCHAR"
+			property="mapSname" />
+		<result column="THEME_L_NAME" jdbcType="VARCHAR"
+			property="themeLname" />
+		<result column="THEME_M_NAME" jdbcType="VARCHAR"
+			property="themeMname" />
+		<result column="THEME_S_NAME" jdbcType="VARCHAR"
+			property="themeSname" />
 	</resultMap>
 
 	<resultMap type="Model.DTO.LEEDTO.CashIn" id="baseCashin">
@@ -322,20 +334,23 @@
 	</select>
 	<select id="getDoDetail" parameterType="String"
 		resultMap="baseDo">
-		select
+		select DISTINCT
 		k.DO_NUM,k.HOST_NUM,DO_NAME,DO_START_DATE,DO_END_DATE,DO_OPEN_DATE,
-		DO_CLOSE_DATE,DO_PP,DO_NOWPP,DO_DETAIL,DO_OPT_GENDER,DO_OPT_AGE,DO_STATUS,
+		DO_CLOSE_DATE,DO_PP,DO_NOWPP,DO_OPT_GENDER,DO_OPT_AGE,DO_STATUS,
 		MEMBER_PH,MEMBER_PHOTO,DO_IMG_NAME,member_name,PAY_TOTALPRICE
 		from
-		KENDO k, Member m, DO_IMG d,payment p,hostpay h
+		KENDO k, Member m, DO_IMG d,payment p,buybuy b
 		where k.host_num =
 		m.member_num
 		and
 		k.do_num = d.do_num
-		and h.pay_num = p.pay_num
+		and k.do_num = b.do_num
+		and b.pay_num
+		= p.pay_num
 		and
 		k.DO_NUM =
 		#{doNum}
+		and d.do_img_kind = 'main'
 	</select>
 
 	<select id="getCashList" parameterType="StartEndPage"
@@ -487,13 +502,15 @@
 		WHERE do_status = 'doing'
 		and DO_END_DATE &lt; sysdate
 	</update>
-	<update id="updateCancel" >
+	<update id="updateCancel">
 		UPDATE kendo
 		SET do_status
 		= 'CANCEL'
-		WHERE do_status = 'inviting'
+		WHERE do_status =
+		'inviting'
 		and DO_CLOSE_DATE &lt; sysdate
-		and DO_PP &lt;&gt; DO_NOWPP
+		and DO_PP
+		&lt;&gt; DO_NOWPP
 	</update>
 
 	<select id="getBuyDetail" parameterType="String"
@@ -539,20 +556,26 @@
 
 	<select id="getDoinGoodsDetail" parameterType="String"
 		resultMap="baseDo2">
-		select
-		k.DO_NUM,g.GOODS_NUM,c.COMPANY_NUM,company_NAME,GOODS_NAME,DO_IMG_NAME,
-		b.MAP_L_NUM,b.MAP_M_NUM,b.MAP_S_NUM,b.THEME_L_NUM,b.THEME_M_NUM,
-		b.THEME_S_NUM,BUY_DAYS,GOODS_PRICE,BUY_PRICE
+		select DISTINCT
+		k.DO_NUM,g.GOODS_NUM,c.COMPANY_NUM,company_NAME,GOODS_NAME,
+		MAP_L_NAME,MAP_M_NAME,MAP_S_NAME,THEME_L_NAME,THEME_M_NAME,
+		THEME_S_NAME,BUY_DAYS,GOODS_PRICE,BUY_PRICE
 		from KENDO k, company c,
-		buybuy b, goods
-		g,do_img dimg
+		buybuy b, goods g, maplarge ml,mapmedium mm,mapsmall ms,
+		themelarge tl,thememedium tm,themesmall ts
 		where k.do_num = b.do_num
 		and
 		b.goods_num =
 		g.goods_num
 		and
 		g.company_num = c.company_num
-		and k.do_num = dimg.do_num
+		and
+		b.MAP_L_NUM = ml.map_l_num
+		and b.MAP_M_NUM = mm.map_m_num
+		and b.MAP_S_NUM = ms.map_s_num
+		and b.THEME_L_NUM = tl.theme_l_num
+		and b.THEME_M_NUM = tm.theme_m_num
+		and b.theme_s_num = ts.theme_s_num
 		and k.DO_NUM =
 		#{doNum1}
 	</select>
@@ -588,6 +611,7 @@
 		rn
 		&lt;=
 		#{endRow}
+		and company_num &lt;&gt; 'admin'
 	</select>
 	<select id="getComListCount" resultType="int">
 		select count(*) from

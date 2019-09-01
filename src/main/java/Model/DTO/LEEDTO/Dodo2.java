@@ -33,7 +33,49 @@ public class Dodo2 implements Serializable {
 	private Long goodsDays;
 	private Long goodsPrice;
 	private Long buyPrice;
+	private String mapLname;
+	private String mapMname;
+	private String mapSname;
+	private String themeLname;
+	private String themeMname;
+	private String themeSname;
 	
+	public String getMapLname() {
+		return mapLname;
+	}
+	public void setMapLname(String mapLname) {
+		this.mapLname = mapLname;
+	}
+	public String getMapMname() {
+		return mapMname;
+	}
+	public void setMapMname(String mapMname) {
+		this.mapMname = mapMname;
+	}
+	public String getMapSname() {
+		return mapSname;
+	}
+	public void setMapSname(String mapSname) {
+		this.mapSname = mapSname;
+	}
+	public String getThemeLname() {
+		return themeLname;
+	}
+	public void setThemeLname(String themeLname) {
+		this.themeLname = themeLname;
+	}
+	public String getThemeMname() {
+		return themeMname;
+	}
+	public void setThemeMname(String themeMname) {
+		this.themeMname = themeMname;
+	}
+	public String getThemeSname() {
+		return themeSname;
+	}
+	public void setThemeSname(String themeSname) {
+		this.themeSname = themeSname;
+	}
 	public Long getGoodsPrice() {
 		return goodsPrice;
 	}
