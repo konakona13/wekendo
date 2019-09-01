@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import Command.HHHCommand.CreateDoCommand;
 import Command.HHHCommand.DoCreatePay;
+import Command.HHHCommand.DoCreatePlace;
 import Command.HHHCommand.DoPayCommand;
 import Command.HHHCommand.DoPayComplete;
 import Command.HHHCommand.SelectBuyGoods;
@@ -47,18 +48,28 @@ public class DoCreateController
 	}
 	
 	@RequestMapping("/doCreatePlace")
-	public String doCreatePlace(Model model,@RequestParam("doPlay") String doPlay,@RequestParam("goodsKind") String goodsKind)
+	public String doCreatePlace(Model model,@RequestParam("doPlay") String doPlay,@RequestParam("goodsKind") String goodsKind,
+			@RequestParam("startDate") String startDate,@RequestParam("endDate") String endDate)
 	{
 		System.out.println("doCreatePlace 진입" );
 		model.addAttribute("doPlay",doPlay);
+		System.out.println("doPlay"+doPlay);
+		
 		model.addAttribute("goodsKind",goodsKind);
+		model.addAttribute("startDate",startDate);
+		model.addAttribute("endDate",endDate);
+		
 		return doCreateService.getGoodsList(model,goodsKind);
 	}
 	
 	@RequestMapping("/placeDetail")
-	public String placeDetail(Model model,@RequestParam("num") String num,@RequestParam("goodsKind") String goodsKind)
+	public String placeDetail(Model model,@RequestParam("num") String num,@RequestParam("goodsKind") String goodsKind,
+			@RequestParam("startDate") String startDate,@RequestParam("endDate") String endDate)
 	{
 		model.addAttribute("goodsKind",goodsKind);
+		model.addAttribute("startDate",startDate);
+		model.addAttribute("endDate",endDate);
+		
 		return doCreateService.getGoodsDetail(model,num);
 	}
 	

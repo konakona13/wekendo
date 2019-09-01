@@ -15,12 +15,36 @@
 .hasDatepicker{cursor: pointer;}
 </style>
 
+<script type="text/javascript" language="javascript">
+ 
+function btDate(sDate,eDate) 
+{
+	var stDate = new Date(sDate) ;
+    var endDate = new Date(eDate) ;
+ 
+    var btMs = endDate.getTime() - stDate.getTime() ;
+    var btDay = btMs / (1000*60*60*24) ;
+ 	
+    if (btDay < 1) {
+    	btDay = 0;
+	}
+    
+ 	$("#buyDays").val(btDay);
+    
+}
+
+
+ 
+</script>
+
+
 </head>
 <body>
   
-
-     	<p>대여시작날짜 <input type="text" id="buyStartDate" name="buyStartDate"> </p>
+		<p>대여시작날짜 <input type="text" id="buyStartDate" name="buyStartDate"> </p>
     	<p>반납예정날짜 <input type="text" id="buyEndDate" name="buyEndDate"> </p>
+    	
+    	
     
     <script>
     $(function() {
@@ -40,8 +64,16 @@
             ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
             ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
             ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
-            ,minDate: "today" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-            ,maxDate: "+1M" //최대 선택일자(+1D:하루후, +1M:한달후, +1Y:일년후)                
+            ,minDate: "${startDate }" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+            ,maxDate: "${endDate }" //최대 선택일자(+1D:하루후, +1M:한달후, +1Y:일년후) 
+            ,onClose: function( selectedDate ) {    
+                // 시작일(fromDate) datepicker가 닫힐때
+                // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                btDate(selectedDate,$("#buyEndDate").val()); 
+                changePrice();
+                $("#buyEndDate").datepicker( "option", "minDate", selectedDate );
+            }
+
         }); 
         
         $("#buyEndDate").datepicker({
@@ -59,12 +91,16 @@
             ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
             ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
             ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
-            ,minDate: "+1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-            ,maxDate: "+1M" //최대 선택일자(+1D:하루후, +1M:한달후, +1Y:일년후)                
+            ,minDate: "${startDate }" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+            ,maxDate: "${endDate }" //최대 선택일자(+1D:하루후, +1M:한달후, +1Y:일년후)
+            ,onClose: function( selectedDate ){
+            	btDate($("#buyStartDate").val(),selectedDate); 
+            	changePrice();
+            }
         });    
         
         //초기값을 오늘 날짜로 설정
-        $('#buyStartDate').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)     
+        $('#buyStartDate').datepicker('setDate', '${startDate }'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)     
         $('#buyEndDate').datepicker('setDate', '+1D');
     });
     </script>

@@ -11,7 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 import Command.HHHCommand.DoCreatePay;
 import Command.HHHCommand.DoPayComplete;
 import Command.HHHCommand.SelectBuyGoods;
+import Model.DTO.HHHDTO.Company;
 import Model.DTO.HHHDTO.DoIMG;
+import Model.DTO.HHHDTO.GoodsImg;
 import Model.DTO.HHHDTO.Kendo;
 import Model.DTO.HHHDTO.Member;
 import Model.DTO.HHHDTO.PlaceGoods;
@@ -181,6 +183,33 @@ public class DoCreateReporsitory
 		String result = sqlSession.selectOne(statement);
 		System.out.println("maxNum : " + result);		
 		return result;
+	}
+
+	public List<Company> getCpList()
+	{
+		String statement = null;
+		statement = namespace + ".getCpList";
+		
+		List<Company> cPlist =	sqlSession.selectList(statement);
+		
+		
+		return cPlist;
+	}
+
+	public List<GoodsImg> getGoodsImg()
+	{
+		String statement = null;
+		statement = namespace + ".getImgList";
+		List<GoodsImg> gIList = sqlSession.selectList(statement);
+		return gIList;
+	}
+
+	public Company getOneComp(String companyNum)
+	{
+		String statement = null;
+		statement = namespace + ".getOneCompany";
+		Company comp = sqlSession.selectOne(statement,companyNum);
+		return comp;
 	}
 	
 	

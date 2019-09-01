@@ -16,7 +16,9 @@ import Command.HHHCommand.CreateDoCommand;
 import Command.HHHCommand.DoCreatePay;
 import Command.HHHCommand.DoPayComplete;
 import Command.HHHCommand.SelectBuyGoods;
+import Model.DTO.HHHDTO.Company;
 import Model.DTO.HHHDTO.DoIMG;
+import Model.DTO.HHHDTO.GoodsImg;
 import Model.DTO.HHHDTO.Kendo;
 import Model.DTO.HHHDTO.Member;
 import Model.DTO.HHHDTO.PlaceGoods;
@@ -43,6 +45,11 @@ public class DoCreateService
 		System.out.println("getGoodsList 서비스진입");
 		List<PlaceGoods> goodsList = doCreateReporsitory.getGDList(goodsKind);
 		model.addAttribute("list",goodsList);
+		List<Company> companyList = doCreateReporsitory.getCpList();
+		model.addAttribute("companyList",companyList);
+		List<GoodsImg> goodImgs = doCreateReporsitory.getGoodsImg();
+		model.addAttribute("goodImgs",goodImgs);
+		
 		System.out.println(goodsKind + " 상품 갯수"+goodsList.size());
 		return "HHHview/doCreatePlace";
 	}
@@ -51,12 +58,17 @@ public class DoCreateService
 	{
 		PlaceGoods goods =  doCreateReporsitory.getOneGoods(num);
 		model.addAttribute("goods",goods);
+		Company company = doCreateReporsitory.getOneComp(goods.getCompanyNum());
+		model.addAttribute("company",company);
+		List<GoodsImg> goodImgs = doCreateReporsitory.getGoodsImg();
+		model.addAttribute("goodImgs",goodImgs);
 		return "HHHview/doGoodsDetail";
 	}
 
 	public String getMemberInfo(Model model,HttpSession session)
 	{
 		String memId = (String) session.getAttribute("memNum"); 
+		System.out.println("memId : " + memId);
 		Member member = doCreateReporsitory.getmemberInfo(memId);
 		model.addAttribute("member",member);
 		model.addAttribute("createDoCommand", new CreateDoCommand());

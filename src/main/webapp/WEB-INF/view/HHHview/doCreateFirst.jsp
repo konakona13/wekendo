@@ -11,63 +11,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>활동개설신청서</title>
-    <!-- 달력 -->
-<!-- // jQuery UI CSS파일  -->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-<!-- // jQuery 기본 js파일 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-<!-- // jQuery UI 라이브러리 js파일 -->
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
-    <!-- 달력 끝-->
+
     <script type="text/javascript" 
  src="http://code.jquery.com/jquery-latest.js" ></script>
 <script type="text/javascript">
+
 $(function(){
 	var openWin;
+	
+	
 	$("#selectPlaceBtn").click(function()
 	{
 		
-		 var url = "doCreatePlace?doPlay="+$("#doPlay").val()
-							  +"&doArea="+$("#doArea").val()
-							  +"&goodsKind=place"; 
+		var nc = nextcl();
+		var ec = endcl(); 
+		var url = "doCreatePlace?doPlay="+$("#themeSmall").val()
+							  +"&doArea="+$("#mapSmall").val()
+							  +"&goodsKind=place"
+							  +"&startDate="+nc
+							  +"&endDate="+ec; 
 		openWin = window.open(url,"장소선택","width=300, height=500");
 		
 	});
 	
 	$("#selectHotelBtn").click(function()
 	{
-		var url = "doCreatePlace?doPlay="+$("#doPlay").val()
-							  +"&doArea="+$("#doArea").val()
-							  +"&goodsKind=hotel";
+		var nc = nextcl();
+		var ec = endcl(); 
+		var thema = $("#themeSmall").val();
+		var area  = $("#themeSmall").val();
+		var url = "doCreatePlace?doPlay="+thema
+							  +"&doArea="+area
+							  +"&goodsKind=hotel"
+							  +"&startDate="+nc
+							  +"&endDate="+ec;
 		openWin = open(url,"숙박선택","width=300, height=500");
+		
 		
 	});
 	
 	$("#selectRentBtn").click(function()
 	{
-		var url = "doCreatePlace?doPlay="+$("#doPlay").val()
-							  +"&doArea="+$("#doArea").val()
-							  +"&goodsKind=rent";
+		var nc = nextcl();
+		var ec = endcl(); 
+		var thema = $("#themeSmall").val();
+		var area  = $("#themeSmall").val();
+		var url = "doCreatePlace?doPlay="+thema
+							  +"&doArea="+area
+							  +"&goodsKind=rent"
+							  +"&startDate="+nc
+							  +"&endDate="+ec;
 		openWin = open(url,"차량선택","width=300, height=500");
 		
 	});
 	
 	$("#selectMentoBtn").click(function()
 	{
-		var url = "doCreatePlace?doPlay="+$("#doPlay").val()
-							  +"&doArea="+$("#doArea").val()
-							  +"&goodsKind=mento";
+		var nc = nextcl();
+		var ec = endcl(); 
+		var thema = $("#themeSmall").val();
+		var area  = $("#themeSmall").val();
+		var url = "doCreatePlace?doPlay="+thema
+							  +"&doArea="+area
+							  +"&goodsKind=mento"
+							  +"&startDate="+nc
+							  +"&endDate="+ec;
 		openWin = open(url,"멘토선택","width=300, height=500");
 		
 	});
 	
-	
+	  
 	
 	$("#submit1").click(function()
 	{
 		$("#frm").submit();
 	});
+	
+	function themaArea()
+	{
+		var areaS = $("#mapSmall").val();
+		$("#areaSS").val(areaS);
+		var themeS = $("#themeSmall").val();
+		$("#themeSS").val(themeS);
+		
+		return $("#areaSS").val();
+	}
 });
+
+
+
+function nextcl() 
+{
+	var tt = $("#doStartDate").val();
+	$("#startDcl").val(tt);
+	
+	return $("#startDcl").val();
+}
+
+function endcl() 
+{
+	var tt = $("#doEndDate").val();
+	$("#endDcl").val(tt);
+	
+	return $("#endDcl").val();
+}
 
 
 </script>
@@ -114,29 +161,50 @@ $(function(){
 	}
 
 </script>   
-    
+<script>
+	//도미노
+	   $(function(){
+	      $.ajax({
+	         type:"POST",
+	         url :"mapL",
+	         datatype: "html",
+	         success: function(data1){
+	            $("#mapMain").html(data1);
+	         }
+	      });
+	   
+	      $.ajax({
+	         type:"POST",
+	         url :"themeL",
+	         datatype: "html",
+	         success: function(dataTheme1){
+	            $("#themeMain").html(dataTheme1);
+	         }
+	      });
+	   })
+
+</script>    
 </head>
 <body>
     <h1>활동개설신청서?</h1>
+    	
+    	<!-- 새창정보 -->
+    	<input type="hidden" id="startDcl" name="startDate">
+        <input type="hidden" id="endDcl" name="endDate">
+    	<!-- 새창정보 -->
+    	<!-- 지역테마정보 -->
+    	테마<input type="text" id="themaSS">
+		지역<input type="text" id="areaSS">
        
+      
         <form:form action="doCreatePay" name = "frm" id = "frm" method="POST"
          enctype="multipart/form-data" commandName="createDoCommand">
-            <p>${member.memberName }</p>
-            ${member.gender}
-           
+          
             <p>
-                활동선택?
-                <select name="doPlay" id="doPlay">
-                    <option value="ski">스키</option>
-                    <option value="swim">수영</option>
-                </select>
+                지역선택	 <div id = "mapMain"> </div> 
             </p>
             <p>
-                지역선택?
-                <select name="doArea" id="doArea">
-                    <option value="gang">강원</option>
-                    <option value="geju">제주</option>
-                </select>
+           	테마선택 	 <div id = "themeMain"> </div>  
             </p>
             
             <p>
@@ -153,7 +221,7 @@ $(function(){
                     </tr>
                    
                      <tr>
-                        <td> 활동시작일  <form:input path="doStartDate" type="date"/></td>
+                        <td> 활동시작일  <form:input path="doStartDate" id="doStartDate" type="date"/></td>
                     </tr>
                     <tr>
                   
@@ -161,6 +229,8 @@ $(function(){
                       <tr>
                         <td> 활동종료일  <form:input path="doEndDate" type="date"/></td>
                     </tr>
+                    
+                   
                     
                   
                 </table>
@@ -176,6 +246,7 @@ $(function(){
                    </p>
                    <p>
                         상세설명 <form:input type="text" path="doDetail"/>
+                        
                    </p>
                    
                     <%-- 성별제한 <form:input type="text" path="limitGender"/>
@@ -183,11 +254,11 @@ $(function(){
        		<p>
                         성별제한   <form:select id="lg" path="limitGender">
                         <form:option value="무관">무관</form:option>
-                     <c:if test="${member.gender == '남'}">
+                     <c:if test="${member.gender == 1}">
           				<form:option value="남">남자</form:option>
    					 </c:if>
    					 
-   					 <c:if test="${member.gender == '여'}">
+   					 <c:if test="${member.gender == 2}">
           				<form:option value="여">여자</form:option>
    					 </c:if>
                     
@@ -195,6 +266,7 @@ $(function(){
                     
                 	</form:select>
              </p>
+             
              <p>
                         나이제한 <form:select id="la" path="limitAge">
                     <form:option value="미설정">미설정</form:option>
@@ -235,32 +307,6 @@ $(function(){
             </div>
             	
             	
-            
-            
-           <div id="buyInfoDiv">
-           		<!-- <input type="text" id="companyNum" name="companyNum">
-           		
-           		<input type="text" id="mapLNum" name="mapLNum" value="mapLNum">
-           		<input type="text" id="mapMNum" name="mapMNum" value="mapMNum">
-           		<input type="text" id="mapSNum" name="mapSNum" value="mapSNum">
-           		<input type="text" id="themeLNum" name="themeLNum" value="themeLNum">
-           		<input type="text" id="themeMNum" name="themeMNum" value="themeMNum">
-           		<input type="text" id="themeSNum" name="themeSNum" value="themeSNum">
-           		
-           		<input type="text" id="buyQty" name="buyQty">
-           		<input type="text" id="buyStartDate" name="buyStartDate">
-           		<input type="text" id="buyEndDate" name="buyEndDate">
-           		<input type="text" id="buyDays" name="buyDays">
-           		<input type="text" id="buyPrice" name="buyPrice"> -->
-           		
-           		
-           		
-           
-           </div>
-           
-            
-
-
 
             <input type="button" id ="submit1" value="다음"/>
         </form:form>
