@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" 
+			uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,7 +81,7 @@
 			$('#totalPrice').val(price);
 		});
 		
-		$("#buyDays").click(function()
+		$("#buyDays").change(function()
 				{
 					var price = $('#goodspri').text();
 					price = Number(price);
@@ -91,23 +93,21 @@
 					var totalPrice = $('#buyPrice').text(price);
 					$('#totalPrice').val(price);
 				});
-		
-		/* $("#buyQty").click(function()
-				{
-					
-					var startD = $('#buyStartDate').val();
-					
-					var endD = $('#buyEndDate').val();
-					
-					
-					
-					$('#buyEndDate').val(startD);
-				}); */
-		
+	
 		
 	});
 
-
+function changePrice() {
+	var price = $('#goodspri').text();
+	price = Number(price);
+	var qty = $('#buyQty').val();
+	qty = Number(qty);
+	var dayby = $('#buyDays').val();
+	
+	price = price*qty*dayby;
+	var totalPrice = $('#buyPrice').text(price);
+	$('#totalPrice').val(price);
+}
 
 </script>
 
@@ -125,12 +125,27 @@
     <p>상품이름 : ${goods.goodsName}</p>
    	<p>상세내용 : ${goods.goodsDetail}</p>
     <p>주의사항 : ${goods.goodsDanger}</p>
-    <p>상품수량 : ${goods.goodsStock}</p>
     <p>금액(1일1인) : <span id="goodspri">${goods.goodsPrice}</span></p>
-    <p>메인사진</p>
-    <p>연락처</p>
-    <p>상세주소</p>
-    <p>상세사진</p>
+    
+    <c:set var="mainImg" value="true"/>
+    <c:forEach var="Imgs" items="${goodImgs}">
+    
+    <c:if test="${Imgs.goodsNum eq goods.goodsNum && not mainImg}">
+    <p>상세사진 : <img alt="" src="YYYView/upload/${Imgs.goodsImgName }" width="300px"></p>
+    </c:if>
+    
+    <c:if test="${Imgs.goodsNum eq goods.goodsNum && mainImg}">
+    <p>메인사진 : <img alt="" src="YYYView/upload/${Imgs.goodsImgName }" width="400px"></p>
+    <c:set var="mainImg" value="false"/>
+    </c:if>
+    
+   
+    
+    </c:forEach>
+    
+    <p>연락처 : ${company.companyPh}</p>
+    <p>상세주소 : ${company.companyAddr}</p>
+    
    	<div>
         <jsp:include page="testCalander.jsp" flush="true"/>
     </div>

@@ -115,8 +115,9 @@
 		<where>
 			 <if test="value != null"> -->
 				goods_num LIKE #{value}||'%'
-				AND goods_stock = 1
-				AND goods_status = '승인'
+				AND goods_stock = 1 
+				AND goods_status = '승인완료'
+				
 			 </if> 
 		</where>
 	</select>
@@ -139,7 +140,7 @@
 		select
 		<include refid="membercolumn" />
 		from member
-		where member_id = #{memberId}
+		where member_num = #{memberId}
 	</select>
 	
 	<select id="companyCheck" parameterType="Company"
@@ -149,6 +150,53 @@
 		from company
 		where COMPANY_ID = #{companyId} and COMPANY_PW = #{companyPw}
 	</select>
+	
+	<select id="getCpList" resultMap="baseCompany">
+		select
+		<include refid="basecolumnCompany" />
+		from company
+		
+	</select>
+	
+	<select id="getOneCompany" parameterType="String" resultMap="baseCompany">
+		select
+		<include refid="basecolumnCompany" />
+		from company
+		where company_num = #{companyNum}
+		
+	</select>
+	
+		
+<resultMap type="Model.DTO.HHHDTO.GoodsImg" id="goodsImg">
+   <id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/> 
+   <result column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum"/>
+   <result column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum"/>
+   <result column="MAP_M_NUM" jdbcType="VARCHAR" property="mapMNum"/>
+   <result column="MAP_S_NUM" jdbcType="VARCHAR" property="mapSNum"/>
+   <result column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum"/>
+   <result column="THEME_M_NUM" jdbcType="VARCHAR" property="themeMNum"/>
+   <result column="THEME_S_NUM" jdbcType="VARCHAR" property="themeSNum"/>
+   <result column="GOODS_IMG_NAME" jdbcType="VARCHAR" property="goodsImgName"/>
+   <result column="GOODS_IMG_NUM" jdbcType="VARCHAR" property="goodsImgNum"/>
+   <result column="GOODS_IMG_KIND" jdbcType="VARCHAR" property="goodsImgKind"/>
+</resultMap>
+	
+<select id="getImgList" resultMap="goodsImg">
+	
+	SELECT GOODS_NUM, COMPANY_NUM, GOODS_IMG_NAME, GOODS_IMG_NUM, GOODS_IMG_KIND
+    FROM GOODS_IMG
+	
+</select>
+	
+
+
+<select id="getImages" parameterType="String" resultMap="goodsImg">
+      SELECT GOODS_NUM, COMPANY_NUM, GOODS_IMG_NAME, GOODS_IMG_NUM, GOODS_IMG_KIND
+      FROM GOODS_IMG
+      WHERE GOODS_NUM = #{goodsNum}
+</select>
+	
+	
 	
 	<select id="maxDoNum" resultType="String">
 		SELECT MAX(do_num)
@@ -224,8 +272,18 @@
 	
 	<!-- insert 문 끝 -->
 	
+	<!-- update문 시작  -->
+	 
 	<update id="updateGoodsStock" parameterType="String">
 	UPDATE goods set goods_stock = 0 
+	WHERE 
+	<if test="value != null"> -->
+				goods_num = #{value}
+	</if> 
+	</update>
+	
+	<update id="rollBackStock" parameterType="String">
+	UPDATE goods set goods_stock = 1 
 	WHERE 
 	<if test="value != null"> -->
 				goods_num = #{value}
