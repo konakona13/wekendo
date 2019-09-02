@@ -20,6 +20,11 @@ public class GoodsImg implements Serializable {
 	List<String> list;
 	
 	
+	@Override
+    public String toString() {
+        return "GoodsImg [회사번호=" + companyNum + ", 상품번호=" + goodsNum + "]";
+    }
+	
 	
 	public String getGoodsNum2() {
 		return goodsNum2;

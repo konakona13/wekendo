@@ -140,6 +140,15 @@ public class GoodsRepository {
 			return goodsImg;
 		}
 
+		//그냥 가져오기
+		public List<GoodsImg> getImages() {
+			List<GoodsImg> goodsImg = new ArrayList<GoodsImg>();
+			String statement =  namespace + ".getImagesAll"; 
+			goodsImg = sqlSession.selectList(statement);
+			
+			return goodsImg;
+
+		}
 
 
 		
@@ -164,6 +173,11 @@ public class GoodsRepository {
 			statement =  namespace + ".deleteGoodsImg"; 
 			sqlSession.selectOne(statement, goodsNum);
 		}
+
+
+
+
+
 
 
 
