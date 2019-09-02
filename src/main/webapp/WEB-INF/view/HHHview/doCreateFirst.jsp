@@ -254,11 +254,11 @@ function endcl()
        		<p>
                         성별제한   <form:select id="lg" path="limitGender">
                         <form:option value="무관">무관</form:option>
-                     <c:if test="${member.gender == 1}">
+                     <c:if test="${member.gender eq '남'}">
           				<form:option value="남">남자</form:option>
    					 </c:if>
    					 
-   					 <c:if test="${member.gender == 2}">
+   					 <c:if test="${member.gender eq '여'}">
           				<form:option value="여">여자</form:option>
    					 </c:if>
                     
