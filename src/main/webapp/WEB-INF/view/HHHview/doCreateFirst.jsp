@@ -18,8 +18,8 @@
 
 $(function(){
 	var openWin;
-	
-	
+	var wid = 800;
+	var heit = 500;
 	$("#selectPlaceBtn").click(function()
 	{
 		
@@ -30,7 +30,7 @@ $(function(){
 							  +"&goodsKind=place"
 							  +"&startDate="+nc
 							  +"&endDate="+ec; 
-		openWin = window.open(url,"장소선택","width=300, height=500");
+		openWin = window.open(url,"장소선택","width="+wid+", height="+heit);
 		
 	});
 	
@@ -45,7 +45,7 @@ $(function(){
 							  +"&goodsKind=hotel"
 							  +"&startDate="+nc
 							  +"&endDate="+ec;
-		openWin = open(url,"숙박선택","width=300, height=500");
+		openWin = open(url,"숙박선택","width="+wid+", height="+heit);
 		
 		
 	});
@@ -61,7 +61,7 @@ $(function(){
 							  +"&goodsKind=rent"
 							  +"&startDate="+nc
 							  +"&endDate="+ec;
-		openWin = open(url,"차량선택","width=300, height=500");
+		openWin = open(url,"차량선택","width="+wid+", height="+heit);
 		
 	});
 	
@@ -76,7 +76,7 @@ $(function(){
 							  +"&goodsKind=mento"
 							  +"&startDate="+nc
 							  +"&endDate="+ec;
-		openWin = open(url,"멘토선택","width=300, height=500");
+		openWin = open(url,"멘토선택","width="+wid+", height="+heit);
 		
 	});
 	
