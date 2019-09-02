@@ -103,10 +103,10 @@
 <!-- 일반회원 상품리스트 -->
 
 <select id="memGetGoods" resultMap="goodsList">
-		SELECT
-	  		<include refid="goodsAllSelect" />
-		FROM GOODS
-		WHERE GOODS_STATUS = '승인완료'
+		SELECT	c.COMPANY_NUM, c.COMPANY_NAME, c.company_kind , G.GOODS_NUM, G.GOODS_NAME, G.REG_DATE, G.GOODS_STATUS	  		
+		FROM COMPANY c JOIN GOODS g
+        ON c.COMPANY_NUM = g.COMPANY_NUM 
+        WHERE GOODS_STATUS = '승인완료'
 </select>
 
 
@@ -133,6 +133,11 @@
       WHERE GOODS_NUM = #{goodsNum}
 </select>
 
+<!-- 상품목록 대표이미지 가져오기 -->
+<select id="getImagesAll" parameterType="Model.DTO.YYYDTO.GoodsImg" resultMap="goodsImg">
+      SELECT GOODS_NUM, COMPANY_NUM, GOODS_IMG_NAME, GOODS_IMG_NUM, GOODS_IMG_KIND
+      FROM GOODS_IMG
+</select>
 
 
 

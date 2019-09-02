@@ -35,8 +35,7 @@ public class GoodsListController {
 	@RequestMapping("/goodsMain/member")
 	public String goodsMember(Model model, HttpSession session) { 
 
-		String path= listMemService.goodsMember(model, session);
-		return path;
+		return listMemService.goodsMember(model, session);
 	}
 	
 	//수정
