@@ -1,6 +1,7 @@
 package Controller.YYYController;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,11 +12,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import Command.LEECommand.AuthInfo;
+import Command.YYYCommand.AuthInfoCommand;
 import Command.YYYCommand.PlaceRegCommand;
+import Command.YYYCommand.ReviewCommand;
+import Model.DTO.YYYDTO.Review;
+import Model.DTO.YYYDTO.ReviewList;
 import Service.YYYService.GoodsDetailService;
 import Service.YYYService.GoodsRegService;
+import Service.YYYService.ReviewService;
 
 @Controller
 public class GoodsRegController {
@@ -23,11 +31,18 @@ public class GoodsRegController {
 	private GoodsRegService placeRegService;
 	@Autowired
 	private GoodsDetailService detailService;
+	@Autowired
+	private ReviewService reviewService;
+
 
 	//상품 등록
 	@RequestMapping(value = "/goodsReg", method = {RequestMethod.POST,RequestMethod.GET})
 	public String goodsReg(Model model, PlaceRegCommand command, HttpSession session) {
-		
+		AuthInfo authInfo =(AuthInfo) session.getAttribute("comAuth");
+		String companyNum = authInfo.getComNum();
+		String companyKind = companyNum.substring(0, 3);
+		System.out.println(companyKind);
+		model.addAttribute("comKind", companyKind);
 		return "YYYView/goodsRegist";
 	} 
 	
@@ -46,24 +61,32 @@ public class GoodsRegController {
 	
 	//상세보기
 	@RequestMapping("/goodsRegDetail.goods/{num}")
-	public String goodsDetail(@PathVariable("num") String goodsNum, Model model, HttpSession session) {
-		
+	public String goodsDetail(@PathVariable("num") String goodsNum, Model model, HttpSession session) {		
 		System.out.println("상세보기 - 뷰단에서 받아오는 상품번호: " + goodsNum);
-		System.out.println("상세보기 - 뷰단에서 받아오는 회사번호: " + session.getAttribute("comNum"));
 		
-		String path = detailService.goodsDetail(goodsNum, model, session);
-		return path;
+		return detailService.goodsDetail(goodsNum, model, session);
 	}
+	
+	//리뷰
+	/*@RequestMapping(value = "/reviewAction", method = RequestMethod.POST)
+	public String makeReview(Review review, HttpSession session) {
+		
+        return reviewService.makeReview(review, session);
+        
+    }
+	
+	@RequestMapping("/reviewList")
+    public List<ReviewList> reviewList(@RequestParam String goodsNum, Model model){
+		List<ReviewList> reviewList = reviewService.reviewList(model, goodsNum);
+        return reviewList;
+    }*/
+
 
 	
 
 	
+	
+	
 
-	
-
-	
-	
-	
-	
 	}
 

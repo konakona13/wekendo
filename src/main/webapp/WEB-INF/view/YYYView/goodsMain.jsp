@@ -39,6 +39,7 @@
       <td style="font-family:Tahoma;font-size:8pt;" width="10%">
          <div align="center">날짜</div>
       </td>
+      
 	  <td style="font-family:Tahoma;font-size:8pt;" width="17%">
          <div align="center">승인상태</div>
       </td>
@@ -55,7 +56,7 @@
       
       <td style="font-family:Tahoma;font-size:10pt;">
          <div align="left">
-         <a href="./goodsRegDetail.goods/${list.goodsNum}" >
+         <a href="../goodsRegDetail.goods/${list.goodsNum}" >
         <!-- <img  width=50% alt="" src="YYYView/fileupload/${imgList.goodsImgName}">&nbsp;  --> 
 		 ${list.goodsName}         
          </a>
@@ -94,7 +95,7 @@
 <c:if test="${status == '승인완료'}">
 		   <tr align="right">
 		      <td colspan="6">
-		            <a href="goodsReg">[글쓰기]</a>
+		            <a href="../goodsReg">[글쓰기]</a>
 		      </td>
 		   </tr>
 </c:if>

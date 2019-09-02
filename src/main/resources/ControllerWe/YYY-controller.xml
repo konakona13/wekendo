@@ -20,6 +20,7 @@
 <bean class = "Command.YYYCommand.PlaceRegCommand" />
 <bean class = "Command.YYYCommand.AuthInfoCommand" />
 <bean class = "Command.YYYCommand.MapThemeCommand" />
+<bean class = "Command.YYYCommand.ReviewCommand" />
 
 <!-- DTO -->
 <bean id = "mapLarge"  class="Model.DTO.YYYDTO.MapLarge" />
@@ -28,10 +29,14 @@
 <bean id = "themeLarge"  class="Model.DTO.YYYDTO.ThemeLarge" />
 <bean id = "themeMedium"  class="Model.DTO.YYYDTO.ThemeMedium" />
 <bean id = "themeSmall"  class="Model.DTO.YYYDTO.ThemeSmall" />
+<bean id = "mapTheme"  class="Model.DTO.YYYDTO.MapTheme" />
 
 <bean id = "goods"  class="Model.DTO.YYYDTO.Goods" />
 <bean id = "goodsImg"  class="Model.DTO.YYYDTO.GoodsImg" /> 
 <bean id = "company"  class="Model.DTO.YYYDTO.Company" />
 <bean id = "goodsList"  class="Model.DTO.YYYDTO.GoodsList" />
+<bean id = "member"  class="Model.DTO.YYYDTO.Member" />
+<bean id = "review"  class="Model.DTO.YYYDTO.Review" />
+<bean id = "reviewList"  class="Model.DTO.YYYDTO.ReviewList" />
 
 </beans>

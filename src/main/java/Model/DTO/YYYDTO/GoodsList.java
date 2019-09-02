@@ -17,6 +17,12 @@ public class GoodsList implements Serializable {
 	private String goodsStatus;
 	
 	
+	@Override
+    public String toString() {
+        return "GoodsList [회사번호=" + companyNum + ", 회사이름=" + companyName + ", 회사가입=" + companyStatus + ", 상품명=" + goodsName + "]";
+    }
+	
+	
 	public String getCompanyNum() {
 		return companyNum;
 	}
@@ -67,7 +73,6 @@ public class GoodsList implements Serializable {
 	public void setGoodsStatus(String goodsStatus) {
 		this.goodsStatus = goodsStatus;
 	}
-	
-	
+
 
 }
