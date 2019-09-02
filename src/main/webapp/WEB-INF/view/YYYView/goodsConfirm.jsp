@@ -54,11 +54,11 @@
                 <td><input type="text" name = "goodsNum" id="goodsNum" value="${list.goodsNum}"/></td>  
                 <td>${list.goodsName}</td>  
                 <td>${list.companyNum}</td>   
-                <td>${list.regDate}</td>
+                <td> <fmt:formatDate value="${list.regDate}" pattern="yy.MM.dd" /></td>
                 <td>${list.goodsStatus}</td>
                 <td>
                 	<input type="submit" value="승인" id="confirm" />
-                	<input type="button" value="거부" id="cancel" onclick="javascript:location.href='confirmList'"/>
+                	
                 
                 </td>      
              </tr>

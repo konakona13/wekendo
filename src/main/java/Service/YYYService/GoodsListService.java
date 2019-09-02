@@ -53,13 +53,6 @@ public class GoodsListService {
 
 		System.out.println("상품리스트 게시글수 :  " + list.size());
 
-		/*
-		 * List<GoodsImg> images = repository.getGoodsImg();
-		 * model.addAttribute("images", images);
-		 */
-
-		// System.out.println("Images테스트 " + images.size());
-
 		return "YYYView/goodsMain";
 	}
 

@@ -19,7 +19,7 @@
    GOODS_NAME, GOODS_PRICE, GOODS_DETAIL, GOODS_DANGER, GOODS_STATUS, GOODS_STOCK, COMPANY_NUM, REG_DATE)
    VALUES (#{goodsNum}||#{goodsNum2}, #{mapLNum}, #{mapMNum}, #{mapSNum}, #{themeLNum}, #{themeMNum},
    #{themeSNum}, #{goodsName}, #{goodsPrice}, #{goodsDetail}, #{goodsDanger}, #{goodsStatus},
-   #{goodsStock}, #{companyNum}, sysdate)
+   1, #{companyNum}, sysdate)
 </insert>
 
 
@@ -72,8 +72,6 @@
     GOODS_STOCK, COMPANY_NUM, REG_DATE
 </sql>
 
-
-
 <!-- 목록에 회사명 가져오기 위해 -->
 
 <resultMap type="Model.DTO.YYYDTO.GoodsList" id="goodsList">
@@ -102,6 +100,17 @@
         ORDER BY REG_DATE DESC
 </select>
 
+<!-- 일반회원 상품리스트 -->
+
+<select id="memGetGoods" resultMap="goodsList">
+		SELECT
+	  		<include refid="goodsAllSelect" />
+		FROM GOODS
+		WHERE GOODS_STATUS = '승인완료'
+</select>
+
+
+
 <!-- 이미지조회 -->
 
 <resultMap type="Model.DTO.YYYDTO.GoodsImg" id="goodsImg">
@@ -124,6 +133,10 @@
       WHERE GOODS_NUM = #{goodsNum}
 </select>
 
+
+
+
+
 <!-- 상세보기 -->
 <select id="getGoodsDetail" parameterType="Model.DTO.YYYDTO.Goods" resultMap="goods">
 		SELECT
@@ -133,11 +146,13 @@
 		
 </select>
 
+
+
+
 <!-- 지역,테마도미노 각 이름 가져오기 -->
 
 <resultMap type="Model.DTO.YYYDTO.MapTheme" id="maptheme">
-   <id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>   
-   <result column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum"/>
+   <id column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum"/>
    <result column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum"/>
    <result column="MAP_L_NAME" jdbcType="VARCHAR" property="mapLName"/>
    <result column="MAP_M_NUM" jdbcType="VARCHAR" property="mapMNum"/>
@@ -152,12 +167,17 @@
    <result column="THEME_S_NAME" jdbcType="VARCHAR" property="themeSName"/>
 </resultMap>
 
-<select id="getDominoDetail" parameterType="String" resultMap="maptheme">
-	SELECT ML.MAP_L_NAME, MM.MAP_M_NAME,MS.MAP_S_NAME, TL.THEME_L_NAME, TM.THEME_M_NAME , TS.THEME_S_NAME
+<select id="getDominoDetail" resultType="String" resultMap="maptheme">
+	SELECT ML.MAP_L_NAME, ML.MAP_L_NUM, MM.MAP_M_NAME,MM.MAP_M_NUM, MS.MAP_S_NAME,MS.MAP_S_NUM, 
+			TL.THEME_L_NUM, TL.THEME_L_NAME, TM.THEME_M_NUM, TM.THEME_M_NAME , TS.THEME_S_NAME, TS.THEME_S_NUM
 	FROM GOODS G , MAPLARGE ML , MAPMEDIUM MM , MAPSMALL MS , THEMELARGE TL , THEMEMEDIUM TM , THEMESMALL TS
-	WHERE G.MAP_L_NUM = ML.MAP_L_NUM AND G.MAP_M_NUM = MM.MAP_M_NUM AND G.MAP_S_NUM = MS.MAP_S_NUM
-				AND G.THEME_L_NUM = TL.THEME_L_NUM AND G.THEME_M_NUM = TM.THEME_M_NUM AND G.THEME_S_NUM = TS.THEME_S_NUM
-				AND G.GOODS_NUM = #{goodsNum};		
+	<where>
+	 <if test="value != null"> 
+	G.MAP_L_NUM = ML.MAP_L_NUM AND G.MAP_M_NUM = MM.MAP_M_NUM AND G.MAP_S_NUM = MS.MAP_S_NUM
+	AND G.THEME_L_NUM = TL.THEME_L_NUM AND G.THEME_M_NUM = TM.THEME_M_NUM AND G.THEME_S_NUM = TS.THEME_S_NUM
+	AND G.GOODS_NUM = #{value}		
+	</if>
+	</where>
 </select>
 
 
@@ -274,14 +294,18 @@
 
 </select>
 
-<select id="getCompanyInfo" parameterType ="Model.DTO.YYYDTO.Company" resultMap="company">
+<select id="getCompanyDetail" parameterType ="Model.DTO.YYYDTO.Company" resultMap="company">
 	  	SELECT COMPANY_NUM, COMPANY_NAME, COMPANY_KIND, COMPANY_STATUS	  		
 		FROM COMPANY
 		WHERE COMPANY_NUM = #{companyNum}
-
 </select>
 
-
+<select id="getCompanyInfoM" resultMap="goodsList">
+	  	SELECT c.COMPANY_NUM, c.COMPANY_NAME, c.company_kind , G.GOODS_NUM, G.GOODS_NAME, G.REG_DATE, G.GOODS_STATUS	  		
+		FROM COMPANY c JOIN GOODS g
+		ON c.COMPANY_NUM = g.COMPANY_NUM
+        WHERE g.GOODS_NUM = #{goodsNum}
+</select>
 
 
 <!-- 등록 승인_관리자페이지 -->
@@ -312,6 +336,31 @@
 	WHERE GOODS_NUM = #{goodsNum}
 </delete>
 
+<!-- 리뷰등록 -->
+
+<resultMap type="Model.DTO.YYYDTO.Review" id="review">
+		<id column="REVIEW_NUM" jdbcType="VARCHAR" property="reviewNum" />
+		<result column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum" />
+		<result column="MEMBER_NUM" jdbcType="VARCHAR" property="memberNum" />
+		<result column="REVIEW_SCORE" jdbcType="BIGINT" property="reviewScore" />
+		<result column="REVIEW_DATE" jdbcType="TIMESTAMP" property="reviewDate" />
+		<result column="REVIEW_CONTENT" jdbcType="VARCHAR" property="reviewContent" />
+
+</resultMap>
+
+<insert id="makeReivew" parameterType="Model.DTO.YYYDTO.Review">
+   INSERT INTO REVIEW
+   (REVIEW_NUM, GOODS_NUM, MEMBER_NUM, REVIEW_SCORE, REVIEW_DATE, REVIEW_CONTENT)
+   VALUES (#{goodsNum}||#{reviewNum}, #{goodsNum}, #{memberNum}, 3, sysdate, #{reviewContent})
+</insert>
+
+<!-- 리뷰조회 -->
+
+<select id="getReview" resultMap="review">
+		SELECT r.REVIEW_DATE, r.REVIEW_SCORE, r.REVIEW_CONTENT, g.GOODS_NAME
+		FROM REVIEW r, Goods g
+		WHERE R.GOODS_NUM =  G.GOODS_NUM
+</select>
 
 
 </mapper>

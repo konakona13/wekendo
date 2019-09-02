@@ -26,7 +26,7 @@
 				datatype: "html",
 				success: function(dataTheme1){
 	                	$("#themeMedium").html(dataTheme1);
-		   				$("#themeSmall").html("");
+		   				$("#themeSmallDiv").html("");
 				}
 			});
 		}
@@ -40,7 +40,7 @@
 			data: "themeMNum=" +val + "&themeLNum="+ aval ,
 			datatype: "html",
 			success: function(data){ 
-				$("#themeSmall").html(data);
+				$("#themeSmallDiv").html(data);
 			}
 		});
 		
@@ -66,7 +66,7 @@
 
 	
 	<div id="themeMedium"></div>
-	<div id="themeSmall"></div>
+	<div id="themeSmallDiv"></div>
 
 
 </body>

@@ -1,10 +1,8 @@
-package Model.DTO.YYYDTO;
+package Command.YYYCommand;
 
-import java.io.Serializable;
 
-@SuppressWarnings("serial")
-public class Review implements Serializable {
-	//13 --> 6
+public class ReviewCommand{
+	
 	String reviewNum;
 	String goodsNum;
 	String memberNum;
@@ -51,10 +49,6 @@ public class Review implements Serializable {
 	}
 	
 	
-	@Override
-    public String toString() {
-        return "Review [회원번호=" + memberNum + ", 리뷰=" + reviewContent + ", 상품번호=" + goodsNum + ", 점수=" + reviewScore + "]";
-    }
 
 	
 	

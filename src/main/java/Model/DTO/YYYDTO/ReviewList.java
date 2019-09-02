@@ -3,33 +3,26 @@ package Model.DTO.YYYDTO;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class Review implements Serializable {
-	//13 --> 6
-	String reviewNum;
-	String goodsNum;
+public class ReviewList implements Serializable {
+
 	String memberNum;
+	String memberName;
+	
 	int reviewScore;
 	String reviewDate;
 	String reviewContent;
-	
-	
-	public String getReviewNum() {
-		return reviewNum;
-	}
-	public void setReviewNum(String reviewNum) {
-		this.reviewNum = reviewNum;
-	}
-	public String getGoodsNum() {
-		return goodsNum;
-	}
-	public void setGoodsNum(String goodsNum) {
-		this.goodsNum = goodsNum;
-	}
+
 	public String getMemberNum() {
 		return memberNum;
 	}
 	public void setMemberNum(String memberNum) {
 		this.memberNum = memberNum;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 	public int getReviewScore() {
 		return reviewScore;
@@ -51,11 +44,6 @@ public class Review implements Serializable {
 	}
 	
 	
-	@Override
-    public String toString() {
-        return "Review [회원번호=" + memberNum + ", 리뷰=" + reviewContent + ", 상품번호=" + goodsNum + ", 점수=" + reviewScore + "]";
-    }
-
 	
 	
 }

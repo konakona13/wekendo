@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import Model.DTO.YYYDTO.Company;
 import Model.DTO.YYYDTO.GoodsImg;
 import Model.DTO.YYYDTO.GoodsList;
+import Model.DTO.YYYDTO.MapTheme;
 import Model.DTO.YYYDTO.Goods;
 
 @Repository
@@ -18,6 +19,8 @@ public class GoodsRepository {
 	private SqlSession sqlSession;
 	@Autowired
 	private Company company;
+	@Autowired
+	private GoodsList goodsList;
 	
 	private String namespace = "YYY-Mapper";
 	private String goodsNum= "";
@@ -64,7 +67,7 @@ public class GoodsRepository {
 	
 	
 	//상품리스트 
-	//회원용
+	//기업회원용
 	public List<GoodsList> getGoodsList(String companyNum) {
 		List<GoodsList> result = null;
 		String statement =  namespace + ".getGoodsList"; 
@@ -81,6 +84,15 @@ public class GoodsRepository {
 		
 		return result;
 	}
+	//일반회원용
+	public List<GoodsList> memGetGoods() {
+		List<GoodsList> result = null;
+		String statement =  namespace + ".memGetGoods"; 
+		result = sqlSession.selectList(statement);
+		
+		return result;
+	}
+
 
 
 	//상품 상세 
@@ -102,12 +114,19 @@ public class GoodsRepository {
 		public Company getCompanyDetail(String companyNum) {
 			
 			//System.out.println("서비스에서 받아오는 회사번호  : " +  companyNum);
-			String statement =  namespace + ".getCompanyInfo"; 
+			String statement =  namespace + ".getCompanyDetail"; 
 			System.out.println("DB에서 오는 회사번호: " + companyNum);
 			company = sqlSession.selectOne(statement, companyNum);
 
 			return company;
 		}
+		public GoodsList getCompanyInfo(String goodsNum) {
+			String statement =  namespace + ".getCompanyInfoM"; 
+			goodsList = sqlSession.selectOne(statement, goodsNum);
+			
+			return goodsList;
+		}
+
 		
 		//이미지
 		//3.이미지테이블
@@ -123,6 +142,19 @@ public class GoodsRepository {
 
 
 
+		
+		//지역,테마 다 가져오기 
+		//4.지역,테마테이블
+		public MapTheme getDominoDetail(String goodsNum) {
+			MapTheme maptheme = null;
+			String statement =  "";
+			System.out.println("goodsNum"+goodsNum);
+			statement = namespace + ".getDominoDetail"; 
+			maptheme = sqlSession.selectOne(statement, goodsNum);
+			
+			return maptheme;
+		}
+
 
 		public void deleteGoods(String goodsNum) {
 			String statement =  "";
@@ -134,14 +166,16 @@ public class GoodsRepository {
 		}
 
 
-		
-		//지역,테마 다 가져오기 
-		//4.지역,테마테이블
-		public void getDominoDetail(String goodsNum) {
-			String statement =  "";
-			statement = namespace + ".getDominoDetail"; 
-			sqlSession.selectOne(statement, goodsNum);
-		}
+
+
+
+
+
+
+
+
+
+
 
 		
 }
