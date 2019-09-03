@@ -80,10 +80,9 @@ table{
     <div class="header-content clearfix"> <a class="logo" href="memberMain.html"><img src="images/logom.png" width = "200" alt=""></a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
-          <li><a href="memberJoin">회원가입</a></li>
           <li>
           	<c:if test="${memAuth.id == null}">
-          		<a href="loginmain">로그인</a>
+          		<a href="loginmain">회원가입/로그인</a>
           	</c:if>
           <c:if test="${memAuth.id != null}">
           		<a href="Logout1">로그아웃</a>     	
@@ -130,16 +129,18 @@ table{
     <td width = "150"><a href="kendoJoinList"><h4>추천DO</h4> </a><br/></td>
     <td width = "150" id = "menu_activity" class="menu_activity" ><a href="#"><h4>액티비티DO</h4></a><br/></td>
     <td width = "150" id = "menu_hobby" class="menu_hobby"><a href="#"><h4>취미DO</h4></a><br/></td>
-    <td width = "150">
     <c:if test="${memAuth.id == null}">
-          		<a href="loginmain"><h4>DO만들기</h4></a>
-    </c:if>
-    
-    <c:if test="${memAuth.id != null}">
-          		<a href="doCreateEnter"><h4>DO만들기</h4></a>
-    </c:if>
-    <br/></td>
-<!--<td width = "150"><a href="#"><h4>마이페이지</h4></a><br/></td>-->
+    <td width = "150">   	
+    	<a href="loginmain"><h4>DO만들기</h4></a><br/>    	
+    </td>
+	</c:if> 
+	
+	<c:if test="${memAuth.id != null}"> 
+    <td width = "150">   	
+       	<a href="doCreateEnter"><h4>DO만들기</h4></a><br/> 
+   	</td>
+   	</c:if>
+
   </tr>
 
 
@@ -148,10 +149,7 @@ table{
     <td id = "menu_activity"><div id="actmsg"></div></td>
     <td id = "menu_hobby"><div id="hobmsg"></div></td>
     <td></td>
-    <td></td>
   </tr>
-
- 
 </table> 
 
 <!-- portfolio grid section -->

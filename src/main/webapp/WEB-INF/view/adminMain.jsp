@@ -97,7 +97,6 @@ table{
     <div class="header-content clearfix"> <a class="logo" href="memberMain.html"><img src="images/logom.png" width = "200" alt=""></a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
-          <li><a href="memberJoin">회원가입</a></li>
           <li>
           	<c:if test="${admin == null}">
           		<a href="loginmain">로그인</a>
@@ -145,7 +144,7 @@ table{
     <td width = "150" id = "menu_goodsMng" class="menu_goodsMng" ><a href="goodsMain"><h4>상품관리-업체상품리스트</h4></a><br/></td>
     <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="kendo_list"><h4>주문관리-활동리스트</h4></a><br/></td>
     <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="Cashin"><h4>매출관리-정산관리</h4></a><br/></td>
-    <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="kakao"><h4>카카오페이테스트</h4></a><br/></td>
+    
   </tr>
 
 

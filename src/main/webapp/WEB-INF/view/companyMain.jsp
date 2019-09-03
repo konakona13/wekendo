@@ -95,10 +95,9 @@ table{
     <div class="header-content clearfix"> <a class="logo" href="memberMain.html"><img src="images/logom.png" width = "200" alt=""></a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
-          <li><a href="memberJoin">기업회원가입</a></li>
           <li>
           	<c:if test="${comAuth.id == null}">
-          		<a href="loginmain">로그인</a>
+          		<a href="loginmain">기업회원가입/로그인</a>
           	</c:if>
           	<c:if test="${comAuth.id != null}">
           		<a href="Logout1">로그아웃</a>
@@ -155,7 +154,6 @@ table{
     <td></td>
     <td id = "menu_activity"><div id="actmsg"></div></td>
     <td id = "menu_hobby"><div id="hobmsg"></div></td>
-    <td></td>
     <td></td>
   </tr>
 
