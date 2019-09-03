@@ -21,7 +21,7 @@
 			datatype: "html",
 			success: function(data1){
 				$("#mapMedium").html(data1);
-				$("#mapSmall").html("");//a테이블 선택 변경시 c테이블 나오지않도록
+				$("#mapSmallDiv").html("");//a테이블 선택 변경시 c테이블 나오지않도록
 			}
 		});
 	}
@@ -34,7 +34,7 @@
 			data: "mapMNum=" +val + "&mapLNum="+ aval ,
 			datatype: "html",
 			success: function(data){ 
-				$("#mapSmall").html(data); //aNum 가져와서 c테이블에 넘기기
+				$("#mapSmallDiv").html(data); //aNum 가져와서 c테이블에 넘기기
 			}
 		});
 		
@@ -60,7 +60,7 @@
 
 	
 	<div id="mapMedium"></div>
-	<div id="mapSmall"></div>
+	<div id="mapSmallDiv"></div>
 
 <!-- <select name='MapLarge'>
   <option value='' selected>-- 지역선택 --</option>

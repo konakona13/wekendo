@@ -12,10 +12,12 @@
 	 <bean id = "goodsRegService"  class="Service.YYYService.GoodsRegService" />
 	 <bean id = "domino"  class="Service.YYYService.DominoService" />
 	 <bean id = "goodsListService"  class="Service.YYYService.GoodsListService" />
+	 <bean id = "goodsListMemService"  class="Service.YYYService.GoodsListMemServcie" />
 	 <bean id = "goodsDetailService"  class="Service.YYYService.GoodsDetailService" />
 	 <bean id = "goodsConfirmService"  class="Service.YYYService.GoodsConfirmService" />
 	 <bean id = "confirmListService"  class="Service.YYYService.ConfirmListServcie" />
 	  <bean id = "goodsCancelService"  class="Service.YYYService.GoodsCancelService" />
 	  <bean id = "deleteService"  class="Service.YYYService.GoodsDeleteService" />
+	  <bean id = "reviewService"  class="Service.YYYService.ReviewService" />
 	
 </beans>
