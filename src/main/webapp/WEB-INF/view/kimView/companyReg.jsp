@@ -62,7 +62,7 @@
 								<c:if test="${! empty updateComReg}">                
 								<c:forEach var="updateComReg" items="${updateComReg}">
 								<tr   class="table_row" >
-									<td align="center" class="column-">
+									<td align="center" class="column-2">
 										<input type = "hidden" value = "${updateComReg.companyNum}" name = "companyNum"/>
 										<a href="./companyRegDetail/${updateComReg.companyNum}">  
 										${updateComReg.companyNum}

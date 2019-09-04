@@ -50,10 +50,14 @@ public class GoodsListService {
 		}
 
 		model.addAttribute("list", list);
+		
+		List<GoodsImg> goodImgs = goodsRepository.getimages();
+		model.addAttribute("goodImgs",goodImgs);
+		//System.out.println(goodImgs.toString());
 
 		System.out.println("상품리스트 게시글수 :  " + list.size());
 
-		return "YYYView/goodsMain";
+		return "YYYView/list4com";
 	}
 
 }

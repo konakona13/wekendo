@@ -8,12 +8,42 @@
 	response.setCharacterEncoding("utf-8");
 	session.getAttribute("memAuth");
  %>
- 
-<!DOCTYPE html>
-<html>
+ <!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Insert title here</title>
-<meta charset="UTF-8">
+	<title>Product List</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="kimView/images/icons/favicon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="kimView/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="kimView/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="kimView/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="kimView/fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="kimView/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="kimView/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="kimView/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="kimView/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="kimView/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="kimView/vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="kimView/vendor/MagnificPopup/magnific-popup.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="kimView/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="kimView/css/util.css">
+	<link rel="stylesheet" type="text/css" href="kimView/css/main.css">
+<!--===============================================================================================-->
 
 <style type="text/css">
 .desc1, .desc2 {vertical-align: top;}
@@ -25,13 +55,38 @@
 
 a { text-decoration:none }
 </style>
-
 </head>
-<body>
-<h3>Do List</h3>
+<body class="animsition">
+	
 
-	<div>
-		<table border ="1" >
+<!-- BODY 시작-->
+
+	<!-- breadcrumb -->
+	<div class="container">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+				Home
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
+				액티비티
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<span class="stext-109 cl4">
+				수상레저
+			</span>
+		</div>
+	</div>
+		
+
+	<!-- Product Detail -->
+	<section class="sec-product-detail bg0 p-t-65 p-b-60">
+		<div class="container">
+			<div class="row">
+				
+	<table border ="1" >
         	<tr>
         		<td>Do No.</td>
 
@@ -64,88 +119,230 @@ a { text-decoration:none }
 	</c:forEach>
 </c:if>               
 		</table>     
-	</div>
 
-
-<c:forEach var="kendoJoin" items="${kendoJoins}">
-<div id="kendoJoin_list" class="kendoJoin_list">
-<table id = "list" border = "0" cellspacing = "0">
-<tr>
-	<td class = "desc1"rowspan=2 width="300" >
-		<div class="thum">	
-
-			<c:set var ="doImgKind" value="${kendoJoin.doImg.doImgKind}" scope="session" />
-				<c:if test="${doImgKind == 'main'}">	
-					<img src="HHHview/doIMG/${kendoJoin.doImg.doImgName}"  width="400"><br/>
-				</c:if>
-		</div>
-	</td>
-	<td class = "desc2" >
-		<span class="pnum" id="pnum">상품번호 : ${kendoJoin.doNum}</span><br />
-	<!-- 게스트아이디 : ${memAuth.id}<br/> -->
-		호스트번호 : ${kendoJoin.hostNum}<br />
-		<input type = "hidden" value = "${memAuth.id}" id = "memId" name = "memId"/>
-		<c:set var ="doStatus" value="${kendoJoin.doStatus}" scope="session" />
-
-		<c:if test="${doStatus == 'inviting'}">
-		<h3 id="kendoNum"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/><a href="./kendoDetail/${kendoJoin.doNum}">${kendoJoin.doName}</a></h3><br />
-		</c:if>
-
-		<c:if test="${doStatus == 'invited' || doStatus == 'doing' || doStatus == 'docomplete' || doStatus == 'doend' || doStatus == 'CANCEL'}">
-		<h3 style="color:grey;"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/>${kendoJoin.doName}</h3><br />
-		</c:if>
-		모집인원 : ${kendoJoin.doNowPp}/${kendoJoin.doPp}<br/>
-	</td>
-</tr>
-<tr>
-	<td class = "desc3" >
-		<div class="right">
 	
-		<c:if test="${doStatus == 'inviting'}">
-			<div>
-			<span class="price" id="price"><fmt:formatNumber pattern="###,###,###" value="${kendoJoin.paymentKim.payDutch}" />원</span><br />
-			</div>
-		</c:if>
-		<c:if test="${doStatus == 'invited'}">
-			<div>
-			<h3 style="color:red;">모집종료</h3>
-			</div>
-		</c:if>	
-		<c:if test="${doStatus == 'doing'}">
-			<div>
-			<h3 style="color:red;">활동중</h3>
-			</div>
-		</c:if>			
-		<c:if test="${doStatus == 'doend'}">
-			<div>
-			<h3 style="color:red;">활동종료</h3>
-			</div>
-		</c:if>	
-		<c:if test="${doStatus == 'cashcomplete'}">
-			<div>
-			<h3 style="color:red;">정산종료</h3>
-			</div>
-		</c:if>			
-		<c:if test="${doStatus == 'CANCEL'}">
-			<div>
-			<h3 style="color:red;">활동취소</h3>
-			</div>
-		</c:if>	
-		</div></td>
-</tr>
-</table>
-<hr>
+	
+<!-- start -->	
+				<div class="col-md-6 col-lg-7 p-b-30">
+					<div class="p-l-25 p-r-30 p-lr-0-lg">
+						<div class="wrap-slick3 flex-sb flex-w">
+						
+						
+							<div class="wrap-slick3-dots"></div>
+							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+							<c:forEach var="kendoJoin" items="${kendoJoins}">	
+								<br/><br/>
+									
+								
+									<c:set var ="doImgKind" value="${kendoJoin.doImg.doImgKind}" scope="session" />
+									<c:if test="${doImgKind == 'main'}">	
+										<img src="HHHview/doIMG/${kendoJoin.doImg.doImgName}"  width="450"><br/>
+									</c:if>
+								
+								
+								<br/><br/>	
+								<hr>	
+							</c:forEach>
+							
+								
+						</div><hr>
+					</div><hr>
+				</div><hr>
+<!-- end-->	
+
+
+
+
+
+<!--start-->			
+				<div class="col-md-6 col-lg-5 p-b-30">
+					<div class="p-r-50 p-t-5 p-lr-0-lg">
+					<c:forEach var="kendoJoin" items="${kendoJoins}">
+					<hr>
+					
+						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+							<span class="pnum" id="pnum">
+							<h6>상품   번호 : ${kendoJoin.doNum}</h6>
+							<h6>호스트번호 : ${kendoJoin.hostNum}</h6><br/>
+							</span>
+							<input type = "hidden" value = "${memAuth.id}" id = "memId" name = "memId"/>
+							<c:set var ="doStatus" value="${kendoJoin.doStatus}" scope="session" />							
+							<c:if test="${doStatus == 'inviting'}">
+								<h4 id="kendoNum"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/><a href="./kendoDetail/${kendoJoin.doNum}">${kendoJoin.doName}</a></h4><br />
+							</c:if>								
+							<c:if test="${doStatus == 'invited' || doStatus == 'doing' || doStatus == 'docomplete' || doStatus == 'doend' || doStatus == 'CANCEL'}">
+								<h4 style="color:grey;"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/>${kendoJoin.doName}</h4><br />
+							</c:if>
+						</h4>
+
+					<br/>
+						<span><h5>모집인원 : ${kendoJoin.doNowPp}/${kendoJoin.doPp}<h5></span><br/>
+					<c:if test="${doStatus == 'inviting'}">
+						<span class="price" id="price"><h5>상품가격 : <fmt:formatNumber pattern="###,###,###" value="${kendoJoin.paymentKim.payDutch}" />원<h5></span><br />
+					</c:if>
+					<c:if test="${doStatus == 'invited'}">
+						<h5 style="color:red;">모집종료</h5>
+					</c:if>	
+					<c:if test="${doStatus == 'doing'}">
+						<h5 style="color:red;">활동중</h5>
+					</c:if>			
+					<c:if test="${doStatus == 'doend'}">
+						<h5 style="color:red;">활동종료</h5>
+					</c:if>	
+					<c:if test="${doStatus == 'cashcomplete'}">
+						<h5 style="color:red;">정산종료</h5>
+					</c:if>			
+					<c:if test="${doStatus == 'CANCEL'}">
+						<h5 style="color:red;">활동취소</h5>
+					</c:if>	
+
+
+
+						
+						<!--button  -->
+						<div class="p-t-33">
+							<div class="flex-w flex-r-m p-b-10">
+								<div class="size-204 flex-w flex-m respon6-next">	
+									<button type="button" onclick="location.href='./kendoDetail/${kendoJoin.doNum}'" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">상세보기
+									</button>
+
+									
+								</div>
+							</div>	
+						</div>
+<br/>
+
+						<!-- button  -->
 </c:forEach>
-<div>
+					</div>
+				</div>
+		<!--  -->	
+		
+		
+		
+		
+		
+		
+		
+			</div>
+		</div>
 
-<c:if test="${empty kendoJoins}">
-Do 내역이 없습니다.
-</c:if>
-</div>
 
-<br/>               
+	</section>
 
-        
-<a href="main" >메인</a>
+
+
+
+
+
+
+	<!-- BODY -->
+
+		
+
+
+
+<!--===============================================================================================-->	
+	<script src="kimView/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="kimView/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="kimView/vendor/bootstrap/js/popper.js"></script>
+	<script src="kimView/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="kimView/vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="kimView/vendor/daterangepicker/moment.min.js"></script>
+	<script src="kimView/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="kimView/vendor/slick/slick.min.js"></script>
+	<script src="kimView/js/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script src="kimView/vendor/parallax100/parallax100.js"></script>
+	<script>
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script src="kimView/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+		        delegate: 'a', // the selector for gallery item
+		        type: 'image',
+		        gallery: {
+		        	enabled:true
+		        },
+		        mainClass: 'mfp-fade'
+		    });
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="kimView/vendor/isotope/isotope.pkgd.min.js"></script>
+<!--===============================================================================================-->
+	<script src="kimView/vendor/sweetalert/sweetalert.min.js"></script>
+	<script>
+		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	
+	</script>
+<!--===============================================================================================-->
+	<script src="kimView/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="kimView/js/main.js"></script>
+
 </body>
 </html>
