@@ -20,7 +20,10 @@ public class MapTheme implements Serializable {
 	String themeSNum;
 	String themeSName;
 	
-	
+	@Override
+    public String toString() {
+        return "MapTheme [지역대분류=" + mapLName + ", 지역중분류=" + mapMName + ", 지역소분류=" + mapSName + ", 테마대분류=" + themeLName + "]";
+    }
 	
 	
 	public String getGoodsNum() {

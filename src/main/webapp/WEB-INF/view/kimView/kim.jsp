@@ -13,7 +13,7 @@
 <a href="sendLetter" >쪽지보내기</a> <br/>
 <a href="receiveBoxList" >받은쪽지함</a> <br/>
 <a href="sendBoxList" >보낸쪽지함</a> <br/>
-<a href="companyReg" >기업회원승인</a> <br/>
+<a href="companyReg.html" >기업회원승인</a> <br/>
 
 
 </body>

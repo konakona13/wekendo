@@ -139,7 +139,7 @@ a { text-decoration:none }
 <div>
 
 <c:if test="${empty kendoJoins}">
-Do 결제 내역이 없습니다.
+Do 내역이 없습니다.
 </c:if>
 </div>
 

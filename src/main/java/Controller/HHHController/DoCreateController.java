@@ -134,5 +134,11 @@ public class DoCreateController
 		return "memberMain";
 	}
 	
+	@RequestMapping("/tt")
+	public String goodsList()
+	{
+		return "HHHview/goodsList";
+	}
+	
 	
 }

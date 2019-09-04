@@ -95,10 +95,9 @@ table{
     <div class="header-content clearfix"> <a class="logo" href="memberMain.html"><img src="images/logom.png" width = "200" alt=""></a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
-          <li><a href="memberJoin">기업회원가입</a></li>
           <li>
           	<c:if test="${comAuth.id == null}">
-          		<a href="loginmain">로그인</a>
+          		<a href="loginmain">기업회원가입/로그인</a>
           	</c:if>
           	<c:if test="${comAuth.id != null}">
           		<a href="Logout1">로그아웃</a>
@@ -144,7 +143,7 @@ table{
 <table align="center"  width="750" border="1">
   <tr>
     <!-- <td width = "150" id = "menu_memMng" class="menu_memMng" ><a href="#"><h4>회원관리</h4> </a><br/></td>-->
-    <td width = "150" id = "menu_goodsMng" class="menu_goodsMng" ><a href="goodsMain"><h4>상품관리</h4></a><br/></td>
+    <td width = "150" id = "menu_goodsMng" class="menu_goodsMng" ><a href="goodsMain/company"><h4>상품관리</h4></a><br/></td>
     <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="#"><h4>주문관리</h4></a><br/></td>
         <td width = "150" id = "menu_orderMng" class="menu_orderMng"><a href="companyCash"><h4>매출관리</h4></a><br/></td>
     <td width = "150" id = "menu_salesMng" class="menu_salesMng"><a href="#"><h4>상품문의</h4></a><br/></td>
@@ -155,7 +154,6 @@ table{
     <td></td>
     <td id = "menu_activity"><div id="actmsg"></div></td>
     <td id = "menu_hobby"><div id="hobmsg"></div></td>
-    <td></td>
     <td></td>
   </tr>
 
