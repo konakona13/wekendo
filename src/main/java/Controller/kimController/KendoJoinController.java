@@ -64,6 +64,8 @@ public class KendoJoinController {
 		path = kendoJoinService.userInfo(model,session);
 
 		model.addAttribute("kdc",kendoDetailCommand);
+		System.out.println("켄두조인jsp 두넘:"+kendoDetailCommand.getDoNum());
+		System.out.println("켄두조인jsp 호스트넘:"+kendoDetailCommand.getHostNum());
 
 		return path;
 	}

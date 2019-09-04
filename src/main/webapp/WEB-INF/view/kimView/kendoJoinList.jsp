@@ -44,7 +44,48 @@
 	<link rel="stylesheet" type="text/css" href="kimView/css/util.css">
 	<link rel="stylesheet" type="text/css" href="kimView/css/main.css">
 <!--===============================================================================================-->
+<style>
+body {
+	margin-top: 100px;
+	font-family: 'Trebuchet MS', serif;
+	line-height: 1.6
+}
 
+.container {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+ul.tabs li {
+	background: none;
+	color: black;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+	border: 1;
+}
+
+ul.tabs li.current {
+	background: white;
+	color: black;
+}
+
+.tab-content {
+	display: none;
+	background: white;
+	padding: 15px;
+}
+
+.tab-content.current {
+	display: inherit;
+}
+</style>
 <style type="text/css">
 .desc1, .desc2 {vertical-align: top;}
 .desc3{vertical-align: bottom;}
