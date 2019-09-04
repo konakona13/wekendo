@@ -17,26 +17,24 @@ public class GoodsListController {
 	@Autowired
 	private GoodsListService listService;
 	@Autowired
-	private GoodsListMemServcie listMemService;
-	@Autowired
 	private GoodsDeleteService deleteService;
 	
 	//목록(메인)
 	
-	//기업회원 전용 페이지
-	@RequestMapping("/goodsMain/company")
+
+	@RequestMapping("/goodsMain")
 	public String goodsList(Model model, HttpSession session) { 
 
 		String path= listService.goodsList(model, session);
 		return path;
 	}
 	
-	//일반회원 페이지
+	/*일반회원 페이지
 	@RequestMapping("/goodsMain/member")
 	public String goodsMember(Model model, HttpSession session) { 
 
 		return listMemService.goodsMember(model, session);
-	}
+	}*/
 	
 	//수정
 		

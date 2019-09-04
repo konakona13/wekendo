@@ -92,7 +92,7 @@
 		         </table>
 		상세내용 : <form:input path = "goodsDetail" placeholder=""/><br><br>
 		주의사항 : <form:input path = "goodsDanger" placeholder="ex: 매주 월요일 휴무"/><br><br>
-		상품금액 : <form:input path = "goodsPrice" placeholder=""/><br><br>
+		상품c금액 : <form:input path = "goodsPrice" placeholder=""/><br><br>
 		
 		<input type ="submit" value="등록신청" id="submit1" onclick="checkCompany()"/>
 		<input type="reset" name="reset" value="다시작성">

@@ -43,7 +43,7 @@ public class GoodsRegController {
 		String companyKind = companyNum.substring(0, 3);
 		System.out.println(companyKind);
 		model.addAttribute("comKind", companyKind);
-		return "YYYView/goodsRegist";
+		return "YYYView/addGoods";
 	} 
 	
 	@RequestMapping(value = "/goodsRegAction", method = RequestMethod.POST)

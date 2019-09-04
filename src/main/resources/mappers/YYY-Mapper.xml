@@ -127,14 +127,14 @@
    <result column="GOODS_IMG_KIND" jdbcType="VARCHAR" property="goodsImgKind"/>
 </resultMap>
 
-<select id="getImages" parameterType="Model.DTO.YYYDTO.GoodsImg" resultMap="goodsImg">
+<select id="getimages" parameterType="Model.DTO.YYYDTO.GoodsImg" resultMap="goodsImg">
       SELECT GOODS_NUM, COMPANY_NUM, GOODS_IMG_NAME, GOODS_IMG_NUM, GOODS_IMG_KIND
       FROM GOODS_IMG
       WHERE GOODS_NUM = #{goodsNum}
 </select>
 
 <!-- 상품목록 대표이미지 가져오기 -->
-<select id="getImagesAll" parameterType="Model.DTO.YYYDTO.GoodsImg" resultMap="goodsImg">
+<select id="getimagesAll" parameterType="Model.DTO.YYYDTO.GoodsImg" resultMap="goodsImg">
       SELECT GOODS_NUM, COMPANY_NUM, GOODS_IMG_NAME, GOODS_IMG_NUM, GOODS_IMG_KIND
       FROM GOODS_IMG
 </select>
