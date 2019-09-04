@@ -9,12 +9,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title> 
 </head>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"
 	src="/mybatis-spring-smrit/js/jquery.form.js"></script>
+	<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -66,20 +74,21 @@ ul.tabs {
 
 ul.tabs li {
 	background: none;
-	color: #222;
+	color: black;
 	display: inline-block;
 	padding: 10px 15px;
 	cursor: pointer;
+	border: 1;
 }
 
 ul.tabs li.current {
-	background: #ededed;
-	color: #222;
+	background: white;
+	color: black;
 }
 
 .tab-content {
 	display: none;
-	background: #ededed;
+	background: white;
 	padding: 15px;
 }
 
@@ -90,19 +99,21 @@ ul.tabs li.current {
 <body>
 	<div class="container">
 
-		<ul class="tabs">
+		<ul class="tabs btn btn-default">
 			<li class="tab-link current" data-tab="tab-1">일반회원</li>
 			<li class="tab-link" data-tab="tab-2">기업회원</li>
 		</ul>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="adminMain" class="btn btn-default">메인으로 돌아가기</a>
 
 		<div id="tab-1" class="tab-content current">
-		<table width=100% border="1" cellpadding="0" cellspacing="0" >
+		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
 <c:if test="${! empty members}">
 	<tr align="center" valign="middle">
 		<td colspan="8">일반회원리스트</td>
 	</tr>
 	
-	<tr align="center" valign="middle" bordercolor="#333333">
+	<tr align="center" valign="middle" bordercolor="">
 		<td style="font-family:Tahoma;font-size:8pt;" width="5%" height="26">
 			<div align="center">회원번호</div>
 		</td>
@@ -173,26 +184,7 @@ ul.tabs li.current {
 		</td>
 	</tr>
 </c:forEach>
-	<tr align=center height=20>
-		<td colspan=8 style=font-family:Tahoma;font-size:10pt;>
-			<c:if test="${pageM <= 1 }">
-			[이전]&nbsp;
-			</c:if>
-			<c:if test="${pageM > 1 }">
-			<a href="memcomList?page=${pageM -1 }">[이전]</a>&nbsp;
-			</c:if>
-			<c:forEach var="i" begin="${startPageM }" 
-				end="${endPageM }">
-				<a href="memcomList?page=${i }">[${i }]</a>&nbsp;
-			</c:forEach>
-			<c:if test="${pageM < maxPageM }">	
-			<a href="memcomList?page=${pageM +1 }">[다음]</a>
-			</c:if>
-			<c:if test="${pageM >= maxPageM }">
-			[다음]&nbsp;
-			</c:if>
-		</td>
-	</tr>
+	
 </c:if>
 <c:if test="${empty members}">
 	<tr align="center" valign="middle">
@@ -206,11 +198,11 @@ ul.tabs li.current {
 		</div>
 		
 		<div id="tab-2" class="tab-content">
-		<table width=100% border="1" cellpadding="0" cellspacing="0" >
+		<table width=100%  border="0" cellspacing="0" class="table table-hover">
 <c:if test="${! empty companys}">
 	<tr align="center" valign="middle">
 		<td colspan="6">기업회원리스트</td>
-		<td><a href="companyReg">기업승인관리</a></td>
+		<td><a href="companyReg" class="btn btn-default">기업승인관리</a></td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
@@ -276,26 +268,7 @@ ul.tabs li.current {
 		</td>
 	</tr>
 </c:forEach>
-	<tr align=center height=20>
-		<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
-			<c:if test="${pageC <= 1 }">
-			[이전]&nbsp;
-			</c:if>
-			<c:if test="${pageC > 1 }">
-			<a href="memcomList?page=${pageC -1 }">[이전]</a>&nbsp;
-			</c:if>
-			<c:forEach var="i" begin="${startPageC }" 
-				end="${endPageC }">
-				<a href="memcomList?page=${i }">[${i }]</a>&nbsp;
-			</c:forEach>
-			<c:if test="${pageC < maxPageC }">	
-			<a href="memcomList?page=${pageC +1 }">[다음]</a>
-			</c:if>
-			<c:if test="${pageC >= maxPageC }">
-			[다음]&nbsp;
-			</c:if>
-		</td>
-	</tr>
+	
 </c:if>
 <c:if test="${empty companys}">
 	<tr align="center" valign="middle">
@@ -308,7 +281,6 @@ ul.tabs li.current {
 </table>
 
 		</div>
-		<a href="adminMain">메인으로 돌아가기</a>
 	</div>
 </body>
 </html>

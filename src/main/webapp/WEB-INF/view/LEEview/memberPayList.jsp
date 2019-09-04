@@ -14,6 +14,14 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"
 	src="/mybatis-spring-smrit/js/jquery.form.js"></script>
+		<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -49,20 +57,21 @@ ul.tabs {
 
 ul.tabs li {
 	background: none;
-	color: #222;
+	color: black;
 	display: inline-block;
 	padding: 10px 15px;
 	cursor: pointer;
+	border: 1;
 }
 
 ul.tabs li.current {
-	background: #ededed;
-	color: #222;
+	background: white;
+	color: black;
 }
 
 .tab-content {
 	display: none;
-	background: #ededed;
+	background: white;
 	padding: 15px;
 }
 
@@ -73,20 +82,20 @@ ul.tabs li.current {
 <body>
 	<div class="container">
 
-		<ul class="tabs">
+		<ul class="tabs btn btn-default">
 			<li class="tab-link current" data-tab="tab-1">개설</li>
 			<li class="tab-link" data-tab="tab-2">참가</li>
 		</ul>
 
 		<div id="tab-1" class="tab-content current">
 		
-		<table width=100% border="1" cellpadding="0" cellspacing="0" >
+		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty hostlists}">
 	<tr align="center" valign="middle">
-		<td colspan="4">나의 개설활동</td>
+		<td colspan="5">나의 개설활동</td>
 	</tr>
 	
-	<tr align="center" valign="middle" bordercolor="#333333">
+	<tr align="center" valign="middle" bordercolor="">
 		<td style="font-family:Tahoma;font-size:8pt;" width="30%" height="26">
 			<div align="center">활동이름</div>
 		</td>
@@ -146,10 +155,10 @@ ul.tabs li.current {
 		</div>
 		<div id="tab-2" class="tab-content">
 		
-		<table width=100% border="1" cellpadding="0" cellspacing="0" >
+		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty guestlists}">
 	<tr align="center" valign="middle">
-		<td colspan="4">나의 참가활동</td>
+		<td colspan="5">나의 참가활동</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">

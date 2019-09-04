@@ -27,7 +27,51 @@
 %>
 <!DOCTYPE html>
 <html>
+<!-- Bootstrap -->
+        <link href="../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- font awesome -->
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- Custom style -->
+        <link rel="stylesheet" href="../plugin/bootstrap/css/style.css" media="screen" title="no title" charset="utf-8">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="../plugin/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../config/js/login.js"></script>
+          		<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <head>
+<style>
+.input-group {
+    margin-top: 1em;
+    margin-bottom: 1em;
+} 
+
+
+
+.login-box {
+    line-height: 2.3em;
+    font-size: 1em;
+    color: #aaa;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+</style>
 <meta charset="UTF-8">
 <title>로그인</title>
 <script type="text/javascript" 
@@ -102,49 +146,51 @@
 <body>
 <!-- 로그인 되지 않았을 때 화면 -->
 <%if(session.getAttribute("memAuth")== null && session.getAttribute("comAuth")== null){ %>
+<div class="container" style="width: 2000px;">
+            <div class="row">
+                <div class="col-sm-3">
+
+                    <div class="login-box well">
+
 <form:form action="loginPro" name="frm" method="post" id="frm" 
 commandName="loginCommand">
-<table>
-	<tr><td colspan=3><input type="radio" name="selectLogin" value="normal" checked="checked">일반회원로그인&nbsp;&nbsp;
+<div class="custom-control custom-radio" style="color: black;">
+	<label><input type="radio" name="selectLogin" value="normal" checked="checked" class="custom-control-input"></label>일반회원로그인&nbsp;&nbsp;
 	<input type="radio" name="selectLogin" value="company">기업회원로그인&nbsp;&nbsp;
 	<input type="radio" name="selectLogin" value="admin">관리자로그인&nbsp;&nbsp;
-	   <span id = "msg"  style="color:red"><%=msg111 %></span></td><tr>
-	<tr><td> 아이디 </td>
-		<td><input type ="text" id="id1" name="id1" 
-				value="<%=userid %>" />
-			<form:errors path="id1" />
+	</div>
+	   <span id = "msg"  style="color:red"><%=msg111 %></span>
+	
+		<div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span><input type ="text" id="id1" name="id1" class="form-control"
+				value="<%=userid %>" placeholder="아이디를 입력하세요."/>
+			<form:errors path="id1" /></div>
 			<div id = "idmsg"></div>
-		</td>
-		<td>
-			<input type="checkbox" name="idStore" value="store" 
-			padding="15px" <% if(isId){ %> checked <%} %> />아이디체크
-		</td><tr>
-	<tr><td>비밀번호</td>
-		<td><input type="password" id="pw" name="pw" />
-		<form:errors path="pw" />
+<div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+
+		<input type="password" id="pw" name="pw" class="form-control" placeholder="비밀번호를 입력하세요."/>
+		<form:errors path="pw" /></div>
 		<div id = "pwmsg"></div>
-		<td>
+
 			<input type="button" id="btn1" value="로그인" 
-			padding="15px"/>
+		 class="btn btn-default btn-block" >
+		 <div class="container">
+		 <a href="${url}">
+<img width="150" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a></div>
+		 <br>
 			<!-- 
 			<input type="button" id="btn" value="Ajax를 이용한 전송" 
 			padding="15px"/>
 			 -->
-		</td>
-		<td>
-		<div id="naver_id_login" style="text-align:center"><a href="${url}">
-<img width="150" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
-		</td>
-	</tr>
-	<tr>
-		<td colspan=3>
-			자동로그인<input type="checkbox" name="autoLogin" value="auto"/>
-			<a href="memberJoin" >일반회원 가입</a>&nbsp;
-			<a href="companyJoin" >기업회원 가입</a>
-		</td>
-	</tr>
-</table>
+	
+		
+	
+			<a href="memberJoin" class="btn btn-default btn-block" >일반회원 가입</a>
+			<a href="companyJoin" class="btn btn-default btn-block">기업회원 가입</a>
+			<div id="naver_id_login" style="text-align:center"></div>
 </form:form>
+</div></div></div></div>
 <% }else if(session.getAttribute("memAuth")!= null && memNum.substring(0, 2).equals("NM")){ %>
 <!-- 로그인 된 후의 화면(일반회원) -->
 <%= memNum.substring(0, 2) %> : 일반회원코드 추출<br>
