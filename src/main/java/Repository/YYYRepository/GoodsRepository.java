@@ -130,10 +130,10 @@ public class GoodsRepository {
 		
 		//이미지
 		//3.이미지테이블
-		public List<GoodsImg> getImages(String goodsNum) {
+		public List<GoodsImg> getimages(String goodsNum) {
 			
 			List<GoodsImg> goodsImg = new ArrayList<GoodsImg>();
-			String statement =  namespace + ".getImages"; 
+			String statement =  namespace + ".getimages"; 
 			System.out.println("이미지 받을 때 DB에서 오는 상품번호: " + goodsNum);
 			goodsImg = sqlSession.selectList(statement, goodsNum);
 			
@@ -141,9 +141,9 @@ public class GoodsRepository {
 		}
 
 		//그냥 가져오기
-		public List<GoodsImg> getImages() {
+		public List<GoodsImg> getimages() {
 			List<GoodsImg> goodsImg = new ArrayList<GoodsImg>();
-			String statement =  namespace + ".getImagesAll"; 
+			String statement =  namespace + ".getimagesAll"; 
 			goodsImg = sqlSession.selectList(statement);
 			
 			return goodsImg;

@@ -582,17 +582,10 @@
 
 	<select id="getMemList" parameterType="StartEndPage"
 		resultMap="baseMember">
-		select * from ( select rownum rn,
-		<include refid="basecolumn" />
-		from (select
+		select
 		<include refid="basecolumn" />
 		from MEMBER
-		order by MEMBER_NUM desc))
-		where rn &gt;= #{startRow}
-		and
-		rn
-		&lt;=
-		#{endRow}
+		order by MEMBER_NUM desc
 	</select>
 	<select id="getMemListCount" resultType="int">
 		select count(*) from
@@ -600,18 +593,11 @@
 	</select>
 	<select id="getComList" parameterType="StartEndPage"
 		resultMap="baseCompany">
-		select * from ( select rownum rn,
-		<include refid="basecolumnCompany" />
-		from (select
+		select
 		<include refid="basecolumnCompany" />
 		from COMPANY
-		order by COMPANY_NUM desc))
-		where rn &gt;= #{startRow}
-		and
-		rn
-		&lt;=
-		#{endRow}
-		and company_num &lt;&gt; 'admin'
+		where company_num &lt;&gt; 'admin'
+		order by COMPANY_NUM desc
 	</select>
 	<select id="getComListCount" resultType="int">
 		select count(*) from

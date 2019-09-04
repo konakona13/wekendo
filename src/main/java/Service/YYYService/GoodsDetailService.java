@@ -50,7 +50,7 @@ public class GoodsDetailService {
 		
 		//이미지 가져오기
 		List<GoodsImg> goodsImg = new ArrayList<GoodsImg>();
-		goodsImg = goodsRepository.getImages(goodsNum);
+		goodsImg = goodsRepository.getimages(goodsNum);
 		System.out.println("이미지테이블에서 불러오는 상품번호 : " + goodsNum);
 		model.addAttribute("imgList", goodsImg);
 		System.out.println("서비스 상세보기 이미지장수 : " +goodsImg.size());
