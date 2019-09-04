@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import Model.DTO.YYYDTO.GoodsImg;
 import Service.YYYService.GoodsDeleteService;
-import Service.YYYService.GoodsListMemServcie;
 import Service.YYYService.GoodsListService;
 
 @Controller
