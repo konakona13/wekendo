@@ -5,28 +5,164 @@
 <%@ taglib prefix="fmt" 
 			uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>활동상세</title>
+	<title>About</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
-<script type="text/javascript" 
-	src="http://code.jquery.com/jquery-latest.js" ></script>
-<script type="text/javascript" 
- 			src="/mybatis-spring-smrit/js/jquery.form.js"></script>
-<script type="text/javascript">
-</script>
-<body>
-<h1>>활동번호  ${DoBuyDetail.doNum }(${DoBuyDetail.doName }) 의 상세내용</h1><br>
-모집날짜 : 
-<fmt:formatDate value="${DoBuyDetail.openDate }" pattern="yyyy년 MM월 dd일" /> 
-~ <fmt:formatDate value="${DoBuyDetail.closeDate }" pattern="yyyy년 MM월 dd일" /> <br>
-활동날짜 :
-<fmt:formatDate value="${DoBuyDetail.startDate }" pattern="yyyy년 MM월 dd일" /> 
-~ <fmt:formatDate value="${DoBuyDetail.endDate }" pattern="yyyy년 MM월 dd일" /> <br>
-활동인원: ${DoBuyDetail.doPP }<br>
-활동호스트명 : ${DoBuyDetail.memName } (호스트프로필: <img src="LEEview/upload/${DoBuyDetail.profile }" />)<br>
-호스트연락처 : ${DoBuyDetail.memPh }<br>
-활동상세 : ${DoBuyDetail.doDetail }<br>
+<body class="animsition">
+	
+	<!-- Header -->
+
+	<!-- Cart -->
+
+
+	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
+		<h2 class="ltext-105 cl0 txt-center">
+			활동번호  ${DoBuyDetail.doNum }(${DoBuyDetail.doName }) 의 상세내용
+		</h2>
+	</section>	
+
+
+	<!-- Content page -->
+	<section class="bg0 p-t-75 p-b-120">
+		<div class="container">
+			<div class="row p-b-148">
+				<div class="col-md-7 col-lg-8">
+					<div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+						<h3 class="mtext-111 cl2 p-b-16">
+							모집날짜 : 
+						</h3>
+
+						<p class="stext-113 cl6 p-b-26">
+							<fmt:formatDate value="${DoBuyDetail.openDate }" pattern="yyyy년 MM월 dd일" /> 
+							~ <fmt:formatDate value="${DoBuyDetail.closeDate }" pattern="yyyy년 MM월 dd일" />						
+						</p>
+
+						<h3 class="mtext-111 cl2 p-b-16">
+							활동날짜 :
+						</h3>
+
+						<p class="stext-113 cl6 p-b-26">
+							<fmt:formatDate value="${DoBuyDetail.startDate }" pattern="yyyy년 MM월 dd일" /> 
+~ <fmt:formatDate value="${DoBuyDetail.endDate }" pattern="yyyy년 MM월 dd일" />						
+						</p>
+						<h3 class="mtext-111 cl2 p-b-16">
+							활동인원:
+						</h3>
+
+						<p class="stext-113 cl6 p-b-26">
+							${DoBuyDetail.doPP }						
+						</p>
+						<h3 class="mtext-111 cl2 p-b-16">
+							활동호스트명 :
+						</h3>
+
+						<p class="stext-113 cl6 p-b-26">
+							${DoBuyDetail.memName }						
+						</p>
+						<h3 class="mtext-111 cl2 p-b-16">
+							호스트연락처 :
+						</h3>
+
+						<p class="stext-113 cl6 p-b-26">
+							${DoBuyDetail.memPh }					
+						</p>
+						<h3 class="mtext-111 cl2 p-b-16">
+							활동상세 :
+						</h3>
+
+						<p class="stext-113 cl6 p-b-26">
+							${DoBuyDetail.doDetail }			
+						</p>
+					</div>
+				</div>
+
+				<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
+					<div class="how-bor1 ">
+						<div class="hov-img0">
+							호스트프로필:<img src="LEEview/upload/${DoBuyDetail.profile }" alt="IMG">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			</div>
+	</section>	
+	
+		
+
+	<!-- Footer -->
+
+
+
+	<!-- Back to top -->
+
+
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	
 </body>
 </html>
