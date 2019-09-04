@@ -36,7 +36,7 @@
 	
 	function openBuyNumWindow() {
 		// 새창에 대한 세팅(옵션)
-		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=750,left=500,top=20';
+		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=300,width=400,left=500,top=20';
 		window.open("BuybuyDetail?buyNum=" + $("#buyNum").val(), "buybuyDetail", settings);
 	}
 	
@@ -48,7 +48,7 @@
 	
 	function openDoNumWindow() {
 		// 새창에 대한 세팅(옵션)
-		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=750,left=500,top=20';
+		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1000,left=500,top=20';
 		window.open("DoBuyDetail?doName=" + $("#doName").val(), "doBuyDetail", settings);
 	}
 	

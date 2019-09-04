@@ -110,7 +110,7 @@ ul.tabs li.current {
 		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
 <c:if test="${! empty members}">
 	<tr align="center" valign="middle">
-		<td colspan="8">일반회원리스트</td>
+		<td colspan="8" style="background-color: skyblue; font-weight: bold;">일반회원리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="">
@@ -201,8 +201,8 @@ ul.tabs li.current {
 		<table width=100%  border="0" cellspacing="0" class="table table-hover">
 <c:if test="${! empty companys}">
 	<tr align="center" valign="middle">
-		<td colspan="6">기업회원리스트</td>
-		<td><a href="companyReg" class="btn btn-default">기업승인관리</a></td>
+		<td colspan="6" style="background-color: skyblue; font-weight: bold;">기업회원리스트</td>
+		<td style="background-color: skyblue; font-weight: bold;"><a href="companyReg" class="btn btn-default">기업승인관리</a></td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">

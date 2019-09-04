@@ -12,6 +12,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+	<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"
@@ -59,20 +67,21 @@ ul.tabs {
 
 ul.tabs li {
 	background: none;
-	color: #222;
+	color: black;
 	display: inline-block;
 	padding: 10px 15px;
 	cursor: pointer;
+	border: 1;
 }
 
 ul.tabs li.current {
-	background: #ededed;
-	color: #222;
+	background: white;
+	color: black;
 }
 
 .tab-content {
 	display: none;
-	background: #ededed;
+	background: white;
 	padding: 15px;
 }
 
@@ -83,21 +92,23 @@ ul.tabs li.current {
 <body>
 	<div class="container">
 
-		<ul class="tabs">
+		<ul class="tabs btn btn-default">
 			<li class="tab-link current" data-tab="tab-1">모집중</li>
 			<li class="tab-link" data-tab="tab-2">모집완료</li>
 			<li class="tab-link" data-tab="tab-3">활동중</li>
 			<li class="tab-link" data-tab="tab-4">활동완료</li>
 			<li class="tab-link" data-tab="tab-5">활동취소</li>
 		</ul>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="adminMain" class="btn btn-default">메인으로 돌아가기</a>
 
 		<div id="tab-1" class="tab-content current">
 		
 		
-		<table width=100% border="1" cellpadding="0" cellspacing="0" >
+		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
 <c:if test="${! empty dodos}">
 	<tr align="center" valign="middle">
-		<td colspan="5">활동리스트</td>
+		<td colspan="5" style="background-color: skyblue; font-weight: bold;">활동리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
@@ -187,10 +198,10 @@ ul.tabs li.current {
 		<div id="tab-2" class="tab-content">
 		
 		
-		<table width=100% border="1" cellpadding="0" cellspacing="0" >
+		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
 <c:if test="${! empty dodos}">
 	<tr align="center" valign="middle">
-		<td colspan="5">활동리스트</td>
+		<td colspan="5" style="background-color: skyblue; font-weight: bold;">활동리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
@@ -277,10 +288,10 @@ ul.tabs li.current {
 		
 		</div>
 		<div id="tab-3" class="tab-content">
-				<table width=100% border="1" cellpadding="0" cellspacing="0" >
+				<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
 <c:if test="${! empty dodos}">
 	<tr align="center" valign="middle">
-		<td colspan="5">활동리스트</td>
+		<td colspan="5" style="background-color: skyblue; font-weight: bold;">활동리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
@@ -365,10 +376,10 @@ ul.tabs li.current {
 </table>
 		</div>
 		<div id="tab-4" class="tab-content">
-				<table width=100% border="1" cellpadding="0" cellspacing="0" >
+				<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
 <c:if test="${! empty dodos}">
 	<tr align="center" valign="middle">
-		<td colspan="5">활동리스트</td>
+		<td colspan="5" style="background-color: skyblue; font-weight: bold;">활동리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
@@ -453,10 +464,10 @@ ul.tabs li.current {
 </table>
 		</div>
 		<div id="tab-5" class="tab-content">
-				<table width=100% border="1" cellpadding="0" cellspacing="0" >
+				<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
 <c:if test="${! empty dodos}">
 	<tr align="center" valign="middle">
-		<td colspan="5">활동리스트</td>
+		<td colspan="5" style="background-color: skyblue; font-weight: bold;">활동리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
@@ -540,7 +551,7 @@ ul.tabs li.current {
 </c:if>
 </table>
 		</div>
-		<a href="adminMain">관리자 메인으로 돌아가기</a>
+	
 	</div>
 </body>
 </html>
