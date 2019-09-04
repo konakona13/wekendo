@@ -14,21 +14,29 @@
 	src="http://code.jquery.com/jquery-latest.js" ></script>
 <script type="text/javascript" 
  			src="/mybatis-spring-smrit/js/jquery.form.js"></script>
+ 			<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
 </script>
 <body>
 	<div id="container" style="width: 1400px">
-		<div id="header" style="background-color: blue;">
+		<div id="header" style="background-color: white;">
 		<form action="buybuySearch" name="frm" method="post">
-			기업이름 : ${comAuth.name }
+			<h3>기업이름 : ${comAuth.name }</h3>
 		</form>
 		</div>
 		<div id="content1"
-			style="background-color: gray; height: 500px; width: 700px; float: left;">
+			style="background-color: white-space; height: 500px; width: 700px; float: left;">
 			
 			
-			<table width=100% border="1" cellpadding="0" cellspacing="0" >
+			<table width=100% border="1" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty cashins}">
 	<tr align="center" valign="middle">
 		<td colspan=54">정산리스트</td>
@@ -126,17 +134,18 @@
 <c:set var= "sumCash" value="${sumCash + cashin1.totalPrice}"/>
 </c:forEach>
 <br>
-정산리스트 총 금액 : <c:out value="${sumCash}"/>원
+<div class="container">
+정산리스트 총 금액 : <c:out value="${sumCash}"/>원</div>
 
 		</div>
 		<div id="content2"
-			style="background-color: orange; height: 500px; width: 700px; float: left;">
+			style="background-color: white; height: 500px; width: 700px; float: left;">
 			
 			
-			<table width=100% border="1" cellpadding="0" cellspacing="0" >
+			<table width=100% border="1" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty buybuys}">
 	<tr align="center" valign="middle">
-		<td colspan="5">구매리스트</td>
+		<td colspan="7">구매리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
@@ -218,7 +227,7 @@
 	<tr align="center" valign="middle">
 		<td colspan="4">구매리스트</td>
 		<td align=right>
-			<font size=2>구매내역이 없습니다. 사주셈</font>
+			<font size=2>구매내역이 없습니다.</font>
 		</td>
 	</tr>
 </c:if>
@@ -229,7 +238,8 @@
 <c:set var= "sumBuy" value="${sumBuy + buybuy1.buyPrice}"/>
 </c:forEach>
 <br>
-구매리스트 총 금액 : <c:out value="${sumBuy}"/>원
+<div class="container">
+구매리스트 총 금액 : <c:out value="${sumBuy}"/>원</div>
 	</div>
 </body>
 </html>

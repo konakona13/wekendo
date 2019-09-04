@@ -14,6 +14,14 @@
 	src="http://code.jquery.com/jquery-latest.js" ></script>
 <script type="text/javascript" 
  			src="/mybatis-spring-smrit/js/jquery.form.js"></script>
+ 			  		<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	function func_cash(){
 		if($("#cashInBalance").val()<=0){
@@ -46,18 +54,17 @@
 	
 </script>
 <body>
-	<div id="container" style="width: 1400px">
-		<div id="header" style="background-color: blue;">
+	<div id="container" style="width: 1500px">
+		<div id="header" style="background-color: white;">
 		<form action="buybuySearch" name="frm" method="post">
-			기업이름 : <input type="text" name="comName" ><input type="submit" name="comNameSubmit" value="검색">
-			<a href="Cashin">전체 기업 리스트</a>
+			기업이름 : <input type="text" name="comName" ><input type="submit" name="comNameSubmit" value="검색" class="btn btn-default">
+			<a href="Cashin" class="btn btn-default ">전체 기업 리스트</a>
 		</form>
 		</div>
-		<div id="content1"
-			style="background-color: gray; height: 500px; width: 700px; float: left;">
+		<div id="content1" 
+			style="background-color:white-space; height: 500px; width: 700px; float: left; margin: 10px; ">
 			
-			
-			<table width=100% border="1" cellpadding="0" cellspacing="0" >
+			<table width=100% border="1" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty cashins}">
 	<tr align="center" valign="middle">
 		<td colspan=54">정산리스트</td>
@@ -150,16 +157,16 @@
 <c:set var= "sumBalance" value="${sumBalance + cashin1.balance}"/>
 </c:forEach>
 <br>
+<div class="container">
 *정산계산방법 : <br><br>
 총 상품금액 * 위캔두 수수료 50% = 
 <h4><c:out value="${sumBalance}"/>원</h4>
-
+</div>
 		</div>
 		<div id="content2"
-			style="background-color: orange; height: 500px; width: 700px; float: left;">
+			style="background-color: white-space; height: 500px; width: 700px; float: left; margin: 10px" >
 			
-			
-			<table width=100% border="1" cellpadding="0" cellspacing="0" >
+			<table width=100% border="1" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty buybuys}">
 	<tr align="center" valign="middle">
 		<td colspan="7">구매리스트</td>
@@ -270,11 +277,12 @@
 <c:set var= "sumBuy" value="${sumBuy + buybuy1.buyPrice}"/>
 </c:forEach>
 <br>
-총 판매금액 : <c:out value="${sumBuy}"/>원
+<div class="container">
+총 판매금액 : <c:out value="${sumBuy}"/>원</div>
 			
 			
 		</div>
-		<div id="footer" style="background-color: green; height:300px; clear: both;">
+		<div id="footer" style="background-color: white-space; height:300px; clear: both; border: 5pt groove #3f51b5;" class="container">
 		정산 예정 금액 계산 : <br>
 		(${sumBuy} - ${sumCash}) * 위켄두수수료(판매가50%) = <c:out value="${(sumBuy - sumCash) * 0.5}"/> 원
 		<form action="cashInsert" id="frm" name="frm" method="post">
