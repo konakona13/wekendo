@@ -54,11 +54,7 @@ KendoJoin 상세보기
 			<td>DO 결제금액</td>
 			<td>${kendoJoin.doNum}</td>			
 		</tr>						
-<!--<c:if test="${! empty letters}">		
-	<c:forEach var="receiveBox" items="${receiveBox}">
-
-	</c:forEach>
-	</c:if> -->		
+	
 	</table>
 	
 </div>
