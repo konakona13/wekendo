@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +10,13 @@
 <title>게시글 상세보기</title>
 
 <script type="text/javascript">
+//var value = $(".starR").html();
+
 </script>
 </head>
 <body>
 
-		<h3> 등록 상세 <h3>
+		<h3> 등록 상세 </h3>
 		<br><br><br>
 
 		상품명: ${goods.goodsName} <br><br>
@@ -46,35 +48,12 @@
 		
 		
 		<br><br><br><br>
-		
-		<a href="../goodsModify/${goods.goodsNum}">[수정]</a>&nbsp;&nbsp;
-		<a href="../goodsDelete/${goods.goodsNum}">[삭제]</a>&nbsp;&nbsp;
-		<a href="javascript:history.back()">[목록]</a>&nbsp;&nbsp;
+
+		<a href="javascript:history.back()">[목록]</a>
 
 <br><br>
 
-<!-- 리뷰등록 
-			<div id="listReview">
-				<table>
-					<c:forEach var="review" items="${review}">
-						<tr>
-							<td>${review.memberName}&nbsp;&nbsp; 
-							<fmt:formatDate value="${review.regDate}" pattern="yyyy-MM-dd" />
-								&nbsp;&nbsp;&nbsp;&nbsp; ${review.reviewContent}
-							</td>
-						</tr>
-					</c:forEach>
-						<tr>
-						<td>소중한 리뷰를 남겨주세요.,,</td>
-						</tr>
-				</table>
-			</div>
-			<div>
-				<textarea rows="5" cols="80" id="reviewContent"></textarea>
-				<div id="reviewScore"></div>
-				<br>
-				<button type="button" id="reviewSubmit">리뷰등록</button>
 
-			</div>-->
+
 </body>
 </html>
