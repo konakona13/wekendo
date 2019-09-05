@@ -26,7 +26,7 @@
 	
 	<form name="frm" action="comRegOk" method="POST">
 	<div class = "container">
-		<table border ="1" >
+		<table border ="1" class = "striped">
         	<tr>
 				<td>기업회원번호</td>
 				<td>

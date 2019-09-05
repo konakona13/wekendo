@@ -14,7 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript"  src="http://code.jquery.com/jquery-latest.js" ></script>
+</head>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -23,49 +23,7 @@
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<style>
-body {
-	margin-top: 100px;
-	font-family: 'Trebuchet MS', serif;
-	line-height: 1.6
-}
 
-.container {
-	width: 1000px;
-	margin: 0 auto;
-}
-
-ul.tabs {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-
-ul.tabs li {
-	background: none;
-	color: black;
-	display: inline-block;
-	padding: 10px 15px;
-	cursor: pointer;
-	border: 1;
-}
-
-ul.tabs li.current {
-	background: white;
-	color: black;
-}
-
-.tab-content {
-	display: none;
-	background: white;
-	padding: 15px;
-}
-
-.tab-content.current {
-	display: inherit;
-}
-</style>
-</head>
 <script type="text/javascript">
 
 	
@@ -73,11 +31,11 @@ ul.tabs li.current {
 <body>
         <h3>활동참가신청</h3>
         <p>
-        	신청자 ID : <input type=hidden name = "memId" value="${memAuth.id}"/>${memAuth.id}<br/> 
+        	신청자 ID : <input type=hidden name = "memId" value="${memAuth.id}"/>${memAuth.id}<br/>
+        <div class = "container">
         <form name="frm" action="kendoJoinAction" method="POST">
         	<h6 style="color:white;"><fmt:formatDate  value="${toDay}" pattern="yyyy"/><fmt:formatDate value="${member.memberBir}"  pattern="yyyy" /></h6>
-           <div class = "container">
-            <table class = "table table-striped" align = "center">
+            <table class="table table-striped">
                 <tr>
                     <td>활동번호 </td>
                     <td> <input type=hidden name = "doNum" value="${kdc.doNum}"/>${kdc.doNum}
@@ -92,12 +50,12 @@ ul.tabs li.current {
                     
                 </tr>                
                 <tr>
-
-                    <td><input type=hidden name = "theme" value="${kdc.theme}"/>${kdc.theme}ㅎㅎ</td>
+                    <td> </td>
+                    <td><input type=hidden name = "theme" value="${kdc.theme}"/>${kdc.theme}</td>
                 </tr>
                 <tr>
                     <td> </td>
-                    <td><input type=hidden name = "map" value="${kdc.map}"/>${kdc.map}ㅋㅋ</td>
+                    <td><input type=hidden name = "map" value="${kdc.map}"/>${kdc.map}</td>
                 </tr>
                 <tr>
                     <td>활동명 </td>
@@ -146,15 +104,14 @@ ul.tabs li.current {
                 </tr>                 
                 <tr>
                     <td>카카오톡 아이디 </td>
-                    <td><input type="text" name = "joinKakaoId" class="form-control"></td>
+                    <td><input type="text" name = "joinKakaoId"></td>
                 </tr>
                 <tr>
                     <td>자기소개 </td>
-                    <td><textarea name = "joinIntroduce" class="form-control"></textarea></td>
+                    <td><textarea name = "joinIntroduce" ></textarea></td>
                 </tr>
 
             </table>
-            </div>
 <hr>
  
 <c:set var ="doQty" value="${kdc.doQty}" scope="session" />
@@ -187,7 +144,7 @@ ul.tabs li.current {
             <input type = "submit" value = "활동참가신청" name = "kendoJoin"/>
 
         </form>
-
+</div>
 
 </body>
 </html>
