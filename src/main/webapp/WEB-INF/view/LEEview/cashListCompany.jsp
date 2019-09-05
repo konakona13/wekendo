@@ -14,6 +14,7 @@
 	src="http://code.jquery.com/jquery-latest.js" ></script>
 <script type="text/javascript" 
  			src="/mybatis-spring-smrit/js/jquery.form.js"></script>
+ 			<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic:400,700,800&display=swap&subset=korean" rel="stylesheet">
  			<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -23,20 +24,29 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-
+function openDoComWindow() {
+	// 새창에 대한 세팅(옵션)
+	var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=600,width=500,left=500,top=20';
+	window.open("BuybuyDetail?buyNum=" + $("#buyNum").val(), "buybuyDetail", settings);
+}
 </script>
+<style>
+body{
+font-family: 'Nanum Gothic', sans-serif;
+}
+</style>
 <body>
-	<div id="container" style="width: 1400px">
+	<div id="container" style="width: 1500px; margin: 20px;">
 		<div id="header" style="background-color: white;">
 		<form action="buybuySearch" name="frm" method="post">
 			<h3>기업이름 : ${comAuth.name }</h3>
 		</form>
 		</div>
 		<div id="content1"
-			style="background-color: white-space; height: 500px; width: 700px; float: left;">
+			style="background-color: white-space; height: 500px; width: 700px; float: left; margin: 10px;">
 			
 			
-			<table width=100% border="1" cellpadding="0" cellspacing="0" class="table table-striped">
+			<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty cashins}">
 	<tr align="center" valign="middle">
 		<td colspan=54">정산리스트</td>
@@ -134,15 +144,17 @@
 <c:set var= "sumCash" value="${sumCash + cashin1.totalPrice}"/>
 </c:forEach>
 <br>
-<div class="container">
-정산리스트 총 금액 : <c:out value="${sumCash}"/>원</div>
+<div class="container"
+style="background-color:#D8D8D8; border:1px solid #e0e0e0; width:600px; height:150px; clear: both; margin: auto; padding: 30px; border-radius: 10px;
+		box-shadow: 0px 0px 15px #151515;">
+정산 완료 금액 : <c:out value="${sumCash}"/>원</div>
 
 		</div>
 		<div id="content2"
-			style="background-color: white; height: 500px; width: 700px; float: left;">
+			style="background-color: white; height: 500px; width: 700px; float: left; margin: 10px;">
 			
 			
-			<table width=100% border="1" cellpadding="0" cellspacing="0" class="table table-striped">
+			<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty buybuys}">
 	<tr align="center" valign="middle">
 		<td colspan="7">구매리스트</td>
@@ -179,7 +191,7 @@
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left">
 			<input type="hidden" id="doNum" name="doNum" value="${dodo.doNum }">
-			<a href="javascript:openChildWindow();" >
+			<a href="javascript:openDoComWindow();" >
 				${buybuy.doNum }
 			</a>
 			</div>
@@ -198,7 +210,8 @@
 			</div>
 		</td>		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">${buybuy.buyPrice }</div>
+			<div align="center">
+			<fmt:formatNumber value="${buybuy.buyPrice }" pattern="#,###" /> 원</div>
 		</td>
 	</tr>
 </c:forEach>
@@ -238,8 +251,10 @@
 <c:set var= "sumBuy" value="${sumBuy + buybuy1.buyPrice}"/>
 </c:forEach>
 <br>
-<div class="container">
-구매리스트 총 금액 : <c:out value="${sumBuy}"/>원</div>
+<div class="container"
+style="background-color:#D8D8D8; border:1px solid #e0e0e0; width:600px; height:150px; clear: both; margin: auto; padding: 30px; border-radius: 10px;
+		box-shadow: 0px 0px 15px #151515;">
+상품 판매 총 금액 : <c:out value="${sumBuy}"/>원</div>
 	</div>
 </body>
 </html>

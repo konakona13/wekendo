@@ -18,5 +18,6 @@
 	  <bean id = "goodsCancelService"  class="Service.YYYService.GoodsCancelService" />
 	  <bean id = "deleteService"  class="Service.YYYService.GoodsDeleteService" />
 	  <bean id = "reviewService"  class="Service.YYYService.ReviewService" />
+	  <bean id = "kendoListYService"  class="Service.YYYService.KendoListYService" />
 	
 </beans>

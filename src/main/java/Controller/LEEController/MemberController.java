@@ -19,16 +19,19 @@ import Command.LEECommand.CompanyJoinCommand;
 import Command.LEECommand.LoginCommand;
 import Command.LEECommand.MemberJoinCommand;
 import Model.DTO.LEEDTO.Dodo;
+import Model.DTO.YYYDTO.DodoY;
 import Model.DTO.YYYDTO.GoodsList;
 import Repository.YYYRepository.GoodsRepository;
 import Service.LEEService.CompanyCashService;
 import Service.LEEService.CompanyJoinService;
 import Service.LEEService.CompanyLoginService;
+import Service.LEEService.KendoListService;
 import Service.LEEService.MemKendoService;
 import Service.LEEService.MemberJoinService;
 import Service.LEEService.MemberLoginService;
 import Service.LEEService.MemberLogoutService;
 import Service.LEEService.UpdateDoStatusService;
+import Service.YYYService.KendoListYService;
 import Validator.LoginCommandValidator;
 import Validator.RegisterRequestValidator;
 
@@ -51,6 +54,8 @@ public class MemberController {
 	private GoodsRepository goodsRepository;
 	@Autowired
 	private MemKendoService memKendoService;
+	@Autowired
+	private KendoListYService kendoListYService;
 
 	@RequestMapping("/loginmain")
 	public String mainView(HttpServletRequest request, Model model) {
@@ -165,8 +170,10 @@ public class MemberController {
 	public String memKendos1(Model model, @RequestParam(value = "memNum") String memNum) {
 		List<Dodo> hostlist = memKendoService.getHostList(memNum);
 		List<Dodo> guestlist = memKendoService.getGuestList(memNum);
+		List<DodoY> dolist = kendoListYService.doList(model, memNum);
 		model.addAttribute("hostlists", hostlist);
 		model.addAttribute("guestlists", guestlist);
+		model.addAttribute("dodos", dolist);
 		return "LEEview/memberPayList";
 	}
 

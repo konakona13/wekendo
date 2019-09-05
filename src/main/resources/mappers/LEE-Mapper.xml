@@ -200,6 +200,10 @@
 			property="month" />
 		<result column="CASHIN_STATUS" jdbcType="VARCHAR"
 			property="status" />
+			<result column="COMPANY_NAME" jdbcType="VARCHAR"
+			property="companyName" />
+			<result column="GOODS_NAME" jdbcType="VARCHAR"
+			property="goodsName" />
 	</resultMap>
 
 	<resultMap type="Model.DTO.LEEDTO.Buybuy" id="baseBuybuy">
@@ -355,18 +359,14 @@
 
 	<select id="getCashList" parameterType="StartEndPage"
 		resultMap="baseCashin">
-		select * from ( select rownum rn,
-		<include refid="basecolumnCashin" />
-		from (select
-		<include refid="basecolumnCashin" />
-		from cashin
-		order by CASHIN_DAYS desc))
-		where rn &gt;= #{startRow}
-		and
-		rn
-		&lt;=
-		#{endRow}
-		and CASHIN_STATUS = 'complete'
+		select
+		CASHIN_NUM, c.PAY_NUM, c.COMPANY_NUM, CASHIN_TOTAL_PRICE,
+		CASHIN_COMMISSION, CASHIN_BALANCE, CASHIN_DAYS, CASHIN_MONTH,
+		CASHIN_STATUS, COMPANY_NAME
+		from cashin c,company com
+		where c.company_num = com.company_num
+        and CASHIN_STATUS = 'complete'
+        order by CASHIN_DAYS desc
 	</select>
 	<select id="getCashListCount" resultType="int">
 		select count(*) from
@@ -533,7 +533,7 @@
 		from GOODS g, company c
 		where g.COMPANY_NUM =
 		c.COMPANY_NUM
-		and GOODS_NAME = #{goodsName}
+		and GOODS_NUM = #{goodsName}
 	</select>
 
 	<select id="getDoBuyDetail" parameterType="String"

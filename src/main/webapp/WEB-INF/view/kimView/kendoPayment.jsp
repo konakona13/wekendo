@@ -29,31 +29,26 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type='text/javascript'>
-/*
-$("input:radio[name=payStyle]").click(function () {
-	if($("input[name=payStyle]:checked").val() == "credit"){
-		$("input:div[name=optCard]").attr("disabled", true);
-	}
 
-});
-*/
+$(function(){
+	
+		$("#credit").change(function(){
+			if($("#credit").is(':checked',true)){
+				$("#optCard").show();
+				$("#optQr").hide();
+		    }
+		});
+		
+		
+		$("#bbb").click(function(){
+			if($("#bbb").is(':checked',true)){
+				$("#optQr").show();
+				$("#optCard").hide();
+		    }
 
-$(document).ready(function(){
-	 
-    // 라디오버튼 클릭시 이벤트 발생
-    $("input:radio[name=payStyle]").click(function(){
- 
-        if($("#payStyle").val() == "credit"){
-            $("#optCard").show();
-            $("#optQr").hide();
-            // radio 버튼의 value 값이 1이라면 활성화
- 
-        }else if($("#payStyle").val() == "kakaopay"){
-        	$("#optCard").hide();
-            $("#optQr").show();
-            // radio 버튼의 value 값이 0이라면 비활성화
-        }
-    });
+		});
+
+	
 });
 
 </script>
@@ -106,68 +101,99 @@ ul.tabs li.current {
 
         <h3>활동선택확인</h3>
         <p>
-        <form name="frm" action="guestPayAction" method="POST">
         
-        <div class = "container">
-            활동번호 :  <input type="hidden" name = "doNum" value="${kdc.doNum}"/>${kdc.doNum}<br /> 
-            활동이름 :  <input type="hidden" name = "doName" value="${kdc.doName}"/>${kdc.doName}<br />
-            호스트번호  :  <input type="hidden" name = "hostNum" value="${kdc.hostNum}"/>${kdc.hostNum}<br />     
-            수     량  : <input type="hidden" name = "joinQty" value = "${kdc.doQty}"/>${kdc.doQty}
+     <form name="frm" action="guestPayAction" method="POST">
+     <div class = "container">   
+     <table class="table table-striped" border="1">
+     <tr>
+     	<td width = "200px"> 활동번호 </td> 
+     	<td> <input type="hidden" name = "doNum" value="${kdc.doNum}"/>${kdc.doNum}</td>
+     </tr>
+     <tr>
+     	<td> 활동이름</td>
+     	<td> <input type="hidden" name = "doName" value="${kdc.doName}"/>${kdc.doName}</td>
+    </tr>
+    <tr>
+    	<td>호스트번호</td>
+    	<td><input type="hidden" name = "hostNum" value="${kdc.hostNum}"/>${kdc.hostNum}</td>
+    </tr>
+    <tr>
+    	<td>수     량 </td>
+    	<td><input type="hidden" name = "joinQty" value = "${kdc.doQty}"/>${kdc.doQty}
 			<input type="hidden" name = "doPp" value="${kdc.doPp}"/>
-			<input type="hidden" name = "doNowPp" value="${kdc.doNowPp}"/><br />
-            카카오톡 아이디  : <input type="hidden" name = "joinKakaoId"  value ="${kjc.joinKakaoId}"/> ${kjc.joinKakaoId}<br />
-            자기소개  :  <input type="hidden" name = "joinIntroduce"  value ="${kjc.joinIntroduce}"/>${kjc.joinIntroduce}<br />
- 
+			<input type="hidden" name = "doNowPp" value="${kdc.doNowPp}"/></td>
+	</tr>
+	<tr>
+		<td>카카오톡 아이디</td>
+		<td><input type="hidden" name = "joinKakaoId"  value ="${kjc.joinKakaoId}"/> ${kjc.joinKakaoId}</td>
+	</tr>
+	<tr>
+		<td>자기소개</td>
+		<td><input type="hidden" name = "joinIntroduce"  value ="${kjc.joinIntroduce}"/>${kjc.joinIntroduce}</td>
+ 	</tr>
+ 	<tr><td></td><td></td></tr>
 <c:set var ="doQty" value="${kdc.doQty}" scope="session" />
 <c:if test="${doQty > 1}">   
-<c:forEach var="i" begin="1" end="${doQty-1}" step="1" >  
-	<h2>친구 ${i}</h2>     
-            친구이름  :  <input type="hidden" name = "friendName"  value ="${kjc.friendName}"/>${kjc.friendName}<br />
-            친구연락처  : <input type="hidden" name = "friendPh"  value ="${kjc.friendPh}"/> ${kjc.friendPh}<br />
-            친구나이  :  <input type="hidden" name = "friendAge"  value ="${kjc.friendAge}"/>${kjc.friendAge}<br />
+<c:forEach var="i" begin="1" end="${doQty-1}" step="1" >
+	<tr>
+		<td><h2>친구 정보${i}</h2></td>
+	</tr>
+	<tr>
+		<th>친구이름</td>
+		<td><input type="hidden" name = "friendName"  value ="${kjc.friendName}"/>${kjc.friendName}</td>
+	</tr>
+	<tr>
+		<th>친구연락처</td>
+		<td><input type="hidden" name = "friendPh"  value ="${kjc.friendPh}"/> ${kjc.friendPh}</td>
+	</tr>
+	<tr>
+		<th>친구나이</th>
+		<td><input type="hidden" name = "friendAge"  value ="${kjc.friendAge}"/>${kjc.friendAge}</td>
+	</tr>
 </c:forEach> 
-</c:if>              
-	<h3>guestPay</h3>
-    <p>
-
-            결제금액 :	<input type=hidden name = "buyPrice"/>${kdc.doQty * kdc.doPrice}<br />
-            결제수단 : 	<input type="radio" name = "payStyle" id = "payStyle" value="credit"/>신용카드  &nbsp;&nbsp;
-        		<input type="radio" name = "payStyle" id = "payStyle" value="kakaopay"/>카카오QR결제<br />
-     
-     
-        
-     
-		      <div id="optCard" >           	            
-		         <select name="payCardName" id="cardCompany">
+</c:if>
+	<tr>
+		<td><h3>결제정보 입력</h3></td>
+    </tr>
+	<tr>
+		<th>결제금액</th>
+		<td><input type=hidden name = "buyPrice"/>${kdc.doQty * kdc.doPrice}</td>
+	<tr>
+		<th>결제수단</th>
+		<td><input type="radio" name = "payStyle" id = "credit" value="credit" />신용카드  &nbsp;&nbsp;
+        	<input type="radio" name = "payStyle" id = "bbb" value="kakaopay" />카카오QR결제<br/>
+        	
+        	<div id="optCard" style="display:none;">        	            
+		          카  드  사  : <select name="payCardName" id="payCardName">
 		            <option value="shinhan">신한카드</option>
 		            <option value="samsung">삼성카드</option>
 		            <option value="hyundai">현대카드</option>
 		            <option value="bc">비씨카드</option>
 		            <option value="lotte">롯데카드</option>
 		            <option value="hana">하나카드</option>
-		        </select>
-		        <br />
-		         카드번호 : <input type="text" name = "payCardNum"> <br />
-		     CVC 번호 : <input type="text" name = "payCvcNum"><br />
-		         유효날짜 : <input type="text" name = "payDate"><br />
-		 	 </div>
-
-      
-			<div id="optQr">           
-		          	<input type="hidden" name = "payCardName" value="QR"/>
-		        	<input type="hidden" name = "payCardNum" value="QR"> 
-		     		<input type="hidden" name = "payCvcNum" value="QR">
-		         	<input type="hidden" name = "payDate" value="QR">
+		        </select><br>
+		        카드번호 : <input type="text" name = "payCardNum" id="payCardNum"><br/>
+		   	CVC 번호 : <input type="text" name = "payCvcNum" id ="payCvcNum"><br/>
+		   	유효날짜 : <input type="text" name = "payDate" id ="payDate"><br/>    
+		        
 			</div>
+			
+			<div id="optQr" style="display:none;">  카카오페이 결제         
+			</div>
+			
+        </td>
+	</tr>
 
-
-
-	    <div id="cardPay">
-			<input type = "reset" value = "다시입력"/>
+	<tr>
+		<td colspan= "2">
 			<input type = "submit" value = "결제하기" name = "guestPay"/>
-		</div>
-</div>        	
-        </form>
+			<input type = "reset" value = "다시입력"/>
+			
+     	</td>
+	</tr>
+</table>
+</div>   
+</form>
     
 </body>
 </html>

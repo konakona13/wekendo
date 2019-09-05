@@ -22,11 +22,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-보낸 편지함
 
-<div>
 
-	<table border ="1">
+<div class = "container">
+
+	<table border ="1" class="table table-striped">
 		<tr>
 			<td>보낸 날짜 </td>
 			<td>보내는 사람 </td>
@@ -34,21 +34,22 @@
 			<td>내용 </td>
 			
 		</tr>
-<!--<c:if test="${! empty letters}"> -->		
-	<c:forEach var="letter" items="${letters}">
+		
+		<c:forEach var="letter" items="${letters}">
 		<tr>
 			<td>${letter.letterDate}</td>
 			<td>${letter.letterSender}</td>
 			<td>${letter.letterReceiver}</td>
 			<td>${letter.letterContent}</td>
 		</tr>
-	</c:forEach>
-<!--</c:if> -->		
+		</c:forEach>
+		<tr>
+			<td align = "center" colspan="4"><a href="#" onClick="self.close();">닫기</a></td>
+	
+	
 	</table>
 	
 </div>
-<br/>               
-    
-<a href="#" onClick="self.close();">닫기</a>
+
 </body>
 </html>

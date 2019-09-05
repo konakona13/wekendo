@@ -14,6 +14,24 @@ public class CashIn implements Serializable {
 	private Timestamp days;
 	private Timestamp month;
 	private String status;
+	private String companyName;
+	private String goodsName;
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
 
 	public String getCashinNum() {
 		return cashinNum;

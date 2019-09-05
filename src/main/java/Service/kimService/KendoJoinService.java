@@ -111,18 +111,29 @@ public class KendoJoinService {
 		System.out.println(kendoJoin.getJoinIntroduce());
 		System.out.println(kendoJoin.getJoinQty());
 		
-		/*Integer payNumSeq = kendoJoinRepository.getPayNumSeq();	
-		guestPay.setPayNum("PAY" + payNumSeq);
-		System.out.println("guestPay.getPayNum:" + guestPay.getPayNum());*/
+
 		
 		guestPay.setDutchDate(tst);
 		guestPay.setPayStyle(gpc.getPayStyle());
-		guestPay.setPayCardName(gpc.getPayCardName());
-		guestPay.setPayCardNum(gpc.getPayCardNum());
-		guestPay.setPayCvcNum(gpc.getPayCvcNum());
-		guestPay.setPayDate(gpc.getPayDate());
 		guestPay.setDoNum(kdc.getDoNum());
-
+		
+		System.out.println("결제방법:"+guestPay.getPayStyle());
+		
+		if(gpc.getPayStyle().equals("credit")) {
+			guestPay.setPayCardName(gpc.getPayCardName());
+			guestPay.setPayCardNum(gpc.getPayCardNum());
+			guestPay.setPayCvcNum(gpc.getPayCvcNum());
+			guestPay.setPayDate(gpc.getPayDate());			
+		}
+		
+		if(gpc.getPayStyle().equals("kakaopay")) {
+			guestPay.setPayCardName("QR");
+			guestPay.setPayCardNum(9);
+			guestPay.setPayCvcNum(9);
+			guestPay.setPayDate("QR");			
+		}
+		
+		System.out.println("guestPay.getPayCardName:"+guestPay.getPayCardName());
 		
 		System.out.println("결제날짜 :"+ guestPay.getDutchDate());
 		System.out.println("결제수단 :"+ guestPay.getPayStyle());
