@@ -55,11 +55,7 @@
 		});
 		
 		$("#goPament").click(function(){
-			if($("#memId").val() == null){
-				alert('로그인이 필요합니다.');
-				return false;
-			}
-			
+
 			var memGen = $("#gender").val();
 			var memBirth = $("#birth").val();
 			var doOptGender = $("#doOptGender").val();
@@ -116,6 +112,7 @@
 
 	<!-- Product Detail -->
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
+	<form name="kendoJoin" action="kendoJoin" method="POST"> 
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-lg-7 p-b-30">
@@ -182,7 +179,7 @@
 						  	 *나이 제한 : <input type = "hidden" id = "doOptAge" value = "${kendoDtail.doOptAge}"/>${kendoDtail.doOptAge}<br />
 							모집인원  :<input type = "hidden" name = "doPp" value = "${kendoDtail.doPp}"/>${kendoDtail.doNowPp} / ${kendoDtail.doPp}<br />
 						  	<input type = "hidden" name = "doNowPp" value = "${kendoDtail.doNowPp}"/><br />
-							<span>신청수량 : <input type = "number" id ="doQty" name = "doQty" min="1" max="${kendoDtail.doPp - kendoDtail.doNowPp}" required/></span><br /> 
+							신청수량 : <input type = "number" id ="doQty" name = "doQty" min="1" max="${kendoDtail.doPp - kendoDtail.doNowPp}" required/><br /> 
 							가  격 : <input type = "hidden" name = "doPrice"  id ="doPrice" value = "${kendoDtail.paymentKim.payDutch}"/><fmt:formatNumber pattern="###,###,###" value="${kendoDtail.paymentKim.payDutch}" /> 원<br /> 
 							총금액 : <input type = "text" name = "totalPrice"  id ="totalPrice" value="" placeholder=""/><fmt:formatNumber pattern="###,###,###" value="" /> 원<br />  
 						</p>
@@ -216,7 +213,7 @@
 										</div>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button onclick="location.href='kendoJoin'" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										구매하기
 									</button>
 								</div>
@@ -224,6 +221,10 @@
 						</div>
 
 						<!--  -->
+						
+						
+						
+						
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 							<div class="flex-m bor9 p-r-10 m-r-11">
 								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
@@ -257,7 +258,7 @@
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#information" role="tab">추가정보</a>
+							<a class="nav-link" data-toggle="tab" href="#information" role="tab">주의사항</a>
 						</li>
 
 						<li class="nav-item p-b-10">
@@ -272,6 +273,10 @@
 							<div class="how-pos2 p-lr-15-md">
 								<p class="stext-102 cl6">
 									<input type = "hidden" value="${kendoDtail.doDetail}"/>${kendoDtail.doDetail}<br />
+									<c:forEach var="kendoImg" items="${kendoImgs}">
+										<img src="../HHHview/doIMG/${kendoImg.doImgName}" width = "300px" alt="IMG-PRODUCT">
+									</c:forEach>
+									
 								</p>
 							</div>
 						</div>
@@ -425,7 +430,7 @@
 			</div>
 		</div>
 
-
+</form>
 	</section>
 
 
