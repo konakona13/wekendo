@@ -40,9 +40,9 @@
  src="http://code.jquery.com/jquery-latest.js" ></script>
 </head>
 <body class="animsition" style="animation-duration: 1500ms; opacity: 1;">
-	${doPlay }
 	
-	<input type="text" id="goodsKind" name="goodsKind" value="${goodsKind}">
+	<input type=""hidden"" id="doPlay" value="${doPlay }">
+	<input type="hidden" id="goodsKind" name="goodsKind" value="${goodsKind}">
 	
 	
 	

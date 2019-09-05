@@ -37,7 +37,7 @@ ul, li {
 
 /*---------------------------------------------*/
 input, textarea, label {
-	display: block;
+	display: inline;
 	outline: none;
 	border: none;
 }
@@ -3168,7 +3168,7 @@ iframe {border: none;}
 .wrap-pic-max-w,
 .wrap-pic-h,
 .wrap-pic-max-h {
-	display: block;
+	display: inline;
 }
 
 .wrap-pic-w img {width: 100%;}
@@ -3259,9 +3259,9 @@ iframe {border: none;}
 /*------------------------------------------------------------------
 [ Display ]*/
 .dis-none {display: none;}
-.dis-block {display: block;}
+.dis-block {display: inline;}
 .dis-inline {display: inline;}
-.dis-inline-block {display: inline-block;}
+.dis-inline-block {display: inline;}
 
 .flex-w,
 .flex-l,

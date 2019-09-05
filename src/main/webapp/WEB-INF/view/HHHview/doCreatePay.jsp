@@ -133,16 +133,16 @@ function payFail()
     
     <form action="doPayComplete" id="comp">
     	
-    	<input type="text" id="hostNum" name="hostNum" value="${kendo.hostNum }">
-    	<input type="text" id="pp" name="pp" value="${kendo.doPp}">
-    	<input type="text" id="price" name="price" value="${placeGoods.goodsPrice}">
+    	<input type="hidden" id="hostNum" name="hostNum" value="${kendo.hostNum }">
+    	<input type="hidden" id="pp" name="pp" value="${kendo.doPp}">
+    	<input type="hidden" id="price" name="price" value="${placeGoods.goodsPrice}">
     	
-    	<p>카드회사명<input type="text" id="cardCompany" name="cardCompany"></p>
-    	<p>카드번호<input type="text" id="cardNum" name="cardNum"></p>
-        <p>CVC<input type="text" id="cardCvc" name="cardCvc"></p>
-        <p>카드비밀번호<input type="text" id="cardPass" name="cardPass"></p>
-        <p>카드유효기간<input type="text" id="cardDate" name="cardDate"></p>
-        <p>이메일(선택:영수증)<input type="text" id="cardEmail" name="cardEmail" value="none"></p>
+    	<p><input type="hidden" id="cardCompany" name="cardCompany"></p>
+    	<p><input type="hidden" id="cardNum" name="cardNum"></p>
+        <p><input type="hidden" id="cardCvc" name="cardCvc"></p>
+        <p><input type="hidden" id="cardPass" name="cardPass"></p>
+        <p><input type="hidden" id="cardDate" name="cardDate"></p>
+        <p><input type="hidden" id="cardEmail" name="cardEmail" value="none"></p>
     	
     </form>
     
