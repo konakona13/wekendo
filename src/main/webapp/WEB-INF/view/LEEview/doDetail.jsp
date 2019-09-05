@@ -10,21 +10,70 @@
 <meta charset="UTF-8">
 <title>활동상세내역</title>
 </head>
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic:400,700,800&display=swap&subset=korean" rel="stylesheet">
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" 
 	src="http://code.jquery.com/jquery-latest.js" ></script>
 <script type="text/javascript" 
  			src="/mybatis-spring-smrit/js/jquery.form.js"></script>
 <script type="text/javascript">
 </script>
+<style>
+body{
+font-family: 'Nanum Gothic', sans-serif;
+}
+.balloon {
+    display: inline-block;
+    position: relative;
+    background: #A9F5F2;
+    height: auto;
+    width: 500px;
+    margin: 30px;
+    padding: 10px;
+    border-radius: 10px;
+	box-shadow: 0px 0px 15px #BDBDBD;
+}
+.balloon:after {
+    content: '';
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    z-index: -1;
+    background: #fff;
+    bottom: -20px;
+    left: 50px;
+}
+.balloon:before {
+    content: '';
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    z-index: -1;
+    background: #A9F5F2;
+    bottom: -15px;
+    left: 35px;
+}
+</style>
 <body>
-<h1>>활동번호  ${doDetail.doNum } 의 상세내용</h1><br>
-호스트명 : ${doDetail.memName }<br>
-활동이미지 : <img src="HHHview/doIMG/${doDetail.doImg }" /><br>
-활동상세설명: ${doDetail.doDetail }<br>
-활동총금액 : <fmt:formatNumber value="${doDetail.payTotal }" pattern="#,###" /> 원<br>
+<div class="balloon">
+<h1>활동번호  ${doDetail.doNum } 의 상세내용</h1><br>
+<p>호스트명 : ${doDetail.memName }</p>
+<p>활동이미지 : <img src="HHHview/doIMG/${doDetail.doImg }" /></p>
+<p>활동총금액 : <fmt:formatNumber value="${doDetail.payTotal }" pattern="#,###" /> 원</p>
 <br>
 <br>
-<table width=100% border="1" cellpadding="0" cellspacing="0" >
+</div>
+<div id="container" style="width: 900px; margin: 30px;" class="container">
+<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty dodos2}">
 	<tr align="center" valign="middle">
 		<td colspan="7">활동에서 이용하는 상품내역</td>
@@ -99,5 +148,6 @@
 	</tr>
 </c:if>
 </table>
+</div>
 </body>
 </html>

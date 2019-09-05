@@ -149,7 +149,7 @@
 <body>
 <!-- 로그인 되지 않았을 때 화면 -->
 <%if(session.getAttribute("memAuth")== null && session.getAttribute("comAuth")== null){ %>
-<div class="container" style="width: 2000px;">
+<div class="container" style="width: 2000px; ">
             <div class="row">
                 <div class="col-sm-3">
 
@@ -196,7 +196,6 @@ commandName="loginCommand">
 </div></div></div></div>
 <% }else if(session.getAttribute("memAuth")!= null && memNum.substring(0, 2).equals("NM")){ %>
 <!-- 로그인 된 후의 화면(일반회원) -->
-<%= memNum.substring(0, 2) %> : 일반회원코드 추출<br>
 <%= session.getAttribute("memAuth") %> 님 환영합니다.<br />
 <table border="1">
 <tr>
@@ -227,7 +226,7 @@ commandName="loginCommand">
  -->
 <% }else if(session.getAttribute("comAuth")!= null && comNum.substring(0, 2).equals("CO")){ %>
 <!-- 로그인 된 후의 화면(기업회원) -->
-<%= comNum.substring(0, 2) %> : 기업회원코드 추출<br>
+
 <%= session.getAttribute("comAuth") %> 님 환영합니다.<br />
 <table border="1">
 <tr>
