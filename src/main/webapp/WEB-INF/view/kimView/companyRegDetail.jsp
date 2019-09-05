@@ -12,11 +12,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<h2>기업회원 가입 승인 상세</h2>
 	
 	<form name="frm" action="comRegOk" method="POST">
+	<div class = "container">
 		<table border ="1" >
         	<tr>
 				<td>기업회원번호</td>
@@ -75,6 +84,7 @@
 		</table> 
 		
 		<input type = "submit" value = "가입승인" name = "comRegOk"/>
+		</div>
  	</form>		    
 
 	

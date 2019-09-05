@@ -14,105 +14,47 @@
 		<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="../kimView/images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="HHHview/images/icons/favicon.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../kimView/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../kimView/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../kimView/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../kimView/fonts/linearicons-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../kimView/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../kimView/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../kimView/vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../kimView/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/vendor/select2/select2.min.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../kimView/vendor/daterangepicker/daterangepicker.css">
+	
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../kimView/vendor/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/vendor/slick/slick.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../kimView/vendor/MagnificPopup/magnific-popup.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/vendor/MagnificPopup/magnific-popup.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../kimView/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../kimView/css/util.css">
-	<link rel="stylesheet" type="text/css" href="../kimView/css/main.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/css/util.css">
+	<link rel="stylesheet" type="text/css" href="HHHview/css/main.css">
 <!--===============================================================================================-->
-	<script type="text/javascript"  src="http://code.jquery.com/jquery-latest.js" ></script>
-
-<script type="text/javascript">
-	$(function(){
-		$("#doQty").change(function(){
-			var doQty = parseInt($("#doQty").val());
-			var doPrice = parseInt($("#doPrice").val());
-			var totalPrice = doQty * doPrice ;
-			$("#totalPrice").val(totalPrice);
-		});
-		
-		$("#goPament").click(function(){
-
-			var memGen = $("#gender").val();
-			var memBirth = $("#birth").val();
-			var doOptGender = $("#doOptGender").val();
-			var doOptAge = $("#doOptAge").val();
-			
-			//alert("회원생일 :" + memBirth);
-			//alert("연령제한 :" + doOptAge);
-
-			
-		    if(doOptGender != 'allPP' && memGen != doOptGender){
-				alert('모집 성별이 맞지 않습니다.');
-				return false;
-			} 
-			if(${toDay.year - membOpt.memberBir.year +1} < 20){
-				alert('모집 연령이 맞지 않습니다.');
-				return false;
-			}
-			
-		});
-	});
-
-</script>
 
 </head>
 <body class="animsition">
 	
-
-	<!-- breadcrumb -->
-	<div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
-			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-				액티비티
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
-			<span class="stext-109 cl4">
-				수상레저
-			</span><br/>
-			<% session.getAttribute("memAuth"); %> <input type = "hidden" id = "memId" name = "memId" value = "${memAuth.id}"/>${memAuth.id} 님 로그인 중 <br/>
-        
-			<form name="kendoJoin" action="kendoJoin" method="POST"> 
-		</div>
-	</div>
-		
-
+	
 
 
 	<!--Body 시작-->
 
 	<!-- Product Detail -->
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
-	<form name="kendoJoin" action="kendoJoin" method="POST"> 
+	
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-lg-7 p-b-30">
@@ -124,35 +66,24 @@
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 							<div class="slick3 gallery-lb">
+					
 
 
-
-									<c:forEach var="kendoImg" items="${kendoImgs}">
-											<c:set var ="doImgKind" value="${kendoImg.doImgKind}" scope="session" />
-											<c:if test="${doImgKind == 'main'}">	
+									<c:forEach var="Imgs" items="${goodImgs}">
+											
+											<c:if test="${Imgs.goodsNum eq goods.goodsNum}">	
 																	
-												<div class="item-slick3" data-thumb="../HHHview/doIMG/${kendoImg.doImgName}">
+												<div class="item-slick3" data-thumb="YYYView/upload/${Imgs.goodsImgName }">
 													<div class="wrap-pic-w pos-relative">
-														<img src="../HHHview/doIMG/${kendoImg.doImgName}" alt="IMG-PRODUCT">
-														<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../HHHview/doIMG/${kendoImg.doImgName}">
+														<img src="YYYView/upload/${Imgs.goodsImgName }" alt="IMG-PRODUCT">
+														<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="YYYView/upload/${Imgs.goodsImgName }">
 															<i class="fa fa-expand"></i>
 														</a>
 													</div>
 												</div>
 												
 											</c:if>
-											<c:if test="${doImgKind != 'main'}">	
-																	
-												<div class="item-slick3" data-thumb="../HHHview/doIMG/${kendoImg.doImgName}">
-													<div class="wrap-pic-w pos-relative">
-														<img src="../HHHview/doIMG/${kendoImg.doImgName}" alt="IMG-PRODUCT">
-														<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../HHHview/doIMG/${kendoImg.doImgName}">
-															<i class="fa fa-expand"></i>
-														</a>
-													</div>
-												</div>
-												
-											</c:if>
+											
 									</c:forEach>
 
 				
@@ -164,36 +95,36 @@
 				</div>
 				
 				
-
+		
 
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-						<input type = "hidden" name = "doName" value = "${kendoDtail.doName}"/>${kendoDtail.doName}
+						<input type="hidden" id="goodPlaceName" name="goodPlaceName" value="${goods.goodsName}">${goods.goodsName}
 						</h4>
 						
 						<p>
-							활동번호 :<input type = "hidden" name = "doNum" value = "${kendoDtail.doNum}"/>${kendoDtail.doNum}<br />
-                  			호스트번호 : <input type = "hidden" name = "hostNum" value = "${kendoDtail.hostNum}"/>${kendoDtail.hostNum}<br />              
-      					  	 *성별 제한: <input type = "hidden" id = "doOptGender" value = "${kendoDtail.doOptGender}"/>${kendoDtail.doOptGender}<br />
-						  	 *나이 제한 : <input type = "hidden" id = "doOptAge" value = "${kendoDtail.doOptAge}"/>${kendoDtail.doOptAge}<br />
-							모집인원  :<input type = "hidden" name = "doPp" value = "${kendoDtail.doPp}"/>${kendoDtail.doNowPp} / ${kendoDtail.doPp}<br />
-						  	<input type = "hidden" name = "doNowPp" value = "${kendoDtail.doNowPp}"/><br />
-							신청수량 : <input type = "number" id ="doQty" name = "doQty" min="1" max="${kendoDtail.doPp - kendoDtail.doNowPp}" required/><br /> 
-							가  격 : <input type = "hidden" name = "doPrice"  id ="doPrice" value = "${kendoDtail.paymentKim.payDutch}"/><fmt:formatNumber pattern="###,###,###" value="${kendoDtail.paymentKim.payDutch}" /> 원<br /> 
-							총금액 : <input type = "text" name = "totalPrice"  id ="totalPrice" value="" placeholder=""/><fmt:formatNumber pattern="###,###,###" value="" /> 원<br />  
+							<input type="hidden" id="goodPlaceName" name="goodPlaceName" value="${goods.goodsName}">
+							<input type="hidden" id="goodPlaceNum" name="goodPlaceNum" value="${goods.goodsNum}">
+							<input type="hidden" id="companyNum" name="companyNum" value="${goods.companyNum}">
+							<input type="hidden" id="totalPrice" name="totalPrice" value="${goods.goodsPrice}" >
+							<input type="hidden" id="goodsKind" value="${goodsKind}" >
 						</p>
+						
+						<p>상품이름 : ${goods.goodsName}</p>
+					   	<p>상세내용 : ${goods.goodsDetail}</p>
+					    <p>주의사항 : ${goods.goodsDanger}</p>
+					    <p>금액(1일1인) : <span id="goodspri">${goods.goodsPrice}</span></p>
 
-						<c:if test="${memAuth.id != null}">
-							*사용자 성별:<input type = "hidden" id = "gender" name = "gender" value = "${membOpt.gender}"/>${membOpt.gender}<br /> 
-							*사용자 생일:<input type = "hidden" id = "birth" name = "birth" value = "${membOpt.memberBir}"/>${membOpt.memberBir}<br /> 
-							
-							<fmt:formatDate  value="${toDay}" pattern="yyyy"/><br/>
-						   <fmt:formatDate value="${membOpt.memberBir}"  pattern="yyyy"/><br/>
-						   <fmt:formatNumber value="${toDay.year - membOpt.memberBir.year +1}" />
-						</c:if>
-
-		
+						<jsp:include page="testCalander.jsp" flush="false"/>
+						
+						
+						<p>연락처 : ${company.companyPh}</p>
+   						 <p>상세주소 : ${company.companyAddr}</p>
+   						 
+   						 <p>총대여일 <input type="number" id="buyDays" name="buyDays" min="1" max="30" value="1" required/> </p>
+					    <p>상품수량<input type = "number" id="buyQty" name = "buyQty" min="1" max="${goods.goodsStock}" value="1" required/></p>
+					    <p>총금액 : <span id="buyPrice">${goods.goodsPrice}</span></p>
 
 						<!--  -->
 						<div class="p-t-33">
@@ -213,7 +144,7 @@
 										</div>
 									</div>
 
-									<button onclick="location.href='kendoJoin'" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										구매하기
 									</button>
 								</div>
@@ -221,10 +152,6 @@
 						</div>
 
 						<!--  -->
-						
-						
-						
-						
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 							<div class="flex-m bor9 p-r-10 m-r-11">
 								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
@@ -258,7 +185,7 @@
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#information" role="tab">주의사항</a>
+							<a class="nav-link" data-toggle="tab" href="#information" role="tab">추가정보</a>
 						</li>
 
 						<li class="nav-item p-b-10">
@@ -272,11 +199,7 @@
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
 								<p class="stext-102 cl6">
-									<input type = "hidden" value="${kendoDtail.doDetail}"/>${kendoDtail.doDetail}<br />
-									<c:forEach var="kendoImg" items="${kendoImgs}">
-										<img src="../HHHview/doIMG/${kendoImg.doImgName}" width = "300px" alt="IMG-PRODUCT">
-									</c:forEach>
-									
+									${goods.goodsDetail}<br />
 								</p>
 							</div>
 						</div>
@@ -348,7 +271,7 @@
 										<!-- Review -->
 										<div class="flex-w flex-t p-b-68">
 											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-												<img src="images/avatar-01.jpg" alt="AVATAR">
+												<img src="HHHview/images/avatar-01.jpg" alt="AVATAR">
 											</div>
 
 											<div class="size-207">
@@ -430,23 +353,122 @@
 			</div>
 		</div>
 
-</form>
+
 	</section>
 
-
+	
+	
+	
+	
+        
 		
+<script type="text/javascript">
+	$(function(){
+		$("#selctPlaceBtn").click(function()
+		{
+			
+			if($("#goodsKind").val() == "place")
+				{
+				var txt = $('#goodPlaceName').val();
+				opener.document.getElementById("PlaceName").value = txt;
+				var txt = $('#goodPlaceNum').val();
+				opener.document.getElementById("PlaceNum").value = txt;
+				var txt = $('#buyDays').val();
+				opener.document.getElementById("placeDays").value = txt;
+				
+				}
+			else if($("#goodsKind").val() == "hotel")
+				{
+				var txt = $('#goodPlaceName').val();
+				opener.document.getElementById("hotelName").value = txt;
+				var txt = $('#goodPlaceNum').val();
+				opener.document.getElementById("hotelNum").value = txt;
+				var txt = $('#buyDays').val();
+				opener.document.getElementById("hotelDays").value = txt;
+				}
+			else if($("#goodsKind").val() == "rent")
+				{
+				var txt = $('#goodPlaceName').val();
+				opener.document.getElementById("rentName").value = txt;
+				var txt = $('#goodPlaceNum').val();
+				opener.document.getElementById("rentNum").value = txt;
+				}
+			else if($("#goodsKind").val() == "mento")
+				{
+				var txt = $('#goodPlaceName').val();
+				opener.document.getElementById("mentoName").value = txt;
+				var txt = $('#goodPlaceNum').val();
+				opener.document.getElementById("mentoNum").value = txt;
+				}
+			$("#frm").submit();
+			
+			 
+			 /* var txt = $('#companyNum').val();
+				opener.document.getElementById("companyNum").value = txt;
+				
+				var txt = $('#buyQty').val();
+				opener.document.getElementById("buyQty").value = txt;
+				var txt = $('#buyStartDate').val();
+				opener.document.getElementById("buyStartDate").value = txt;
+				var txt = $('#buyEndDate').val();
+				opener.document.getElementById("buyEndDate").value = txt;
+				var txt = $('#buyDays').val();
+				opener.document.getElementById("buyDays").value = txt;
+				var txt = $('#buyPrice').text();
+				opener.document.getElementById("buyPrice").value = txt; */
+		});
+		
+		$("#buyQty").click(function()
+		{
+			var price = $('#goodspri').text();
+			price = Number(price);
+			var qty = $('#buyQty').val();
+			qty = Number(qty);
+			var dayby = $('#buyDays').val();
+			
+			price = price*qty*dayby;
+			var totalPrice = $('#buyPrice').text(price);
+			$('#totalPrice').val(price);
+		});
+		
+		$("#buyDays").change(function()
+				{
+					var price = $('#goodspri').text();
+					price = Number(price);
+					var qty = $('#buyQty').val();
+					qty = Number(qty);
+					var dayby = $('#buyDays').val();
+					
+					price = price*qty*dayby;
+					var totalPrice = $('#buyPrice').text(price);
+					$('#totalPrice').val(price);
+				});
+	
+		
+	});
+
+function changePrice() {
+	var price = $('#goodspri').text();
+	price = Number(price);
+	var qty = $('#buyQty').val();
+	qty = Number(qty);
+	var dayby = $('#buyDays').val();
+	
+	price = price*qty*dayby;
+	var totalPrice = $('#buyPrice').text(price);
+	$('#totalPrice').val(price);
+}
+
+</script>
 
 
-
-<!--===============================================================================================-->	
-	<script src="../kimView/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../kimView/vendor/animsition/js/animsition.min.js"></script>
+	<script src="HHHview/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../kimView/vendor/bootstrap/js/popper.js"></script>
-	<script src="../kimView/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="HHHview/vendor/bootstrap/js/popper.js"></script>
+	<script src="HHHview/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../kimView/vendor/select2/select2.min.js"></script>
+	<script src="HHHview/vendor/select2/select2.min.js"></script>
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -456,18 +478,17 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="../kimView/vendor/daterangepicker/moment.min.js"></script>
-	<script src="../kimView/vendor/daterangepicker/daterangepicker.js"></script>
+	
 <!--===============================================================================================-->
-	<script src="../kimView/vendor/slick/slick.min.js"></script>
-	<script src="../kimView/js/slick-custom.js"></script>
+	<script src="HHHview/vendor/slick/slick.min.js"></script>
+	<script src="HHHview/js/slick-custom.js"></script>
 <!--===============================================================================================-->
-	<script src="../kimView/vendor/parallax100/parallax100.js"></script>
+	<script src="HHHview/vendor/parallax100/parallax100.js"></script>
 	<script>
         $('.parallax100').parallax100();
 	</script>
 <!--===============================================================================================-->
-	<script src="../kimView/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script src="HHHview/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 	<script>
 		$('.gallery-lb').each(function() { // the containers for all your galleries
 			$(this).magnificPopup({
@@ -481,9 +502,9 @@
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="../kimView/vendor/isotope/isotope.pkgd.min.js"></script>
+	<script src="HHHview/vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../kimView/vendor/sweetalert/sweetalert.min.js"></script>
+	<script src="HHHview/vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
 		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
 			e.preventDefault();
@@ -521,7 +542,7 @@
 	
 	</script>
 <!--===============================================================================================-->
-	<script src="../kimView/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="HHHview/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');
@@ -538,7 +559,7 @@
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="../kimView/js/main.js"></script>
+	<script src="HHHview/js/main.js"></script>
 
 </body>
 </html>
