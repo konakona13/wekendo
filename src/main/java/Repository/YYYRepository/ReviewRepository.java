@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import Model.DTO.LEEDTO.Dodo;
+import Model.DTO.YYYDTO.DodoY;
 import Model.DTO.YYYDTO.GoodsList;
 import Model.DTO.YYYDTO.Review;
 import Model.DTO.YYYDTO.ReviewList;
@@ -35,6 +37,13 @@ public class ReviewRepository {
 		String statement =  namespace + ".getReview"; 
 		result = sqlSession.selectList(statement,goodsNum);
 		
+		return result;
+	}
+
+	public List<DodoY> getDoList(String memNum) {
+		List<DodoY> result = null;
+		String statement = namespace + ".getDoList";
+		result = sqlSession.selectList(statement, memNum);
 		return result;
 	}
 

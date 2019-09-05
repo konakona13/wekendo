@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic:400,700,800&display=swap&subset=korean" rel="stylesheet">
 <script type="text/javascript" 
 	src="http://code.jquery.com/jquery-latest.js" ></script>
 <script type="text/javascript" 
@@ -29,42 +30,56 @@
 			location.href="Cashin";
 			return false;
 		}else{
+			alert('정산을 시작합니다.');
 			$("#frm").submit();
 			return false;
 		}
 	}
 	
-	function openBuyNumWindow() {
+	var buyNum = $('#buyNum').val();
+	var goodsName = $('#goodsName').val();
+	var doName = $('#doName').val();
+	
+	function openBuyNumWindow(buyNum) {
 		// 새창에 대한 세팅(옵션)
-		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=300,width=400,left=500,top=20';
-		window.open("BuybuyDetail?buyNum=" + $("#buyNum").val(), "buybuyDetail", settings);
+		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=600,width=500,left=500,top=20';
+		window.open("BuybuyDetail?buyNum=" + buyNum, "buybuyDetail", settings);
 	}
 	
-	function openGoodsNumWindow() {
+	function openGoodsNumWindow(goodsName) {
 		// 새창에 대한 세팅(옵션)
 		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=750,left=500,top=20';
-		window.open("goodsDetail?goodsName=" + $("#goodsName").val(), "goodsDetail", settings);
+		window.open("goodsDetail?goodsName=" + goodsName, "goodsDetail", settings);
 	}
 	
-	function openDoNumWindow() {
+	function openDoNumWindow(doName) {
 		// 새창에 대한 세팅(옵션)
 		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1000,left=500,top=20';
-		window.open("DoBuyDetail?doName=" + $("#doName").val(), "doBuyDetail", settings);
+		window.open("DoBuyDetail?doName=" + doName, "doBuyDetail", settings);
 	}
 	
 </script>
+<style>
+body{
+font-family: 'Nanum Gothic', sans-serif;
+}
+</style>
 <body>
-	<div id="container" style="width: 1500px">
+	<div id="container" style="width: 1500px; margin: 20px;">
 		<div id="header" style="background-color: white;">
 		<form action="buybuySearch" name="frm" method="post">
-			기업이름 : <input type="text" name="comName" ><input type="submit" name="comNameSubmit" value="검색" class="btn btn-default">
+			기업이름 : <input type="text" name="comName" class="form-control" style="width: 200px;">
+			<input type="submit" name="comNameSubmit" value="검색" class="btn btn-default" style="margin: 10px;">
+			&nbsp;&nbsp;
 			<a href="Cashin" class="btn btn-default ">전체 기업 리스트</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="adminMain" class="btn btn-default">메인으로 돌아가기</a>
 		</form>
 		</div>
 		<div id="content1" 
-			style="background-color:white-space; height: 500px; width: 700px; float: left; margin: 10px; ">
+			style="background-color:white-space; height: auto; width: 700px; float: left; margin: 10px; ">
 			
-			<table width=100% border="1" cellpadding="0" cellspacing="0" class="table table-striped">
+			<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty cashins}">
 	<tr align="center" valign="middle">
 		<td colspan=54">정산리스트</td>
@@ -79,6 +94,9 @@
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">결제번호</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">회사이름</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">상품금액</div>
@@ -103,19 +121,22 @@
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<input type="hidden" id="doNum" name="doNum" value="${dodo.doNum }">
-			<a href="javascript:openChildWindow();" >
 				${cashin.payNum }
-			</a>
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			${cashin.totalPrice }
+			${cashin.companyName }
 			</div>
 		</td>	
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">${cashin.balance }</div>
+			<div align="center">
+			<fmt:formatNumber value="${cashin.totalPrice }" pattern="#,###" /> 원 
+			</div>
+		</td>	
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+			<fmt:formatNumber value="${cashin.balance }" pattern="#,###" /> 원 </div>
 		</td>
 	</tr>
 </c:forEach>
@@ -157,16 +178,18 @@
 <c:set var= "sumBalance" value="${sumBalance + cashin1.balance}"/>
 </c:forEach>
 <br>
-<div class="container">
+<div class="container"
+style="background-color:#D8D8D8; border:1px solid #e0e0e0; width:600px; height:auto; clear: both; margin: auto; padding: 30px; border-radius: 10px;
+		box-shadow: 0px 0px 15px #151515;">
 *정산계산방법 : <br><br>
 총 상품금액 * 위캔두 수수료 50% = 
 <h4><c:out value="${sumBalance}"/>원</h4>
 </div>
 		</div>
 		<div id="content2"
-			style="background-color: white-space; height: 500px; width: 700px; float: left; margin: 10px" >
+			style="background-color: white-space; height: auto; width: 700px; float: left; margin: 10px" >
 			
-			<table width=100% border="1" cellpadding="0" cellspacing="0" class="table table-striped">
+			<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty buybuys}">
 	<tr align="center" valign="middle">
 		<td colspan="7">구매리스트</td>
@@ -205,8 +228,7 @@
 		</td>
 		<td height="23" style="font-family:Tahoma;font-size:10pt;">
 		<div align="center">
-			<input type="hidden" id="buyNum" name="buyNum" value="${buybuy.buyNum }">
-			<a href="javascript:openBuyNumWindow();" >
+			<a href="javascript:openBuyNumWindow('${buybuy.buyNum }');" id="buyNum">
 				${buybuy.buyNum }
 			</a>
 			</div>
@@ -218,16 +240,14 @@
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<input type="hidden" id="goodsName" name="goodsName" value="${buybuy.goodsName }">
-			<a href="javascript:openGoodsNumWindow();" >
+			<a href="javascript:openGoodsNumWindow('${buybuy.goodsNum }');" id="goodsName">
 				${buybuy.goodsName }
 			</a>
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<input type="hidden" id="doName" name="doName" value="${buybuy.doName }">
-			<a href="javascript:openDoNumWindow();" >
+			<a href="javascript:openDoNumWindow('${buybuy.doName }');" id="doName">
 				${buybuy.doName }
 			</a>
 			</div>
@@ -237,7 +257,8 @@
 			</div>
 		</td>		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">${buybuy.buyPrice }</div>
+			<div align="center">
+			<fmt:formatNumber value="${buybuy.buyPrice }" pattern="#,###" /> 원</div>
 		</td>
 	</tr>
 </c:forEach>
@@ -277,12 +298,14 @@
 <c:set var= "sumBuy" value="${sumBuy + buybuy1.buyPrice}"/>
 </c:forEach>
 <br>
-<div class="container">
+<div class="container"
+style="background-color:#D8D8D8; border:1px solid #e0e0e0; width:600px; height:auto; clear: both; margin: auto; padding: 30px; border-radius: 10px;
+		box-shadow: 0px 0px 15px #151515;">
 총 판매금액 : <c:out value="${sumBuy}"/>원</div>
-			
-			
+
 		</div>
-		<div id="footer" style="background-color: white-space; height:300px; clear: both; border: 5pt groove #3f51b5;" class="container">
+		<div id="footer" style="background-color:#ffffff; border:1px solid #e0e0e0; height:auto; clear: both; margin:auto; padding: 30px; border-radius: 10px;
+		box-shadow: 0px 0px 15px #cecece;" class="container">
 		정산 예정 금액 계산 : <br>
 		(${sumBuy} - ${sumCash}) * 위켄두수수료(판매가50%) = <c:out value="${(sumBuy - sumCash) * 0.5}"/> 원
 		<form action="cashInsert" id="frm" name="frm" method="post">

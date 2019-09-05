@@ -49,8 +49,8 @@
 
 
 	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('LEEview/images/bg-01.jpg');">
-		<h2 class="ltext-105 cl0 txt-center">
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('LEEview/images/bg-01.jpg'); height: 30px;">
+		<h2 class="ltext-105 cl0 txt-center" style="height: 50px;">
 			구매 날짜 정보
 		</h2>
 	</section>	
@@ -71,9 +71,9 @@
 								구매(이용)날짜 : 
 							</span>
 
-							<p class="stext-115 cl6 size-213 p-t-18">
+							<p class="stext-115 cl6 size-213 p-t-18" style="width: 1000px;">
 								<fmt:formatDate value="${buyDetail.startDate }" pattern="yyyy년 MM월 dd일" /> 
-								~ <fmt:formatDate value="${buyDetail.endDate }" pattern="yyyy년 MM월 dd일" /> 							</p>
+								~ <fmt:formatDate value="${buyDetail.endDate }" pattern="yyyy년 MM월 dd일" /></p>
 						</div>
 					</div>
 

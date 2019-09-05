@@ -15,6 +15,7 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"
 	src="/mybatis-spring-smrit/js/jquery.form.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic:400,700,800&display=swap&subset=korean" rel="stylesheet">
 	<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -57,7 +58,7 @@
 <style>
 body {
 	margin-top: 100px;
-	font-family: 'Trebuchet MS', serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	line-height: 1.6
 }
 

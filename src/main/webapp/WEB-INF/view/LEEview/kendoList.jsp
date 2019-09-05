@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic:400,700,800&display=swap&subset=korean" rel="stylesheet">
 	<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -50,12 +51,17 @@
 <style>
 body {
 	margin-top: 100px;
-	font-family: 'Trebuchet MS', serif;
+font-family: 'Nanum Gothic', sans-serif;
 	line-height: 1.6
+}
+
+table{
+font-family: 'Nanum Gothic', sans-serif;
 }
 
 .container {
 	width: 1000px;
+	font-family: 'Nanum Gothic', sans-serif;
 	margin: 0 auto;
 }
 
@@ -119,10 +125,10 @@ ul.tabs li.current {
 			<div align="center">활동명</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">모집시작일</div>
+			<div align="center">모집기간</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">모집종료일</div>
+			<div align="center">활동기간</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">현재인원/모집인원</div>
@@ -212,10 +218,10 @@ ul.tabs li.current {
 			<div align="center">활동명</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">모집시작종료일</div>
+			<div align="center">모집기간</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">활동시작종료일</div>
+			<div align="center">활동기간</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">현재인원/모집인원</div>
@@ -240,12 +246,14 @@ ul.tabs li.current {
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<fmt:formatDate value="${dodo.openDate }" pattern="yy년 MM월 dd일" />
+			<fmt:formatDate value="${dodo.openDate }" pattern="yy/MM/dd" />
+			 ~ <fmt:formatDate value="${dodo.closeDate }" pattern="yy/MM/dd" />
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<fmt:formatDate value="${dodo.closeDate }" pattern="yy년 MM월 dd일" />
+				<fmt:formatDate value="${dodo.startDate }" pattern="yy/MM/dd" /> ~
+			 <fmt:formatDate value="${dodo.endDate }" pattern="yy/MM/dd" />
 			</div>
 		</td>	
 		<td style="font-family:Tahoma;font-size:10pt;">
@@ -302,10 +310,10 @@ ul.tabs li.current {
 			<div align="center">활동명</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">모집시작종료일</div>
+			<div align="center">모집기간</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">활동시작종료일</div>
+			<div align="center">활동기간</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">현재인원/모집인원</div>
@@ -330,12 +338,14 @@ ul.tabs li.current {
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<fmt:formatDate value="${dodo.openDate }" pattern="yy년 MM월 dd일" />
+			<fmt:formatDate value="${dodo.openDate }" pattern="yy/MM/dd" />
+			 ~ <fmt:formatDate value="${dodo.closeDate }" pattern="yy/MM/dd" />
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<fmt:formatDate value="${dodo.closeDate }" pattern="yy년 MM월 dd일" />
+				<fmt:formatDate value="${dodo.startDate }" pattern="yy/MM/dd" /> ~
+			 <fmt:formatDate value="${dodo.endDate }" pattern="yy/MM/dd" />
 			</div>
 		</td>	
 		<td style="font-family:Tahoma;font-size:10pt;">
@@ -390,17 +400,17 @@ ul.tabs li.current {
 			<div align="center">활동명</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">모집시작종료일</div>
+			<div align="center">모집기간</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">활동시작종료일</div>
+			<div align="center">활동기간</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">현재인원/모집인원</div>
 		</td>
 	</tr>
 <c:forEach var="dodo" items="${dodos}">
-<c:if test="${dodo.status == 'doend' }">
+<c:if test="${dodo.status == 'doend' || dodo.status == 'cashcomplete'}">
 	<tr align="center" valign="middle" bordercolor="#333333"
 		onmouseover="this.style.backgroundColor='F8F8F8'"
 		onmouseout="this.style.backgroundColor=''">
@@ -418,12 +428,14 @@ ul.tabs li.current {
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<fmt:formatDate value="${dodo.openDate }" pattern="yy년 MM월 dd일" />
+			<fmt:formatDate value="${dodo.openDate }" pattern="yy/MM/dd" />
+			 ~ <fmt:formatDate value="${dodo.closeDate }" pattern="yy/MM/dd" />
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<fmt:formatDate value="${dodo.closeDate }" pattern="yy년 MM월 dd일" />
+				<fmt:formatDate value="${dodo.startDate }" pattern="yy/MM/dd" /> ~
+			 <fmt:formatDate value="${dodo.endDate }" pattern="yy/MM/dd" />
 			</div>
 		</td>	
 		<td style="font-family:Tahoma;font-size:10pt;">
@@ -478,10 +490,10 @@ ul.tabs li.current {
 			<div align="center">활동명</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">모집시작종료일</div>
+			<div align="center">모집기간</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">활동시작종료일</div>
+			<div align="center">활동기간</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">현재인원/모집인원</div>
@@ -506,12 +518,14 @@ ul.tabs li.current {
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<fmt:formatDate value="${dodo.openDate }" pattern="yy년 MM월 dd일" />
+			<fmt:formatDate value="${dodo.openDate }" pattern="yy/MM/dd" />
+			 ~ <fmt:formatDate value="${dodo.closeDate }" pattern="yy/MM/dd" />
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<fmt:formatDate value="${dodo.closeDate }" pattern="yy년 MM월 dd일" />
+			<fmt:formatDate value="${dodo.startDate }" pattern="yy/MM/dd" /> ~
+			 <fmt:formatDate value="${dodo.endDate }" pattern="yy/MM/dd" />
 			</div>
 		</td>	
 		<td style="font-family:Tahoma;font-size:10pt;">
