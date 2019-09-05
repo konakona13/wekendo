@@ -140,5 +140,11 @@ public class DoCreateController
 		return "HHHview/goodsList";
 	}
 	
+	@RequestMapping("/DetailCs")
+	public String detailCs()
+	{
+		return "HHHview/doDetailCs";
+	}
+	
 	
 }

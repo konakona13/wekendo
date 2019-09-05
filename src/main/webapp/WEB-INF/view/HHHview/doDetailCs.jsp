@@ -45,15 +45,16 @@
 <!--===============================================================================================-->
 
 </head>
-<body class="animsitionD">
+<body class="animsition">
 	
-
+	
 
 
 	<!--Body 시작-->
 
 	<!-- Product Detail -->
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
+	
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-lg-7 p-b-30">
@@ -65,7 +66,7 @@
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 							<div class="slick3 gallery-lb">
-
+					
 
 
 									<c:forEach var="Imgs" items="${goodImgs}">
@@ -109,7 +110,7 @@
 							<input type="hidden" id="totalPrice" name="totalPrice" value="${goods.goodsPrice}" >
 							<input type="hidden" id="goodsKind" value="${goodsKind}" >
 						</p>
-
+						
 						<p>상품이름 : ${goods.goodsName}</p>
 					   	<p>상세내용 : ${goods.goodsDetail}</p>
 					    <p>주의사항 : ${goods.goodsDanger}</p>
