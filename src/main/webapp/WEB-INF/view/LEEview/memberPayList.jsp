@@ -44,6 +44,11 @@
 		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1100,left=300,top=20';
 		window.open("DodoDetail2?dodoNum=" + doNum, "KendoDetail", settings);
 	}
+	function openReviewWindow(doNum) {
+		// 새창에 대한 세팅(옵션)
+		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1100,left=300,top=20';
+		window.open("kendoReview?dodoNum=" + doNum, "KendoReview", settings);
+	}
 </script>
 <style>
 body {
@@ -228,9 +233,13 @@ ul.tabs li.current {
 </table>
 
 		</div>
+		
+		<!-- 리뷰페이지 -->
 <div id="tab-3" class="tab-content">
-				<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
-<c:if test="${! empty dodos}">
+	<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
+	
+	<c:if test="${! empty dodos}">
+	
 	<tr align="center" valign="middle">
 		<td colspan="5" style="background-color: skyblue; font-weight: bold;">활동리스트</td>
 	</tr>
@@ -243,13 +252,10 @@ ul.tabs li.current {
 			<div align="center">활동명</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">모집기간</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">활동기간</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
-			<div align="center">현재인원/모집인원</div>
+			<div align="center"></div>
 		</td>
 	</tr>
 	
@@ -268,22 +274,18 @@ ul.tabs li.current {
 				${dodo.doName }
 			</a>
 			</div>
-		</td>
+		</td>		
 		
-		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">
-			<fmt:formatDate value="${dodo.openDate }" pattern="yy/MM/dd" />
-			 ~ <fmt:formatDate value="${dodo.closeDate }" pattern="yy/MM/dd" />
-			</div>
-		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
 				<fmt:formatDate value="${dodo.startDate }" pattern="yy/MM/dd" /> ~
 			 <fmt:formatDate value="${dodo.endDate }" pattern="yy/MM/dd" />
 			</div>
 		</td>	
-		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">${dodo.nowPP }/${dodo.doPP }명</div>
+		<td style="font-family:Tahoma;font-size:9.5pt;">
+			<div align="right"><a href="javascript:openReviewWindow('${dodo.doNum }');" id="review" >
+				리뷰 작성하러 가기
+			</a></div>
 		</td>
 	</tr>
 	</c:if>
@@ -298,7 +300,7 @@ ul.tabs li.current {
 			</c:if>
 			<c:forEach var="i" begin="${startPage }" 
 				end="${endPage }">
-				<a href="kendo_list?page=${i }">[${i }]</a>&nbsp;
+				<a href="kendo_list?page=${i+1 }">[${i+1 }]</a>&nbsp;
 			</c:forEach>
 			<c:if test="${page < maxPage }">	
 			<a href="kendo_list?page=${page +1 }">[다음]</a>

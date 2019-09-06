@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import Model.DTO.LEEDTO.Dodo;
+import Model.DTO.LEEDTO.Dodo2;
 import Model.DTO.YYYDTO.DodoY;
 import Repository.YYYRepository.ReviewRepository;
 
@@ -18,8 +19,10 @@ public class KendoListYService {
 	public List<DodoY> doList(Model model, String memNum) {
 		
 		List<DodoY> list = reviewRepository.getDoList(memNum);
-		model.addAttribute("dodos", list);
+		
 		return list;
 	}
+
+
 
 }

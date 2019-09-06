@@ -6,8 +6,14 @@ import java.sql.Timestamp;
 @SuppressWarnings("serial")
 public class DodoY implements Serializable {
 	private String doNum;
-	private String hostNum;
+	private String goodsNum;
+	private String goodsName;
 	private String doName;
+	private String memName;
+	private String memNum;
+	private String companyNum;
+	
+	private String hostNum;
 	private Timestamp startDate;
 	private Timestamp endDate;
 	private Timestamp openDate;
@@ -18,8 +24,6 @@ public class DodoY implements Serializable {
 	private String optGender;
 	private String optAge;
 	private String status;
-	private String memName;
-	private String memNum;
 	private Long memPh;
 	private String profile;
 	private String doImg;
@@ -28,6 +32,33 @@ public class DodoY implements Serializable {
 	private String payStyle;
 	private Long cardNum;
 	
+	
+	
+	
+	public String getGoodsNum() {
+		return goodsNum;
+	}
+
+	public void setGoodsNum(String goodsNum) {
+		this.goodsNum = goodsNum;
+	}
+
+	public String getCompanyNum() {
+		return companyNum;
+	}
+
+	public void setCompanyNum(String companyNum) {
+		this.companyNum = companyNum;
+	}
+
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+
 	public Long getCardNum() {
 		return cardNum;
 	}
