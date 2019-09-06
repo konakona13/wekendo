@@ -310,7 +310,7 @@ style="background-color:#D8D8D8; border:1px solid #e0e0e0; width:600px; height:a
 		(${sumBuy} - ${sumCash}) * 위켄두수수료(판매가50%) = <c:out value="${(sumBuy - sumCash) * 0.5}"/> 원
 		<form action="cashInsert" id="frm" name="frm" method="post">
 		<c:if test="${comName != null}">
-			<input type="button" name="cashSubmit" value="정산승인" onclick="func_cash()"> 
+			<input type="button" name="cashSubmit" value="정산승인" onclick="func_cash()" class="btn btn-danger"> 
 			<input type="hidden" value="${comName }" name="comName2">
 			<input type="hidden" id="cashInBalance" name="cashInBalance" value="<c:out value="${(sumBuy - sumCash) * 0.5}"/>"> 
 			<input type="hidden" name="cashInTotal" value="(${sumBuy} - ${sumCash})"> 
