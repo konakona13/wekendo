@@ -240,7 +240,6 @@ commandName="loginCommand">
 </tr>
 </table>
 <a href="Logout1" >로그아웃</a>
-<a href= "#" >매출분석 신청</a>
 <a href="goodsMain" >내 상품리스트</a>
 <a href="companyCash">정산내역 확인</a>
 <!-- 
@@ -263,7 +262,6 @@ commandName="loginCommand">
  <a href="confirmList" >상품관리 - 업체상품승인</a>
  <a href="goodsMain" >상품관리 - 업체 상품리스트</a>
  <a href="companyReg" >회원관리 - 기업 가입 승인</a>
- <a href="kendoJoinList" >유선씨켄두조인리스트?</a>
  <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>

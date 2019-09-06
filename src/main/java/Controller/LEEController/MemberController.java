@@ -24,11 +24,11 @@ import Repository.YYYRepository.GoodsRepository;
 import Service.LEEService.CompanyCashService;
 import Service.LEEService.CompanyJoinService;
 import Service.LEEService.CompanyLoginService;
+import Service.LEEService.CompanyOrderService;
 import Service.LEEService.MemKendoService;
 import Service.LEEService.MemberJoinService;
 import Service.LEEService.MemberLoginService;
 import Service.LEEService.MemberLogoutService;
-import Service.LEEService.UpdateDoStatusService;
 import Validator.LoginCommandValidator;
 import Validator.RegisterRequestValidator;
 
@@ -51,6 +51,8 @@ public class MemberController {
 	private GoodsRepository goodsRepository;
 	@Autowired
 	private MemKendoService memKendoService;
+	@Autowired
+	private CompanyOrderService companyOrderService;
 
 	@RequestMapping("/loginmain")
 	public String mainView(HttpServletRequest request, Model model) {
@@ -174,5 +176,11 @@ public class MemberController {
 	public String confirmId(@RequestParam(value = "id1") String id1, Model model) {
 		memberLoginService.getSelectId(id1, model);
 		return "LEEview/confirmId";
+	}
+
+	@RequestMapping("orderCompany")
+	public String orderCom(HttpSession session, Model model) {
+		companyOrderService.getOrder(session, model);
+		return "LEEview/orderCompany";
 	}
 }

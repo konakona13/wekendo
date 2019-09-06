@@ -1,9 +1,12 @@
 package Repository.LEERepository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import Model.DTO.LEEDTO.Buybuy;
 import Model.DTO.LEEDTO.Company;
 import Model.DTO.LEEDTO.Member;
 
@@ -56,5 +59,13 @@ public class SessionRepository {
 			memberId = member.getMemberId();
 		}
 		return memberId;
+	}
+
+	public List<Buybuy> getOrderList(String comNum) {
+		// TODO Auto-generated method stub
+		List<Buybuy> result = null;
+		String statement = namespace + ".getOrderList";
+		result = sqlSession.selectList(statement, comNum);
+		return result;
 	}
 }

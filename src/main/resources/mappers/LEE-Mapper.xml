@@ -200,9 +200,9 @@
 			property="month" />
 		<result column="CASHIN_STATUS" jdbcType="VARCHAR"
 			property="status" />
-			<result column="COMPANY_NAME" jdbcType="VARCHAR"
+		<result column="COMPANY_NAME" jdbcType="VARCHAR"
 			property="companyName" />
-			<result column="GOODS_NAME" jdbcType="VARCHAR"
+		<result column="GOODS_NAME" jdbcType="VARCHAR"
 			property="goodsName" />
 	</resultMap>
 
@@ -242,6 +242,16 @@
 		<result column="DO_NAME" jdbcType="VARCHAR" property="doName" />
 		<result column="do_open_date" jdbcType="TIMESTAMP"
 			property="dutchDate" />
+		<result column="PAY_PP" jdbcType="BIGINT" property="payPP" />
+		<result column="PAY_DUCTCH" jdbcType="BIGINT"
+			property="payDutch" />
+		<result column="MEMBER_NAME" jdbcType="VARCHAR"
+			property="memName" />
+		<result column="GOODS_STOCK" jdbcType="BIGINT"
+			property="goodsStock" />
+		<result column="GOODS_PRICE" jdbcType="BIGINT"
+			property="goodsPrice" />
+
 	</resultMap>
 
 	<resultMap type="Model.DTO.LEEDTO.Goods" id="baseGoods">
@@ -360,13 +370,15 @@
 	<select id="getCashList" parameterType="StartEndPage"
 		resultMap="baseCashin">
 		select
-		CASHIN_NUM, c.PAY_NUM, c.COMPANY_NUM, CASHIN_TOTAL_PRICE,
-		CASHIN_COMMISSION, CASHIN_BALANCE, CASHIN_DAYS, CASHIN_MONTH,
+		CASHIN_NUM, c.PAY_NUM, c.COMPANY_NUM,
+		CASHIN_TOTAL_PRICE,
+		CASHIN_COMMISSION, CASHIN_BALANCE, CASHIN_DAYS,
+		CASHIN_MONTH,
 		CASHIN_STATUS, COMPANY_NAME
 		from cashin c,company com
 		where c.company_num = com.company_num
-        and CASHIN_STATUS = 'complete'
-        order by CASHIN_DAYS desc
+		and CASHIN_STATUS = 'complete'
+		order by CASHIN_DAYS desc
 	</select>
 	<select id="getCashListCount" resultType="int">
 		select count(*) from
@@ -462,18 +474,20 @@
 		select
 		'CI'||CASHIN_NUM_SEQ.nextval, b.PAY_NUM,
 		b.COMPANY_NUM,
-		BUY_PRICE, 0.5, BUY_PRICE*0.5,
+		PAY_TOTALPRICE, 0.5, PAY_TOTALPRICE*0.5,
 		to_char(trunc(add_months(BUY_END_DATE, + 1),'mm')
 		,'yy/mm/dd
 		hh24:mi:ss'), BUY_END_DATE, 'complete'
 		from BUYBUY b, company c, kendo
-		kd
+		kd,payment p
 		where b.company_num = c.company_num
 		and b.do_num
 		= kd.do_num
+		and b.pay_num = p.pay_num
 		and
 		do_status = 'doend'
-		and company_name = #{comName}
+		and company_name =
+		#{comName}
 	</insert>
 	<update id="updateKendo" parameterType="String">
 		UPDATE kendo k
@@ -562,7 +576,8 @@
 		THEME_S_NAME,BUY_DAYS,GOODS_PRICE,BUY_PRICE
 		from KENDO k, company c,
 		buybuy b, goods g, maplarge ml,mapmedium mm,mapsmall ms,
-		themelarge tl,thememedium tm,themesmall ts
+		themelarge
+		tl,thememedium tm,themesmall ts
 		where k.do_num = b.do_num
 		and
 		b.goods_num =
@@ -572,11 +587,14 @@
 		and
 		b.MAP_L_NUM = ml.map_l_num
 		and b.MAP_M_NUM = mm.map_m_num
-		and b.MAP_S_NUM = ms.map_s_num
+		and
+		b.MAP_S_NUM = ms.map_s_num
 		and b.THEME_L_NUM = tl.theme_l_num
-		and b.THEME_M_NUM = tm.theme_m_num
+		and
+		b.THEME_M_NUM = tm.theme_m_num
 		and b.theme_s_num = ts.theme_s_num
-		and k.DO_NUM =
+		and
+		k.DO_NUM =
 		#{doNum1}
 	</select>
 
@@ -597,7 +615,8 @@
 		<include refid="basecolumnCompany" />
 		from COMPANY
 		where company_num &lt;&gt; 'admin'
-		order by COMPANY_NUM desc
+		order by COMPANY_NUM
+		desc
 	</select>
 	<select id="getComListCount" resultType="int">
 		select count(*) from
@@ -627,5 +646,24 @@
 		and g.pay_num =
 		p.pay_num
 		and g.guest_num = #{memNum}
+	</select>
+
+	<select id="getOrderList" parameterType="String"
+		resultMap="baseBuybuy">
+		select
+		buy_num,BUY_START_DATE,BUY_END_DATE,pay_pp,pay_ductch,GOODS_STOCK,
+		BUY_DAYS,BUY_PRICE,COMPANY_NAME,m.member_name,g.goods_name,do_name,
+		GOODS_PRICE
+		from buybuy b,company c,member m, goods g, kendo k,payment
+		p
+		where
+		b.company_num = c.company_num
+		and b.host_num = m.member_num
+		and
+		b.goods_num = g.goods_num
+		and b.do_num = k.do_num
+		and b.pay_num =
+		p.pay_num
+		and b.company_num = #{comNum}
 	</select>
 </mapper>
