@@ -23,6 +23,8 @@ public class ConfirmListServcie {
 		List<GoodsList> goods = repository.getGoodsAll();
 		model.addAttribute("list", goods);
 		
+		System.out.println(goods.toString());
+		
 		return "YYYView/goodsConfirm";
 	}
 

@@ -12,6 +12,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>활동개설신청서</title>
 
+<!-- 부트스트랩 시작 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- 부트스트랩 끝 -->
+
     <script type="text/javascript" 
  src="http://code.jquery.com/jquery-latest.js" ></script>
 <script type="text/javascript">
@@ -183,9 +191,55 @@ function endcl()
 	      });
 	   })
 
-</script>    
+</script> 
+
+<style>
+body {
+	margin-top: 100px;
+	font-family: 'Trebuchet MS', serif;
+	line-height: 1.6
+}
+
+.container {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+ul.tabs li {
+	background: none;
+	color: black;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+	border: 1;
+}
+
+ul.tabs li.current {
+	background: white;
+	color: black;
+}
+
+.tab-content {
+	display: none;
+	background: white;
+	padding: 15px;
+}
+
+.tab-content.current {
+	display: inherit;
+}
+</style>  
 </head>
 <body>
+
+<div class="container">
+
     <h1>활동개설신청서?</h1>
     	
     	<!-- 새창정보 -->
@@ -193,66 +247,94 @@ function endcl()
         <input type="hidden" id="endDcl" name="endDate">
     	<!-- 새창정보 -->
     	<!-- 지역테마정보 -->
-    	테마<input type="text" id="themaSS">
-		지역<input type="text" id="areaSS">
+    	<input type="hidden" id="themaSS">
+		<input type="hidden" id="areaSS">
        
       
         <form:form action="doCreatePay" name = "frm" id = "frm" method="POST"
          enctype="multipart/form-data" commandName="createDoCommand">
+          <table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
+         
+          <tr>
           
-            <p>
-                지역선택	 <div id = "mapMain"> </div> 
-            </p>
-            <p>
-           	테마선택 	 <div id = "themeMain"> </div>  
-            </p>
-            
-            <p>
-                <table>
+          <td >
+     		  	지역선택<div id = "mapMain"> </div> 
+          </td>
+          </tr>
+          
+          <tr>
+          <td>
+       	테마선택 	 <div id = "themeMain"> </div>  
+          </td>
+          </tr>
+          
+          
+              		 
                     <tr>
-                        <td> 활동명 <form:input type="text" path="doName"/></td>
+                    	
+                        <td>활동명  </td>
+                        <td><form:input type="text" path="doName"/></td>
                     </tr>
+                   <tr><td>모집인원</td></tr>
                      <tr>
-                            <td>모집인원  <form:input type="text" path="doPp"/></td>
+                     
+                            <td>  <form:input type="text" path="doPp"/></td>
                     </tr>
-                    
+                       <tr><td>모집종료일</td></tr>
                     <tr>
-                        <td> 모집종료일  <form:input type="date" path="doCloseDate"/></td>
+                   		 
+                        <td>   <form:input type="date" path="doCloseDate"/></td>
+                    </tr>
+                   <tr><td>활동시작일</td></tr>
+                     <tr>
+                     	
+                        <td>   <form:input path="doStartDate" id="doStartDate" type="date"/></td>
                     </tr>
                    
-                     <tr>
-                        <td> 활동시작일  <form:input path="doStartDate" id="doStartDate" type="date"/></td>
-                    </tr>
-                    <tr>
-                  
-                    </tr>
+                  <tr><td>활동종료일</td></tr>
+                   
                       <tr>
-                        <td> 활동종료일  <form:input path="doEndDate" type="date"/></td>
+                      	
+                        <td>   <form:input path="doEndDate" type="date"/></td>
                     </tr>
                     
                    
                     
+                   <tr>
+                         <td> 메인이미지 <input type="file" name = "mainPhoto"  size = "30" /></td>
+                    </tr>
+              	
+              	 
+             </table>
                   
-                </table>
-                   <p>
-                        메인이미지 <input type="file" name = "mainPhoto"  size = "30" />
-                   </p>
-                   <p>
                         상세이미지: <input type= "file" name="report" multiple="multiple" />
+                        
+                             
 				 <table id="addTable" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0">
 		            <tr><td align="left"></td></tr>
 		            <tr><td> <input name="addButton" type="button" style="cursor:hand" onClick="insRow()" value="추가"></td></tr>
 		         </table>
-                   </p>
-                   <p>
-                        상세설명 <form:input type="text" path="doDetail"/>
+               <table class="table table-striped">    
+              <tr>
+              <td>
+              상세설명
+              </td>
+              </tr>
+              		
+              <tr>
+              <td>
+               <form:textarea type="text"  rows="8" cols="40"  path="doDetail"/>
+              </td>
+              </tr>
                         
-                   </p>
-                   
-                    <%-- 성별제한 <form:input type="text" path="limitGender"/>
-                      나이제한 <form:input type="text" path="limitAge"/> --%>
-       		<p>
-                        성별제한   <form:select id="lg" path="limitGender">
+               
+             
+             <tr>
+       		<td>성별제한</td>
+       		 </tr>
+       		 <tr>
+       		<td>
+                           <form:select id="lg" path="limitGender">
                         <form:option value="무관">무관</form:option>
                      <c:if test="${member.gender eq '남'}">
           				<form:option value="남">남자</form:option>
@@ -265,51 +347,78 @@ function endcl()
                     
                     
                 	</form:select>
-             </p>
+                </td>	
+             </tr>
              
-             <p>
-                        나이제한 <form:select id="la" path="limitAge">
+              <tr>
+       		<td>나이제한</td>
+       		 </tr>
+              <tr>
+       		<td> 
+       		  <form:select id="la" path="limitAge">
                     <form:option value="미설정">미설정</form:option>
                     <form:option value="성인">성인</form:option>
-                	</form:select>
-            </p>
+                	</form:select></td>
+       		 </tr>
+             
            
     
 
             
-           
-            
-            <div id="selectPlace">
-            	 <input type="hidden" id ="doStartDate" />
-            	장소 : <input type="text" id="PlaceName" value="장소이름">
-            		 <input type="hidden" name="placeNum" id="PlaceNum" value="장소번호">
+           <tr>
+       		<td>장소 <input type="hidden" id ="doStartDate" /></td>
+       		 </tr>
+           <tr>
+       		<td><input type="text" id="PlaceName" value="장소이름">
+       		<input type="hidden" name="placeNum" id="PlaceNum" value="장소번호">
             		 <input type="hidden" id="placeDays">
-            		 <input id="selectPlaceBtn" type="button" value="장소선택">
-            </div>	
-            <div>
-           		 숙박 :  <input type="text" id="hotelName" value="숙박이름">
+            		  <input id="selectPlaceBtn" type="button" value="장소선택">
+       		</td>
+       		 </tr>
+            
+            	
+            <tr>
+            <th>숙박</th>
+            </tr>
+            <tr>
+            <td>
+            		<input type="text" id="hotelName" value="숙박이름">
             		 <input type="hidden" name="hotelNum" id="hotelNum" value="숙박번호">
             		 <input type="hidden" id="hotelDays">
-            		<input id="selectHotelBtn" type="button" value="숙박선택">
+            		  <input id="selectHotelBtn" type="button" value="숙박선택">
+            </td>
+            </tr>
             
-            </div>
-             <div>
-           		 렌트카 :  <input type="text" id="rentName" value="차량이름">
+            <tr>
+            <th>렌트카</th>
+            </tr>
+            <tr>
+            <td>
+            		<input type="text" id="rentName" value="차량이름">
             		 <input type="hidden" name="rentNum" id="rentNum" value="차량번호">
             		 <input id="selectRentBtn" type="button" value="차량선택">
+            </td>
+            </tr>
             
-            </div>
-             <div>
-           		 멘토 :  <input type="text" id="mentoName" value="멘토이름">
+            <tr>
+            <th>멘토</th>
+            </tr>
+            <tr>
+            <td>
+            		<input type="text" id="mentoName" value="멘토이름">
             		 <input type="hidden" name="mentoNum" id="mentoNum" value="멘토번호">
       	      		 <input id="selectMentoBtn" type="button" value="멘토선택">
+            </td>
+            </tr>
+           
             
-            </div>
+             
             	
             	
-
+			  </table> 
             <input type="button" id ="submit1" value="다음"/>
+            
         </form:form>
-
+</div>
 </body>
 </html>

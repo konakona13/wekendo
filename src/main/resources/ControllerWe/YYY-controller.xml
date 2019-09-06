@@ -39,4 +39,6 @@
 <bean id = "review"  class="Model.DTO.YYYDTO.Review" />
 <bean id = "reviewList"  class="Model.DTO.YYYDTO.ReviewList" />
 
+<bean id = "doDoY"  class="Model.DTO.YYYDTO.DodoY" />
+
 </beans>

@@ -86,7 +86,8 @@
 </resultMap>
 
 <select id="getGoodsAll" resultMap="goodsList">
-	  	SELECT c.COMPANY_NUM, c.COMPANY_NAME, c.company_kind , G.GOODS_NUM, G.GOODS_NAME, G.REG_DATE, G.GOODS_STATUS	  		
+	  	SELECT c.COMPANY_NUM, c.COMPANY_NAME, c.COMPANY_STATUS, c.company_kind , 
+	  				G.GOODS_NUM, G.GOODS_NAME, G.REG_DATE, G.GOODS_STATUS	  		
 		FROM COMPANY c JOIN GOODS g
 		ON c.COMPANY_NUM = g.COMPANY_NUM
 </select>
@@ -345,8 +346,15 @@
 
 <resultMap type="Model.DTO.YYYDTO.Review" id="review">
 		<id column="REVIEW_NUM" jdbcType="VARCHAR" property="reviewNum" />
+		<result column="MAP_S_NUM" jdbcType="VARCHAR" property="mapSNum" />
+		<result column="MAP_M_NUM" jdbcType="VARCHAR" property="mapMNum" />
+	    <result column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum" />
+	    <result column="THEME_S_NUM" jdbcType="VARCHAR" property="themeSNum" />
+		<result column="THEME_M_NUM" jdbcType="VARCHAR" property="themeMNum" />
+		<result column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum" />
 		<result column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum" />
 		<result column="MEMBER_NUM" jdbcType="VARCHAR" property="memberNum" />
+		<result column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum" />
 		<result column="REVIEW_SCORE" jdbcType="BIGINT" property="reviewScore" />
 		<result column="REVIEW_DATE" jdbcType="TIMESTAMP" property="reviewDate" />
 		<result column="REVIEW_CONTENT" jdbcType="VARCHAR" property="reviewContent" />
@@ -355,8 +363,10 @@
 
 <insert id="makeReivew" parameterType="Model.DTO.YYYDTO.Review">
    INSERT INTO REVIEW
-   (REVIEW_NUM, GOODS_NUM, MEMBER_NUM, REVIEW_SCORE, REVIEW_DATE, REVIEW_CONTENT)
-   VALUES (#{goodsNum}||#{reviewNum}, #{goodsNum}, #{memberNum}, 3, sysdate, #{reviewContent})
+   (REVIEW_NUM, GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, 
+   	MEMBER_NUM, COMPANY_NUM, REVIEW_SCORE, REVIEW_DATE, REVIEW_CONTENT)
+   VALUES (#{goodsNum}||#{reviewNum}, #{goodsNum}, #{mapLNum}, #{mapMNum}, #{mapSNum}, #{themeLNum}, #{themeMNum},
+   				#{themeSNum},#{memberNum}, #{companyNum}, #{reviewScore}, sysdate, #{reviewContent})
 </insert>
 
 <!-- 리뷰조회 -->
@@ -367,5 +377,48 @@
 		WHERE R.GOODS_NUM =  G.GOODS_NUM
 </select>
 
+<!-- 활동완료 리뷰등록 페이지 연동  -->
+<resultMap type="Dodo" id="baseDo">
+		<id column="DO_NUM" jdbcType="VARCHAR" property="doNum" />
+		<result column="HOST_NUM" jdbcType="VARCHAR" property="hostNum" />
+		<result column="DO_NAME" jdbcType="VARCHAR" property="doName" />
+		<result column="DO_START_DATE" jdbcType="TIMESTAMP"			property="startDate" />
+		<result column="DO_END_DATE" jdbcType="TIMESTAMP"			property="endDate" />
+		<result column="DO_OPEN_DATE" jdbcType="TIMESTAMP"			property="openDate" />
+		<result column="DO_CLOSE_DATE" jdbcType="TIMESTAMP"			property="closeDate" />
+		<result column="DO_PP" jdbcType="BIGINT" property="doPP" />
+		<result column="DO_NOWPP" jdbcType="BIGINT" property="nowPP" />
+		<result column="DO_DETAIL" jdbcType="VARCHAR"			property="doDetail" />
+		<result column="DO_OPT_GENDER" jdbcType="VARCHAR"			property="optGender" />
+		<result column="DO_OPT_AGE" jdbcType="VARCHAR"			property="optAge" />
+		<result column="DO_STATUS" jdbcType="VARCHAR" property="status" />
+		<result column="MEMBER_NUM" jdbcType="VARCHAR" property="memNum" />
+		<result column="MEMBER_NAME" jdbcType="VARCHAR"			property="memName" />
+		<result column="MEMBER_PH" jdbcType="BIGINT" property="memPh" />
+		<result column="MEMBER_PHOTO" jdbcType="VARCHAR"			property="profile" />
+		<result column="DO_IMG_NAME" jdbcType="VARCHAR"			property="doImg" />
+		<result column="PAY_TOTALPRICE" jdbcType="BIGINT"			property="payTotal" />
+		<result column="DUTCH_DATE" jdbcType="TIMESTAMP"			property="dutchDate" />
+		<result column="PAY_STYLE" jdbcType="VARCHAR"			property="payStyle" />
+		<result column="PAY_CARDNUM" jdbcType="BIGINT"			property="cardNum" />
+	</resultMap>
+	
+<sql id="basecolumnDo">
+		DO_NUM, HOST_NUM, DO_NAME, DO_START_DATE, DO_END_DATE,
+		DO_OPEN_DATE,
+		DO_CLOSE_DATE, DO_PP, DO_NOWPP, DO_DETAIL, DO_OPT_GENDER,
+		DO_OPT_AGE,
+		DO_STATUS
+</sql>
+
+	<select id="getDoList" parameterType="StartEndPage" 	resultMap="baseDo">
+		select * from ( select rownum rn,
+		<include refid="basecolumnDo" />
+		from (select
+		<include refid="basecolumnDo" />
+		from KENDO
+		order by DO_NUM desc))
+		WHERE DO_STATUS='doend' OR  DO_STATUS='cashcomplete' 
+	</select>
 
 </mapper>

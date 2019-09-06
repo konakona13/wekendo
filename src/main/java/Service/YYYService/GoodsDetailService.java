@@ -46,7 +46,7 @@ public class GoodsDetailService {
 		//회사정보 가져오기
 		GoodsList goodsList = (GoodsList) goodsRepository.getCompanyInfo(goodsNum);
 		model.addAttribute("goodsList", goodsList);
-		System.out.println(goodsList.toString());
+		//System.out.println(goodsList.toString());
 		
 		//이미지 가져오기
 		List<GoodsImg> goodsImg = new ArrayList<GoodsImg>();
@@ -61,8 +61,8 @@ public class GoodsDetailService {
 		//System.out.println(mapTheme.toString());
 		
 		//리뷰 가져오기
-		/*List<ReviewList> review = reivewRepository.getReview(goodsNum);
-        model.addAttribute("review", review);*/
+		List<ReviewList> review = reivewRepository.getReview(goodsNum);
+        model.addAttribute("review", review);
 		
 		return "YYYView/goodsRegDetail";
 	}

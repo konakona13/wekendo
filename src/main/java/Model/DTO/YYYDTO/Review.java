@@ -4,13 +4,20 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Review implements Serializable {
-	//13 --> 6
+	//13
 	String reviewNum;
 	String goodsNum;
 	String memberNum;
 	int reviewScore;
 	String reviewDate;
 	String reviewContent;
+	
+	String mapLNum;
+	String mapMNum;
+	String mapSNum;
+	String themeLNum;
+	String themeMNum;
+	String themeSNum;
 	
 	
 	public String getReviewNum() {
@@ -51,6 +58,42 @@ public class Review implements Serializable {
 	}
 	
 	
+	public String getMapLNum() {
+		return mapLNum;
+	}
+	public void setMapLNum(String mapLNum) {
+		this.mapLNum = mapLNum;
+	}
+	public String getMapMNum() {
+		return mapMNum;
+	}
+	public void setMapMNum(String mapMNum) {
+		this.mapMNum = mapMNum;
+	}
+	public String getMapSNum() {
+		return mapSNum;
+	}
+	public void setMapSNum(String mapSNum) {
+		this.mapSNum = mapSNum;
+	}
+	public String getThemeLNum() {
+		return themeLNum;
+	}
+	public void setThemeLNum(String themeLNum) {
+		this.themeLNum = themeLNum;
+	}
+	public String getThemeMNum() {
+		return themeMNum;
+	}
+	public void setThemeMNum(String themeMNum) {
+		this.themeMNum = themeMNum;
+	}
+	public String getThemeSNum() {
+		return themeSNum;
+	}
+	public void setThemeSNum(String themeSNum) {
+		this.themeSNum = themeSNum;
+	}
 	@Override
     public String toString() {
         return "Review [회원번호=" + memberNum + ", 리뷰=" + reviewContent + ", 상품번호=" + goodsNum + ", 점수=" + reviewScore + "]";

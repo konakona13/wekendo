@@ -105,7 +105,7 @@ a { text-decoration:none }
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="main" class="stext-109 cl8 hov-cl1 trans-04">
 				Home
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
@@ -209,7 +209,7 @@ a { text-decoration:none }
 							<input type = "hidden" value = "${memAuth.id}" id = "memId" name = "memId"/>
 							<c:set var ="doStatus" value="${kendoJoin.doStatus}" scope="session" />							
 							<c:if test="${doStatus == 'inviting'}">
-								<h4 id="kendoNum"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/><a href="./kendoDetail/${kendoJoin.doNum}">${kendoJoin.doName}</a></h4><br />
+								<h4 id="kendoNum"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/>${kendoJoin.doName}</h4><br />
 							</c:if>								
 							<c:if test="${doStatus == 'invited' || doStatus == 'doing' || doStatus == 'docomplete' || doStatus == 'doend' || doStatus == 'CANCEL'}">
 								<h4 style="color:grey;"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/>${kendoJoin.doName}</h4><br />
@@ -243,9 +243,15 @@ a { text-decoration:none }
 						<!--button  -->
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-204 flex-w flex-m respon6-next">	
+								<div class="size-204 flex-w flex-m respon6-next">
+								<c:if test="${memAuth.id == null}">
+                            		<button type="button" onclick="location.href='loginmain'" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">상세보기
+									</button>
+								</c:if>
+								<c:if test="${memAuth.id != null}">
 									<button type="button" onclick="location.href='./kendoDetail/${kendoJoin.doNum}'" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">상세보기
 									</button>
+								</c:if>
 
 									
 								</div>

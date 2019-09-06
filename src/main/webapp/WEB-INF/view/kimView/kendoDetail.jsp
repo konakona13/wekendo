@@ -65,7 +65,7 @@
 			//alert("연령제한 :" + doOptAge);
 
 			
-		    if(doOptGender != 'allPP' && memGen != doOptGender){
+		    if(doOptGender != '무관' && memGen != doOptGender){
 				alert('모집 성별이 맞지 않습니다.');
 				return false;
 			} 
@@ -86,7 +86,7 @@
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="../main" class="stext-109 cl8 hov-cl1 trans-04">
 				Home
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
@@ -112,7 +112,7 @@
 
 	<!-- Product Detail -->
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
-	<form name="kendoJoin" action="kendoJoin" method="POST"> 
+	
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-lg-7 p-b-30">
@@ -168,6 +168,8 @@
 
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
+					
+					<form name="kendoJoin" action="kendoJoin" method="POST"> 
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
 						<input type = "hidden" name = "doName" value = "${kendoDtail.doName}"/>${kendoDtail.doName}
 						</h4>
@@ -179,7 +181,10 @@
 						  	 *나이 제한 : <input type = "hidden" id = "doOptAge" value = "${kendoDtail.doOptAge}"/>${kendoDtail.doOptAge}<br />
 							모집인원  :<input type = "hidden" name = "doPp" value = "${kendoDtail.doPp}"/>${kendoDtail.doNowPp} / ${kendoDtail.doPp}<br />
 						  	<input type = "hidden" name = "doNowPp" value = "${kendoDtail.doNowPp}"/><br />
-							신청수량 : <input type = "number" id ="doQty" name = "doQty" min="1" max="${kendoDtail.doPp - kendoDtail.doNowPp}" required/><br /> 
+							신청수량 : <input  type = "number"  id ="doQty" name="doQty" min="1" max="${kendoDtail.doPp - kendoDtail.doNowPp}" required/>
+										
+									
+							
 							가  격 : <input type = "hidden" name = "doPrice"  id ="doPrice" value = "${kendoDtail.paymentKim.payDutch}"/><fmt:formatNumber pattern="###,###,###" value="${kendoDtail.paymentKim.payDutch}" /> 원<br /> 
 							총금액 : <input type = "text" name = "totalPrice"  id ="totalPrice" value="" placeholder=""/><fmt:formatNumber pattern="###,###,###" value="" /> 원<br />  
 						</p>
@@ -201,25 +206,35 @@
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
 									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
+									<!--  
 										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
-										
-
-										<input class="mtext-104 cl3 txt-center num-product" type = "number" id ="doQty" name="num-product" min="1" max="${kendoDtail.doPp - kendoDtail.doNowPp}" required/>
-										
-										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+									-->	
+<span class="wrap-rating fs-18 cl11 pointer">
+													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+													<input class="dis-none" type="number" name="rating">
+												</span>
+										<input  type = "number" width = "30px" id ="doQty" name="doQty" min="1" max="${kendoDtail.doPp - kendoDtail.doNowPp}" required/>
+									<!-- 	
+										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
+										
+									-->
 									</div>
 
-									<button onclick="location.href='kendoJoin'" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button onclick="document.getElementById('kendoJoin').submit();" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										구매하기
 									</button>
 								</div>
 							</div>	
 						</div>
-
+</form>
 						<!--  -->
 						
 						
@@ -430,7 +445,7 @@
 			</div>
 		</div>
 
-</form>
+
 	</section>
 
 
@@ -511,14 +526,14 @@
 		});
 
 		/*---------------------------------------------*/
-
+/*
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to cart !", "success");
 			});
 		});
-	
+*/	
 	</script>
 <!--===============================================================================================-->
 	<script src="../kimView/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>

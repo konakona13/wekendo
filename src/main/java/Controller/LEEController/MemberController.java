@@ -19,16 +19,19 @@ import Command.LEECommand.CompanyJoinCommand;
 import Command.LEECommand.LoginCommand;
 import Command.LEECommand.MemberJoinCommand;
 import Model.DTO.LEEDTO.Dodo;
+import Model.DTO.YYYDTO.DodoY;
 import Model.DTO.YYYDTO.GoodsList;
 import Repository.YYYRepository.GoodsRepository;
 import Service.LEEService.CompanyCashService;
 import Service.LEEService.CompanyJoinService;
 import Service.LEEService.CompanyLoginService;
-import Service.LEEService.CompanyOrderService;
+import Service.LEEService.KendoListService;
 import Service.LEEService.MemKendoService;
 import Service.LEEService.MemberJoinService;
 import Service.LEEService.MemberLoginService;
 import Service.LEEService.MemberLogoutService;
+import Service.LEEService.UpdateDoStatusService;
+import Service.YYYService.KendoListYService;
 import Validator.LoginCommandValidator;
 import Validator.RegisterRequestValidator;
 
@@ -52,7 +55,7 @@ public class MemberController {
 	@Autowired
 	private MemKendoService memKendoService;
 	@Autowired
-	private CompanyOrderService companyOrderService;
+	private KendoListYService kendoListYService;
 
 	@RequestMapping("/loginmain")
 	public String mainView(HttpServletRequest request, Model model) {
@@ -167,8 +170,10 @@ public class MemberController {
 	public String memKendos1(Model model, @RequestParam(value = "memNum") String memNum) {
 		List<Dodo> hostlist = memKendoService.getHostList(memNum);
 		List<Dodo> guestlist = memKendoService.getGuestList(memNum);
+		List<DodoY> dolist = kendoListYService.doList(model, memNum);
 		model.addAttribute("hostlists", hostlist);
 		model.addAttribute("guestlists", guestlist);
+		model.addAttribute("dodos", dolist);
 		return "LEEview/memberPayList";
 	}
 
@@ -176,11 +181,5 @@ public class MemberController {
 	public String confirmId(@RequestParam(value = "id1") String id1, Model model) {
 		memberLoginService.getSelectId(id1, model);
 		return "LEEview/confirmId";
-	}
-
-	@RequestMapping("orderCompany")
-	public String orderCom(HttpSession session, Model model) {
-		companyOrderService.getOrder(session, model);
-		return "LEEview/orderCompany";
 	}
 }
