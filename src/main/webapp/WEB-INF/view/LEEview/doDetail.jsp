@@ -80,27 +80,27 @@ font-family: 'Nanum Gothic', sans-serif;
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
 			<div align="center">기업이름</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="20%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="20%">
 			<div align="center">상품명</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">지역대중소</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">테마대중소</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">소비자가</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="5%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">이용기간</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">구매가격</div>
-		</td>
+		</th>
 	</tr>
 <c:forEach var="dodo2" items="${dodos2}">
 	<tr align="center" valign="middle" bordercolor="#333333"
@@ -111,7 +111,7 @@ font-family: 'Nanum Gothic', sans-serif;
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
+			<div align="center">
 			${dodo2.goodsName }
 			</div>
 		</td>

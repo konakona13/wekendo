@@ -8,6 +8,14 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+<!-- 부트스트랩 시작 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- 부트스트랩 끝 -->
+
 <style>
 /*datepicer 버튼 롤오버 시 손가락 모양 표시*/
 .ui-datepicker-trigger{cursor: pointer;}
@@ -15,7 +23,13 @@
 .hasDatepicker{cursor: pointer;}
 </style>
 
+
+
+
 <script type="text/javascript" language="javascript">
+
+
+
  
 function btDate(sDate,eDate) 
 {
@@ -40,9 +54,22 @@ function btDate(sDate,eDate)
 
 </head>
 <body>
-  
-		<p>대여시작날짜 <input type="text" id="buyStartDate" name="buyStartDate"> </p>
-    	<p>반납예정날짜 <input type="text" id="buyEndDate" name="buyEndDate"> </p>
+  <table border="1" class="table table-striped" style="width: 30px" >
+  	<tr>
+  	<th>대여시작날짜</th>
+  	</tr>
+  	<tr>
+  	<td> <input type="text" id="buyStartDate" name="buyStartDate"> </td>
+  	</tr>
+  	
+  	<tr>
+  	<th>반납예정날짜</th>
+  	</tr>
+  	<tr>
+  	<td> <input type="text" id="buyEndDate" name="buyEndDate"> </td>
+  	</tr>
+  </table>
+	
     	
     	
     
@@ -102,6 +129,7 @@ function btDate(sDate,eDate)
         //초기값을 오늘 날짜로 설정
         $('#buyStartDate').datepicker('setDate', '${startDate }'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)     
         $('#buyEndDate').datepicker('setDate', '+1D');
+       
     });
     </script>
 </body>

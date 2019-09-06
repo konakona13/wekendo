@@ -105,7 +105,7 @@ ul.tabs li.current {
 			<li class="tab-link" data-tab="tab-2">기업회원</li>
 		</ul>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="adminMain" class="btn btn-default">메인으로 돌아가기</a>
+		<a href="adminMain" class="btn btn-success">메인으로 돌아가기</a>
 
 		<div id="tab-1" class="tab-content current">
 		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
@@ -115,30 +115,30 @@ ul.tabs li.current {
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="">
-		<td style="font-family:Tahoma;font-size:8pt;" width="5%" height="26">
+		<th style="font-family:Tahoma;font-size:8pt;" width="5%" height="26">
 			<div align="center">회원번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">ID</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">이름</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">연락처</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">이메일</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="20%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="20%">
 			<div align="center">주소</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">생년월일</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="5%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="5%">
 			<div align="center">상태</div>
-		</td>
+		</th>
 	</tr>
 <c:forEach var="member" items="${members}">
 	<tr align="center" valign="middle" bordercolor="#333333"
@@ -150,12 +150,12 @@ ul.tabs li.current {
 			</a>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
+			<div align="center">
 				${member.memberId }
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
+			<div align="center">
 				${member.memberName }
 			</div>
 		</td>
@@ -190,9 +190,9 @@ ul.tabs li.current {
 <c:if test="${empty members}">
 	<tr align="center" valign="middle">
 		<td colspan="4">일반회원리스트</td>
-		<td align=right>
+		<th align=right>
 			<font size=2>가입된 일반회원이 없습니다.</font>
-		</td>
+		</th>
 	</tr>
 </c:if>
 </table>
@@ -203,31 +203,31 @@ ul.tabs li.current {
 <c:if test="${! empty companys}">
 	<tr align="center" valign="middle">
 		<td colspan="6" style="background-color: skyblue; font-weight: bold;">기업회원리스트</td>
-		<td style="background-color: skyblue; font-weight: bold;"><a href="companyReg" class="btn btn-default">기업승인관리</a></td>
+		<td style="background-color: skyblue; font-weight: bold;"><a href="companyReg" class="btn btn-danger">기업승인관리</a></td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="5%" height="26">
+		<th style="font-family:Tahoma;font-size:8pt;" width="5%" height="26">
 			<div align="center">회원번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">회사명</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="5%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="5%">
 			<div align="center">대표자명</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">연락처</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">담당자이메일</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="20%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="20%">
 			<div align="center">주소</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">상태</div>
-		</td>
+		</th>
 	</tr>
 <c:forEach var="company" items="${companys}">
 	<tr align="center" valign="middle" bordercolor="#333333"
@@ -240,12 +240,12 @@ ul.tabs li.current {
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
+			<div align="center">
 				${company.companyName }
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
+			<div align="center">
 				${company.companyCap }
 			</div>
 		</td>

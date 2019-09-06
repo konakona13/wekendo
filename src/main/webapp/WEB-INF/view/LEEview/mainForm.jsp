@@ -27,6 +27,7 @@
 %>
 <!DOCTYPE html>
 <html>
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic:400,700,800&display=swap&subset=korean" rel="stylesheet">
 <!-- Bootstrap -->
         <link href="../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- font awesome -->
@@ -61,7 +62,12 @@
     margin-bottom: 1em;
 } 
 
-
+body {
+	margin-top: 100px;
+	margin-left:250px;
+	font-family: 'Nanum Gothic', sans-serif;
+	line-height: 1.6;
+}
 
 .login-box {
     line-height: 2.3em;
@@ -71,7 +77,8 @@
     margin-bottom: 1em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-}
+}	 
+
 </style>
 <meta charset="UTF-8">
 <title>로그인</title>
@@ -149,7 +156,7 @@
 <body>
 <!-- 로그인 되지 않았을 때 화면 -->
 <%if(session.getAttribute("memAuth")== null && session.getAttribute("comAuth")== null){ %>
-<div class="container" style="width: 2000px; ">
+<div class="container" style="width: 2000px;">
             <div class="row">
                 <div class="col-sm-3">
 
@@ -157,10 +164,10 @@
 
 <form:form action="loginPro" name="frm" method="post" id="frm" 
 commandName="loginCommand">
-<div class="custom-control custom-radio" style="color: black;">
-	<label><input type="radio" name="selectLogin" value="normal" checked="checked" class="custom-control-input"></label>일반회원로그인&nbsp;&nbsp;
-	<input type="radio" name="selectLogin" value="company">기업회원로그인&nbsp;&nbsp;
-	<input type="radio" name="selectLogin" value="admin">관리자로그인&nbsp;&nbsp;
+<div class="container custom-control custom-radio" style="color: black; margin-left: 40px;">
+	<label><input type="radio" name="selectLogin" value="normal" checked="checked" class="custom-control-input"></label>일반회원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="radio" name="selectLogin" value="company">기업회원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="radio" name="selectLogin" value="admin">관리자
 	</div>
 	   <span id = "msg"  style="color:red"><%=msg111 %></span>
 	
@@ -174,13 +181,11 @@ commandName="loginCommand">
 
 		<input type="password" id="pw" name="pw" class="form-control" placeholder="비밀번호를 입력하세요."/>
 		<form:errors path="pw" /></div>
-		<div id = "pwmsg"></div>
-
-			<input type="button" id="btn1" value="로그인" 
-		 class="btn btn-default btn-block" >
-		 <div class="container">
+<div class="container">
+		<input type="button" id="btn1" value="로그인" 
+		 class="btn btn-primary" style="margin-left: 20px; width: 200px;">
 		 <a href="${url}">
-<img width="150" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a></div>
+<img width="150" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" style="margin-left: 30px;"/></a></div>
 		 <br>
 			<!-- 
 			<input type="button" id="btn" value="Ajax를 이용한 전송" 
@@ -197,9 +202,10 @@ commandName="loginCommand">
 <% }else if(session.getAttribute("memAuth")!= null && memNum.substring(0, 2).equals("NM")){ %>
 <!-- 로그인 된 후의 화면(일반회원) -->
 <%= session.getAttribute("memAuth") %> 님 환영합니다.<br />
-<table border="1">
+<div id="container" style="width: 900px; margin: 30px;" class="container">
+<table class="table table-bordered">
 <tr>
-<td rowspan="3" width="200" align="center"><img src="LEEview/upload/${memAuth.profile }" /></td><td width="400">일반회원 : ${memAuth.memNum }</td>
+<td rowspan="3" width="200" align="center"><img src="LEEview/upload/${memAuth.profile }" class="img-rounded"/></td><td width="200">일반회원 : ${memAuth.memNum }</td>
 </tr>
 <tr>
 <td>아이디 : ${memAuth.id }</td>
@@ -208,9 +214,9 @@ commandName="loginCommand">
 <td>이름 : ${memAuth.name }</td>
 </tr>
 </table>
-<a href="Logout1" >로그아웃</a>
-<a href="memDoList?memNum=${memAuth.memNum }" >내 활동 보기</a>
-
+<a href="Logout1" class="btn btn-primary" style="margin-right: 10px;">로그아웃</a>
+<a href="memDoList?memNum=${memAuth.memNum }" class="btn btn-info" style="margin-right: 30px;">내 활동 보기</a>
+<a href="main" class="btn btn-success">메인으로 이동</a>
 <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>
@@ -224,13 +230,15 @@ commandName="loginCommand">
 <a href="ajaxForm" >Ajax</a>
 <a href= "domino" >도미노 속성</a>
  -->
+ </div>
 <% }else if(session.getAttribute("comAuth")!= null && comNum.substring(0, 2).equals("CO")){ %>
 <!-- 로그인 된 후의 화면(기업회원) -->
 
 <%= session.getAttribute("comAuth") %> 님 환영합니다.<br />
+<div id="container" style="width: 900px; margin: 30px;" class="container">
 <table border="1">
 <tr>
-<td rowspan="3" width="200" align="center">${comAuth.id }</td><td width="400">기업회원 : ${comAuth.name }</td>
+<td rowspan="3" width="200" align="center"><img src="LEEview/images/company.jpg" class="img-rounded" /></td><td width="400">기업회원 : ${comAuth.name }</td>
 </tr>
 <tr>
 <td>계좌번호 : ${comAuth.comAcc }</td>
@@ -239,10 +247,12 @@ commandName="loginCommand">
 <td>주거래은행 : ${comAuth.comBank }</td>
 </tr>
 </table>
-<a href="Logout1" >로그아웃</a>
-<a href= "#" >매출분석 신청</a>
-<a href="goodsMain" >내 상품리스트</a>
-<a href="companyCash">정산내역 확인</a>
+<div class="container" style="margin: 10px;">
+<a href="Logout1" class="btn btn-primary" style="margin-right: 10px;">로그아웃</a>
+<a href="goodsMain" class="btn btn-info" style="margin-right: 10px;">내 상품리스트</a>
+<a href="companyCash" class="btn btn-info" style="margin-right:100px;">정산내역 확인</a>
+<a href="comMain" class="btn btn-success">메인으로 이동</a>
+</div>
 <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>
@@ -254,6 +264,7 @@ commandName="loginCommand">
 <a href="emailAll" >전체 메일 보내기</a>
 <a href="ajaxForm" >Ajax</a>
  -->
+ </div>
 <% }else if(session.getAttribute("comAuth")!= null && adminId.equals("admin")){ %>
 관리자 페이지<br>
 관리자 이름 : ${comAuth.name }<br>
@@ -263,7 +274,6 @@ commandName="loginCommand">
  <a href="confirmList" >상품관리 - 업체상품승인</a>
  <a href="goodsMain" >상품관리 - 업체 상품리스트</a>
  <a href="companyReg" >회원관리 - 기업 가입 승인</a>
- <a href="kendoJoinList" >유선씨켄두조인리스트?</a>
  <!-- 
 <a href="memberModify" >정보수정</a>
 <a href="edit/pwModify" >비밀번호변경</a>

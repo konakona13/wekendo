@@ -16,9 +16,9 @@
 <body>
 편지함
 
-<div>
+<div class = "container">
 
-	<table border ="1">
+	<table border ="1" class="table table-striped">
 		<tr>
 			<td>보낸 날짜 </td>
 			<td>보내는 사람 </td>

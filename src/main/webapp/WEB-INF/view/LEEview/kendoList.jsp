@@ -106,7 +106,7 @@ ul.tabs li.current {
 			<li class="tab-link" data-tab="tab-5">활동취소</li>
 		</ul>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="adminMain" class="btn btn-default">메인으로 돌아가기</a>
+		<a href="adminMain" class="btn btn-success">메인으로 돌아가기</a>
 
 		<div id="tab-1" class="tab-content current">
 		
@@ -118,21 +118,21 @@ ul.tabs li.current {
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
 			<div align="center">활동번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="30%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="30%">
 			<div align="center">활동명</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">모집기간</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">활동기간</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">현재인원/모집인원</div>
-		</td>
+		</th>
 	</tr>
 <c:forEach var="dodo" items="${dodos}">
 <c:if test="${dodo.status == 'inviting' }">
@@ -144,7 +144,7 @@ ul.tabs li.current {
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
+			<div align="center">
 			<a href="javascript:openChildWindow1('${dodo.doNum }');" id="doNum1" >
 				${dodo.doName }
 			</a>
@@ -194,7 +194,7 @@ ul.tabs li.current {
 	<tr align="center" valign="middle">
 		<td colspan="4">활동리스트</td>
 		<td align=right>
-			<font size=2>등록된 활동이 없습니다. 얘들아 나가놀아라.</font>
+			<font size=2>등록된 활동이 없습니다.</font>
 		</td>
 	</tr>
 </c:if>
@@ -211,21 +211,21 @@ ul.tabs li.current {
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
 			<div align="center">활동번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="30%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="30%">
 			<div align="center">활동명</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">모집기간</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">활동기간</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">현재인원/모집인원</div>
-		</td>
+		</th>
 	</tr>
 <c:forEach var="dodo" items="${dodos}">
 <c:if test="${dodo.status == 'invited' }">
@@ -237,7 +237,7 @@ ul.tabs li.current {
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
+			<div align="center">
 			<a href="javascript:openChildWindow1('${dodo.doNum }');" id="doNum1" >
 				${dodo.doName }
 			</a>
@@ -287,7 +287,7 @@ ul.tabs li.current {
 	<tr align="center" valign="middle">
 		<td colspan="4">활동리스트</td>
 		<td align=right>
-			<font size=2>등록된 활동이 없습니다. 얘들아 나가놀아라.</font>
+			<font size=2>등록된 활동이 없습니다.</font>
 		</td>
 	</tr>
 </c:if>
@@ -303,21 +303,21 @@ ul.tabs li.current {
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
 			<div align="center">활동번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="30%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="30%">
 			<div align="center">활동명</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">모집기간</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">활동기간</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">현재인원/모집인원</div>
-		</td>
+		</th>
 	</tr>
 <c:forEach var="dodo" items="${dodos}">
 <c:if test="${dodo.status == 'doing' }">
@@ -329,7 +329,7 @@ ul.tabs li.current {
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
+			<div align="center">
 			<a href="javascript:openChildWindow1('${dodo.doNum }');" id="doNum1" >
 				${dodo.doName }
 			</a>
@@ -379,7 +379,7 @@ ul.tabs li.current {
 	<tr align="center" valign="middle">
 		<td colspan="4">활동리스트</td>
 		<td align=right>
-			<font size=2>등록된 활동이 없습니다. 얘들아 나가놀아라.</font>
+			<font size=2>등록된 활동이 없습니다.</font>
 		</td>
 	</tr>
 </c:if>
@@ -393,21 +393,21 @@ ul.tabs li.current {
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
 			<div align="center">활동번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="30%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="30%">
 			<div align="center">활동명</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">모집기간</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">활동기간</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">현재인원/모집인원</div>
-		</td>
+		</th>
 	</tr>
 <c:forEach var="dodo" items="${dodos}">
 <c:if test="${dodo.status == 'doend' || dodo.status == 'cashcomplete'}">
@@ -419,7 +419,7 @@ ul.tabs li.current {
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
+			<div align="center">
 			<a href="javascript:openChildWindow1('${dodo.doNum }');" id="doNum1" >
 				${dodo.doName }
 			</a>
@@ -469,7 +469,7 @@ ul.tabs li.current {
 	<tr align="center" valign="middle">
 		<td colspan="4">활동리스트</td>
 		<td align=right>
-			<font size=2>등록된 활동이 없습니다. 얘들아 나가놀아라.</font>
+			<font size=2>등록된 활동이 없습니다.</font>
 		</td>
 	</tr>
 </c:if>
@@ -483,21 +483,21 @@ ul.tabs li.current {
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
 			<div align="center">활동번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="30%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="30%">
 			<div align="center">활동명</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">모집기간</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
 			<div align="center">활동기간</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">현재인원/모집인원</div>
-		</td>
+		</th>
 	</tr>
 <c:forEach var="dodo" items="${dodos}">
 <c:if test="${dodo.status == 'CANCEL' }">
@@ -509,7 +509,7 @@ ul.tabs li.current {
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
+			<div align="center">
 			<a href="javascript:openChildWindow1('${dodo.doNum }');" id="doNum1" >
 				${dodo.doName }
 			</a>
@@ -559,7 +559,7 @@ ul.tabs li.current {
 	<tr align="center" valign="middle">
 		<td colspan="4">활동리스트</td>
 		<td align=right>
-			<font size=2>등록된 활동이 없습니다. 얘들아 나가놀아라.</font>
+			<font size=2>등록된 활동이 없습니다.</font>
 		</td>
 	</tr>
 </c:if>

@@ -114,8 +114,8 @@ public class AdminSessionRepository {
 		// TODO Auto-generated method stub
 		String statement = namespace + ".insertCashin";
 		sqlSession.insert(statement, comName);
-		String statement1 = namespace + ".updateKendo";
-		sqlSession.update(statement1, comName);
+		//String statement1 = namespace + ".updateKendo";
+		//sqlSession.update(statement1, comName);
 	}
 
 	public Buybuy getBuyDetail(String buyNum) {

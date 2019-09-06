@@ -154,6 +154,7 @@ th,td {padding-left:20px;
 		<b>* 아이디 </b></td>
 		<td width = 400 >
 			<form:input path="id1" id = "id1"  name="id1" class="form-control"
+			placeholder = "영소문자,숫자만 사용가능하며 8자리 이상 작성해주세요."
 				size = "12" maxlength="10"/>
 			<input type="button" value="중복확인" id = "confirmId" class="button"/>
 			<div id = "msg"></div>
@@ -162,7 +163,8 @@ th,td {padding-left:20px;
 	<tr><td width = 200 ><b>* 비밀번호 </b></td>
 		<td width = 400 >
 			<form:password path="pw" 
-				id = "pw" size = "12" maxlength="10" class="form-control"/>
+				id = "pw" size = "12" maxlength="10" class="form-control"
+				placeholder = "영문+숫자조합 12자리 이상 작성해주세요." />
 			<form:errors path="pw" />
 		</td>
 	</tr>

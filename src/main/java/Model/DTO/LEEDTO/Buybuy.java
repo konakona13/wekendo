@@ -26,6 +26,51 @@ public class Buybuy implements Serializable {
 	private String goodsName;
 	private String doName;
 	private Timestamp dutchDate;
+	private Long payPP;
+	private Long payDutch;
+	private String memName;
+	private Long goodsStock;
+	private Long goodsPrice;
+
+	public Long getGoodsPrice() {
+		return goodsPrice;
+	}
+
+	public void setGoodsPrice(Long goodsPrice) {
+		this.goodsPrice = goodsPrice;
+	}
+
+	public Long getGoodsStock() {
+		return goodsStock;
+	}
+
+	public void setGoodsStock(Long goodsStock) {
+		this.goodsStock = goodsStock;
+	}
+
+	public Long getPayPP() {
+		return payPP;
+	}
+
+	public void setPayPP(Long payPP) {
+		this.payPP = payPP;
+	}
+
+	public Long getPayDutch() {
+		return payDutch;
+	}
+
+	public void setPayDutch(Long payDutch) {
+		this.payDutch = payDutch;
+	}
+
+	public String getMemName() {
+		return memName;
+	}
+
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
 
 	public Timestamp getDutchDate() {
 		return dutchDate;
