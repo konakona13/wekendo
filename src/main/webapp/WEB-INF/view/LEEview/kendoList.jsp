@@ -106,7 +106,7 @@ ul.tabs li.current {
 			<li class="tab-link" data-tab="tab-5">활동취소</li>
 		</ul>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="adminMain" class="btn btn-default">메인으로 돌아가기</a>
+		<a href="adminMain" class="btn btn-success">메인으로 돌아가기</a>
 
 		<div id="tab-1" class="tab-content current">
 		
@@ -194,7 +194,7 @@ ul.tabs li.current {
 	<tr align="center" valign="middle">
 		<td colspan="4">활동리스트</td>
 		<td align=right>
-			<font size=2>등록된 활동이 없습니다. 얘들아 나가놀아라.</font>
+			<font size=2>등록된 활동이 없습니다.</font>
 		</td>
 	</tr>
 </c:if>
@@ -287,7 +287,7 @@ ul.tabs li.current {
 	<tr align="center" valign="middle">
 		<td colspan="4">활동리스트</td>
 		<td align=right>
-			<font size=2>등록된 활동이 없습니다. 얘들아 나가놀아라.</font>
+			<font size=2>등록된 활동이 없습니다.</font>
 		</td>
 	</tr>
 </c:if>
@@ -379,7 +379,7 @@ ul.tabs li.current {
 	<tr align="center" valign="middle">
 		<td colspan="4">활동리스트</td>
 		<td align=right>
-			<font size=2>등록된 활동이 없습니다. 얘들아 나가놀아라.</font>
+			<font size=2>등록된 활동이 없습니다.</font>
 		</td>
 	</tr>
 </c:if>
@@ -469,7 +469,7 @@ ul.tabs li.current {
 	<tr align="center" valign="middle">
 		<td colspan="4">활동리스트</td>
 		<td align=right>
-			<font size=2>등록된 활동이 없습니다. 얘들아 나가놀아라.</font>
+			<font size=2>등록된 활동이 없습니다.</font>
 		</td>
 	</tr>
 </c:if>
@@ -559,7 +559,7 @@ ul.tabs li.current {
 	<tr align="center" valign="middle">
 		<td colspan="4">활동리스트</td>
 		<td align=right>
-			<font size=2>등록된 활동이 없습니다. 얘들아 나가놀아라.</font>
+			<font size=2>등록된 활동이 없습니다.</font>
 		</td>
 	</tr>
 </c:if>

@@ -68,12 +68,12 @@ font-family: 'Nanum Gothic', sans-serif;
 	<div id="container" style="width: 1500px; margin: 20px;">
 		<div id="header" style="background-color: white;">
 		<form action="buybuySearch" name="frm" method="post">
-			기업이름 : <input type="text" name="comName" class="form-control" style="width: 200px;">
-			<input type="submit" name="comNameSubmit" value="검색" class="btn btn-default" style="margin: 10px;">
+			기업이름 : <input type="text" name="comName" class="form-control" style="width: 200px; display: inline-block;">
+			<input type="submit" name="comNameSubmit" value="검색" class="btn btn-primary" style="margin: 10px;">
 			&nbsp;&nbsp;
-			<a href="Cashin" class="btn btn-default ">전체 기업 리스트</a>
+			<a href="Cashin" class="btn btn-info">전체 기업 리스트</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="adminMain" class="btn btn-default">메인으로 돌아가기</a>
+		<a href="adminMain" class="btn btn-success">메인으로 돌아가기</a>
 		</form>
 		</div>
 		<div id="content1" 
@@ -82,7 +82,7 @@ font-family: 'Nanum Gothic', sans-serif;
 			<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty cashins}">
 	<tr align="center" valign="middle">
-		<td colspan="6">정산리스트</td>
+		<td colspan="6" class="info">정산리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
@@ -192,7 +192,7 @@ style="background-color:#D8D8D8; border:1px solid #e0e0e0; width:600px; height:a
 			<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty buybuys}">
 	<tr align="center" valign="middle">
-		<td colspan="7">구매리스트</td>
+		<td colspan="7" class="info">구매리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">

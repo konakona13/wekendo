@@ -184,15 +184,15 @@ th,td {padding-left:20px;
 		<td width = 400 >
 		 
 			<form:input path="id1" id = "id1"  name="id1" class="form-control"
-				size = "12" maxlength="10"/>
+				size = "12" maxlength="10" placeholder = "영소문자,숫자만 사용가능하며 8자리 이상 작성해주세요."/>
 			<input type="button" value="중복확인" id = "confirmId" class="button"/>
-			<div id = "msg"></div>
 		</td>
 	</tr>
 	<tr><td width = 200 ><b>* 비밀번호 </b></td>
 		<td width = 400 >
 			<form:password path="pw" 
-				id = "pw" size = "12" maxlength="10" class="form-control"/>
+				id = "pw" size = "12" maxlength="10" class="form-control"
+				placeholder = "영문+숫자조합 12자리 이상 작성해주세요." />
 			<form:errors path="pw" />
 		</td>
 	</tr>
@@ -215,16 +215,19 @@ th,td {padding-left:20px;
 	<tr><td width = 200 ><b>* 생년월일 및 성별 </b></td>
 		<td width = 400 >
 			<form:input path="userBir" 
-				id = "userBir" size = "12" maxlength="10" />
+				id = "userBir" size = "12" maxlength="10" placeholder = "주민등록번호 앞 6자리" class="form-control"
+				style="width: 170px; display: inline-block;" />
 			-
 			<form:input path="userGender" 
-				id = "userGender" size = "1" maxlength="1" />******
+				id = "userGender" size = "1" maxlength="1" class="form-control"
+				 style="width: 40px; display: inline-block;" />******
 		</td>
 	</tr>
 	<tr><td width = 200 ><b>* 이메일 </b></td>
 		<td width = 400 >
 			<form:input path="userEmail" 
-				id = "userEmail" size = "30" maxlength="28" class="form-control"/>
+				id = "userEmail" size = "30" maxlength="28" class="form-control"
+				placeholder = "예) wecando@naver.com"/>
 			<form:errors path="userEmail" />
 		</td>
 	</tr>
@@ -237,7 +240,8 @@ th,td {padding-left:20px;
 	<tr><td width = 200 ><b>* 연락처 </b></td>
 		<td width = 400 >
 			<form:input path="userPh1" 
-				id = "userPh1" size = "30" maxlength="28" class="form-control"/>
+				id = "userPh1" size = "30" maxlength="28" class="form-control"
+				placeholder = "숫자로만 입력해주세요. (-없이)"/>
 		</td>
 	</tr>
 	<tr><td width = 200 ><b>* 프로필사진 </b></td>

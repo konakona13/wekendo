@@ -105,7 +105,7 @@ ul.tabs li.current {
 			<li class="tab-link" data-tab="tab-2">기업회원</li>
 		</ul>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="adminMain" class="btn btn-default">메인으로 돌아가기</a>
+		<a href="adminMain" class="btn btn-success">메인으로 돌아가기</a>
 
 		<div id="tab-1" class="tab-content current">
 		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
@@ -203,7 +203,7 @@ ul.tabs li.current {
 <c:if test="${! empty companys}">
 	<tr align="center" valign="middle">
 		<td colspan="6" style="background-color: skyblue; font-weight: bold;">기업회원리스트</td>
-		<td style="background-color: skyblue; font-weight: bold;"><a href="companyReg" class="btn btn-default">기업승인관리</a></td>
+		<td style="background-color: skyblue; font-weight: bold;"><a href="companyReg" class="btn btn-danger">기업승인관리</a></td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
