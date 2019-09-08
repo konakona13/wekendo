@@ -41,7 +41,7 @@
 </head>
 <body class="animsition" style="animation-duration: 1500ms; opacity: 1;">
 	
-	<input type=""hidden"" id="doPlay" value="${doPlay }">
+	<input type="hidden" id="doPlay" value="${doPlay }">
 	<input type="hidden" id="goodsKind" name="goodsKind" value="${goodsKind}">
 	
 	
@@ -63,6 +63,8 @@
 									<td class="column-5">수량</td>
 								</tr>
  				<c:forEach var="placeGoods" items="${list}">
+ 				
+ 					<c:if test="${doArea eq placeGoods.mapSNum && doPlay eq placeGoods.themeSNum }">
 								<tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
@@ -86,7 +88,7 @@
 									</td>
 									<td class="column-5">1</td>
 								</tr>
-								
+					</c:if>			
      				</c:forEach>
 								
 							</table>

@@ -78,6 +78,7 @@ public class DoCreateReporsitory
 	{
 		Member result = null;
 		String statement =  namespace + ".getUserInfo";
+		
 		result = sqlSession.selectOne(statement,memberId);
 		return result;
 	}

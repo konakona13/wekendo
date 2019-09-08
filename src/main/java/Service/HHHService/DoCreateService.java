@@ -69,6 +69,10 @@ public class DoCreateService
 	{
 		String memId = (String) session.getAttribute("memNum"); 
 		System.out.println("memId : " + memId);
+		if (memId == null)
+		{
+			return "redirect:loginmain";
+		}
 		Member member = doCreateReporsitory.getmemberInfo(memId);
 		model.addAttribute("member",member);
 		model.addAttribute("createDoCommand", new CreateDoCommand());

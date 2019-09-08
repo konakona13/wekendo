@@ -11,7 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>활동개설신청서</title>
-
+ <script type="text/javascript" 
+ src="http://code.jquery.com/jquery-latest.js" ></script>
 <!-- 부트스트랩 시작 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
@@ -20,8 +21,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <!-- 부트스트랩 끝 -->
 
-    <script type="text/javascript" 
- src="http://code.jquery.com/jquery-latest.js" ></script>
+   
 <script type="text/javascript">
 
 $(function(){
@@ -140,7 +140,7 @@ function endcl()
 	var frmTag;
 	if(i < 20){
 		var frmTag = "<input type=file name='report' style=width:350px; height:20px;> ";
-		frmTag += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand'>";
+		frmTag += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand'> <br/>";
 		oCell.innerHTML = frmTag;
 		i++;
 	}
@@ -234,6 +234,38 @@ ul.tabs li.current {
 .tab-content.current {
 	display: inherit;
 }
+
+
+.button {
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  padding: 6px 25px 0px 20px;
+  margin: 10px 8px 20px 0px;
+  display: inline-block;
+  text-decoration: none;
+  width: 100px; height: 27px; 
+  -webkit-border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  border-radius: 5px; 
+  background-color: #3a57af; 
+  -webkit-box-shadow: 0 3px rgba(58,87,175,.75); 
+  -moz-box-shadow: 0 3px rgba(58,87,175,.75); 
+  box-shadow: 0 3px rgba(58,87,175,.75);
+  transition: all 0.1s linear 0s; 
+  top: 0px;
+  position: relative;
+  text-align: center;
+}
+
+.button:hover {
+  top: 3px;
+  background-color:#2e458b;
+  -webkit-box-shadow: none; 
+  -moz-box-shadow: none; 
+  box-shadow: none;
+  
+}
 </style>  
 </head>
 <body>
@@ -256,15 +288,20 @@ ul.tabs li.current {
           <table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
          
           <tr>
-          
           <td >
-     		  	지역선택<div id = "mapMain"> </div> 
+     		  	지역선택 </div> 
+          </td>
+          <td >
+     		  	<div id = "mapMain"> </div> 
           </td>
           </tr>
           
           <tr>
           <td>
-       	테마선택 	 <div id = "themeMain"> </div>  
+       	테마선택 	  </div>  
+          </td>
+          <td>
+       	 	 <div id = "themeMain"> </div>  
           </td>
           </tr>
           
@@ -272,67 +309,68 @@ ul.tabs li.current {
               		 
                     <tr>
                     	
-                        <td>활동명  </td>
+                        <td width="200">활동명  </td>
                         <td><form:input type="text" path="doName"/></td>
                     </tr>
-                   <tr><td>모집인원</td></tr>
-                     <tr>
-                     
-                            <td>  <form:input type="text" path="doPp"/></td>
-                    </tr>
-                       <tr><td>모집종료일</td></tr>
-                    <tr>
-                   		 
-                        <td>   <form:input type="date" path="doCloseDate"/></td>
-                    </tr>
-                   <tr><td>활동시작일</td></tr>
-                     <tr>
-                     	
-                        <td>   <form:input path="doStartDate" id="doStartDate" type="date"/></td>
-                    </tr>
-                   
-                  <tr><td>활동종료일</td></tr>
-                   
-                      <tr>
-                      	
-                        <td>   <form:input path="doEndDate" type="date"/></td>
-                    </tr>
+                   <tr>
+                   <td>모집인원</td>
+                    <td>  <form:input type="text" path="doPp"/></td>
+                   </tr>
                     
+                       <tr>
+                       <td>모집종료일</td>
+                         <td>   <form:input type="date" path="doCloseDate"/></td>
+                       </tr>
+                   
+                   <tr>
+                   <td>활동시작일</td>
+                    <td>   <form:input path="doStartDate" id="doStartDate" type="date"/></td>
+                   </tr>
+                    
+                   
+                  <tr>
+                  <td>활동종료일</td>
+                   <td>   <form:input path="doEndDate" type="date"/></td>
+                  </tr>
                    
                     
                    <tr>
-                         <td> 메인이미지 <input type="file" name = "mainPhoto"  size = "30" /></td>
+                         <td> 메인이미지 </td>
+                         <td><input type="file" name = "mainPhoto"  size = "30" /></td>
                     </tr>
               	
               	 
-             </table>
-                  
-                        상세이미지: <input type= "file" name="report" multiple="multiple" />
-                        
-                             
-				 <table id="addTable" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0">
-		            <tr><td align="left"></td></tr>
-		            <tr><td> <input name="addButton" type="button" style="cursor:hand" onClick="insRow()" value="추가"></td></tr>
+             		<tr>
+                         <td> 상세이미지 </td>
+                         <td width="300"><input type= "file" name="report" multiple="multiple" /></td>
+                         <td>
+                    <table id="addTable" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0" >
+		            
+		            <tr><td> <input name="addButton" type="button" style="cursor:hand" onClick="insRow()" value="이미지 추가"></td></tr>
 		         </table>
-               <table class="table table-striped">    
+                    </td>
+                    </tr>
+                   
+                  
+                   </table>     
+                             
+				 
+               <table class="table table-hover">    
               <tr>
               <td>
-              상세설명
+             	 상세설명
               </td>
-              </tr>
-              		
-              <tr>
               <td>
                <form:textarea type="text"  rows="8" cols="40"  path="doDetail"/>
               </td>
               </tr>
+              		
+            
                         
                
              
              <tr>
        		<td>성별제한</td>
-       		 </tr>
-       		 <tr>
        		<td>
                            <form:select id="lg" path="limitGender">
                         <form:option value="무관">무관</form:option>
@@ -348,39 +386,35 @@ ul.tabs li.current {
                     
                 	</form:select>
                 </td>	
-             </tr>
+       		 </tr>
+       		 
              
               <tr>
        		<td>나이제한</td>
-       		 </tr>
-              <tr>
        		<td> 
        		  <form:select id="la" path="limitAge">
                     <form:option value="미설정">미설정</form:option>
                     <form:option value="성인">성인</form:option>
                 	</form:select></td>
        		 </tr>
-             
+           
            
     
 
             
            <tr>
        		<td>장소 <input type="hidden" id ="doStartDate" /></td>
-       		 </tr>
-           <tr>
        		<td><input type="text" id="PlaceName" value="장소이름">
        		<input type="hidden" name="placeNum" id="PlaceNum" value="장소번호">
             		 <input type="hidden" id="placeDays">
             		  <input id="selectPlaceBtn" type="button" value="장소선택">
        		</td>
        		 </tr>
+           
             
             	
             <tr>
             <th>숙박</th>
-            </tr>
-            <tr>
             <td>
             		<input type="text" id="hotelName" value="숙박이름">
             		 <input type="hidden" name="hotelNum" id="hotelNum" value="숙박번호">
@@ -388,11 +422,10 @@ ul.tabs li.current {
             		  <input id="selectHotelBtn" type="button" value="숙박선택">
             </td>
             </tr>
+           
             
             <tr>
             <th>렌트카</th>
-            </tr>
-            <tr>
             <td>
             		<input type="text" id="rentName" value="차량이름">
             		 <input type="hidden" name="rentNum" id="rentNum" value="차량번호">
@@ -400,23 +433,18 @@ ul.tabs li.current {
             </td>
             </tr>
             
+            
             <tr>
             <th>멘토</th>
-            </tr>
-            <tr>
-            <td>
+             <td>
             		<input type="text" id="mentoName" value="멘토이름">
             		 <input type="hidden" name="mentoNum" id="mentoNum" value="멘토번호">
       	      		 <input id="selectMentoBtn" type="button" value="멘토선택">
             </td>
             </tr>
-           
-            
-             
-            	
-            	
+          	
 			  </table> 
-            <input type="button" id ="submit1" value="다음"/>
+            <input type="button" id ="submit1" value="다음" class="button"/>
             
         </form:form>
 </div>

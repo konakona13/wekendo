@@ -44,7 +44,43 @@
 	<link rel="stylesheet" type="text/css" href="HHHview/css/main.css">
 <!--===============================================================================================-->
 
+
 </head>
+<style>
+
+/* 버튼 스타일 */
+
+.button {
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  padding: 6px 25px 0px 20px;
+  margin: 10px 8px 20px 0px;
+  display: inline-block;
+  text-decoration: none;
+  width: 100px; height: 27px; 
+  -webkit-border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  border-radius: 5px; 
+  background-color: #3a57af; 
+  -webkit-box-shadow: 0 3px rgba(58,87,175,.75); 
+  -moz-box-shadow: 0 3px rgba(58,87,175,.75); 
+  box-shadow: 0 3px rgba(58,87,175,.75);
+  transition: all 0.1s linear 0s; 
+  top: 0px;
+  position: relative;
+  text-align: center;
+}
+
+.button:hover {
+  top: 3px;
+  background-color:#2e458b;
+  -webkit-box-shadow: none; 
+  -moz-box-shadow: none; 
+  box-shadow: none;
+  
+}
+</style>
 <body class="animsition">
 	
 
@@ -101,7 +137,7 @@
 						<h2 >
 						${goods.goodsName}
 						</h2>
-						<input type="hidden" id="goodPlaceName" name="goodPlaceName" value="${goods.goodsName}">
+						
 						<p>
 							<input type="hidden" id="goodPlaceName" name="goodPlaceName" value="${goods.goodsName}">
 							<input type="hidden" id="goodPlaceNum" name="goodPlaceNum" value="${goods.goodsNum}">
@@ -130,16 +166,8 @@
 
 						<!--  -->
 						<div class="p-t-33">
-
-							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-204 flex-w flex-m respon6-next">
-									
-
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"  id="selctPlaceBtn">
-										선택하기
-									</button>
-								</div>
-							</div>	
+<input type="button" id="selctPlaceBtn" value="선택하기" class="button" >
+							
 						</div>
 					
 						<!--  -->
@@ -317,7 +345,7 @@
 	
 	
         
-		
+	
 <script type="text/javascript">
 	$(function(){
 		$("#selctPlaceBtn").click(function()
@@ -356,7 +384,7 @@
 				var txt = $('#goodPlaceNum').val();
 				opener.document.getElementById("mentoNum").value = txt;
 				}
-			$("#frm").submit();
+			 $("#frm").submit(); 
 			
 			 
 			 /* var txt = $('#companyNum').val();
@@ -412,7 +440,8 @@ function changePrice() {
 	$('#totalPrice').val(price);
 }
 
-</script>
+</script>	
+
 
 
 <!--===============================================================================================-->
