@@ -14,32 +14,32 @@ public class ConfirmRepository {
 	@Autowired
 	private SqlSession sqlSession;
 	@Autowired
-	private Goods placeGoods;
+	private Goods goods;
 	
 	private final String namespace = "YYY-Mapper";
 
 	public Goods goodsConfirm(String goodsNum) {
 		
-		placeGoods.setGoodsStatus(goodsNum);
+		//goods.setGoodsStatus(goodsNum);
 		
 		String statement =  namespace + ".upGoodsStatus";
 		sqlSession.update(statement, goodsNum);
-		
-		return placeGoods;
+		System.out.println("상품 승인 완료");
+		return goods;
 	}
 
 
 	public Goods goodsCancel(String goodsNum) {
 		
 		
-		placeGoods.setGoodsStatus(goodsNum);		
+		goods.setGoodsStatus(goodsNum);		
 		
 		//company.setCompanyStatus();
 		
 		String statement =  namespace + ".upGoodsStatusX";
 		sqlSession.update(statement);
 		
-		return placeGoods;
+		return goods;
 	}
 	
 }

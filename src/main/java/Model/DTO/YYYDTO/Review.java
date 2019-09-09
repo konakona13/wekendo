@@ -18,6 +18,7 @@ public class Review implements Serializable {
 	String themeLNum;
 	String themeMNum;
 	String themeSNum;
+	String companyNum;
 	
 	
 	public String getReviewNum() {
@@ -94,9 +95,18 @@ public class Review implements Serializable {
 	public void setThemeSNum(String themeSNum) {
 		this.themeSNum = themeSNum;
 	}
+	
+	
+	public String getCompanyNum() {
+		return companyNum;
+	}
+	public void setCompanyNum(String companyNum) {
+		this.companyNum = companyNum;
+	}
 	@Override
     public String toString() {
-        return "Review [회원번호=" + memberNum + ", 리뷰=" + reviewContent + ", 상품번호=" + goodsNum + ", 점수=" + reviewScore + "]";
+        return "Review [회원번호=" + memberNum + ", 리뷰=" + reviewContent + ", 상품번호=" + goodsNum + 
+        						", 점수=" + reviewScore +  ", 회사번호=" + companyNum + "]";
     }
 
 	

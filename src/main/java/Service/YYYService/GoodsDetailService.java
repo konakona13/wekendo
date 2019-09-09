@@ -61,10 +61,12 @@ public class GoodsDetailService {
 		//System.out.println(mapTheme.toString());
 		
 		//리뷰 가져오기
-		List<ReviewList> review = reivewRepository.getReview(goodsNum);
+	/*	List<ReviewList> review = reivewRepository.getReview(goodsNum);
         model.addAttribute("review", review);
+      */
 		
 		return "YYYView/goodsRegDetail";
+
 	}
 
 

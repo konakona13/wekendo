@@ -1,14 +1,12 @@
 package Service.YYYService;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import Model.DTO.YYYDTO.Goods;
-import Model.DTO.YYYDTO.GoodsList;
+
 import Repository.YYYRepository.ConfirmRepository;
 
 @Service
@@ -21,7 +19,9 @@ public class GoodsConfirmService {
 		Goods goods = confirmRepository.goodsConfirm(goodsNum);
 		model.addAttribute("goods", goods);
 		
-		return "redirect:../confirmList";
+		System.out.println("승인여부 :" + goods.getGoodsStatus());
+		
+		return "YYYView/goodsConfirm2" ;
 	}
 
 }

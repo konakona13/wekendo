@@ -1,14 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<jsp:useBean id="toDay" class="java.util.Date" />
+<%
+	response.setCharacterEncoding("utf-8");
+ %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>상품 등록 승인_관리자페이지</title>	
-	<meta charset="UTF-8">
+	<title>Review</title>
+		<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="YYYView/images/icons/favicon.png"/>
@@ -40,192 +43,116 @@
 	<link rel="stylesheet" type="text/css" href="YYYView/css/util.css">
 	<link rel="stylesheet" type="text/css" href="YYYView/css/main.css">
 <!--===============================================================================================-->
-</head>
-<script type="text/javascript" 	src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript"  src="/mybatis-spring-smrit/js/jquery.form.js"></script>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript"  src="http://code.jquery.com/jquery-latest.js" ></script>
 <!-- SweetAlert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 <script type="text/javascript">
-	function mapL(val){
-		$.ajax({
-			type:"POST",
-			url :"mapM",
-			data: "mapLNum=" +val,
-			datatype: "html",
-			success: function(data1){
-				$("#mapMedium").html(data1);
-				$("#mapSmall").html("");//a테이블 선택 변경시 c테이블 나오지않도록
-			}
-		});
-	}
-	
-	function confirm(){
-		$("#confirm").click(function(){
-			
-			location.href="confirmList/ok";
-		})
-		$("#confirm").click(function(){
-	
-		location.href="confirmList/no";
-		})
-	}
+$(function(){
+	$("#submit").click(function(){
+	 swal("Success", "리뷰가 등록되었습니다.", "success");
+	});
+});
 
 </script>
-<style>
-body {
-	margin-top: 100px;
-	font-family: 'Trebuchet MS', serif;
-	line-height: 1.6
-}
 
-.container {
-	width: 1000px;
-	margin: 0 auto;
-}
-
-ul.tabs {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-
-ul.tabs li {
-	background: none;
-	color: black;
-	display: inline-block;
-	padding: 10px 15px;
-	cursor: pointer;
-	border: 1;
-}
-
-ul.tabs li.current {
-	background: white;
-	color: black;
-}
-
-.tab-content {
-	display: none;
-	background: white;
-	padding: 15px;
-}
-
-.tab-content.current {
-	display: inherit;
-}
-</style>
 </head>
 <body class="animsition">
+	
+<div class="bor10 m-t-50 p-t-43 p-b-40">
+				<!-- Tab01 -->
+				<div class="tab01">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
 
-<!-- 관리자만 볼 수 있게  -->
-<c:if test="${comNum == 'admin'}">
-	<div class="bg0 m-t-23 p-b-140">
-		<div class="container" >
-			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Goods
-					</button>
-					<c:if test="${comNum == 'admin'}">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".place">
-						Place
-					</button>
+						<li class="nav-item p-b-10">
+							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">이용후기 (1)</a>
+						</li>
+					</ul>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".hotel">
-						Hotel
-					</button>
+					 <!-- Tab1 -->
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".car">
-						Car
-					</button>
+					<!-- Tab2 -->
+						
+			<!-- Reivew자리 -->
+	
+	<div class="tab-pane fade" id="reviews" role="tabpanel">
+	
+		<div class="row">
+		
+			<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+			<c:forEach var="dodo" items="${dodo}">
+				<div class="p-b-30 m-lr-15-sm">					
+					
+					<!-- Add review -->
+					
+					
+					<form class="w-full" action="reviewAction" name ="reviewFrm" id ="reviewFrm" method = "post">
+					
+					<div class="p-b-30 m-lr-15-sm">	
+						<h5 class="mtext-108 cl2 p-b-7" id="name">
+							${dodo.goodsName}
+						</h5>
+						<input type="hidden" value="${dodo.goodsNum}" id="goodsNum" name="goodsNum">
+						<input type="hidden" value="${dodo.companyNum}" id="companyNum" name="companyNum">
+						<input type="hidden" value="${dodo.doNum}" id="doNum" name="doNum">
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".mentor">
-						Mentor
-					</button>
-				  </c:if>
-				</div>
-			</div>
+						<!-- <p class="stext-102 cl6">
+							Your email address will not be published. Required fields are marked *
+						</p> -->
 
-				<!-- 상품승인 리스트 -->
-				<div class="row isotope-grid">
-					<table width=100% class="table table-hover">
-						<tr align="center" valign="middle">
-							<td colspan="8">기업 상품 리스트</td>
-						</tr>
-						<tr>
+						<div class="flex-w flex-m p-t-50 p-b-23">
+							<span class="stext-102 cl3 m-r-16">
+								Your Rating
+							</span>
 
-							<td>상품번호</td>
-							<td>상품구분</td>
-							<td>상품명</td>
-							<td>작성자</td>
-							<td>등록일</td>
-							<td>승인상태</td>
-							<td>관리</td>
-						</tr>
+							<span class="wrap-rating fs-18 cl11 pointer">
+								<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+								<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+								<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+								<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+								<i class="item-rating pointer zmdi zmdi-star-outline"></i>
+								<input class="dis-none" type="number" name="reviewScore" />
+							</span>
+						</div>
 
+						<div class="row p-b-25">
+							<div class="col-12 p-b-5">
+								<label class="stext-102 cl3" for="review">Your review</label>
+								<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="reviewContent"></textarea>
+							</div>
+
+							<div class="col-sm-6 p-b-5">
+								<label class="stext-102 cl3" for="name">Name</label>
+								<span class="stext-102 cl3 m-r-16">${memAuth.name}</span>
+							</div>
+						</div>
+						
+						<div align="center">
+								<input type ="submit" value ="Submit" id="submit" class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
+						</div>
+						</div>
+						
+						</form>
+						
+					
+					</div>
+					</c:forEach>
 			
-						<c:if test="${! empty list}">
-							<c:forEach var="list" items="${list}">
-
-								<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${list.companyKind}">
-									
-									<div class="block2">
-									<div class="block2-txt flex-w flex-t p-t-14">
-									<form action="confirmList/ok" method="POST" name="okfrm">
-										
-										<tr>
-											<td>${list.goodsNum}</td>
-											<td>${list.companyKind }</td>
-											<td><a href="goodsRegDetail.goods/${list.goodsNum}"
-												class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-													${list.goodsName} </a></td>
-											<td>${list.companyName}</td>
-											<td>&nbsp; <fmt:formatDate value="${list.regDate}"
-													pattern="yy.MM.dd" /> &nbsp;
-											</td>
-											<td>&nbsp; ${list.goodsStatus} &nbsp;</td>
-											<c:set var="status" value="${list.goodsStatus}" />
-											<c:if test="${status == '미승인'}">
-											<td><input type="submit" value="승인" id="confirm" /></td>
-											</c:if>
-										</tr>
-										
-									</form>
-									</div>
-									</div>
-								</div>
-
-							</c:forEach>
-						</c:if>
-
-					</table>
 				</div>
+			
 			</div>
+			
+		</div>
+		
 	</div>
-	</c:if>
-	
-	
-	
-	<div>
-		<c:if test="${empty list}">
-			미승인 내역이 없습니다.
-		</c:if>
+	</div>
 	</div>
 
-	<c:if test="${comNum != 'admin' || empty comNum}">
-		<script>swal ( "Warning" ,  "관리자만 이용 가능한 페이지입니다." ,  "error" ) </script>
-	</c:if>
+		
 
 
-	<!--===============================================================================================-->	
+
+<!--===============================================================================================-->	
 	<script src="YYYView/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="YYYView/vendor/animsition/js/animsition.min.js"></script>
@@ -307,8 +234,25 @@ ul.tabs li.current {
 		});
 	
 	</script>
+<!--===============================================================================================-->
+	<script src="YYYView/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
 
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
 <!--===============================================================================================-->
 	<script src="YYYView/js/main.js"></script>
+
 </body>
 </html>

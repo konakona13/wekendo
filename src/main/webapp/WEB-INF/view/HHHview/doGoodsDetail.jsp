@@ -44,14 +44,50 @@
 	<link rel="stylesheet" type="text/css" href="HHHview/css/main.css">
 <!--===============================================================================================-->
 
+
 </head>
-<body class="animsitionD">
+<style>
+
+/* 버튼 스타일 */
+
+.button {
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  padding: 6px 25px 0px 20px;
+  margin: 10px 8px 20px 0px;
+  display: inline-block;
+  text-decoration: none;
+  width: 100px; height: 27px; 
+  -webkit-border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  border-radius: 5px; 
+  background-color: #3a57af; 
+  -webkit-box-shadow: 0 3px rgba(58,87,175,.75); 
+  -moz-box-shadow: 0 3px rgba(58,87,175,.75); 
+  box-shadow: 0 3px rgba(58,87,175,.75);
+  transition: all 0.1s linear 0s; 
+  top: 0px;
+  position: relative;
+  text-align: center;
+}
+
+.button:hover {
+  top: 3px;
+  background-color:#2e458b;
+  -webkit-box-shadow: none; 
+  -moz-box-shadow: none; 
+  box-shadow: none;
+  
+}
+</style>
+<body class="animsition">
 	
 
 
 
 	<!--Body 시작-->
-
+	<form action="selectBuyGoods" id="frm">
 	<!-- Product Detail -->
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
 		<div class="container">
@@ -98,9 +134,9 @@
 
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
-						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-						<input type="hidden" id="goodPlaceName" name="goodPlaceName" value="${goods.goodsName}">${goods.goodsName}
-						</h4>
+						<h2 >
+						${goods.goodsName}
+						</h2>
 						
 						<p>
 							<input type="hidden" id="goodPlaceName" name="goodPlaceName" value="${goods.goodsName}">
@@ -110,70 +146,36 @@
 							<input type="hidden" id="goodsKind" value="${goodsKind}" >
 						</p>
 
-						<p>상품이름 : ${goods.goodsName}</p>
-					   	<p>상세내용 : ${goods.goodsDetail}</p>
-					    <p>주의사항 : ${goods.goodsDanger}</p>
-					    <p>금액(1일1인) : <span id="goodspri">${goods.goodsPrice}</span></p>
-
+						
+					   	
+					  
+					    
+						<br/>
 						<jsp:include page="testCalander.jsp" flush="false"/>
 						
 						
-						<p>연락처 : ${company.companyPh}</p>
-   						 <p>상세주소 : ${company.companyAddr}</p>
-   						 
+						
+   						<br/> 
    						 <p>총대여일 <input type="number" id="buyDays" name="buyDays" min="1" max="30" value="1" required/> </p>
-					    <p>상품수량<input type = "number" id="buyQty" name = "buyQty" min="1" max="${goods.goodsStock}" value="1" required/></p>
-					    <p>총금액 : <span id="buyPrice">${goods.goodsPrice}</span></p>
+					    <br/> 
+					    
+					    <p>금액(1일1인) : <span id="goodspri">${goods.goodsPrice} </span></p>
+					    <br/>
+					    <h5>총금액 : <span id="buyPrice">${goods.goodsPrice}</span></h5>
+					    <p></p>
 
 						<!--  -->
 						<div class="p-t-33">
-
-							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-204 flex-w flex-m respon6-next">
-									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-minus"></i>
-										</div>
-										
-
-										<input class="mtext-104 cl3 txt-center num-product" type = "number" id ="doQty" name="num-product" min="1" max="${kendoDtail.doPp - kendoDtail.doNowPp}" required/>
-										
-										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-plus"></i>
-										</div>
-									</div>
-
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-										구매하기
-									</button>
-								</div>
-							</div>	
+<input type="button" id="selctPlaceBtn" value="선택하기" class="button" >
+							
 						</div>
-
+					
 						<!--  -->
-						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-							<div class="flex-m bor9 p-r-10 m-r-11">
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-									<i class="zmdi zmdi-favorite"></i>
-								</a>
-							</div>
-
-							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-								<i class="fa fa-facebook"></i>
-							</a>
-
-							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-								<i class="fa fa-twitter"></i>
-							</a>
-
-							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-								<i class="fa fa-google-plus"></i>
-							</a>
-						</div>
+						
 					</div>
 				</div>
 			</div>
-
+</form>
 			<div class="bor10 m-t-50 p-t-43 p-b-40">
 				<!-- Tab01 -->
 				<div class="tab01">
@@ -188,7 +190,7 @@
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">이용후기 (1)</a>
+							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">이용후기</a>
 						</li>
 					</ul>
 
@@ -210,53 +212,37 @@
 									<ul class="p-lr-28 p-lr-15-sm">
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												Weight
+												연락처
 											</span>
+											
+   						
 
 											<span class="stext-102 cl6 size-206">
-												0.79 kg
+												${company.companyPh}
 											</span>
 										</li>
 
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												Dimensions
+												상세주소
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												110 x 33 x 100 cm
+												${company.companyAddr}
 											</span>
 										</li>
 
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												Materials
+												주의사항
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												60% cotton
+												${goods.goodsDanger}
 											</span>
 										</li>
 
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Color
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												Black, Blue, Grey, Green, Red, White
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Size
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												XL, L, M, S
-											</span>
-										</li>
+										
 									</ul>
 								</div>
 							</div>
@@ -270,76 +256,37 @@
 										<!-- Review -->
 										<div class="flex-w flex-t p-b-68">
 											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-												<img src="HHHview/images/avatar-01.jpg" alt="AVATAR">
+												<img src="LEEview/upload/${memAuth.profile }" alt="AVATAR">
 											</div>
 
 											<div class="size-207">
 												<div class="flex-w flex-sb-m p-b-17">
 													<span class="mtext-107 cl2 p-r-20">
-														Ariana Grande
+													
 													</span>
 
 													<span class="fs-18 cl11">
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star-half"></i>
+														<c:forEach var="i" begin="1" end="${review.reviewScore }">
+
+														   <i class="zmdi zmdi-star"></i>
+														
+														</c:forEach>
+
+
+														
+														
+														
 													</span>
 												</div>
 
 												<p class="stext-102 cl6">
-													Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
+													${review.reviewContent }
 												</p>
 											</div>
 										</div>
 										
 										<!-- Add review -->
-										<form class="w-full">
-											<h5 class="mtext-108 cl2 p-b-7">
-												Add a review
-											</h5>
-
-											<p class="stext-102 cl6">
-												Your email address will not be published. Required fields are marked *
-											</p>
-
-											<div class="flex-w flex-m p-t-50 p-b-23">
-												<span class="stext-102 cl3 m-r-16">
-													Your Rating
-												</span>
-
-												<span class="wrap-rating fs-18 cl11 pointer">
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<input class="dis-none" type="number" name="rating">
-												</span>
-											</div>
-
-											<div class="row p-b-25">
-												<div class="col-12 p-b-5">
-													<label class="stext-102 cl3" for="review">Your review</label>
-													<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
-												</div>
-
-												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="name">Name</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text" name="name">
-												</div>
-
-												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="email">Email</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email" type="text" name="email">
-												</div>
-											</div>
-
-											<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-												Submit
-											</button>
-										</form>
+										
 
 
 									</div>
@@ -360,7 +307,7 @@
 	
 	
         
-		
+	
 <script type="text/javascript">
 	$(function(){
 		$("#selctPlaceBtn").click(function()
@@ -399,7 +346,7 @@
 				var txt = $('#goodPlaceNum').val();
 				opener.document.getElementById("mentoNum").value = txt;
 				}
-			$("#frm").submit();
+			 $("#frm").submit(); 
 			
 			 
 			 /* var txt = $('#companyNum').val();
@@ -434,11 +381,10 @@
 				{
 					var price = $('#goodspri').text();
 					price = Number(price);
-					var qty = $('#buyQty').val();
-					qty = Number(qty);
+					
 					var dayby = $('#buyDays').val();
 					
-					price = price*qty*dayby;
+					price = price*dayby;
 					var totalPrice = $('#buyPrice').text(price);
 					$('#totalPrice').val(price);
 				});
@@ -449,16 +395,15 @@
 function changePrice() {
 	var price = $('#goodspri').text();
 	price = Number(price);
-	var qty = $('#buyQty').val();
-	qty = Number(qty);
 	var dayby = $('#buyDays').val();
 	
-	price = price*qty*dayby;
+	price = price*dayby;
 	var totalPrice = $('#buyPrice').text(price);
 	$('#totalPrice').val(price);
 }
 
-</script>
+</script>	
+
 
 
 <!--===============================================================================================-->

@@ -24,11 +24,7 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-function openDoComWindow() {
-	// 새창에 대한 세팅(옵션)
-	var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=600,width=500,left=500,top=20';
-	window.open("BuybuyDetail?buyNum=" + $("#buyNum").val(), "buybuyDetail", settings);
-}
+
 </script>
 <style>
 body{
@@ -53,24 +49,24 @@ font-family: 'Nanum Gothic', sans-serif;
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
 			<div align="center">정산번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">결제번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">기업번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">상품판매월</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">정산일</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">정산현황</div>
-		</td>
+		</th>
 	</tr>
 <c:forEach var="cashin" items="${cashins}">
 	<tr align="center" valign="middle" bordercolor="#333333"
@@ -81,7 +77,7 @@ font-family: 'Nanum Gothic', sans-serif;
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
+			<div align="center">
 			<input type="hidden" id="doNum" name="doNum" value="${dodo.doNum }">
 			<a href="javascript:openChildWindow();" >
 				${cashin.payNum }
@@ -161,24 +157,24 @@ style="background-color:#D8D8D8; border:1px solid #e0e0e0; width:600px; height:1
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
 			<div align="center">구매번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">활동번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">상품번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">기업번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">기업이름</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">상품가격</div>
-		</td>
+		</th>
 	</tr>
 <c:forEach var="buybuy" items="${buybuys}">
 	<tr align="center" valign="middle" bordercolor="#333333"
@@ -189,11 +185,8 @@ style="background-color:#D8D8D8; border:1px solid #e0e0e0; width:600px; height:1
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
-			<input type="hidden" id="doNum" name="doNum" value="${dodo.doNum }">
-			<a href="javascript:openDoComWindow();" >
+			<div align="center">
 				${buybuy.doNum }
-			</a>
 			</div>
 		</td>
 		
@@ -255,6 +248,7 @@ style="background-color:#D8D8D8; border:1px solid #e0e0e0; width:600px; height:1
 style="background-color:#D8D8D8; border:1px solid #e0e0e0; width:600px; height:150px; clear: both; margin: auto; padding: 30px; border-radius: 10px;
 		box-shadow: 0px 0px 15px #151515;">
 상품 판매 총 금액 : <c:out value="${sumBuy}"/>원</div>
+	</div>
 	</div>
 </body>
 </html>

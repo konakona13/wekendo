@@ -22,6 +22,7 @@ import Model.DTO.HHHDTO.GoodsImg;
 import Model.DTO.HHHDTO.Kendo;
 import Model.DTO.HHHDTO.Member;
 import Model.DTO.HHHDTO.PlaceGoods;
+import Model.DTO.YYYDTO.Review;
 import Repository.HHHRepository.DoCreateReporsitory;
 
 @Service
@@ -62,6 +63,10 @@ public class DoCreateService
 		model.addAttribute("company",company);
 		List<GoodsImg> goodImgs = doCreateReporsitory.getGoodsImg();
 		model.addAttribute("goodImgs",goodImgs);
+		Review review = doCreateReporsitory.getGoodsReview(goods.getGoodsNum());
+		model.addAttribute("review",review);
+		System.out.println("review :"+ review.getReviewContent());
+		
 		return "HHHview/doGoodsDetail";
 	}
 
@@ -69,6 +74,10 @@ public class DoCreateService
 	{
 		String memId = (String) session.getAttribute("memNum"); 
 		System.out.println("memId : " + memId);
+		if (memId == null)
+		{
+			return "redirect:loginmain";
+		}
 		Member member = doCreateReporsitory.getmemberInfo(memId);
 		model.addAttribute("member",member);
 		model.addAttribute("createDoCommand", new CreateDoCommand());

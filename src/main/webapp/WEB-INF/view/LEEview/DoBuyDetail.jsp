@@ -35,7 +35,7 @@
 	<link rel="stylesheet" type="text/css" href="LEEview/css/main.css">
 <!--===============================================================================================-->
 </head>
-<body class="animsition">
+<body class="animsition" style="height: auto;">
 	
 	<!-- Header -->
 

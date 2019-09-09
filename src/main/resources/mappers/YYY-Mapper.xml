@@ -90,6 +90,7 @@
 	  				G.GOODS_NUM, G.GOODS_NAME, G.REG_DATE, G.GOODS_STATUS	  		
 		FROM COMPANY c JOIN GOODS g
 		ON c.COMPANY_NUM = g.COMPANY_NUM
+		ORDER BY g.REG_DATE DESC
 </select>
 
 <select id="getGoodsList" resultType="String" resultMap="goodsList">
@@ -365,7 +366,7 @@
    INSERT INTO REVIEW
    (REVIEW_NUM, GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM, THEME_M_NUM, THEME_S_NUM, 
    	MEMBER_NUM, COMPANY_NUM, REVIEW_SCORE, REVIEW_DATE, REVIEW_CONTENT)
-   VALUES (#{goodsNum}||#{reviewNum}, #{goodsNum}, #{mapLNum}, #{mapMNum}, #{mapSNum}, #{themeLNum}, #{themeMNum},
+   VALUES (#{goodsNum}||REVIEW_NUM_SEQ.NEXTVAL, #{goodsNum}, #{mapLNum}, #{mapMNum}, #{mapSNum}, #{themeLNum}, #{themeMNum},
    				#{themeSNum},#{memberNum}, #{companyNum}, #{reviewScore}, sysdate, #{reviewContent})
 </insert>
 
@@ -378,10 +379,14 @@
 </select>
 
 <!-- 활동완료 리뷰등록 페이지 연동  -->
-<resultMap type="Dodo" id="baseDo">
+
+	<resultMap type="Model.DTO.YYYDTO.DodoY" id="baseDo">
 		<id column="DO_NUM" jdbcType="VARCHAR" property="doNum" />
 		<result column="HOST_NUM" jdbcType="VARCHAR" property="hostNum" />
 		<result column="DO_NAME" jdbcType="VARCHAR" property="doName" />
+		<result column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum" />
+		<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+		<result column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum" />		
 		<result column="DO_START_DATE" jdbcType="TIMESTAMP"			property="startDate" />
 		<result column="DO_END_DATE" jdbcType="TIMESTAMP"			property="endDate" />
 		<result column="DO_OPEN_DATE" jdbcType="TIMESTAMP"			property="openDate" />
@@ -403,22 +408,26 @@
 		<result column="PAY_CARDNUM" jdbcType="BIGINT"			property="cardNum" />
 	</resultMap>
 	
-<sql id="basecolumnDo">
-		DO_NUM, HOST_NUM, DO_NAME, DO_START_DATE, DO_END_DATE,
+	<sql id="basecolumnDo">
+		DO_NUM, HOST_NUM, DO_NAME, GOODS_NUM, GOODS_NAME, COMPANY_NUM, DO_START_DATE, DO_END_DATE,
 		DO_OPEN_DATE,
 		DO_CLOSE_DATE, DO_PP, DO_NOWPP, DO_DETAIL, DO_OPT_GENDER,
 		DO_OPT_AGE,
 		DO_STATUS
-</sql>
+	</sql>
 
-	<select id="getDoList" parameterType="StartEndPage" 	resultMap="baseDo">
-		select * from ( select rownum rn,
-		<include refid="basecolumnDo" />
-		from (select
-		<include refid="basecolumnDo" />
-		from KENDO
-		order by DO_NUM desc))
-		WHERE DO_STATUS='doend' OR  DO_STATUS='cashcomplete' 
+	<select id="getDoList" resultMap="baseDo">
+		SELECT DISTINCT(D.DO_NUM), J.GUEST_NUM, J.HOST_NUM, D.DO_NAME, DO_START_DATE, DO_END_DATE,DO_OPEN_DATE, DO_CLOSE_DATE, D.DO_STATUS
+		FROM KENDOJOIN J, KENDO D
+		WHERE J.DO_NUM = D. DO_NUM
+		AND J.GUEST_NUM = #{memNum} OR J.HOST_NUM =#{memNum}
+	</select>
+	
+	<select id="getDoforReview" resultMap="baseDo">
+		SELECT D.DO_NUM, DO_NAME, D.DO_STATUS, J.GOODS_NUM, J.GOODS_NAME, J.COMPANY_NUM
+		FROM KENDO D, (SELECT B.GOODS_NUM, B.DO_NUM, G.COMPANY_NUM, G.GOODS_NAME FROM BUYBUY B, GOODS G WHERE B.GOODS_NUM = G.GOODS_NUM) J
+		WHERE D.DO_NUM = J.DO_NUM
+		AND D.DO_NUM = #{doNum}
 	</select>
 
 </mapper>

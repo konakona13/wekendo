@@ -9,6 +9,51 @@ public class AuthInfo {
 	private String comNum;
 	private String comAcc;
 	private String comBank;
+	private Long memPh1;
+	private String addr;
+	private String comBN;
+	private String comCap;
+	private String comManager;
+
+	public String getComBN() {
+		return comBN;
+	}
+
+	public void setComBN(String comBN) {
+		this.comBN = comBN;
+	}
+
+	public String getComCap() {
+		return comCap;
+	}
+
+	public void setComCap(String comCap) {
+		this.comCap = comCap;
+	}
+
+	public String getComManager() {
+		return comManager;
+	}
+
+	public void setComManager(String comManager) {
+		this.comManager = comManager;
+	}
+
+	public Long getMemPh1() {
+		return memPh1;
+	}
+
+	public void setMemPh1(Long memPh1) {
+		this.memPh1 = memPh1;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
 
 	public AuthInfo() {
 	}

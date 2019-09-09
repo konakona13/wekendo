@@ -68,12 +68,12 @@ font-family: 'Nanum Gothic', sans-serif;
 	<div id="container" style="width: 1500px; margin: 20px;">
 		<div id="header" style="background-color: white;">
 		<form action="buybuySearch" name="frm" method="post">
-			기업이름 : <input type="text" name="comName" class="form-control" style="width: 200px;">
-			<input type="submit" name="comNameSubmit" value="검색" class="btn btn-default" style="margin: 10px;">
+			기업이름 : <input type="text" name="comName" class="form-control" style="width: 200px; display: inline-block;">
+			<input type="submit" name="comNameSubmit" value="검색" class="btn btn-primary" style="margin: 10px;">
 			&nbsp;&nbsp;
-			<a href="Cashin" class="btn btn-default ">전체 기업 리스트</a>
+			<a href="Cashin" class="btn btn-info">전체 기업 리스트</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="adminMain" class="btn btn-default">메인으로 돌아가기</a>
+		<a href="adminMain" class="btn btn-success">메인으로 돌아가기</a>
 		</form>
 		</div>
 		<div id="content1" 
@@ -82,28 +82,28 @@ font-family: 'Nanum Gothic', sans-serif;
 			<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty cashins}">
 	<tr align="center" valign="middle">
-		<td colspan=54">정산리스트</td>
+		<td colspan="6" class="info">정산리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
 			<div align="center">정산월</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">정산번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">결제번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">회사이름</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">상품금액</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">정산금액</div>
-		</td>
+		</th>
 	</tr>
 <c:forEach var="cashin" items="${cashins}">
 	<tr align="center" valign="middle" bordercolor="#333333"
@@ -192,31 +192,31 @@ style="background-color:#D8D8D8; border:1px solid #e0e0e0; width:600px; height:a
 			<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty buybuys}">
 	<tr align="center" valign="middle">
-		<td colspan="7">구매리스트</td>
+		<td colspan="7" class="info">구매리스트</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%" height="26">
 			<div align="center">결제월</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">구매번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">기업이름</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">상품명</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">활동이름</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">상품수량</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
 			<div align="center">상품가격</div>
-		</td>
+		</th>
 	</tr>
 <c:forEach var="buybuy" items="${buybuys}">
 	<tr align="center" valign="middle" bordercolor="#333333"
@@ -309,10 +309,12 @@ style="background-color:#D8D8D8; border:1px solid #e0e0e0; width:600px; height:a
 		정산 예정 금액 계산 : <br>
 		(${sumBuy} - ${sumCash}) * 위켄두수수료(판매가50%) = <c:out value="${(sumBuy - sumCash) * 0.5}"/> 원
 		<form action="cashInsert" id="frm" name="frm" method="post">
-			<input type="button" name="cashSubmit" value="정산승인" onclick="func_cash()"> 
+		<c:if test="${comName != null}">
+			<input type="button" name="cashSubmit" value="정산승인" onclick="func_cash()" class="btn btn-danger"> 
 			<input type="hidden" value="${comName }" name="comName2">
 			<input type="hidden" id="cashInBalance" name="cashInBalance" value="<c:out value="${(sumBuy - sumCash) * 0.5}"/>"> 
 			<input type="hidden" name="cashInTotal" value="(${sumBuy} - ${sumCash})"> 
+		</c:if>
 		</form>
 		</div>
 	</div>
