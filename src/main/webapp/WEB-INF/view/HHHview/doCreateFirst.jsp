@@ -47,7 +47,7 @@ $(function(){
 		var nc = nextcl();
 		var ec = endcl(); 
 		var thema = $("#themeSmall").val();
-		var area  = $("#themeSmall").val();
+		var area  = $("#mapSmall").val();
 		var url = "doCreatePlace?doPlay="+thema
 							  +"&doArea="+area
 							  +"&goodsKind=hotel"
@@ -63,7 +63,7 @@ $(function(){
 		var nc = nextcl();
 		var ec = endcl(); 
 		var thema = $("#themeSmall").val();
-		var area  = $("#themeSmall").val();
+		var area  = $("#mapSmall").val();
 		var url = "doCreatePlace?doPlay="+thema
 							  +"&doArea="+area
 							  +"&goodsKind=rent"
@@ -78,7 +78,7 @@ $(function(){
 		var nc = nextcl();
 		var ec = endcl(); 
 		var thema = $("#themeSmall").val();
-		var area  = $("#themeSmall").val();
+		var area  = $("#mapSmall").val();
 		var url = "doCreatePlace?doPlay="+thema
 							  +"&doArea="+area
 							  +"&goodsKind=mento"
