@@ -106,7 +106,7 @@ ul.tabs li.current {
 		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty hostlists}">
 	<tr align="center" valign="middle">
-		<td colspan="5">나의 개설활동</td>
+		<td colspan="5" class="info">나의 개설활동</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="">
@@ -172,7 +172,7 @@ ul.tabs li.current {
 		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 <c:if test="${! empty guestlists}">
 	<tr align="center" valign="middle">
-		<td colspan="5">나의 참가활동</td>
+		<td colspan="5" class="info">나의 참가활동</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="#333333">
