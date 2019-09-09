@@ -186,6 +186,22 @@
 	order by k.DO_NUM desc
 </select>
 
+
+<select id="getKendoJoinListMain" resultMap="kendoList">
+	select distinct k.DO_NUM, k.HOST_NUM, k.DO_NAME, k.DO_START_DATE, k.DO_END_DATE, k.DO_OPEN_DATE, 
+        k.DO_CLOSE_DATE, k.DO_PP, k.DO_NOWPP,k.DO_OPT_GENDER, k.DO_OPT_AGE, k.DO_STATUS,
+        p.PAY_NUM, p.PAY_DUCTCH, p.PAY_TOTALPRICE, d.do_img_num, d.do_img_name, d.do_img_kind
+	from kendo k  join buybuy b
+	on k.DO_NUM = b.DO_NUM
+	join payment p
+	on b.PAY_NUM = p.PAY_NUM
+    join do_img d
+    on (k.DO_NUM = D.DO_NUM) AND d.do_img_kind ='main'
+	order by k.DO_CLOSE_DATE desc
+</select>
+
+
+
 <select id="selectKendoDetail" parameterType="String" resultMap="kendoList">
 	select k.DO_NUM, k.HOST_NUM, k.DO_NAME, k.DO_START_DATE, k.DO_END_DATE, k.DO_OPEN_DATE, 
         k.DO_CLOSE_DATE, k.DO_PP, k.DO_NOWPP,k.DO_OPT_GENDER, k.DO_OPT_AGE, k.DO_STATUS, k.DO_DETAIL,
@@ -307,6 +323,55 @@
 	set COMPANY_STATUS ='승인완료'
 	where COMPANY_NUM = #{companyNum}
 </update>
+
+
+
+
+
+
+
+<sql id="basecolumn">
+		MEMBER_NUM,MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_PH,
+		MEMBER_ADDR,MEMBER_EMAIL,GENDER,MEMBER_PHOTO,MEMBER_BIRTH,
+		MEMBER_STATUS
+	</sql>
+	<sql id="basecolumnCompany">
+		COMPANY_NUM, COMPANY_KIND, COMPANY_ID, COMPANY_PW,
+		COMPANY_BN, COMPANY_NAME, COMPANY_CAP, COMPANY_PH, COMPANY_EMAIL,
+		MANAGER_NAME, COMPANY_ADDR, COMPANY_BANK, COMPANY_ACC, COMPANY_STATUS
+	</sql>
+	
+		
+	
+	<select id="getMemList" parameterType="StartEndPage"
+		resultMap="baseMember">
+		select
+		<include refid="basecolumn" />
+		from MEMBER
+		order by MEMBER_NUM desc
+	</select>
+	<select id="getMemListCount" resultType="int">
+		select count(*) from
+		MEMBER
+	</select>
+	<select id="getComList" parameterType="StartEndPage"
+		resultMap="baseCompany">
+		select
+		<include refid="basecolumnCompany" />
+		from COMPANY
+		where company_num &lt;&gt; 'admin'
+		order by COMPANY_NUM desc
+	</select>
+	<select id="getComListCount" resultType="int">
+		select count(*) from
+		COMPANY
+	</select>
+
+
+
+
+
+
 
 
 

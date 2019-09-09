@@ -88,10 +88,26 @@ public class KendoJoinController {
 	
 	}
 	
+	
+	@RequestMapping("/memberMain2")
+	public String kendoJoinListMain(Model model) {
+
+		return kendoJoinService.kendoJoinListMain(model);
+	
+	}
+	
+	
+	
 	@RequestMapping("/kendoDetail/{num}")
 	public String kendoDetail(@PathVariable("num") String doNum, Model model,HttpSession session) {
 
 		return kendoJoinService.kendoDetail(doNum, model,session);
 	}
+	
+	
+	
+	
+	
+	
 
 }
