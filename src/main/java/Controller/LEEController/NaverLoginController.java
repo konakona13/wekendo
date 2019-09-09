@@ -67,11 +67,15 @@ public class NaverLoginController {
 		String id = "chri2";
 		String email = (String)response_obj.get("email");
 		String profile = "9dea5bc6c7a2455fad63e55ff40c0c84null";
+		String memPh1 = "821049498181";
+		String addr = "서울특별시 종로구 혜화동 대학로14길 21";
 		AuthInfo memAuth = new AuthInfo();
 		memAuth.setId(id);
 		memAuth.setName(nickname);
 		memAuth.setEmail(email);
 		memAuth.setProfile(profile);
+		memAuth.setMemPh1(Long.parseLong(memPh1));
+		memAuth.setAddr(addr);
 		System.out.println(nickname);
 		String memNum = "NM5182";
 		memAuth.setMemNum(memNum);
