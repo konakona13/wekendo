@@ -30,6 +30,11 @@ public class CompanyLoginService {
 			authInfo.setComNum(company.getCompanyNum());
 			authInfo.setComAcc(company.getCompanyAcc());
 			authInfo.setComBank(company.getCompanyBank());
+			authInfo.setAddr(company.getCompanyAddr());
+			authInfo.setMemPh1(company.getCompanyPh());
+			authInfo.setComCap(company.getCompanyCap());
+			authInfo.setComManager(company.getManagerName());
+			authInfo.setComBN(company.getCompanyBn());
 			session.setAttribute("comAuth", authInfo);
 			session.setAttribute("comNum", company.getCompanyNum());
 			session.setAttribute("admin", company.getCompanyId());
