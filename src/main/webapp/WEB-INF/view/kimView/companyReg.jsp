@@ -22,9 +22,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	기업회원 가입 승인
+	
 	<div class = "container">
-		<table border ="1"  class = "striped">
+	<h4>** 기업회원 가입 승인</h4>
+		<table  class="table table-striped">
         	<tr>
 				<td>기업회원번호</td>
 				<td>기업회원분류</td>
@@ -62,7 +63,5 @@
 
 <br/>               
 
-        
-<a href="adminMain" >메인</a>
 </body>
 </html>

@@ -199,7 +199,13 @@ public class KendoJoinService {
 		return "kimView/kendoJoinList" ;
 	}
 
-
+	public String kendoJoinListMain(Model model) {
+		List<KendoList> list = kendoJoinRepository.getKendoJoinListMain();
+		model.addAttribute("kendoJoins",list);	
+		return "kimView/memberMain2" ;
+	}
+	
+	
 	public String kendoDetail(String doNum, Model model, HttpSession session) {
 		KendoList kendoDtail= kendoJoinRepository.selectKendoDetail(doNum);
 		model.addAttribute("kendoDtail",kendoDtail);
@@ -243,5 +249,11 @@ public class KendoJoinService {
 		
 		model.addAttribute("member",member);
 		return "kimView/kendoJoin";
-	}	
+	}
+
+
+
+
+
+	
 }
