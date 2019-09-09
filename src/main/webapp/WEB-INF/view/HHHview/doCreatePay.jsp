@@ -4,6 +4,8 @@
 	uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" 
 	uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -205,10 +207,7 @@ th,td {padding-left:20px;
 	<c:forEach var="goods" items="${goodsList}">
     <c:set var="goodsNum" value="${goods.goodPlaceNum}"></c:set>
     
-    <%-- <c:if test="${fn:contains(goodsNum,'GDP') }">
-     	<p>if활동장소명 : ${goods.goodPlaceName} </p>
-    	<p>장소이용금액 : ${goods.totalPrice} </p>
-   	</c:if>  --%>
+
    	
 	    <c:choose>
 				<c:when test="${fn:contains(goodsNum,'GDP') }">
@@ -228,7 +227,7 @@ th,td {padding-left:20px;
 					<tr>
 					
 					<td width="200"><b>장소이용금액</b>  </td>
-    				<td width="400">${goods.totalPrice}</td>
+    				<td width="400"><fmt:formatNumber pattern="###,###,###" value="${goods.totalPrice}"  /> 원</td>
 					</tr>
 					<tr>
 					<td bgcolor="#b0e0e6" colspan="2">    </td>
@@ -253,7 +252,7 @@ th,td {padding-left:20px;
 					<tr>
 					
 					<td width="200" ><b>숙박이용총금액</b>  </td>
-    				<td width="400">${goods.totalPrice}</td>
+    				<td width="400"><fmt:formatNumber pattern="###,###,###" value="${goods.totalPrice}"  /> 원</td>
 					</tr>
 					
 				 	
@@ -276,7 +275,7 @@ th,td {padding-left:20px;
 					<tr>
 					
 					<td width="200"><b>렌터카이용총금액</b>  </td>
-    				<td width="400">${goods.totalPrice}</td>
+    				<td width="400"><fmt:formatNumber pattern="###,###,###" value="${goods.totalPrice}"  /> 원</td>
 					</tr>
 					
 				    
@@ -299,7 +298,7 @@ th,td {padding-left:20px;
 					<tr>
 					
 					<td width="200"><b>멘토이용총금액</b>  </td>
-    				<td width="400">${goods.totalPrice}</td>
+    				<td width="400"><fmt:formatNumber pattern="###,###,###" value="${goods.totalPrice}"  /> 원</td>
 					</tr>
 					
 				 	
@@ -313,7 +312,7 @@ th,td {padding-left:20px;
     <tr>
 	
 	<td width="200"><b>결제 금액</b>  </td>
-    				<td width="400">${sumPrice}</td>
+    				<td width="400"><fmt:formatNumber pattern="###,###,###" value="${sumPrice}"  /> 원</td>
 	</tr>
     
     

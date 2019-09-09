@@ -207,6 +207,34 @@
 		SELECT MAX(PAY_NUM)
 		from PAYMENT
 	</select>
+	
+<resultMap type="Model.DTO.YYYDTO.Review" id="reviewMap">
+		<id column="REVIEW_NUM" jdbcType="VARCHAR" property="reviewNum" />
+		<result column="MAP_S_NUM" jdbcType="VARCHAR" property="mapSNum" />
+		<result column="MAP_M_NUM" jdbcType="VARCHAR" property="mapMNum" />
+	    <result column="MAP_L_NUM" jdbcType="VARCHAR" property="mapLNum" />
+	    <result column="THEME_S_NUM" jdbcType="VARCHAR" property="themeSNum" />
+		<result column="THEME_M_NUM" jdbcType="VARCHAR" property="themeMNum" />
+		<result column="THEME_L_NUM" jdbcType="VARCHAR" property="themeLNum" />
+		<result column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum" />
+		<result column="MEMBER_NUM" jdbcType="VARCHAR" property="memberNum" />
+		<result column="COMPANY_NUM" jdbcType="VARCHAR" property="companyNum" />
+		<result column="REVIEW_SCORE" jdbcType="BIGINT" property="reviewScore" />
+		<result column="REVIEW_DATE" jdbcType="TIMESTAMP" property="reviewDate" />
+		<result column="REVIEW_CONTENT" jdbcType="VARCHAR" property="reviewContent" />
+
+</resultMap>
+
+
+<select id="getReview" parameterType="String" resultMap="reviewMap">
+SELECT REVIEW_NUM, GOODS_NUM, MAP_L_NUM, MAP_M_NUM, MAP_S_NUM, THEME_L_NUM,
+ THEME_M_NUM, THEME_S_NUM, MEMBER_NUM, COMPANY_NUM, REVIEW_SCORE, REVIEW_DATE, REVIEW_CONTENT 
+FROM REVIEW
+WHERE GOODS_NUM = #{goodsNum}
+
+
+</select>
+	
 	<!-- select 문 끝 -->
 
 	<!-- insert 문 시작 -->
