@@ -23,8 +23,7 @@ public class CompanyRegController {
 	
 	@Autowired
 	private MemListService memListService;
-	@Autowired
-	private CompanyCashService companyCashService;
+
 
 	
 	@RequestMapping("/companyReg")
@@ -52,9 +51,8 @@ public class CompanyRegController {
 	}
 	
 	@RequestMapping("/companyMain2")
-	public String companyMain2(Model model, HttpSession session, @RequestParam(value = "page", defaultValue = "1") String page ){
-		return companyCashService.cashAndBuyList(model, session, page);
-
+	public String companyMain2(Model model, HttpSession session, @RequestParam(value = "page", defaultValue = "1") String page){
+		return updateComRegService.cashAndBuyList(model, session, page);
 	}
 
 }

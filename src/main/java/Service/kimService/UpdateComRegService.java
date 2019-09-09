@@ -92,6 +92,46 @@ public class UpdateComRegService {
 
 
 
+	public String cashAndBuyList(Model model, HttpSession session, String page) {
+		int page1 = Integer.parseInt(page);
+		int limit = 10;
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("comAuth");
+		String comName = authInfo.getName();
+		List<CashIn> listCashin = updateComRegRepository.getComNameCashList(page1, limit, comName);
+		List<Buybuy> listBuybuy = updateComRegRepository.getNameBuyList(page1, limit, comName);
+		
+		int listCashCount = updateComRegRepository.getCashListCount();
+		int listBuyCount = updateComRegRepository.getBuyListCount();
+		
+		int maxPageCash = (int) ((double) listCashCount / limit + 0.95);
+		int startPageCash = (int) (((double) page1 / 10 + 0.9) - 1) * 10 + 1;
+		int endPageCash = startPageCash + 10 - 1;
+		if (endPageCash > maxPageCash)
+			endPageCash = maxPageCash;
+
+		int maxPageBuy = (int) ((double) listBuyCount / limit + 0.95);
+		int startPageBuy = (int) (((double) page1 / 10 + 0.9) - 1) * 10 + 1;
+		int endPageBuy = startPageBuy + 10 - 1;
+		if (endPageBuy > maxPageBuy)
+			endPageBuy = maxPageBuy;
+
+		model.addAttribute("maxPageCash", maxPageCash);
+		model.addAttribute("startPageCash", startPageCash);
+		model.addAttribute("endPageCash", endPageCash);
+		model.addAttribute("maxPageBuy", maxPageBuy);
+		model.addAttribute("startPageBuy", startPageBuy);
+		model.addAttribute("endPageBuy", endPageBuy);
+		model.addAttribute("page", page1);
+		model.addAttribute("listcashcount", listCashCount);
+		model.addAttribute("listBuyCount", listBuyCount);
+		model.addAttribute("cashins", listCashin);
+		model.addAttribute("buybuys", listBuybuy);
+		model.addAttribute("comName", comName);
+		return "kimView/companyMain2";
+	}
+
+
+
 
 
 }

@@ -373,6 +373,139 @@
 
 
 
+	<resultMap type="Model.DTO.LEEDTO.CashIn" id="baseCashin">
+		<id column="CASHIN_NUM" jdbcType="VARCHAR" property="cashinNum" />
+		<result column="PAY_NUM" jdbcType="VARCHAR" property="payNum" />
+		<result column="COMPANY_NUM" jdbcType="VARCHAR"
+			property="companyNum" />
+		<result column="CASHIN_TOTAL_PRICE" jdbcType="BIGINT"
+			property="totalPrice" />
+		<result column="CASHIN_COMMISSION" jdbcType="BIGINT"
+			property="commission" />
+		<result column="CASHIN_BALANCE" jdbcType="BIGINT"
+			property="balance" />
+		<result column="CASHIN_DAYS" jdbcType="TIMESTAMP"
+			property="days" />
+		<result column="CASHIN_MONTH" jdbcType="TIMESTAMP"
+			property="month" />
+		<result column="CASHIN_STATUS" jdbcType="VARCHAR"
+			property="status" />
+		<result column="COMPANY_NAME" jdbcType="VARCHAR"
+			property="companyName" />
+		<result column="GOODS_NAME" jdbcType="VARCHAR"
+			property="goodsName" />
+	</resultMap>
+	
+		<resultMap type="Model.DTO.LEEDTO.Buybuy" id="baseBuybuy">
+		<id column="BUY_NUM" jdbcType="VARCHAR" property="buyNum" />
+		<result column="DO_NUM" jdbcType="VARCHAR" property="doNum" />
+		<result column="PAY_NUM" jdbcType="VARCHAR" property="payNum" />
+		<result column="HOST_NUM" jdbcType="VARCHAR" property="hostNum" />
+		<result column="GOODS_NUM" jdbcType="VARCHAR"
+			property="goodsNum" />
+		<result column="COMPANY_NUM" jdbcType="VARCHAR"
+			property="companyNum" />
+		<result column="MAP_L_NUM" jdbcType="VARCHAR"
+			property="mapLnum" />
+		<result column="MAP_M_NUM" jdbcType="VARCHAR"
+			property="mapMnum" />
+		<result column="MAP_S_NUM" jdbcType="VARCHAR"
+			property="mapSnum" />
+		<result column="THEME_L_NUM" jdbcType="VARCHAR"
+			property="themeLnum" />
+		<result column="THEME_M_NUM" jdbcType="VARCHAR"
+			property="themeMnum" />
+		<result column="THEME_S_NUM" jdbcType="VARCHAR"
+			property="themeSnum" />
+		<result column="BUY_QTY" jdbcType="BIGINT" property="buyQty" />
+		<result column="BUY_START_DATE" jdbcType="TIMESTAMP"
+			property="startDate" />
+		<result column="BUY_END_DATE" jdbcType="TIMESTAMP"
+			property="endDate" />
+		<result column="BUY_DAYS" jdbcType="BIGINT" property="buyDays" />
+		<result column="BUY_PRICE" jdbcType="BIGINT"
+			property="buyPrice" />
+		<result column="COMPANY_NAME" jdbcType="VARCHAR"
+			property="companyName" />
+		<result column="GOODS_NAME" jdbcType="VARCHAR"
+			property="goodsName" />
+		<result column="DO_NAME" jdbcType="VARCHAR" property="doName" />
+		<result column="do_open_date" jdbcType="TIMESTAMP"
+			property="dutchDate" />
+		<result column="PAY_PP" jdbcType="BIGINT" property="payPP" />
+		<result column="PAY_DUCTCH" jdbcType="BIGINT"
+			property="payDutch" />
+		<result column="MEMBER_NAME" jdbcType="VARCHAR"
+			property="memName" />
+		<result column="GOODS_STOCK" jdbcType="BIGINT"
+			property="goodsStock" />
+		<result column="GOODS_PRICE" jdbcType="BIGINT"
+			property="goodsPrice" />
+
+	</resultMap>
+	
+	<select id="getCashListComName" parameterType="String"
+		resultMap="baseCashin">
+		select CASHIN_NUM, cashin.PAY_NUM, cashin.COMPANY_NUM,
+		CASHIN_TOTAL_PRICE,
+		CASHIN_COMMISSION, CASHIN_BALANCE, CASHIN_DAYS,
+		CASHIN_MONTH,
+		CASHIN_STATUS
+		from cashin cashin, company com
+		where
+		cashin.company_num = com.company_num
+		and CASHIN_STATUS = 'complete'
+		and
+		com.company_name = #{comName}
+		order by CASHIN_DAYS desc
+	</select>
+	
+	<select id="getBuybuyListComName" parameterType="String"
+		resultMap="baseBuybuy">
+		select
+		BUY_NUM, b.DO_NUM, b.PAY_NUM, b.HOST_NUM, b.GOODS_NUM,
+		c.COMPANY_NUM, company_name, GOODS_NAME, DO_NAME,
+		b.MAP_L_NUM,
+		b.MAP_M_NUM,
+		b.MAP_S_NUM,
+		b.THEME_L_NUM, b.THEME_M_NUM,
+		b.THEME_S_NUM,
+		BUY_QTY,
+		BUY_START_DATE,
+		BUY_END_DATE, BUY_DAYS,
+		BUY_PRICE, do_open_date
+		from BUYBUY b,
+		company
+		c, kendo kd, goods g
+		where b.company_num =
+		c.company_num
+		and
+		b.do_num =
+		kd.do_num
+		and b.goods_num = g.goods_num
+		and
+		company_name =
+		#{comName}
+		and
+		(do_status = 'doend'
+		or do_status =
+		'cashcomplete')
+		order
+		by do_open_date
+		desc
+	</select>
+
+	<select id="getCashListCount" resultType="int">
+		select count(*) from
+		cashin
+	</select>
+	
+		<select id="getBuyListCount" resultType="int">
+		select count(*) from
+		BUYBUY
+	</select>
+	
+	
 
 
 

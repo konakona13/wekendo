@@ -85,6 +85,34 @@ public class UpdateComRegRepository {
 		result = sqlSession.selectOne(statement);
 		return result;
 	}
+
+	public List<CashIn> getComNameCashList(int page1, int limit, String comName) {
+		List<CashIn> result = null;
+		String statement = namespace + ".getCashListComName";
+		result = sqlSession.selectList(statement, comName);
+		return result;
+	}
+
+	public List<Buybuy> getNameBuyList(int page1, int limit, String comName) {
+		List<Buybuy> result = null;
+		String statement = namespace + ".getBuybuyListComName";
+		result = sqlSession.selectList(statement, comName);
+		return result;
+	}
+
+	public int getCashListCount() {
+		int result = 0;
+		String statement = namespace + ".getCashListCount";
+		result = sqlSession.selectOne(statement);
+		return result;
+	}
+
+	public int getBuyListCount() {
+		int result = 0;
+		String statement = namespace + ".getBuyListCount";
+		result = sqlSession.selectOne(statement);
+		return result;
+	}
 	
 	
 	
