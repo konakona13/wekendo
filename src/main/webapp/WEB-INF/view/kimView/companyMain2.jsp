@@ -39,7 +39,7 @@ font-family: 'Nanum Gothic', sans-serif;
 	<div id="container" style="width: 1500px; margin: 20px;">
 		<div id="header" style="background-color: white;">
 		<form action="buybuySearch" name="frm" method="post">
-			<h3>기업이름 : ${comAuth.name }</h3>
+			<h4>기업이름 : ${comAuth.name }</h4>
 		</form>
 		</div>
 		<div id="content1"			style="background-color: white-space; height: 500px; width: 700px; float: left; margin: 10px;">
