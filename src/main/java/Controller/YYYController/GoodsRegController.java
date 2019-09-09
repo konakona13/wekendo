@@ -46,6 +46,7 @@ public class GoodsRegController {
 		return "YYYView/addGoods";
 	} 
 	
+	//등록 DB저장
 	@RequestMapping(value = "/goodsRegAction", method = RequestMethod.POST)
 	public String goodsRegAction(Model model, PlaceRegCommand command, HttpSession session, 
 								 MultipartFile[]  report, HttpServletRequest request) throws IllegalStateException, IOException {
@@ -67,24 +68,7 @@ public class GoodsRegController {
 		return detailService.goodsDetail(goodsNum, model, session);
 	}
 	
-	//리뷰
-	/*@RequestMapping(value = "/reviewAction", method = RequestMethod.POST)
-	public String makeReview(Review review, HttpSession session) {
-		
-        return reviewService.makeReview(review, session);
-        
-    }
-	
-	@RequestMapping("/reviewList")
-    public List<ReviewList> reviewList(@RequestParam String goodsNum, Model model){
-		List<ReviewList> reviewList = reviewService.reviewList(model, goodsNum);
-        return reviewList;
-    }*/
 
-
-	
-
-	
 	
 	
 

@@ -90,6 +90,7 @@
 	  				G.GOODS_NUM, G.GOODS_NAME, G.REG_DATE, G.GOODS_STATUS	  		
 		FROM COMPANY c JOIN GOODS g
 		ON c.COMPANY_NUM = g.COMPANY_NUM
+		ORDER BY g.REG_DATE DESC
 </select>
 
 <select id="getGoodsList" resultType="String" resultMap="goodsList">

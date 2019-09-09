@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>상품 등록 승인_관리자페이지</title>	
+<title>Goods List</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -41,98 +39,15 @@
 	<link rel="stylesheet" type="text/css" href="YYYView/css/main.css">
 <!--===============================================================================================-->
 </head>
-<script type="text/javascript" 	src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript"  src="/mybatis-spring-smrit/js/jquery.form.js"></script>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<!-- SweetAlert -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-<script type="text/javascript">
-	function mapL(val){
-		$.ajax({
-			type:"POST",
-			url :"mapM",
-			data: "mapLNum=" +val,
-			datatype: "html",
-			success: function(data1){
-				$("#mapMedium").html(data1);
-				$("#mapSmall").html("");//a테이블 선택 변경시 c테이블 나오지않도록
-			}
-		});
-	}
-	
-	function confirm(){
-		$("#confirm").click(function(){
-			
-			location.href="confirmList/ok";
-		})
-		$("#confirm").click(function(){
-	
-		location.href="confirmList/no";
-		})
-	}
-
-</script>
-<style>
-body {
-	margin-top: 100px;
-	font-family: 'Trebuchet MS', serif;
-	line-height: 1.6
-}
-
-.container {
-	width: 1000px;
-	margin: 0 auto;
-}
-
-ul.tabs {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-
-ul.tabs li {
-	background: none;
-	color: black;
-	display: inline-block;
-	padding: 10px 15px;
-	cursor: pointer;
-	border: 1;
-}
-
-ul.tabs li.current {
-	background: white;
-	color: black;
-}
-
-.tab-content {
-	display: none;
-	background: white;
-	padding: 15px;
-}
-
-.tab-content.current {
-	display: inherit;
-}
-</style>
-</head>
 <body class="animsition">
 
-<!-- 관리자만 볼 수 있게  -->
-<c:if test="${comNum == 'admin'}">
+	<!-- GoodsList -->
 	<div class="bg0 m-t-23 p-b-140">
-		<div class="container" >
+		<div class="container">
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Goods
+						All Goods(${qty})
 					</button>
 					<c:if test="${comNum == 'admin'}">
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".place">
@@ -152,80 +67,118 @@ ul.tabs li.current {
 					</button>
 				  </c:if>
 				</div>
-			</div>
 
-				<!-- 상품승인 리스트 -->
-				<div class="row isotope-grid">
-					<table width=100% class="table table-hover">
-						<tr align="center" valign="middle">
-							<td colspan="8">기업 상품 리스트</td>
-						</tr>
-						<tr>
+				
+				<!-- Search product -->
+				<div class="dis-none panel-search w-full p-t-10 p-b-15">
+					<div class="bor8 dis-flex p-l-15">
+						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+							<i class="zmdi zmdi-search"></i>
+						</button>
 
-							<td>상품번호</td>
-							<td>상품구분</td>
-							<td>상품명</td>
-							<td>작성자</td>
-							<td>등록일</td>
-							<td>승인상태</td>
-							<td>관리</td>
-						</tr>
-
-			
-						<c:if test="${! empty list}">
-							<c:forEach var="list" items="${list}">
-
-								<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${list.companyKind}">
-									
-									<div class="block2">
-									<div class="block2-txt flex-w flex-t p-t-14">
-									<form action="confirmList/ok" method="POST" name="okfrm">
-										
-										<tr>
-											<td>${list.goodsNum}</td>
-											<td>${list.companyKind }</td>
-											<td><a href="goodsRegDetail.goods/${list.goodsNum}"
-												class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-													${list.goodsName} </a></td>
-											<td>${list.companyName}</td>
-											<td>&nbsp; <fmt:formatDate value="${list.regDate}"
-													pattern="yy.MM.dd" /> &nbsp;
-											</td>
-											<td>&nbsp; ${list.goodsStatus} &nbsp;</td>
-											<c:set var="status" value="${list.goodsStatus}" />
-											<c:if test="${status == '미승인'}">
-											<td><input type="submit" value="승인" id="confirm" /></td>
-											</c:if>
-										</tr>
-										
-									</form>
-									</div>
-									</div>
-								</div>
-
-							</c:forEach>
-						</c:if>
-
-					</table>
+						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+					</div>	
 				</div>
+
 			</div>
+
+			<!-- 상품리스트(일반)-->
+			
+			<div class="row isotope-grid">
+				<c:forEach var="list" items="${list}">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${list.companyKind }">
+					<!-- Block2 -->
+				
+					<div class="block2">
+						
+					<!-- <c:set var="mainImg" value="true" />
+						<c:forEach var="Imgs" items="${goodImgs}">
+						<c:if test="${Imgs.companyNum eq list.companyNum && list.goodsNum eq Imgs.goodsNum && mainImg }">
+						<div class="block2-pic hov-img0">
+							<a href="goodsRegDetail.goods/${list.goodsNum}" >
+								<img src="YYYView/upload/${Imgs.goodsImgName}" alt="IMG-PRODUCT">
+							</a>
+						</div>	
+						<c:set var="mainImg" value="false" />
+						</c:if>
+						
+						</c:forEach>
+				    -->	
+
+						<!-- <div class="block2-txt flex-w flex-t p-t-14"> -->
+						<form action="confirmList/ok" method="POST" id="okfrm" name="okfrm">
+							<div class="block2-txt-child1 flex-col-l ">							
+								<a href="goodsRegDetail.goods/${list.goodsNum}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									${list.goodsNum} - ${list.goodsName} 
+								</a>
+								<input type="hidden" name="goodsNum" value="${list.goodsNum }">
+								<input type="hidden" name="goodsName" value="${list.goodsName }">
+								<span class="stext-105 cl3">
+									회사명 : ${list.companyName}(${list.companyKind })
+								</span>
+								
+								<span class="stext-105 cl3"> 
+									등록일 : <fmt:formatDate value="${list.regDate}" pattern="yy.MM.dd" /><br>
+									승인상태 : ${list.goodsStatus} 
+								</span>
+							</div>
+					<c:if test="${list.goodsStatus == '미승인'}">
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-ok" onclick="document.getElementById('okfrm').submit();">									
+									
+									<img class="icon-heart1 dis-block trans-04" src="YYYView/images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="YYYView/images/icons/icon-heart-01.png" alt="ICON">
+									
+								</a>
+							</div>
+					</c:if>
+							</form>
+						
+					</div>
+					
+				</div>
+				</c:forEach>
+					</div>
+					
+				<!-- 가입승인 된 회원만 상품등록 가능하게 조건문 -->
+				
+				<c:set var="status" value="${company.companyStatus}" />
+					
+				<c:if test="${status == '승인완료'}">
+					<div align="right"> 
+				<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+							<a href="goodsReg"> Add Goods </a>
+				</button>
+			           </div>
+				</c:if>
+						
+				<c:if test="${company.companyStatus == '미승인'}">
+						            가입 승인 후에 상품 등록 서비스를 이용하실 수 있습니다.
+				</c:if>
+			
+			<!-- Load more -->
+			<div class="flex-c-m flex-w w-full p-t-45">
+				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+					Load More
+				</a>
+			</div>
+
+		</div>
+
+</div>
+	<!-- FOOTER -->
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
 	</div>
-	</c:if>
-	
-	
-	
-	<div>
-		<c:if test="${empty list}">
-			미승인 내역이 없습니다.
-		</c:if>
-	</div>
 
-	<c:if test="${comNum != 'admin' || empty comNum}">
-		<script>swal ( "Warning" ,  "관리자만 이용 가능한 페이지입니다." ,  "error" ) </script>
-	</c:if>
+	<!-- Modal1 -->
 
 
-	<!--===============================================================================================-->	
+<!--===============================================================================================-->	
 	<script src="YYYView/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="YYYView/vendor/animsition/js/animsition.min.js"></script>
@@ -272,43 +225,45 @@ ul.tabs li.current {
 <!--===============================================================================================-->
 	<script src="YYYView/vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
-		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+		$('.js-addwish-ok').on('click', function(e){
 			e.preventDefault();
 		});
 
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+		$('.js-addwish-ok').each(function(){
+			var nameProduct = $(this).parent().parent().find('goodsName').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-b2');
+				$(this).submit('#okfrm');
+				swal(nameProduct, "is confirmed !", "success");		
+				
+				$(this).addClass('js-addwish-ok');				
 				$(this).off('click');
 			});
 		});
 
-		$('.js-addwish-detail').each(function(){
+	/*	$('.js-addwish-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+				swal(nameProduct, "is confirmed !", "success");
 
 				$(this).addClass('js-addedwish-detail');
 				$(this).off('click');
 			});
-		});
+		}); */
 
 		/*---------------------------------------------*/
 
-		$('.js-addcart-detail').each(function(){
+	/*	$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to cart !", "success");
 			});
-		});
+		});*/
 	
 	</script>
 
 <!--===============================================================================================-->
 	<script src="YYYView/js/main.js"></script>
+
 </body>
 </html>

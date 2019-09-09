@@ -80,7 +80,7 @@ public class GoodsRepository {
 		List<GoodsList> result = null;
 		String statement =  namespace + ".getGoodsAll"; 
 		result = sqlSession.selectList(statement);
-		System.out.println("DB조회 상품 게시글 수 : " +result.size());
+		//System.out.println("DB조회 상품 게시글 수 : " +result.size());
 		
 		return result;
 	}

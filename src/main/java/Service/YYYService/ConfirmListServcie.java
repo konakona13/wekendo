@@ -20,12 +20,13 @@ public class ConfirmListServcie {
 
 	public String getGoodsDetail(Model model, HttpSession session) {
 		session.getAttribute("comNum");
-		List<GoodsList> goods = repository.getGoodsAll();
+		List<GoodsList> goods = repository.getGoodsAll();		
 		model.addAttribute("list", goods);
+		model.addAttribute("qty", goods.size());
 		
-		System.out.println(goods.toString());
+		//System.out.println(goods.toString());
 		
-		return "YYYView/goodsConfirm";
+		return "YYYView/goodsConfirm2";
 	}
 
 
