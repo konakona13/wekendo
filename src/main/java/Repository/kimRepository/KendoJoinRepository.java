@@ -67,6 +67,17 @@ public class KendoJoinRepository {
 		result = sqlSession.selectList(statement);
 		return result;
 	}
+	
+	public List<KendoList> getKendoJoinListMain() {
+		List<KendoList> result = null;
+
+		String statement =  namespace + ".getKendoJoinListMain"; 
+		result = sqlSession.selectList(statement);
+		return result;
+	}
+	
+	
+	
 
 	public int updateDoNowPp(KendoJoin kendoJoin) {
 
@@ -114,6 +125,8 @@ public class KendoJoinRepository {
 		member = sqlSession.selectOne(statement,memberNum);
 		return member;
 	}
+
+
 
 
 
