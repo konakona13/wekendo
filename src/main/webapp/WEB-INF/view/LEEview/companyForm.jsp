@@ -238,10 +238,10 @@ th,td {padding-left:20px;
 	<tr><td width = 200 ><b>* 주거래은행 </b></td>
 		<td width = 400 >
 			<select name="companyBank">
-				<option value="woorie">우리은행</option>
-				<option value="ibk">기업은행</option>
-				<option value="hana">하나은행</option>
-				<option value="sinhan">신한은행</option>
+				<option value="우리은행">우리은행</option>
+				<option value="기업은행">기업은행</option>
+				<option value="하나은행">하나은행</option>
+				<option value="신한은행">신한은행</option>
 			</select>
 		</td>
 	</tr>

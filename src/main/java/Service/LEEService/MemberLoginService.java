@@ -38,9 +38,12 @@ public class MemberLoginService {
 			AuthInfo authInfo = new AuthInfo(member.getMemberId(), member.getEmail(), member.getMemberName());
 			authInfo.setProfile(member.getFileName());
 			authInfo.setMemNum(member.getMemberNum());
+			authInfo.setMemPh1(member.getMemberPh1());
+			authInfo.setAddr(member.getAddr());
 			session.setAttribute("memAuth", authInfo);
 			session.setAttribute("memNum", member.getMemberNum());
 			session.setAttribute("admin", member.getMemberId());
+			model.addAttribute("member1",member);
 		}
 		String idStore = loginCommand.getIdStore();
 		setCookie(idStore, response, loginCommand);

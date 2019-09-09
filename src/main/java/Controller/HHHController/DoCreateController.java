@@ -48,12 +48,29 @@ public class DoCreateController
 	}
 	
 	@RequestMapping("/doCreatePlace")
-	public String doCreatePlace(Model model,@RequestParam("doPlay") String doPlay,@RequestParam("goodsKind") String goodsKind,
+	public String doCreatePlace(Model model,@RequestParam("doPlay") String doPlay,@RequestParam("doArea") String doArea,@RequestParam("goodsKind") String goodsKind,
 			@RequestParam("startDate") String startDate,@RequestParam("endDate") String endDate)
 	{
 		System.out.println("doCreatePlace 진입" );
+		if(doPlay.equals("undefined"))
+		{
+			doPlay = "무관";
+			System.out.println("테마무관");
+		}
+		
+		if(doArea.equals("undefined"))
+		{
+			doArea = "무관";
+			System.out.println("테마무관");
+		}
+		
+		
 		model.addAttribute("doPlay",doPlay);
+		model.addAttribute("doArea",doArea);
 		System.out.println("doPlay"+doPlay);
+		System.out.println("doArea"+doArea);
+		
+		
 		
 		model.addAttribute("goodsKind",goodsKind);
 		model.addAttribute("startDate",startDate);

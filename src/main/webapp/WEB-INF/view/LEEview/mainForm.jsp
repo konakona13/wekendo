@@ -205,13 +205,22 @@ commandName="loginCommand">
 <div id="container" style="width: 900px; margin: 30px;" class="container">
 <table class="table table-bordered">
 <tr>
-<td rowspan="3" width="200" align="center"><img src="LEEview/upload/${memAuth.profile }" class="img-rounded"/></td><td width="200">일반회원 : ${memAuth.memNum }</td>
+<td rowspan="6" width="200" align="center"><img src="LEEview/upload/${memAuth.profile }" class="img-rounded"/></td><td width="200">일반회원 : ${memAuth.memNum }</td>
 </tr>
 <tr>
 <td>아이디 : ${memAuth.id }</td>
 </tr>
 <tr>
 <td>이름 : ${memAuth.name }</td>
+</tr>
+<tr>
+<td>연락처 : ${memAuth.memPh1 }</td>
+</tr>
+<tr>
+<td>주소 : ${memAuth.addr }</td>
+</tr>
+<tr>
+<td>이메일 : ${memAuth.email }</td>
 </tr>
 </table>
 <a href="Logout1" class="btn btn-primary" style="margin-right: 10px;">로그아웃</a>
@@ -236,9 +245,27 @@ commandName="loginCommand">
 
 <%= session.getAttribute("comAuth") %> 님 환영합니다.<br />
 <div id="container" style="width: 900px; margin: 30px;" class="container">
-<table border="1">
+<table class="table table-bordered">
 <tr>
-<td rowspan="3" width="200" align="center"><img src="LEEview/images/company.jpg" class="img-rounded" /></td><td width="400">기업회원 : ${comAuth.name }</td>
+<td rowspan="9" width="200" align="center"><img src="LEEview/images/company.jpg" class="img-rounded" /></td><td width="400">회사명 : ${comAuth.name }</td>
+</tr>
+<tr>
+<td>사업자번호 : ${comAuth.comBN }</td>
+</tr>
+<tr>
+<td>대표자명 : ${comAuth.comCap }</td>
+</tr>
+<tr>
+<td>주소 : ${comAuth.addr }</td>
+</tr>
+<tr>
+<td>연락처 : ${comAuth.memPh1 }</td>
+</tr>
+<tr>
+<td>담당자명 : ${comAuth.comManager }</td>
+</tr>
+<tr>
+<td>이메일 : ${comAuth.email }</td>
 </tr>
 <tr>
 <td>계좌번호 : ${comAuth.comAcc }</td>

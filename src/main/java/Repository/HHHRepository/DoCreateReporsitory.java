@@ -17,6 +17,7 @@ import Model.DTO.HHHDTO.GoodsImg;
 import Model.DTO.HHHDTO.Kendo;
 import Model.DTO.HHHDTO.Member;
 import Model.DTO.HHHDTO.PlaceGoods;
+import Model.DTO.YYYDTO.Review;
 
 public class DoCreateReporsitory
 {
@@ -78,6 +79,7 @@ public class DoCreateReporsitory
 	{
 		Member result = null;
 		String statement =  namespace + ".getUserInfo";
+		
 		result = sqlSession.selectOne(statement,memberId);
 		return result;
 	}
@@ -210,6 +212,15 @@ public class DoCreateReporsitory
 		statement = namespace + ".getOneCompany";
 		Company comp = sqlSession.selectOne(statement,companyNum);
 		return comp;
+	}
+
+	public Review getGoodsReview(String goodsNum)
+	{
+		
+		String statement = null;
+		statement = namespace + ".getReview";
+		Review review = sqlSession.selectOne(statement,goodsNum);
+		return review;
 	}
 	
 	

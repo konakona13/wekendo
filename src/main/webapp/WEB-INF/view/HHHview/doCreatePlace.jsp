@@ -41,7 +41,7 @@
 </head>
 <body class="animsition" style="animation-duration: 1500ms; opacity: 1;">
 	
-	<input type=""hidden"" id="doPlay" value="${doPlay }">
+	<input type="hidden" id="doPlay" value="${doPlay }">
 	<input type="hidden" id="goodsKind" name="goodsKind" value="${goodsKind}">
 	
 	
@@ -63,6 +63,35 @@
 									<td class="column-5">수량</td>
 								</tr>
  				<c:forEach var="placeGoods" items="${list}">
+ 				  <c:if test="${doArea eq '무관' && doPlay eq '무관'}">
+ 				  <tr class="table_row">
+									<td class="column-1">
+										<div class="how-itemcart1">
+											<c:set var="mainImg" value="true"/>
+									    	<c:forEach var="Imgs" items="${goodImgs}">
+									    	 <c:if test="${Imgs.companyNum eq placeGoods.companyNum && placeGoods.goodsNum eq Imgs.goodsNum && mainImg }">
+									    	 <img alt="" src="YYYView/upload/${Imgs.goodsImgName }" width="200px" >
+									    	 <c:set var="mainImg" value="false"/>
+									    	 </c:if>
+									    	</c:forEach>
+								    	</div>
+									</td>
+									<td class="column-2"><a href="placeDetail?num=${placeGoods.goodsNum }&goodsKind=${goodsKind}&startDate=${startDate}&endDate=${endDate}">${placeGoods.goodsName }</a></td>
+									<td class="column-3"><fmt:formatNumber pattern="###,###,###" value="${placeGoods.goodsPrice }" /> 원</td>
+									<td class="column-4">
+										<c:forEach var="company" items="${companyList}">
+								    	 <c:if test="${placeGoods.companyNum eq company.companyNum }">
+								    	${company.companyName }
+								    	 </c:if>
+								    	</c:forEach>
+									</td>
+									<td class="column-5">1</td>
+								</tr>
+ 				  </c:if>
+ 				  
+ 				  <c:if test="${!doArea eq '무관' && !doPlay eq '무관'}">
+ 				 
+ 					<c:if test="${doArea eq placeGoods.mapSNum && doPlay eq placeGoods.themeSNum }">
 								<tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
@@ -86,7 +115,73 @@
 									</td>
 									<td class="column-5">1</td>
 								</tr>
-								
+					</c:if>			
+     			  
+     			  </c:if>
+     			  
+     			  <c:if test="${doArea eq '무관' && !doPlay eq '무관'}">
+ 				 
+ 					<c:if test="${doPlay eq placeGoods.themeSNum }">
+								<tr class="table_row">
+									<td class="column-1">
+										<div class="how-itemcart1">
+											<c:set var="mainImg" value="true"/>
+									    	<c:forEach var="Imgs" items="${goodImgs}">
+									    	 <c:if test="${Imgs.companyNum eq placeGoods.companyNum && placeGoods.goodsNum eq Imgs.goodsNum && mainImg }">
+									    	 <img alt="" src="YYYView/upload/${Imgs.goodsImgName }" width="200px" >
+									    	 <c:set var="mainImg" value="false"/>
+									    	 </c:if>
+									    	</c:forEach>
+								    	</div>
+									</td>
+									<td class="column-2"><a href="placeDetail?num=${placeGoods.goodsNum }&goodsKind=${goodsKind}&startDate=${startDate}&endDate=${endDate}">${placeGoods.goodsName }</a></td>
+									<td class="column-3"> ${placeGoods.goodsPrice }</td>
+									<td class="column-4">
+										<c:forEach var="company" items="${companyList}">
+								    	 <c:if test="${placeGoods.companyNum eq company.companyNum }">
+								    	${company.companyName }
+								    	 </c:if>
+								    	</c:forEach>
+									</td>
+									<td class="column-5">1</td>
+								</tr>
+					</c:if>			
+     			  
+     			  </c:if>
+     			  
+     			  
+     			  <c:if test="${!doArea eq '무관' && doPlay eq '무관'}">
+ 				 
+ 					<c:if test="${doArea eq placeGoods.mapSNum}">
+								<tr class="table_row">
+									<td class="column-1">
+										<div class="how-itemcart1">
+											<c:set var="mainImg" value="true"/>
+									    	<c:forEach var="Imgs" items="${goodImgs}">
+									    	 <c:if test="${Imgs.companyNum eq placeGoods.companyNum && placeGoods.goodsNum eq Imgs.goodsNum && mainImg }">
+									    	 <img alt="" src="YYYView/upload/${Imgs.goodsImgName }" width="200px" >
+									    	 <c:set var="mainImg" value="false"/>
+									    	 </c:if>
+									    	</c:forEach>
+								    	</div>
+									</td>
+									<td class="column-2"><a href="placeDetail?num=${placeGoods.goodsNum }&goodsKind=${goodsKind}&startDate=${startDate}&endDate=${endDate}">${placeGoods.goodsName }</a></td>
+									<td class="column-3"> ${placeGoods.goodsPrice }</td>
+									<td class="column-4">
+										<c:forEach var="company" items="${companyList}">
+								    	 <c:if test="${placeGoods.companyNum eq company.companyNum }">
+								    	${company.companyName }
+								    	 </c:if>
+								    	</c:forEach>
+									</td>
+									<td class="column-5">1</td>
+								</tr>
+					</c:if>			
+     			  
+     			  </c:if>
+     			  
+     			  
+     			  
      				</c:forEach>
 								
 							</table>
