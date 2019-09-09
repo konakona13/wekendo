@@ -26,7 +26,7 @@ public class ConfirmListServcie {
 		
 		//System.out.println(goods.toString());
 		
-		return "YYYView/goodsConfirm2";
+		return "YYYView/goodsConfirm";
 	}
 
 
