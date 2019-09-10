@@ -62,6 +62,6 @@
 	</div>
 
 <br/>               
-
+<a href = "adminMain">기업메인</a>	
 </body>
 </html>

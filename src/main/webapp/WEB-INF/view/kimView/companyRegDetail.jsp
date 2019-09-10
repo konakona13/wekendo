@@ -88,7 +88,7 @@
 		</div>
  	</form>		    
 
-	
+<a href = "../adminMain">기업메인</a>	
 
 
 <br/>               
