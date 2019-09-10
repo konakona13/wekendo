@@ -297,7 +297,7 @@
 	  	SELECT
 	  		<include refid="basecolumnCompany" />
 		FROM COMPANY
-		WHERE COMPANY_STATUS COMPANY_STATUS = '미승인'
+		WHERE COMPANY_STATUS = '미승인'
 
 </select>
 
@@ -373,9 +373,9 @@
 <!-- 리뷰조회 -->
 
 <select id="getReview" resultMap="review">
-		SELECT r.REVIEW_DATE, r.REVIEW_SCORE, r.REVIEW_CONTENT, g.GOODS_NAME
-		FROM REVIEW r, Goods g
-		WHERE R.GOODS_NUM =  G.GOODS_NUM
+		SELECT R.REVIEW_NUM
+		FROM REVIEW R, MEMBER M
+		WHERE R.MEMBER_NUM = M.MEMBER_NUM
 </select>
 
 <!-- 활동완료 리뷰등록 페이지 연동  -->
