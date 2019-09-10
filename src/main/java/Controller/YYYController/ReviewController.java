@@ -27,7 +27,7 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	
-	
+	//리뷰화면
 	@RequestMapping("/kendoReview")
 	public String getDoGoods(Model model, @RequestParam(value = "dodoNum") String doNum) {
 		System.out.println(doNum);	
@@ -35,7 +35,7 @@ public class ReviewController {
 		return reviewService.getDoGoods(model, doNum);
 	}
 	
-	
+	//리뷰 DB저장
 	@RequestMapping(value = "/reviewAction", method = RequestMethod.POST)
 	public String create(Review review, HttpServletRequest request, HttpSession session) {
 		System.out.println("리뷰등록할때 뷰에서 넘어오는 상품번호 : " + request.getParameter("goodsNum"));

@@ -43,87 +43,249 @@
 </head>
 <script type="text/javascript" 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"  src="/mybatis-spring-smrit/js/jquery.form.js"></script>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <!-- SweetAlert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
-	function mapL(val){
-		$.ajax({
-			type:"POST",
-			url :"mapM",
-			data: "mapLNum=" +val,
-			datatype: "html",
-			success: function(data1){
-				$("#mapMedium").html(data1);
-				$("#mapSmall").html("");//a테이블 선택 변경시 c테이블 나오지않도록
-			}
+
+$(function(){
+	$("#confirm").click(function(){
+			swal("Confirm", "승인완료", "success");			
+			opener.location.href ='/confirmList/ok';
+			$("#okfrm").submit();
 		});
-	}
-	
-	function confirm(){
-		$("#confirm").click(function(){
-			
-			location.href="confirmList/ok";
-		})
-		$("#confirm").click(function(){
-	
-		location.href="confirmList/no";
-		})
-	}
+});
+
 
 </script>
-<style>
-body {
-	margin-top: 100px;
-	font-family: 'Trebuchet MS', serif;
-	line-height: 1.6
-}
-
-.container {
-	width: 1000px;
-	margin: 0 auto;
-}
-
-ul.tabs {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-
-ul.tabs li {
-	background: none;
-	color: black;
-	display: inline-block;
-	padding: 10px 15px;
-	cursor: pointer;
-	border: 1;
-}
-
-ul.tabs li.current {
-	background: white;
-	color: black;
-}
-
-.tab-content {
-	display: none;
-	background: white;
-	padding: 15px;
-}
-
-.tab-content.current {
-	display: inherit;
-}
-</style>
 </head>
 <body class="animsition">
+
+
+<!-- Header -->
+	<header>
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<!-- Topbar -->
+			<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">
+						쉼표가 필요한 순간, 위켄두
+					</div>
+
+					<div class="right-top-bar flex-w h-full">
+					
+          				<c:if test="${admin == null}">
+          				<a href="loginmain"  class="flex-c-m trans-04 p-lr-25">로그인</a>
+          				</c:if>
+						<c:if test="${admin != null}">
+          				<a href="Logout1"  class="flex-c-m trans-04 p-lr-25">로그아웃</a>
+          				</c:if>
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">고객센터</a>        
+                                      
+					</div>
+				</div>
+			</div>
+
+			<div class="wrap-menu-desktop">
+				<nav class="limiter-menu-desktop container">
+					
+					<!-- Logo desktop -->		
+					<a href="#" class="logo">
+						<img src="kimView/images/icons/logom.png" alt="IMG-LOGO">
+					</a>
+
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li class="active-menu">
+								<a href="adminMain">Home</a>
+							</li>
+
+							<li class="active-menu">
+								<a href="memcomList">회원관리</a>
+                                <ul class="sub-menu">
+                                	<li><a href="companyReg">기업가입승인</a></li>
+									<li><a href="memcomList">회원리스트</a></li>
+									
+
+								</ul>								
+							</li>
+
+							<li class="active-menu">
+                                <a href="goodsMain">상품관리</a>
+                                <ul class="sub-menu">
+									<li><a href="confirmList">상품승인</a></li>
+									<li><a href="goodsMain">상품리스트</a></li>
+								</ul>
+							</li>
+
+							<li class="active-menu">
+                                <a href="kendo_list">DO상품관리</a>
+                                <ul class="sub-menu">
+									<li><a href=""kendo_list"">주문내역</a></li>
+								</ul>
+                            </li>
+                            
+							<li class="active-menu">
+                                <a href="Cashin">매출관리</a>
+                                <ul class="sub-menu">
+									<li><a href="Cashin">매출관리</a></li>
+									<li><a href="Cashin">정산관리</a></li>
+								</ul>
+                            </li>
+                            
+							<li class="active-menu">
+                                <a href="#">상품문의</a>
+                                <ul class="sub-menu">
+									<li><a href="#">문의내역</a></li>
+
+								</ul>
+                            </li>							
+						</ul>
+					</div>	
+
+				</nav>
+			</div>	
+		</div>
+
+		<!-- Header Mobile -->
+		<div class="wrap-header-mobile">
+			<!-- Logo moblie -->		
+			<div class="logo-mobile">
+				<a href="index.html"><img src="kimView/images/icons/logom.png"" alt="IMG-LOGO"></a>
+			</div>
+
+			<!-- Icon header -->
+			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+					<i class="zmdi zmdi-search"></i>
+				</div>
+
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+					<i class="zmdi zmdi-shopping-cart"></i>
+				</div>
+
+				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+					<i class="zmdi zmdi-favorite-outline"></i>
+				</a>
+			</div>
+
+			<!-- Button show menu -->
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
+		</div>
+
+
+		<!-- Menu Mobile -->
+		<div class="menu-mobile">
+			<ul class="topbar-mobile">
+				<li>
+					<div class="left-top-bar">
+						쉼표가 필요한 순간, 위켄두
+					</div>
+				</li>
+
+				<li>
+					<div class="right-top-bar flex-w h-full">
+					
+					
+						<c:if test="${memAuth.id == null}">
+						<a href="loginmain" class="flex-c-m p-lr-10 trans-04">회원가입 / 로그인</a>
+						</c:if>
+						
+						<c:if test="${memAuth.id != null}">
+						<a href="Logout1" class="flex-c-m p-lr-10 trans-04">로그아웃</a>  
+						<a href="loginmain" class="flex-c-m p-lr-10 trans-04">마이페이지</a>
+						<a href="sendBoxList" class="flex-c-m p-lr-10 trans-04">쪽지함</a>  
+						</c:if>  
+                        <a href="#" class="flex-c-m p-lr-10 trans-04">고객센터</a>        
+                        
+
+					</div>
+				</li>
+			</ul>
+
+			<ul class="main-menu-m">
+				<li>
+					<a href="main">Home</a>
+
+					<span class="arrow-main-menu-m">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+				</li>
+
+				<li>
+					<a href="kendoJoinList">추천DO</a>
+					
+				</li>
+
+				<li>
+					<a href="kendoJoinList" class="label1 rs1" data-label1="hot">액티비티</a>
+                    <ul class="sub-menu">
+                        <li><a href="kendoJoinList">테마파크</a></li>
+                        <li><a href="home-02.html">스포츠</a></li>
+                        <li><a href="home-03.html">아웃도어</a></li>
+                        <li><a href="kendoJoinList">수상레저</a></li>
+                        <li><a href="home-03.html">투어/관람</a></li>
+                        <li><a href="home-03.html">대회/축제</a></li>
+                        <li><a href="home-03.html">공연/전시</a></li>
+                        <li><a href="home-03.html">기타</a></li>
+                    </ul>
+				</li>
+
+				<li>
+					<a href="kendoJoinList">취미</a>
+                    <ul class="sub-menu">
+                        <li><a href="index.html">외국어</a></li>
+                        <li><a href="home-02.html">책</a></li>
+                        <li><a href="kendoJoinList">음악</a></li>
+                        <li><a href="home-03.html">사진</a></li>
+                        <li><a href="home-03.html">게임</a></li>
+                        <li><a href="home-03.html">요리</a></li>
+                        <li><a href="home-03.html">봉사</a></li>
+                        <li><a href="home-03.html">반려동물</a></li>
+                        <li><a href="home-03.html">기타</a></li>
+                    </ul>
+				</li>
+
+
+                <c:if test="${memAuth.id != null}">
+                <li class="active-menu">
+                	<a href="loginmain">DO만들기</a>
+				</li>
+				</c:if> 
+							
+                <c:if test="${memAuth.id == null}">
+                	<li class="active-menu">
+                   		<a href="doCreateEnter">DO만들기</a>
+					</li>
+				</c:if> 
+
+			</ul>
+		</div>
+
+		<!-- Modal Search -->
+		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+			<div class="container-search-header">
+				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+					<img src="kimView/images/icons/icon-close2.png" alt="CLOSE">
+				</button>
+
+				<form class="wrap-search-header flex-w p-l-15">
+					<button class="flex-c-m trans-04">
+						<i class="zmdi zmdi-search"></i>
+					</button>
+					<input class="plh3" type="text" name="search" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</header>
+	<br><br><br><br>
 
 <!-- 관리자만 볼 수 있게  -->
 <c:if test="${comNum == 'admin'}">
@@ -131,26 +293,13 @@ ul.tabs li.current {
 		<div class="container" >
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+				
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Goods
-					</button>
-					<c:if test="${comNum == 'admin'}">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".place">
-						Place
+						All Goods(${qty})
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".hotel">
-						Hotel
-					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".car">
-						Car
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".mentor">
-						Mentor
-					</button>
-				  </c:if>
+				  
 				</div>
 			</div>
 
@@ -158,7 +307,7 @@ ul.tabs li.current {
 				<div class="row isotope-grid">
 					<table width=100% class="table table-hover">
 						<tr align="center" valign="middle">
-							<td colspan="8">기업 상품 리스트</td>
+							<td colspan="8">기업 상품 승인 관리 목록</td>
 						</tr>
 						<tr>
 
@@ -175,7 +324,7 @@ ul.tabs li.current {
 						<c:if test="${! empty list}">
 							<c:forEach var="list" items="${list}">
 
-								<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${list.companyKind}">
+								<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${list.goodsStatus}">
 									
 									<div class="block2">
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -184,7 +333,10 @@ ul.tabs li.current {
 										<tr>
 										<form action="confirmList/ok" method="POST" name="okfrm">
 											<td><input type="hidden" value="${list.goodsNum}" name="goodsNum">${list.goodsNum}</td>
-											<td>${list.companyKind }</td>
+											
+											<td>${list.companyKind }
+												<input type="hidden"  name="filter" value="${list.companyKind }"></div>
+ 											</td>
 											<td><a href="goodsRegDetail.goods/${list.goodsNum}"
 												class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 													${list.goodsName} </a></td>
@@ -194,9 +346,12 @@ ul.tabs li.current {
 											</td>
 											<td>&nbsp; ${list.goodsStatus} &nbsp;</td>
 											<c:set var="status" value="${list.goodsStatus}" />
-											<c:if test="${status == '미승인'}">
-											<td><input type="submit" value="승인" id="confirm" /></td>
-											</c:if>
+											<td>
+												<c:if test="${status == '미승인'}">												
+												<button  id="confirm"  
+													class="flex-c-m stext-101 cl0 size-10 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">승인</button>
+												</c:if>
+											</td>
 										</form>
 										</tr>
 										

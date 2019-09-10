@@ -27,13 +27,13 @@ public class ReviewRepository {
 		return review;
 	}
 
-	/*public List<ReviewList> getReview(String goodsNum) {
-		List<ReviewList> result = null;
+	public Review getReview(String memNum) {
+		Review review = null;
 		String statement =  namespace + ".getReview"; 
-		result = sqlSession.selectList(statement,goodsNum);
+		review = sqlSession.selectOne(statement,memNum);
 		
-		return result;
-	}*/
+		return review;
+	}
 
 	public List<DodoY> getDoList(String memNum) {
 		List<DodoY> result = null;

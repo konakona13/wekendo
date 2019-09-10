@@ -247,7 +247,7 @@ WHERE GOODS_NUM = #{goodsNum}
 		INSERT INTO KENDO(<include refid="basekendo" />)
 		VALUES
 		('DO'||DO_NUM_SEQ.NEXTVAL, #{hostNum},#{doName},#{doStartDate},#{doEndDate},
-		SYSDATE,SYSDATE,#{doPp},1,#{doDetail},
+		SYSDATE,#{doCloseDate},#{doPp},1,#{doDetail},
 		#{doOptGender},#{doOptAge},'inviting')
 	</insert>
 	
