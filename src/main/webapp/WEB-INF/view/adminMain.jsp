@@ -57,6 +57,58 @@ $(function(){
 	<link rel="stylesheet" type="text/css" href="kimView/css/main.css">
 <!--===============================================================================================-->
 </head>
+
+
+
+
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript"
+	src="/mybatis-spring-smrit/js/jquery.form.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic:400,700,800&display=swap&subset=korean" rel="stylesheet">
+	<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('ul.tabs li').click(function() {
+			var tab_id = $(this).attr('data-tab');
+
+			$('ul.tabs li').removeClass('current');
+			$('.tab-content').removeClass('current');
+
+			$(this).addClass('current');
+			$("#" + tab_id).addClass('current');
+		})
+
+	})
+	
+	var comNum = $('#companyNum').val();
+	var memNum = $('#memberNum').val();
+
+	function openComWindow(comNum) {
+		// 새창에 대한 세팅(옵션)
+		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1100,left=300,top=20';
+		window.open("goodsMainLEE?comNum=" + comNum, "comGoodsDetail",	settings);
+	}
+	
+	function openMemWindow(memNum) {
+		// 새창에 대한 세팅(옵션)
+		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1100,left=300,top=20';
+		window.open("kendoMainLEE?memNum=" + memNum, "memDoDetail",	settings);
+	}
+	
+</script>
+
+
+
+
 <body class="animsition">
 	
 	<!-- Header -->
@@ -67,16 +119,19 @@ $(function(){
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
 					<div class="left-top-bar">
-						쉼표가 필요한 순간, 위켄두
+						쉼표가 필요한 순간, 위켄두 &nbsp;&nbsp;&nbsp;
+						    <c:if test="${admin != null}">
+    						${admin} 님 로그인 되었습니다.
+    						</c:if>
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
 					
           				<c:if test="${admin == null}">
-          				<a href="loginmain">로그인</a>
+          				<a class="flex-c-m trans-04 p-lr-25" href="loginmain">로그인</a>
           				</c:if>
 						<c:if test="${admin != null}">
-          				<a href="Logout1">로그아웃</a>
+          				<a class="flex-c-m trans-04 p-lr-25" href="Logout1">로그아웃</a>
           				</c:if>
                         <a href="#" class="flex-c-m trans-04 p-lr-25">고객센터</a>        
                                       
@@ -442,84 +497,192 @@ $(function(){
 	<!-- Banner -->
 	<div class="sec-banner bg0 p-t-80 p-b-50">
 		<div class="container">
-    <c:if test="${admin != null}">
-    <h5> ${admin} 님 로그인 되었습니다.</h5> <br/>
-    </c:if>
-			<div class="row">
-				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-					<!-- Block1 -->
-					<div class="block1 wrap-pic-w">
-						<img src="kimView/images/banner-01.jpg" alt="IMG-BANNER">
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
 
-								</span>
 
-								<span class="block1-info stext-102 trans-04">
-									Spring 2018
-								</span>
-							</div>
 
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">
-									Shop Now
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
 
-				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-					<!-- Block1 -->
-					<div class="block1 wrap-pic-w">
-						<img src="kimView/images/banner-02.jpg" alt="IMG-BANNER">
 
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Men
-								</span>
+	<div class="container">
+<h4>** 신규 회원</h4><br/>
 
-								<span class="block1-info stext-102 trans-04">
-									Spring 2018
-								</span>
-							</div>
+		* 일반회원
 
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">
-									Shop Now
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-					<!-- Block1 -->
-					<div class="block1 wrap-pic-w">
-						<img src="kimView/images/banner-03.jpg" alt="IMG-BANNER">
-
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Accessories
-								</span>
-
-								<span class="block1-info stext-102 trans-04">
-									New Trend
-								</span>
-							</div>
-
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">
-									Shop Now
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
+<div id="tab-1" class="tab-content current">
+		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
+<c:if test="${! empty members}">
+	<tr align="center" valign="middle">
+		<td colspan="8" style="background-color: lightgrey; font-weight: bold;">일반회원리스트</td>
+	</tr>
+	
+	<tr align="center" valign="middle" bordercolor="">
+		<th style="font-family:Tahoma;font-size:8pt;" width="5%" height="26">
+			<div align="center">회원번호</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">ID</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">이름</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">연락처</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">이메일</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="20%">
+			<div align="center">주소</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">생년월일</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="5%">
+			<div align="center">상태</div>
+		</th>
+	</tr>
+<c:forEach var="member" items="${members}" begin="1" end="5" step="1">
+	<tr align="center" valign="middle" bordercolor="#333333"
+		onmouseover="this.style.backgroundColor='F8F8F8'"
+		onmouseout="this.style.backgroundColor=''">
+		<td height="23" style="font-family:Tahoma;font-size:10pt;">
+			<a href="javascript:openMemWindow('${member.memberNum }');" id="memberNum">
+			${member.memberNum }
+			</a>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+				${member.memberId }
 			</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+				${member.memberName }
+			</div>
+		</td>
+		
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+			${member.memberPh1 }
+			</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+		${member.email }
+			</div>
+		</td>	
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+		${member.addr }
+			</div>
+		</td>	
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+			<fmt:formatDate value="${member.memberBir }" pattern="yy/MM/dd" />
+			</div>
+		</td>	
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">${member.status }</div>
+		</td>
+	</tr>
+</c:forEach>
+	
+</c:if>
+
+</table>
+
+
+
+		</div>
+
+
+
+		* 기업회원
+
+				
+		<div id="tab-2" class="tab-content">
+		<table width=100%  border="0" cellspacing="0" class="table table-hover">
+<c:if test="${! empty companys}">
+	<tr align="center" valign="middle">
+		<td colspan="7" style="background-color: lightgrey; font-weight: bold;">기업회원리스트</td>
+		
+	</tr>
+	
+	<tr align="center" valign="middle" bordercolor="#333333">
+		<th style="font-family:Tahoma;font-size:8pt;" width="5%" height="26">
+			<div align="center">회원번호</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">회사명</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="5%">
+			<div align="center">대표자명</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">연락처</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">담당자이메일</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="20%">
+			<div align="center">주소</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">상태</div>
+		</th>
+	</tr>
+<c:forEach var="company" items="${companys}" begin="1" end="5" step="1">
+	<tr align="center" valign="middle" bordercolor="#333333"
+		onmouseover="this.style.backgroundColor='F8F8F8'"
+		onmouseout="this.style.backgroundColor=''">
+		<td height="23" style="font-family:Tahoma;font-size:10pt;">
+			<a href="javascript:openComWindow('${company.companyNum }');" id="companyNum" >
+			${company.companyNum }
+			</a>
+		</td>
+		
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+				${company.companyName }
+			</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+				${company.companyCap }
+			</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+			${company.companyPh }
+			</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+		${company.companyEmail }
+			</div>
+		</td>	
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+		${company.companyAddr }
+			</div>
+		</td>	
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">${company.companyStatus }</div>
+		</td>
+	</tr>
+</c:forEach>
+	
+</c:if>
+
+</table>
+
+		</div>
+	</div>
+	
+	
+	
+
+
+
 		</div>
 	</div>
 
@@ -527,12 +690,9 @@ $(function(){
 
 
 	<!-- body -->
-			<h1>body</h1>
+		
 			
-			
-			
-		</div>
-	</section>
+	
 
 
 	<!-- Footer -->
@@ -541,57 +701,52 @@ $(function(){
 			<div class="row">
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Categories
+						카테고리
 					</h4>
 
 					<ul>
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Women
+								추천 DO
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Men
+								액티비티
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shoes
+								취미
 							</a>
 						</li>
 
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Watches
-							</a>
-						</li>
 					</ul>
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Help
+						고객센터
 					</h4>
 
 					<ul>
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Track Order
+								주문 문의
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Returns 
+								환불 
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shipping
+								제휴문의
 							</a>
 						</li>
 
@@ -605,11 +760,11 @@ $(function(){
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						GET IN TOUCH
+						주소 / 연락처
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						서울특별시 성동구 뚝섬로1 나길 5<br/> 헤이그라운드 G201 (02) 512-3662
 					</p>
 
 					<div class="p-t-27">
@@ -634,13 +789,13 @@ $(function(){
 
 					<form>
 						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
+							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="info@wekendo.com">
 							<div class="focus-input1 trans-04"></div>
 						</div>
 
 						<div class="p-t-18">
 							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
+								구독
 							</button>
 						</div>
 					</form>
@@ -650,29 +805,29 @@ $(function(){
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+						<img src="kimView/images/icons/icon-pay-01.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+						<img src="kimView/images/icons/icon-pay-02.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+						<img src="kimView/images/icons/icon-pay-03.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+						<img src="kimView/images/icons/icon-pay-04.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+						<img src="kimView/images/icons/icon-pay-05.png" alt="ICON-PAY">
 					</a>
 				</div>
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved WEKENDO co.
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>

@@ -411,6 +411,106 @@ $(function(){
     <h5> ${comAuth.id} 님 환영합니다.</h5> <br/><br/>
     </c:if>
 
+
+
+
+<div id="container" style="width: 900px; margin: 30px;" class="container">
+	<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
+<c:if test="${! empty orders}">
+	<tr align="center" valign="middle">
+		<td colspan="8" style="background-color: lightgrey; font-weight: bold;">주문내역</td>
+	</tr>
+	
+	<tr align="center" valign="middle" bordercolor="">
+		<th style="font-family:Tahoma;font-size:8pt;" width="5%" height="26">
+			<div align="center">주문번호</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
+			<div align="center">활동명</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">상품명</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">구매자명</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="15%">
+			<div align="center">이용날짜</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">상품금액</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">활동인원</div>
+		</th>
+		<th style="font-family:Tahoma;font-size:8pt;" width="10%">
+			<div align="center">결제금액/총금액</div>
+		</th>
+	</tr>
+<c:forEach var="order" items="${orders}">
+<c:if test="${order.goodsStock == 0 }">
+	<tr align="center" valign="middle" bordercolor="#333333"
+		onmouseover="this.style.backgroundColor='F8F8F8'"
+		onmouseout="this.style.backgroundColor=''">
+		<td height="23" style="font-family:Tahoma;font-size:10pt;">
+			${order.buyNum }
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+				${order.doName }
+			</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+				${order.goodsName }
+			</div>
+		</td>
+		
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+			${order.memName }
+			</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+		<fmt:formatDate value="${order.startDate }" pattern="yy/MM/dd" /> ~ 
+		<fmt:formatDate value="${order.endDate }" pattern="yy/MM/dd" />
+			</div>
+		</td>	
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+		<fmt:formatNumber value="${order.goodsPrice }" pattern="#,###" /> 원 
+			</div>
+		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center">
+		${order.payPP } 명 
+			</div>
+		</td>		
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<div align="center"><fmt:formatNumber value="${order.buyPrice }" pattern="#,###" /> 원 
+			/ <fmt:formatNumber value="${order.payDutch * order.payPP}" pattern="#,###" /> 원</div>
+		</td>
+	</tr>
+	</c:if>
+</c:forEach>
+	
+</c:if>
+<c:if test="${empty orders }">
+	<tr align="center" valign="middle">
+		<td colspan="4">주문내역</td>
+		<th align=right>
+			<font size=2>상품이 주문된 내역이 존재하지 않습니다.</font>
+		</th>
+	</tr>
+</c:if>
+</table>
+</div>
+
+
+
+
+
 		</div>
 	</div>
 
@@ -432,57 +532,52 @@ $(function(){
 			<div class="row">
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Categories
+						카테고리
 					</h4>
 
 					<ul>
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Women
+								추천 DO
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Men
+								액티비티
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shoes
+								취미
 							</a>
 						</li>
 
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Watches
-							</a>
-						</li>
 					</ul>
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Help
+						고객센터
 					</h4>
 
 					<ul>
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Track Order
+								주문 문의
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Returns 
+								환불 
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shipping
+								제휴문의
 							</a>
 						</li>
 
@@ -496,11 +591,11 @@ $(function(){
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						GET IN TOUCH
+						주소 / 연락처
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						서울특별시 성동구 뚝섬로1 나길 5<br/> 헤이그라운드 G201 (02) 512-3662
 					</p>
 
 					<div class="p-t-27">
@@ -525,13 +620,13 @@ $(function(){
 
 					<form>
 						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
+							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="info@wekendo.com">
 							<div class="focus-input1 trans-04"></div>
 						</div>
 
 						<div class="p-t-18">
 							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
+								구독
 							</button>
 						</div>
 					</form>
@@ -541,29 +636,29 @@ $(function(){
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+						<img src="kimView/images/icons/icon-pay-01.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+						<img src="kimView/images/icons/icon-pay-02.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+						<img src="kimView/images/icons/icon-pay-03.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+						<img src="kimView/images/icons/icon-pay-04.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+						<img src="kimView/images/icons/icon-pay-05.png" alt="ICON-PAY">
 					</a>
 				</div>
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved WEKENDO co.
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>

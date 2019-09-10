@@ -65,6 +65,7 @@ font-family: 'Nanum Gothic', sans-serif;
 }
 </style>
 <body>
+
 	<div id="container" style="width: 1500px; margin: 20px;">
 		<div id="header" style="background-color: white;">
 		<form action="buybuySearch" name="frm" method="post">

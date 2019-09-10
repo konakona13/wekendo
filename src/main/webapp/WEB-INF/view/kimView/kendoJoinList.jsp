@@ -110,14 +110,6 @@ a { text-decoration:none }
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-				액티비티
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
-			<span class="stext-109 cl4">
-				수상레저
-			</span>
 		</div>
 	</div>
 		
@@ -127,39 +119,7 @@ a { text-decoration:none }
 		<div class="container">
 			<div class="row">
 				
-	<table border ="1" >
-        	<tr>
-        		<td>Do No.</td>
-
-                <td>DO 이름</td>
-				<td>HOST 번호</td>
-                <td>DO 시작날짜</td>
-                <td>DO 종료날짜</td>
-                <td>DO 진행상태</td>  
-
-				<td>모집인원</td>
-				<td>현재인원</td>				
-				<td>단가  금액</td>        
-                                  
-             </tr>
-<c:if test="${! empty kendoJoins}">                
-	<c:forEach var="kendoJoin" items="${kendoJoins}">
-            <tr>
-
-				<td>${kendoJoin.doNum}</td>  
-                <td>${kendoJoin.doName}</td>  
-           		<td>${kendoJoin.hostNum}</td>                 
-                <td>${kendoJoin.doStartDate}</td>  
-                <td>${kendoJoin.doEndDate}</td>   
-                <td>${kendoJoin.doStatus}</td>
-
-				<td>${kendoJoin.doPp}</td>
-				<td>${kendoJoin.doNowPp}</td>				
-				<td>${kendoJoin.paymentKim.payDutch}</td>  
-             </tr>
-	</c:forEach>
-</c:if>               
-		</table>     
+  
 
 	
 	
@@ -172,24 +132,25 @@ a { text-decoration:none }
 							<div class="wrap-slick3-dots"></div>
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 							<c:forEach var="kendoJoin" items="${kendoJoins}">	
-								<br/><br/>
+							<br/><br/>
+								<div>
 									
 								
 									<c:set var ="doImgKind" value="${kendoJoin.doImg.doImgKind}" scope="session" />
 									<c:if test="${doImgKind == 'main'}">	
-										<img src="HHHview/doIMG/${kendoJoin.doImg.doImgName}"  width="450"><br/>
+										<img src="HHHview/doIMG/${kendoJoin.doImg.doImgName}"  width="450" height="300"><br/>
 									</c:if>
+								</div>
+								<h1 style="color:white;">sdf</h1><br/>
+							
 								
-								
-								<br/><br/>	
-								<hr>	
+									
 							</c:forEach>
 							
 								
-						</div><hr>
-					</div><hr>
-				</div><hr>
-<!-- end-->	
+						</div>
+					</div>
+				</div>
 
 
 
@@ -249,8 +210,15 @@ a { text-decoration:none }
 									</button>
 								</c:if>
 								<c:if test="${memAuth.id != null}">
-									<button type="button" onclick="location.href='./kendoDetail/${kendoJoin.doNum}'" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">상세보기
+								<c:if test="${doStatus != 'inviting'}">
+									<button type="button" onclick="#" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">상세보기
 									</button>
+								</c:if>
+								
+								<c:if test="${doStatus == 'inviting'}">
+									<button type="button" onclick="location.href='./kendoDetail/${kendoJoin.doNum}'" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">상세보기
+									</button>
+								</c:if>
 								</c:if>
 
 									
@@ -366,7 +334,7 @@ a { text-decoration:none }
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
+				swal("주문 할 수 없는 상품입니다.");
 			});
 		});
 	

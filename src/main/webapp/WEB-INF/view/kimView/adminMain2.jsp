@@ -24,37 +24,9 @@
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
 
-		$('ul.tabs li').click(function() {
-			var tab_id = $(this).attr('data-tab');
 
-			$('ul.tabs li').removeClass('current');
-			$('.tab-content').removeClass('current');
 
-			$(this).addClass('current');
-			$("#" + tab_id).addClass('current');
-		})
-
-	})
-	
-	var comNum = $('#companyNum').val();
-	var memNum = $('#memberNum').val();
-
-	function openComWindow(comNum) {
-		// 새창에 대한 세팅(옵션)
-		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1100,left=300,top=20';
-		window.open("goodsMainLEE?comNum=" + comNum, "comGoodsDetail",	settings);
-	}
-	
-	function openMemWindow(memNum) {
-		// 새창에 대한 세팅(옵션)
-		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1100,left=300,top=20';
-		window.open("kendoMainLEE?memNum=" + memNum, "memDoDetail",	settings);
-	}
-	
-</script>
 <style>
 body {
 	margin-top: 100px;
@@ -99,15 +71,12 @@ ul.tabs li.current {
 </style>
 <body>
 
-	<div class="container">
+<div class="container">
 <h4>** 신규 회원</h4><br/>
-		<ul class="tabs btn btn-default">
-			<li class="tab-link current" data-tab="tab-1">일반회원</li>
-			<li class="tab-link" data-tab="tab-2">기업회원</li>
-		</ul>
 
+		* 일반회원
 
-		<div id="tab-1" class="tab-content current">
+<div id="tab-1" class="tab-content current">
 		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
 <c:if test="${! empty members}">
 	<tr align="center" valign="middle">
@@ -187,15 +156,18 @@ ul.tabs li.current {
 </c:forEach>
 	
 </c:if>
-<c:if test="${empty members}">
-	<tr align="center" valign="middle">
-		<td colspan="4">일반회원리스트</td>
-		<th align=right>
-			<font size=2>가입된 일반회원이 없습니다.</font>
-		</th>
-	</tr>
-</c:if>
+
 </table>
+
+
+
+		</div>
+
+
+
+		* 기업회원
+
+				
 		</div>
 		
 		<div id="tab-2" class="tab-content">
