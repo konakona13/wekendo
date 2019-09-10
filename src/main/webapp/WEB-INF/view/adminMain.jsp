@@ -497,9 +497,7 @@ $(function(){
 
 
 	<div class="container">
-<h4>** 신규 회원</h4><br/>
 
-		* 일반회원
 
 <div id="tab-1" class="tab-content current">
 		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-hover">
@@ -590,12 +588,12 @@ $(function(){
 
 
 
-		* 기업회원
+		
 
 				
 		<div id="tab-2" class="tab-content">
 		<table width=100%  border="0" cellspacing="0" class="table table-hover">
-<c:if test="${! empty companys}">
+<c:if test="${!empty companys}">
 	<tr align="center" valign="middle">
 		<td colspan="7" style="background-color: lightgrey; font-weight: bold;">기업회원리스트</td>
 		
