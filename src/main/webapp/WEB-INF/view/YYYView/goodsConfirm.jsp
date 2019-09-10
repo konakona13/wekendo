@@ -347,9 +347,11 @@ $(function(){
 											<td>&nbsp; ${list.goodsStatus} &nbsp;</td>
 											<c:set var="status" value="${list.goodsStatus}" />
 											<td>
-												<c:if test="${status == '미승인'}">												
+												<c:if test="${status == '미승인'}">			
+												<a href="/confirmList/ok">								
 												<button  id="confirm"  
 													class="flex-c-m stext-101 cl0 size-10 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">승인</button>
+												</a>	
 												</c:if>
 											</td>
 										</form>
