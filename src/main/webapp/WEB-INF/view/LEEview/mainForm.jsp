@@ -205,7 +205,7 @@ commandName="loginCommand">
 <div id="container" style="width: 900px; margin: 30px;" class="container">
 <table class="table table-bordered">
 <tr>
-<td rowspan="6" width="200" align="center"><img src="LEEview/upload/${memAuth.profile }" class="img-rounded"/></td><td width="200">일반회원 : ${memAuth.memNum }</td>
+<td rowspan="6" width="200" align="center"><img src="LEEview/upload/${memAuth.profile }" width="200" class="img-rounded"/></td><td width="200">일반회원 : ${memAuth.memNum }</td>
 </tr>
 <tr>
 <td>아이디 : ${memAuth.id }</td>
