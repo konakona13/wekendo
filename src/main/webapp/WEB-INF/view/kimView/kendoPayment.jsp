@@ -99,12 +99,13 @@ ul.tabs li.current {
 </head>
 <body>
 
-        <h3>활동선택확인</h3>
-        <p>
+        
+       
         
      <form name="frm" action="guestPayAction" method="POST">
      <div class = "container">   
-     <table class="table table-striped" border="1">
+     <h4>DO 활동선택확인</h4><br/>
+     <table class="table table-striped" >
      <tr>
      	<td width = "200px"> 활동번호 </td> 
      	<td> <input type="hidden" name = "doNum" value="${kdc.doNum}"/>${kdc.doNum}</td>
@@ -131,35 +132,35 @@ ul.tabs li.current {
 		<td>자기소개</td>
 		<td><input type="hidden" name = "joinIntroduce"  value ="${kjc.joinIntroduce}"/>${kjc.joinIntroduce}</td>
  	</tr>
- 	<tr><td></td><td></td></tr>
+ 	
 <c:set var ="doQty" value="${kdc.doQty}" scope="session" />
 <c:if test="${doQty > 1}">   
 <c:forEach var="i" begin="1" end="${doQty-1}" step="1" >
 	<tr>
-		<td><h2>친구 정보${i}</h2></td>
+		<td><br/><h4>친구 정보 ${i}</h4></td><td></td>
 	</tr>
 	<tr>
-		<th>친구이름</td>
+		<td>친구이름</td>
 		<td><input type="hidden" name = "friendName"  value ="${kjc.friendName}"/>${kjc.friendName}</td>
 	</tr>
 	<tr>
-		<th>친구연락처</td>
+		<td>친구연락처</td>
 		<td><input type="hidden" name = "friendPh"  value ="${kjc.friendPh}"/> ${kjc.friendPh}</td>
 	</tr>
 	<tr>
-		<th>친구나이</th>
+		<td>친구나이</td>
 		<td><input type="hidden" name = "friendAge"  value ="${kjc.friendAge}"/>${kjc.friendAge}</td>
 	</tr>
 </c:forEach> 
 </c:if>
 	<tr>
-		<td><h3>결제정보 입력</h3></td>
+		<td colspan="2"><br/><h4>결제정보 입력</h4></td>
     </tr>
 	<tr>
-		<th>결제금액</th>
+		<td>결제금액</td>
 		<td><input type=hidden name = "buyPrice"/>${kdc.doQty * kdc.doPrice}</td>
 	<tr>
-		<th>결제수단</th>
+		<td>결제수단</td>
 		<td><input type="radio" name = "payStyle" id = "credit" value="credit" />신용카드  &nbsp;&nbsp;
         	<input type="radio" name = "payStyle" id = "bbb" value="kakaopay" />카카오QR결제<br/>
         	

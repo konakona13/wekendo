@@ -183,7 +183,7 @@
 	on b.PAY_NUM = p.PAY_NUM
     join do_img d
     on (k.DO_NUM = D.DO_NUM) AND d.do_img_kind ='main'
-	order by k.DO_NUM desc
+	order by k.DO_CLOSE_DATE desc
 </select>
 
 

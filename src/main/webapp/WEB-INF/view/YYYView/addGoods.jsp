@@ -88,13 +88,14 @@
 	        $('.file_input input[type=text]').val('파일 '+fileCount+'개');
 	    }
 	});
-	
+
 	$(function(){
 		$("#submit").click(function(){
 		 swal("Success", "상품이 등록되었습니다. 승인에는 1-2일이 소요됩니다.", "success");
+		 $("#frm").submit();
+		 document.location.href = '/goodsRegAction';
 		});
 	});
-
 
 </script>
 <!--===============================================================================================-->	
@@ -122,50 +123,219 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="YYYView/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="YYYView/css/util.css">
-	<link rel="stylesheet" type="text/css" href="YYYView/css/main.css">
+	<link rel="stylesheet" type="text/css" href="kimView/css/util.css">
+	<link rel="stylesheet" type="text/css" href="kimView/css/main.css">
 <!--===============================================================================================-->
-</head>
-<style type="text/css">
-
-.file_input label {
-    position:relative;
-    cursor:pointer;
-    display:inline-block;
-    vertical-align:middle;
-    overflow:hidden;
-    width:100px;
-    height:30px;
-    background:#777;
-    color:#fff;
-    text-align:center;
-    line-height:30px;
-}
-.file_input label input {
-    position:absolute;
-    width:0;
-    height:0;
-    overflow:hidden;
-}
-.file_input input[type=text] {
-    vertical-align:middle;
-    display:inline-block;
-    width:400px;
-    height:28px;
-    line-height:28px;
-    font-size:11px;
-    padding:0;
-    border:0;
-    border:1px solid #777;
-}
-
-</style>
 <body class="animsition">
 	
 	<!-- Header -->
-	
+	<header>
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<!-- Topbar -->
+			<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">
+						쉼표가 필요한 순간, 위켄두
+					</div>
+				
+					<div class="right-top-bar flex-w h-full">
+						
+							<c:if test="${comAuth.id != null}">
+								<p class="flex-c-m trans-04 p-lr-25">${comAuth.id} 님 환영합니다.</p>
+							</c:if>
 
-	<!-- Cart -->
+						
+
+						<c:if test="${comAuth.id == null}">
+						<a href="loginmain" class="flex-c-m trans-04 p-lr-25">기업회원가입/로그인</a>
+						</c:if>
+						
+						<c:if test="${comAuth.id != null}">
+						<a href="Logout1" class="flex-c-m trans-04 p-lr-25">로그아웃</a>  
+						<a href="loginmain" class="flex-c-m trans-04 p-lr-25">마이페이지</a>
+						<a href="sendBoxList" class="flex-c-m p-lr-10 trans-04">쪽지함</a> 
+						</c:if> 
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">고객센터</a>        
+                                      
+					</div>
+				</div>
+			</div>
+
+			<div class="wrap-menu-desktop">
+				<nav class="limiter-menu-desktop container">
+					
+					<!-- Logo desktop -->		
+					<a href="#" class="logo">
+						<img src="kimView/images/icons/logom.png" alt="IMG-LOGO">
+					</a>
+
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li class="active-menu">
+								<a href="companyMain">Home</a>
+							</li>
+
+							<li class="active-menu">
+                                <a href="goodsMain">상품관리</a>
+                                <ul class="sub-menu">
+									<li><a href="goodsMain">상품리스트</a></li>
+									<li><a href="goodsReg">상품등록</a></li>
+								</ul>
+							</li>
+
+							<li class="active-menu">
+                                <a href="orderCompany">주문관리</a>
+                                <ul class="sub-menu">
+									<li><a href="orderCompany">주문내역</a></li>
+								</ul>
+                            </li>
+                            
+							<li class="active-menu">
+                                <a href="companyCash">매출관리</a>
+                                <ul class="sub-menu">
+									<li><a href="companyCash">매출관리</a></li>
+									<li><a href="companyCash">정산관리</a></li>
+								</ul>
+                            </li>
+                            
+							<li class="active-menu">
+                                <a href="#">상품문의</a>
+                                <ul class="sub-menu">
+									<li><a href="#">문의내역</a></li>
+
+								</ul>
+                            </li>							
+						</ul>
+					</div>	
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+					</div>
+				</nav>
+			</div>	
+		</div>
+
+		<!-- Header Mobile -->
+		<div class="wrap-header-mobile">
+			<!-- Logo moblie -->		
+			<div class="logo-mobile">
+				<a href="index.html"><img src="kimView/images/icons/logom.png"" alt="IMG-LOGO"></a>
+			</div>
+
+			<!-- Button show menu -->
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
+		</div>
+
+
+		<!-- Menu Mobile -->
+		<div class="menu-mobile">
+			<ul class="topbar-mobile">
+				<li>
+					<div class="left-top-bar">
+						쉼표가 필요한 순간, 위켄두
+					</div>
+				</li>
+
+				<li>
+					<div class="right-top-bar flex-w h-full">
+					
+					
+						<c:if test="${memAuth.id == null}">
+						<a href="loginmain" class="flex-c-m p-lr-10 trans-04">회원가입 / 로그인</a>
+						</c:if>
+						
+						<c:if test="${memAuth.id != null}">
+						<a href="Logout1" class="flex-c-m p-lr-10 trans-04">로그아웃</a>  
+						<a href="loginmain" class="flex-c-m p-lr-10 trans-04">마이페이지</a>
+						</c:if>  
+                        <a href="#" class="flex-c-m p-lr-10 trans-04">고객센터</a>        
+                        
+
+					</div>
+				</li>
+			</ul>
+
+			<ul class="main-menu-m">
+				<li>
+					<a href="main">Home</a>
+
+					<span class="arrow-main-menu-m">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+				</li>
+
+
+				<li>
+					<a href="kendoJoinList" class="label1 rs1" data-label1="hot">액티비티</a>
+                    <ul class="sub-menu">
+                        <li><a href="kendoJoinList">테마파크</a></li>
+                        <li><a href="home-02.html">스포츠</a></li>
+                        <li><a href="home-03.html">아웃도어</a></li>
+                        <li><a href="kendoJoinList">수상레저</a></li>
+                        <li><a href="home-03.html">투어/관람</a></li>
+                        <li><a href="home-03.html">대회/축제</a></li>
+                        <li><a href="home-03.html">공연/전시</a></li>
+                        <li><a href="home-03.html">기타</a></li>
+                    </ul>
+				</li>
+
+				<li>
+					<a href="kendoJoinList">취미</a>
+                    <ul class="sub-menu">
+                        <li><a href="index.html">외국어</a></li>
+                        <li><a href="home-02.html">책</a></li>
+                        <li><a href="kendoJoinList">음악</a></li>
+                        <li><a href="home-03.html">사진</a></li>
+                        <li><a href="home-03.html">게임</a></li>
+                        <li><a href="home-03.html">요리</a></li>
+                        <li><a href="home-03.html">봉사</a></li>
+                        <li><a href="home-03.html">반려동물</a></li>
+                        <li><a href="home-03.html">기타</a></li>
+                    </ul>
+				</li>
+
+
+                <c:if test="${memAuth.id != null}">
+                <li class="active-menu">
+                	<a href="loginmain">DO만들기</a>
+				</li>
+				</c:if> 
+							
+                <c:if test="${memAuth.id == null}">
+                	<li class="active-menu">
+                   		<a href="doCreateEnter">DO만들기</a>
+					</li>
+				</c:if> 
+
+			</ul>
+		</div>
+
+		<!-- Modal Search -->
+		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+			<div class="container-search-header">
+				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+					<img src="kimView/images/icons/icon-close2.png" alt="CLOSE">
+				</button>
+
+				<form class="wrap-search-header flex-w p-l-15">
+					<button class="flex-c-m trans-04">
+						<i class="zmdi zmdi-search"></i>
+					</button>
+					<input class="plh3" type="text" name="search" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</header>
+
 	
 
 
@@ -177,7 +347,7 @@
 	</section>	
 
 	<!-- breadcrumb -->
-	<div class="container">
+	<!--<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
 				Home
@@ -195,12 +365,8 @@
 			</span>
 
 			
-		</div>
-		
-			<div align="right">
-				<% session.getAttribute("comAuth"); %> <input type = "hidden" id = "comId" name = "comId" value = "${comAuth.id}"/>${comAuth.id} 님 로그인 중 <br/>
-            </div>
-	</div>
+		</div>-->
+
 
 	<!--작성 폼 -->
 	<section class="bg0 p-t-104 p-b-116">
@@ -229,13 +395,7 @@
 						
 						이미지<div class="bor8 m-b-20 how-pos4-parent">
 								
-								<div class="file_input">
-								    <label>
-								        Upload File
-								        <input type="file" name="report"	multiple="multiple" />
-								    </label>
-								    <input type="text" readonly="readonly" title="File Route">
-								</div>
+								<input type= "file" name="report" multiple="multiple" />
 
 								<br>
 							<p class="stext-109 cl8 ">
@@ -277,7 +437,7 @@
 							<form:input  path = "goodsPrice" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="goodsPrice" placeholder="1인당 금액 산정하여 작성"/>
 						</div>
 					<br>
-					<input type ="submit" value ="Submit" id="submit" onclick="frmCheck()" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+					<button id="submit"  class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">Submit</button>
 						
 				</div>
 				

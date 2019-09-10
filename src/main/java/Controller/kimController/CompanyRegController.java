@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import Repository.kimRepository.UpdateComRegRepository;
 import Service.LEEService.CompanyCashService;
+import Service.LEEService.CompanyOrderService;
 import Service.LEEService.MemListService;
 import Service.kimService.UpdateComRegService;
 
@@ -24,6 +25,8 @@ public class CompanyRegController {
 	@Autowired
 	private MemListService memListService;
 
+	@Autowired
+	private CompanyOrderService companyOrderService;
 
 	
 	@RequestMapping("/companyReg")
@@ -50,9 +53,17 @@ public class CompanyRegController {
 		return updateComRegService.memcomList(model, page);
 	}
 	
+	/*
 	@RequestMapping("/companyMain2")
 	public String companyMain2(Model model, HttpSession session, @RequestParam(value = "page", defaultValue = "1") String page){
 		return updateComRegService.cashAndBuyList(model, session, page);
 	}
 
+	
+	@RequestMapping("/comMain")
+	public String getOrder(HttpSession session, Model model) {
+		companyOrderService.getOrder(session, model);
+		return "kimView/companyMain2";
+	}
+	*/
 }

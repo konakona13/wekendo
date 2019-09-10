@@ -14,6 +14,7 @@ import Command.kimCommand.GuestPayCommand;
 import Command.kimCommand.KendoDetailCommand;
 import Command.kimCommand.KendoJoinCommand;
 import Model.DTO.LEEDTO.Member;
+import Service.LEEService.CompanyOrderService;
 import Service.LEEService.UpdateDoStatusService;
 import Service.kimService.KendoJoinService;
 
@@ -24,22 +25,33 @@ public class KendoJoinController {
 	private KendoJoinService kendoJoinService;
 	@Autowired
 	private UpdateDoStatusService updateDoStatusService;
-	
+
+	@Autowired
+	private CompanyOrderService companyOrderService;
 	
 	@RequestMapping("/main")
 	public String memberMain(Model model) {
 		updateDoStatusService.updateStatus(model);
-		path = "memberMain";
-		return path;
+		return kendoJoinService.kendoJoinListMain(model);
+
 	}
 	
-	
+	/*
 	@RequestMapping("/comMain")
 	public String comMain(Model model) {
 		updateDoStatusService.updateStatus(model);
 		path = "companyMain";
 		return path;
 	}
+	*/
+	@RequestMapping("/comMain")
+	public String getOrder(HttpSession session, Model model) {
+		updateDoStatusService.updateStatus(model);
+		companyOrderService.getOrder(session, model);
+		return "kimView/companyMain2";
+	}
+	
+	
 	
 	@RequestMapping("/adminMain")
 	public String adminMain(Model model) {
@@ -76,7 +88,7 @@ public class KendoJoinController {
 	
 	@RequestMapping("/kendoDetail/guestPayAction")
 	public String guestPayAction(Model model,GuestPayCommand guestPayCommand, KendoJoinCommand kendoJoinCommand,KendoDetailCommand kendoDetailCommand, HttpSession session) {
-		System.out.println("guestPayDetail11111");
+		//System.out.println("guestPayDetail11111");
 		path = kendoJoinService.guestPayDetail(model, guestPayCommand, kendoJoinCommand,kendoDetailCommand,session);
 		return path;		
 	}
@@ -91,7 +103,6 @@ public class KendoJoinController {
 	
 	@RequestMapping("/memberMain2")
 	public String kendoJoinListMain(Model model) {
-
 		return kendoJoinService.kendoJoinListMain(model);
 	
 	}

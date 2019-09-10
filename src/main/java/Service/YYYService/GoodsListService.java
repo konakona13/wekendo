@@ -50,6 +50,7 @@ public class GoodsListService {
 		}
 
 		model.addAttribute("list", list);
+		model.addAttribute("size", list.size());
 		
 		List<GoodsImg> goodImgs = goodsRepository.getimages();
 		model.addAttribute("goodImgs",goodImgs);
