@@ -169,11 +169,11 @@ a { text-decoration:none }
 							</span>
 							<input type = "hidden" value = "${memAuth.id}" id = "memId" name = "memId"/>
 							<c:set var ="doStatus" value="${kendoJoin.doStatus}" scope="session" />							
-							<c:if test="${doStatus == 'inviting'}">
+							<c:if test="${doStatus eq 'inviting'}">
 								<h4 id="kendoNum"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/>${kendoJoin.doName}</h4><br />
 							</c:if>								
-							<c:if test="${doStatus == 'invited' || doStatus == 'doing' || doStatus == 'docomplete' || doStatus == 'doend' || doStatus == 'CANCEL'}">
-								<h4 style="color:grey;"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/>${kendoJoin.doName}</h4><br />
+							<c:if test="${doStatus eq 'invited' || doStatus eq 'DOING' || doStatus eq 'doing' || doStatus eq 'docomplete' || doStatus eq 'doend' || doStatus eq 'CANCEL'}">
+								<h4 style="color:blue;"><input type = "hidden" value = "${kendoJoin.doNum}" name = "doNum"/>${kendoJoin.doName}</h4><br />
 							</c:if>
 						</h4>
 
