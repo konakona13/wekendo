@@ -29,11 +29,13 @@
 	
 </script>
 <body>
-        <h3>활동참가신청</h3>
+        
         <p>
-        	신청자 ID : <input type=hidden name = "memId" value="${memAuth.id}"/>${memAuth.id}<br/>
+        	
         <div class = "container">
         <form name="frm" action="kendoJoinAction" method="POST">
+        <h3>활동참가신청</h3>
+        신청자 ID : <input type=hidden name = "memId" value="${memAuth.id}"/>${memAuth.id}<br/>
         	<h6 style="color:white;"><fmt:formatDate  value="${toDay}" pattern="yyyy"/><fmt:formatDate value="${member.memberBir}"  pattern="yyyy" /></h6>
             <table class="table table-striped">
                 <tr>
@@ -43,20 +45,13 @@
                     
                 </tr>
                 <tr>
-                    <td>호스트번호 : </td>
+                    <td>호스트번호 </td>
                     <td>
                     	<input type = "hidden" name = "hostNum" value = "${kdc.hostNum}"/>${kdc.hostNum}
                     </td>
                     
                 </tr>                
-                <tr>
-                    <td> </td>
-                    <td><input type=hidden name = "theme" value="${kdc.theme}"/>${kdc.theme}</td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td><input type=hidden name = "map" value="${kdc.map}"/>${kdc.map}</td>
-                </tr>
+
                 <tr>
                     <td>활동명 </td>
                     <td><input type=hidden name = "doName" value="${kdc.doName}"/>${kdc.doName}</td>
@@ -117,13 +112,13 @@
 <c:set var ="doQty" value="${kdc.doQty}" scope="session" />
 <c:if test="${doQty > 1}">
   
-<h3>친구 정보 입력</h3>
+<h4>친구 정보 입력</h4>
 
-            <table>
+            <table class="table table-striped">
             
 <c:forEach var="i" begin="1" end="${doQty-1}" step="1" > 
                 <tr>
-                    <td colspan="2"><h2>친구 ${i}</h2></td>                     
+                    <td colspan="2"><h4>친구 ${i}</h4></td>                     
                 </tr>           
                 <tr>
                     <td>친구 이름</td>

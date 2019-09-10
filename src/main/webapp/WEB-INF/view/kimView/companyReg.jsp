@@ -24,7 +24,7 @@
 <body>
 	
 	<div class = "container">
-	<h4>** 기업회원 가입 승인</h4>
+	<h4>** 기업회원 가입 승인</h4><br/>
 		<table  class="table table-striped">
         	<tr>
 				<td>기업회원번호</td>

@@ -22,15 +22,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h2>기업회원 가입 승인 상세</h2>
+	
 	
 	<form name="frm" action="comRegOk" method="POST">
 	<div class = "container">
-		<table border ="1" class = "striped">
+	<h4>** 기업회원 가입 승인 상세</h4><br/>
+		<table class="table table-striped">
         	<tr>
 				<td>기업회원번호</td>
 				<td>
-					<input type="text" name = "chkComNum" value="${companyDetail.companyNum}"/>
+					<input type="hidden" name = "chkComNum" value="${companyDetail.companyNum}"/>${companyDetail.companyNum}
 				</td>
 			</tr>
 			<tr>	
@@ -92,7 +93,5 @@
 
 <br/>               
 
-<a href="../companyReg" >기업회원 리스트</a>        
-<a href="../adminMain" >메인</a>
 </body>
 </html>
