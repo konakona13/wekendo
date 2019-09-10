@@ -65,7 +65,7 @@ public class DoCreateService
 		model.addAttribute("goodImgs",goodImgs);
 		Review review = doCreateReporsitory.getGoodsReview(goods.getGoodsNum());
 		model.addAttribute("review",review);
-		System.out.println("review :"+ review.getReviewContent());
+		
 		
 		return "HHHview/doGoodsDetail";
 	}
@@ -92,9 +92,13 @@ public class DoCreateService
 		//AuthInfo memInfo = (AuthInfo) session.getAttribute("memAuth");
 		String memId = (String) session.getAttribute("memNum"); 
 		//아이디값 삽입
+		System.out.println("커맨드클로즈데이트 : "+createDoCommand.getDoCloseDate());
+		
+		
 		kendo.setHostNum(memId);
 		kendo = getKendo(createDoCommand);
-						
+		System.out.println("캔두클로즈데이트 : "+kendo.getDoCloseDate()	);
+					
 		doCreatePay.setHostNum(memId);
 		//활동DTO 끝
 		

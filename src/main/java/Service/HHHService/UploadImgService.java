@@ -27,8 +27,8 @@ public class UploadImgService
 		// "D:\\Hk004\\Spring\\sp4-smrit\\src\\main\\webapp\\WEB-INF\\view\\UploadFile\\upload\\";
 		
 		originalFile = mainPhoto.getOriginalFilename();
-		originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
-		storedFileName = UUID.randomUUID().toString().replace("-", "") + originalFileExtension;
+		
+		storedFileName = UUID.randomUUID().toString().replace("-", "") +originalFile;
 		
 		File file = new File(realPath + "\\" + storedFileName);
 		mainPhoto.transferTo(file);
