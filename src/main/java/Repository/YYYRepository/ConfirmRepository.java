@@ -21,9 +21,11 @@ public class ConfirmRepository {
 	public Goods goodsConfirm(String goodsNum) {
 		
 		//goods.setGoodsStatus(goodsNum);
-		
+		System.out.println("DB로 넘기는 : " + goodsNum);
 		String statement =  namespace + ".upGoodsStatus";
-		sqlSession.update(statement, goodsNum);
+		int result = sqlSession.update(statement, goodsNum);
+		
+		System.out.println("sql문 개수 : " + result);
 		System.out.println("상품 승인 완료");
 		return goods;
 	}

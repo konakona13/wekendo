@@ -179,10 +179,11 @@ ul.tabs li.current {
 									
 									<div class="block2">
 									<div class="block2-txt flex-w flex-t p-t-14">
-									<form action="confirmList/ok" method="POST" name="okfrm">
+									
 										
 										<tr>
-											<td>${list.goodsNum}</td>
+										<form action="confirmList/ok" method="POST" name="okfrm">
+											<td><input type="hidden" value="${list.goodsNum}" name="goodsNum">${list.goodsNum}</td>
 											<td>${list.companyKind }</td>
 											<td><a href="goodsRegDetail.goods/${list.goodsNum}"
 												class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
@@ -196,9 +197,10 @@ ul.tabs li.current {
 											<c:if test="${status == '미승인'}">
 											<td><input type="submit" value="승인" id="confirm" /></td>
 											</c:if>
+										</form>
 										</tr>
 										
-									</form>
+									
 									</div>
 									</div>
 								</div>
