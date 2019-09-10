@@ -36,19 +36,7 @@
 		})
 
 	})
-	
-		var doNum = $('#doNum1').val();
-	
-	function openChildWindow1(doNum) {
-		// 새창에 대한 세팅(옵션)
-		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1100,left=300,top=20';
-		window.open("DodoDetail2?dodoNum=" + doNum, "KendoDetail", settings);
-	}
-	function openReviewWindow(doNum) {
-		// 새창에 대한 세팅(옵션)
-		var settings = 'toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=700,width=1100,left=300,top=20';
-		window.open("kendoReview?dodoNum=" + doNum, "KendoReview", settings);
-	}
+
 </script>
 <style>
 body {
@@ -93,142 +81,165 @@ ul.tabs li.current {
 }
 </style>
 <body>
+<c:if test="${comNum == 'admin'}">
 	<div class="container">
 
 		<ul class="tabs btn btn-default">
-			<li class="tab-link current" data-tab="tab-1">개설</li>
-			<li class="tab-link" data-tab="tab-2">참가</li>
-			<li class="tab-link" data-tab="tab-3">완료</li>
+			<li class="tab-link current" data-tab="tab-1">전체</li>
+			<li class="tab-link" data-tab="tab-2">미승인</li>
+			<li class="tab-link" data-tab="tab-3">승인</li>
 		</ul>
 
 		<div id="tab-1" class="tab-content current">
 		
 		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
-<c:if test="${! empty hostlists}">
+<c:if test="${! empty list}">
 	<tr align="center" valign="middle">
-		<td colspan="5" class="info">나의 개설활동</td>
+		<td colspan="8" class="info">기업 상품 승인 관리</td>
 	</tr>
 	
 	<tr align="center" valign="middle" bordercolor="">
 		<td style="font-family:Tahoma;font-size:8pt;" width="30%" height="26">
-			<div align="center">활동이름</div>
+			<div align="center">상품번호</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
-			<div align="center">결제금액</div>
+			<div align="center">상품구분</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">결제일</div>
+			<div align="center">상품명</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
-			<div align="center">결제방법</div>
+			<div align="center">작성자</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">카드번호</div>
+			<div align="center">등록일</div>
+	</td>
+		<td style="font-family: Tahoma; font-size: 8pt;" width="15%">
+			<div align="center">승인상태</div>
 		</td>
-	</tr>
-<c:forEach var="hostlist" items="${hostlists}">
+		<td style="font-family: Tahoma; font-size: 8pt;" width="15%">
+			<div align="center">관리</div>
+		</td>
+		</tr>
+		<c:if test="${! empty list}">
+		<c:forEach var="list" items="${list}">
 	<tr align="center" valign="middle" bordercolor="#333333"
 		onmouseover="this.style.backgroundColor='F8F8F8'"
 		onmouseout="this.style.backgroundColor=''">
+		<form action="confirmList/ok" method="POST" name="okfrm">
 		<td height="23" style="font-family:Tahoma;font-size:10pt;">
-			${hostlist.doName }
+			<input type="hidden" value="${list.goodsNum}" name="goodsNum">${list.goodsNum}
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">
-			 <fmt:formatNumber value="${hostlist.payTotal }" pattern="#,###" /> 원 
-			</div>
+			${list.companyKind }			
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">
-			<fmt:formatDate value="${hostlist.dutchDate }" pattern="yy/MM/dd" />
-			</div>
+			<a href="goodsRegDetail.goods/${list.goodsNum}"
+				class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+					${list.goodsName} </a>
 		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">${list.companyName}</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">
-		${hostlist.payStyle }
-			</div>
-		</td>	
-		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">${hostlist.cardNum }</div>
+			&nbsp; <fmt:formatDate value="${list.regDate}"
+													pattern="yy.MM.dd" /> &nbsp;
 		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">&nbsp; ${list.goodsStatus} &nbsp;</td>	
+		
+		<c:set var="status" value="${list.goodsStatus}" />
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<c:if test="${status == '미승인'}">												
+				<button  id="confirm"  
+					class="flex-c-m stext-101 cl0 size-10 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">승인</button>
+			</c:if>
+		</td>
+		</form>
 	</tr>
 </c:forEach>
 </c:if>
-<c:if test="${empty hostlists}">
-	<tr align="center" valign="middle">
-		<td colspan="4">나의 개설활동</td>
-		<td align=right>
-			<font size=2>개설된 활동이 없습니다.</font>
-		</td>
-	</tr>
 </c:if>
 </table>
+
+	<div>
+		<c:if test="${empty list}">
+			미승인 내역이 없습니다.
+		</c:if>
+	</div>
+
+	<c:if test="${comNum != 'admin' || empty comNum}">
+		<script>swal ( "Warning" ,  "관리자만 이용 가능한 페이지입니다." ,  "error" ) </script>
+	</c:if>
 		
-		</div>
+
 		<div id="tab-2" class="tab-content">
 		
 		<table width=100% border="0" cellpadding="0" cellspacing="0" class="table table-striped">
-<c:if test="${! empty guestlists}">
-	<tr align="center" valign="middle">
-		<td colspan="5" class="info">나의 참가활동</td>
+	<c:if test="${goodsStatus=='미승인}">
+		<tr align="center" valign="middle">
+		<td colspan="8" class="info">기업 상품 승인 관리</td>
 	</tr>
 	
-	<tr align="center" valign="middle" bordercolor="#333333">
+	<tr align="center" valign="middle" bordercolor="">
 		<td style="font-family:Tahoma;font-size:8pt;" width="30%" height="26">
-			<div align="center">활동이름</div>
+			<div align="center">상품번호</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
-			<div align="center">결제금액</div>
+			<div align="center">상품구분</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">결제일</div>
+			<div align="center">상품명</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="10%">
-			<div align="center">결제방법</div>
+			<div align="center">작성자</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:8pt;" width="15%">
-			<div align="center">카드번호</div>
+			<div align="center">등록일</div>
+	</td>
+		<td style="font-family: Tahoma; font-size: 8pt;" width="15%">
+			<div align="center">승인상태</div>
 		</td>
-	</tr>
-<c:forEach var="guestlist" items="${guestlists}">
+		<td style="font-family: Tahoma; font-size: 8pt;" width="15%">
+			<div align="center">관리</div>
+		</td>
+		</tr>
+		<c:if test="${! empty list}">
+		<c:forEach var="list" items="${list}">
 	<tr align="center" valign="middle" bordercolor="#333333"
 		onmouseover="this.style.backgroundColor='F8F8F8'"
 		onmouseout="this.style.backgroundColor=''">
+		<form action="confirmList/ok" method="POST" name="okfrm">
 		<td height="23" style="font-family:Tahoma;font-size:10pt;">
-			${guestlist.doName }
+			<input type="hidden" value="${list.goodsNum}" name="goodsNum">${list.goodsNum}
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">
-			 <fmt:formatNumber value="${guestlist.payTotal }" pattern="#,###" /> 원 
-			</div>
+			${list.companyKind }			
 		</td>
 		
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">
-			<fmt:formatDate value="${guestlist.dutchDate }" pattern="yy/MM/dd" />
-			</div>
+			<a href="goodsRegDetail.goods/${list.goodsNum}"
+				class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+					${list.goodsName} </a>
 		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">${list.companyName}</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">
-		${guestlist.payStyle }
-			</div>
-		</td>	
-		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">${guestlist.cardNum }</div>
+			&nbsp; <fmt:formatDate value="${list.regDate}"
+													pattern="yy.MM.dd" /> &nbsp;
 		</td>
+		<td style="font-family:Tahoma;font-size:10pt;">&nbsp; ${list.goodsStatus} &nbsp;</td>	
+		
+		<c:set var="status" value="${list.goodsStatus}" />
+		<td style="font-family:Tahoma;font-size:10pt;">
+			<c:if test="${status == '미승인'}">												
+				<button  id="confirm"  
+					class="flex-c-m stext-101 cl0 size-10 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">승인</button>
+			</c:if>
+		</td>
+		</form>
 	</tr>
 </c:forEach>
 </c:if>
-<c:if test="${empty guestlists}">
-	<tr align="center" valign="middle">
-		<td colspan="4">나의 참가활동</td>
-		<td align=right>
-			<font size=2>참가한 활동이 없습니다.</font>
-		</td>
-	</tr>
 </c:if>
 </table>
 
@@ -329,5 +340,9 @@ ul.tabs li.current {
 </c:if>
 </table>
 		</div>
+</div>
+</div>
+</c:if>
 </body>
+
 </html>

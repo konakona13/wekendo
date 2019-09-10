@@ -50,6 +50,8 @@
 $(function(){
 	$("#submit").click(function(){
 	 swal("Success", "리뷰가 등록되었습니다.", "success");
+	 $("#reviewFrm").submit();
+	 document.location.href = '/reviewAction';
 	});
 });
 
@@ -63,24 +65,18 @@ $(function(){
 				<div class="tab01">
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
-
-						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">이용후기 (1)</a>
-						</li>
+							<a class="nav-link active" data-toggle="tab" href="#reviews" role="tab">이용 후기</a>
 					</ul>
-
-					 <!-- Tab1 -->
-
-					<!-- Tab2 -->
 						
 			<!-- Reivew자리 -->
 	
-	<div class="tab-pane fade" id="reviews" role="tabpanel">
+	<div class="tab-content p-t-43" id="reviews" role="tabpanel">
 	
 		<div class="row">
 		
 			<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 			<c:forEach var="dodo" items="${dodo}">
+			<br>
 				<div class="p-b-30 m-lr-15-sm">					
 					
 					<!-- Add review -->
@@ -128,7 +124,7 @@ $(function(){
 						</div>
 						
 						<div align="center">
-								<input type ="submit" value ="Submit" id="submit" class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
+								<button id ="submit" class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">Submit</button>
 						</div>
 						</div>
 						
@@ -136,6 +132,8 @@ $(function(){
 						
 					
 					</div>
+					<hr width="100%">
+					
 					</c:forEach>
 			
 				</div>

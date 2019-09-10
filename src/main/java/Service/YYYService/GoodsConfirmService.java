@@ -29,7 +29,7 @@ public class GoodsConfirmService {
 		
 		System.out.println("승인여부 :" + goods.getGoodsStatus());
 		
-		return "YYYView/goodsConfirm" ;
+		return "redirect:../confirmList" ;
 	}
 
 }

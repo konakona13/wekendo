@@ -12,6 +12,7 @@ public class DodoY implements Serializable {
 	private String memName;
 	private String memNum;
 	private String companyNum;
+	private String reviewNum;
 	
 	private String hostNum;
 	private Timestamp startDate;
@@ -61,6 +62,14 @@ public class DodoY implements Serializable {
 
 	public Long getCardNum() {
 		return cardNum;
+	}
+
+	public String getReviewNum() {
+		return reviewNum;
+	}
+
+	public void setReviewNum(String reviewNum) {
+		this.reviewNum = reviewNum;
 	}
 
 	public void setCardNum(Long cardNum) {
